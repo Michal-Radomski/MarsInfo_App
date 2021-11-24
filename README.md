@@ -1,2 +1,3 @@
 # VariousInfoApp
-React Redux application providing various information
+
+React Redux application providing various information.

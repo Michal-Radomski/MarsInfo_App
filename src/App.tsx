@@ -2,8 +2,8 @@ import React from "react";
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 import "./styles/App.scss";
-import Navbar from "./components/navbar/Navbar";
 import Home from "./components/pages/Home";
+import Navbar from "./components/navbar/Navbar";
 import Money from "./components/pages/Money";
 import Covid from "./components/pages/Covid";
 import Weather from "./components/pages/Weather";

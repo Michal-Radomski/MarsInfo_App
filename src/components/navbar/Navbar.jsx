@@ -1,20 +1,21 @@
-import React, {useEffect, useState} from "react";
-
-import {BiMenuAltRight} from "react-icons/bi";
+import React from "react";
+import {BiMenu} from "react-icons/bi";
 import {AiOutlineClose} from "react-icons/ai";
+import {Link} from "react-router-dom";
 
 import classes from "./Navbar.module.scss";
-import {Link, useHistory} from "react-router-dom";
+import Logo from "./image/Logo.png";
 
 const Navbar = () => {
-  const history = useHistory();
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [size, setSize] = useState({
-    width: undefined,
-    height: undefined,
+  const [menuOpen, setMenuOpen] = React.useState(false);
+  const [size, setSize] = React.useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
   });
 
-  useEffect(() => {
+  // console.log("menuOpen:", menuOpen, "size:", size);
+
+  React.useEffect(() => {
     const handleResize = () => {
       setSize({
         width: window.innerWidth,
@@ -22,53 +23,47 @@ const Navbar = () => {
       });
     };
     window.addEventListener("resize", handleResize);
-
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (size.width > 768 && menuOpen) {
       setMenuOpen(false);
     }
   }, [size.width, menuOpen]);
 
   const menuToggleHandler = () => {
-    setMenuOpen((p) => !p);
-  };
-
-  const ctaClickHandler = () => {
-    menuToggleHandler();
-    history.push("/page-cta");
+    setMenuOpen((booleanState) => !booleanState);
   };
 
   return (
     <header className={classes.header}>
       <div className={classes.header__content}>
         <Link to="/" className={classes.header__content__logo}>
-          navbar
+          Home
+          <img src={Logo} alt="logo" />
         </Link>
         <nav className={`${classes.header__content__nav} ${menuOpen && size.width < 768 ? classes.isMenu : ""}`}>
           <ul>
             <li>
-              <Link to="/page-one" onClick={menuToggleHandler}>
-                PageOne
+              <Link to="/money" onClick={menuToggleHandler}>
+                Money
               </Link>
             </li>
             <li>
-              <Link to="/page-two" onClick={menuToggleHandler}>
-                PageTwo
+              <Link to="/covid" onClick={menuToggleHandler}>
+                Covid
               </Link>
             </li>
             <li>
-              <Link to="/page-three" onClick={menuToggleHandler}>
-                PageThree
+              <Link to="/weather" onClick={menuToggleHandler}>
+                Weather
               </Link>
             </li>
           </ul>
-          <button onClick={ctaClickHandler}>CTA Page</button>
         </nav>
         <div className={classes.header__content__toggle}>
-          {!menuOpen ? <BiMenuAltRight onClick={menuToggleHandler} /> : <AiOutlineClose onClick={menuToggleHandler} />}
+          {!menuOpen ? <BiMenu onClick={menuToggleHandler} /> : <AiOutlineClose onClick={menuToggleHandler} />}
         </div>
       </div>
     </header>
@@ -76,25 +71,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-// import {Link} from "react-router-dom";
-
-// const Navbar = () => {
-//   return (
-//     <div>
-//       <li>
-//         <Link to="/">Home</Link>
-//       </li>
-//       <li>
-//         <Link to="/money">Money</Link>
-//       </li>
-//       <li>
-//         <Link to="/covid">Covid</Link>
-//       </li>
-//       <li>
-//         <Link to="/weather">Weather</Link>
-//       </li>
-//     </div>
-//   );
-// };
-// export default Navbar;

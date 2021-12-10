@@ -1,5 +1,3 @@
-import React from "react";
-
 const Money = () => {
   return <div>Money</div>;
 };

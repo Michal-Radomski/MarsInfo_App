@@ -1,16 +1,17 @@
 @import "../../styles/variables.scss";
 
-.header {
+.navbar {
   background: $dark;
   width: 100%;
   height: $headerHeight;
   padding: 0 1.5rem;
+  font-size: larger;
   @include breakpoint(md) {
     padding: 0 3rem;
   }
   transition: 0.3s ease all;
 
-  &__content {
+  &_content {
     overflow: hidden;
     color: $light;
     margin: 0 auto;
@@ -20,16 +21,16 @@
     align-items: center;
     justify-content: space-between;
     position: relative;
-    z-index: 100;
+    z-index: 5;
 
-    &__logo {
-      font-size: 2rem;
+    &_logo {
+      font-size: 1.5rem;
       font-weight: bold;
       text-decoration: none;
       color: $light;
     }
 
-    &__nav {
+    &_nav {
       top: 0;
       right: 100%;
       bottom: 0;
@@ -89,29 +90,6 @@
               background: linear-gradient(rgba($light, 0.1), rgba($light, 0.2));
             }
           }
-        }
-      }
-      button {
-        cursor: pointer;
-        outline: none;
-        padding: 0.75rem 1.25rem;
-        border-radius: $borderRadius;
-        font-size: 1rem;
-        font-family: inherit;
-        background: $primary;
-        color: $dark;
-        border: 1px solid transparent;
-        transition: 0.3s ease all;
-
-        &:hover {
-          border-color: $primary;
-          background: rgba($primary, 0.1);
-          color: $primary;
-        }
-        &:active {
-          border-color: $primary;
-          background: linear-gradient(rgba($primary, 0.2), rgba($primary, 0.3));
-          color: $primary;
         }
       }
 

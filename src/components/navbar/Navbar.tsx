@@ -37,13 +37,13 @@ const Navbar = () => {
   };
 
   return (
-    <header className={classes.header}>
-      <div className={classes.header__content}>
-        <Link to="/" className={classes.header__content__logo}>
+    <header className={classes.navbar}>
+      <div className={classes.navbar_content}>
+        <Link to="/" className={classes.navbar_content_logo}>
           Home
           <img src={Logo} alt="logo" />
         </Link>
-        <nav className={`${classes.header__content__nav} ${menuOpen && size.width < 768 ? classes.isMenu : ""}`}>
+        <nav className={`${classes.navbar_content_nav} ${menuOpen && size.width < 768 ? classes.isMenu : ""}`}>
           <ul>
             <li>
               <Link to="/money" onClick={menuToggleHandler}>
@@ -62,7 +62,7 @@ const Navbar = () => {
             </li>
           </ul>
         </nav>
-        <div className={classes.header__content__toggle}>
+        <div className={classes.navbar_content__toggle}>
           {!menuOpen ? <BiMenu onClick={menuToggleHandler} /> : <AiOutlineClose onClick={menuToggleHandler} />}
         </div>
       </div>

@@ -2,26 +2,25 @@
 
 $Ubuntu-font: "Ubuntu Mono", monospace;
 
-// colors
-$dark: rgb(29, 29, 29);
-$light: #fff;
-$primary: rgb(162, 162, 246);
-$bg: rgb(244, 244, 255);
+// Colors
+$dark: rgb(32, 32, 32);
+$light: whitesmoke;
+$primary: #dd2e44;
 
-// spacing
+// Spacing
 $spacing-md: 16px;
 $spacing-lg: 32px;
 
-// border radius
+// Border radius
 $borderRadius: 12px;
 
-// header height
+// Navbar height
 $headerHeight: 100px;
 
 @mixin breakpoint($point) {
   @if $point == md {
     // 768px
-    @media (min-width: 48em) {
+    @media (min-width: 768px) {
       @content;
     }
   }

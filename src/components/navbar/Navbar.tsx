@@ -40,8 +40,9 @@ const Navbar = () => {
     <header className={classes.navbar}>
       <div className={classes.navbar_content}>
         <Link to="/" className={classes.navbar_content_logo}>
-          Home
           <img src={Logo} alt="logo" />
+          <br />
+          Home
         </Link>
         <nav className={`${classes.navbar_content_nav} ${menuOpen && size.width < 768 ? classes.isMenu : ""}`}>
           <ul>

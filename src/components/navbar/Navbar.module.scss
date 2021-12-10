@@ -26,6 +26,14 @@
       font-weight: bold;
       text-decoration: none;
       color: $light;
+      img {
+        height: calc($headerHeight * 0.5);
+        width: auto;
+      }
+      &:hover {
+        filter: blur(1px);
+        color: $primary;
+      }
     }
     &_nav {
       top: 0;

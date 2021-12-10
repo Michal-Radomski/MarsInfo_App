@@ -46,11 +46,13 @@ const Navbar = () => {
         </Link>
         <nav className={`${classes.navbar_content_nav} ${menuOpen && size.width < 768 ? classes.isMenu : ""}`}>
           <ul>
-            <li>
-              <Link to="/" onClick={menuToggleHandler}>
-                Home
-              </Link>
-            </li>
+            {size.width > 768 ? null : (
+              <li>
+                <Link to="/" onClick={menuToggleHandler}>
+                  Home
+                </Link>
+              </li>
+            )}
             <li>
               <Link to="/money" onClick={menuToggleHandler}>
                 Money

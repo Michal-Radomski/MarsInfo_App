@@ -10,7 +10,6 @@
     padding: 0 3rem;
   }
   transition: 0.3s ease all;
-
   &_content {
     overflow: hidden;
     color: $light;
@@ -22,14 +21,12 @@
     justify-content: space-between;
     position: relative;
     z-index: 5;
-
     &_logo {
       font-size: 1.5rem;
       font-weight: bold;
       text-decoration: none;
       color: $light;
     }
-
     &_nav {
       top: 0;
       right: 100%;
@@ -43,10 +40,8 @@
       align-items: center;
       text-align: center;
       background: rgba($dark, 0.9);
-      backdrop-filter: blur(2px);
-      transform: translate(0);
-      transition: 0.3s ease transform;
-
+      backdrop-filter: blur(4px);
+      transition: 0.5s ease-in-out;
       @include breakpoint(md) {
         transform: none;
         flex-direction: row;
@@ -65,7 +60,7 @@
           flex-direction: row;
           align-items: center;
           margin-bottom: 0;
-          margin-right: calc(0.5rem + #{$spacing-md});
+          margin-right: calc(0.5rem + #{$spacing-md}); // Sass interpolation
         }
         li {
           &:not(:last-child) {
@@ -81,7 +76,6 @@
             padding: 0.75rem 1.25rem;
             border-radius: $borderRadius;
             transition: 0.3s ease all;
-
             &:hover {
               background: rgba($light, 0.1);
             }
@@ -92,24 +86,20 @@
           }
         }
       }
-
       &.isMenu {
         transform: translate(100%);
       }
     }
-
-    &__toggle {
+    &_toggle {
       cursor: pointer;
       display: flex;
       align-items: center;
       font-size: 2rem;
       transition: 0.3s ease all;
       position: relative;
-
       &:hover {
         color: $primary;
       }
-
       @include breakpoint(md) {
         display: none;
       }

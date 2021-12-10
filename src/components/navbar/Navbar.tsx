@@ -62,7 +62,7 @@ const Navbar = () => {
             </li>
           </ul>
         </nav>
-        <div className={classes.navbar_content__toggle}>
+        <div className={classes.navbar_content_toggle}>
           {!menuOpen ? <BiMenu onClick={menuToggleHandler} /> : <AiOutlineClose onClick={menuToggleHandler} />}
         </div>
       </div>

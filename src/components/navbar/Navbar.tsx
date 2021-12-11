@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import classes from "./Navbar.module.scss";
 import Logo from "./image/Logo.png";
 
-const Navbar = () => {
+const Navbar = (): JSX.Element => {
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [size, setSize] = React.useState({
     width: window.innerWidth,

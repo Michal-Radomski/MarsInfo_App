@@ -1,4 +1,4 @@
-const Weather = () => {
+const Weather = (): JSX.Element => {
   return <div>Weather</div>;
 };
 

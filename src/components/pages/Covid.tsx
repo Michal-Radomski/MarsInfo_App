@@ -1,4 +1,4 @@
-const Covid = () => {
+const Covid = (): JSX.Element => {
   return <div>Covid</div>;
 };
 

@@ -1,4 +1,5 @@
 import React from "react";
+
 import DateInput from "./DateInput";
 import Photo from "./Photo";
 
@@ -37,7 +38,7 @@ class NASA extends React.Component {
     return (
       <div>
         <h1>NASA's Astronomy Picture of the Day</h1>
-        <DateInput changeDate={this.changeDate} />
+        <DateInput changeDate={this.changeDate} date={this.state.date} />
         <Photo photo={this.state.photo} />
       </div>
     );

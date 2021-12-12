@@ -19,6 +19,7 @@ const DateInput = (props) => {
         minDate={new Date("1995-06-16")}
         maxDate={new Date()}
       />
+      <button onClick={props.randomDate}> Random photo</button>
     </React.Fragment>
   );
 };

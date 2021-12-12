@@ -1,4 +1,5 @@
 import React from "react";
+import momentRandom from "moment-random";
 
 import DateInput from "./DateInput";
 import Photo from "./Photo";
@@ -25,6 +26,7 @@ class NASA extends React.Component {
 
   // componentDidUpdate() {
   //   console.log("this.state:", this.state);
+  //   console.log("this.state.date:", this.state?.date.toISOString().split("T")[0]);
   // }
 
   // changeDate = async (event) => {
@@ -40,11 +42,20 @@ class NASA extends React.Component {
     await this.getPhoto(this.state.date.toISOString().split("T")[0]);
   };
 
+  randomDate = async () => {
+    let minDate = new Date("1995-06-16");
+    let maxDate = new Date();
+    let randomDate = momentRandom(maxDate, minDate)._d;
+    // console.log("randomDate:", randomDate);
+    await this.setState({date: randomDate});
+    await this.getPhoto(this.state.date.toISOString().split("T")[0]);
+  };
+
   render() {
     return (
       <div>
         <h1>NASA's Astronomy Picture of the Day</h1>
-        <DateInput changeDate={this.changeDate} date={this.state.date} />
+        <DateInput changeDate={this.changeDate} date={this.state.date} randomDate={this.randomDate} />
         <Photo photo={this.state.photo} />
       </div>
     );

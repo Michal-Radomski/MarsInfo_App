@@ -8,7 +8,7 @@ const API_KEY = process.env.REACT_APP_NASA_API_KEY;
 
 class NASA extends React.Component {
   state = {
-    date: new Date().toISOString().split("T")[0],
+    date: new Date(),
     photo: "",
   };
 
@@ -19,19 +19,25 @@ class NASA extends React.Component {
   };
 
   componentDidMount() {
+    // console.log("this.state:", this.state);
     this.getPhoto("");
   }
 
-  componentDidUpdate() {
-    console.log(this.state);
-  }
+  // componentDidUpdate() {
+  //   console.log("this.state:", this.state);
+  // }
 
-  changeDate = async (event) => {
-    event.preventDefault();
-    let dateFromInput = event.target[0].value;
-    // console.log("dateFromInput:", dateFromInput);
+  // changeDate = async (event) => {
+  //   event.preventDefault();
+  //   let dateFromInput = event.target[0].value;
+  //   // console.log("dateFromInput:", dateFromInput);
+  //   await this.setState({date: dateFromInput});
+  //   await this.getPhoto(this.state.date);
+  // };
+
+  changeDate = async (dateFromInput) => {
     await this.setState({date: dateFromInput});
-    await this.getPhoto(this.state.date);
+    await this.getPhoto(this.state.date.toISOString().split("T")[0]);
   };
 
   render() {

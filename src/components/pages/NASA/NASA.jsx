@@ -19,7 +19,7 @@ class NASA extends React.Component {
   };
 
   componentDidMount() {
-    this.getPhoto(this.state.date);
+    this.getPhoto("");
   }
 
   componentDidUpdate() {

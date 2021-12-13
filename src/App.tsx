@@ -8,7 +8,7 @@ import Money from "./components/pages/Money";
 import Covid from "./components/pages/Covid";
 import Weather from "./components/pages/Weather";
 
-function App() {
+function App(): JSX.Element {
   return (
     <React.Fragment>
       <Router>

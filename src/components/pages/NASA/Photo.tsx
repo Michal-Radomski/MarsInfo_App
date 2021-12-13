@@ -13,7 +13,7 @@ const H2 = styled.h2`
   margin: 5px;
 `;
 
-const Photo = (props) => {
+const Photo = (props: {photo: {title: string; url: string; explanation: string}}): JSX.Element => {
   if (!props.photo.title) {
     return <h2>No photo for selected day</h2>;
   }

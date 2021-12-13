@@ -47,7 +47,7 @@ const Line = styled.p`
   min-width: 160px;
 `;
 
-const calendarContainer = ({className, children}) => {
+const calendarContainer = ({className, children}: {className: string; children: string[]}) => {
   return (
     <div style={{padding: "16px", background: "#216ba5", color: "#fff"}}>
       <CalendarContainer className={className}>
@@ -58,13 +58,24 @@ const calendarContainer = ({className, children}) => {
   );
 };
 
-const CustomInput = React.forwardRef(({value, onClick}, ref) => (
-  <ButtonInput style={{minWidth: "180px"}} onClick={onClick} ref={ref}>
-    {value}
-  </ButtonInput>
-));
+const CustomInput = React.forwardRef(
+  (
+    {value, onClick}: {value?: string; onClick?: React.MouseEventHandler<HTMLButtonElement>},
+    ref: React.Ref<HTMLButtonElement>
+  ) => {
+    return (
+      <ButtonInput style={{minWidth: "180px"}} onClick={onClick} ref={ref}>
+        {value}
+      </ButtonInput>
+    );
+  }
+);
 
-const DateInput = (props) => {
+const DateInput = (props: {
+  randomDate: React.MouseEventHandler<HTMLButtonElement>;
+  date: Date;
+  changeDate: (date: Date) => void;
+}): JSX.Element => {
   // console.log("props:", props);
   return (
     <React.Fragment>

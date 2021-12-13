@@ -5,7 +5,7 @@ import styled from "styled-components";
 import DateInput from "./DateInput";
 import Photo from "./Photo";
 
-const API_KEY = process.env.REACT_APP_NASA_API_KEY;
+const API_KEY = process.env.REACT_APP_NASA_API_KEY as string;
 // console.log("API_KEY:", API_KEY);
 
 const Div = styled.div`
@@ -16,19 +16,33 @@ const Div = styled.div`
   justify-content: center;
   align-content: space-between;
 `;
+
 const H1 = styled.h1`
   text-align: center;
   color: palevioletred;
   margin: 5px;
 `;
 
-class NASA extends React.Component {
-  state = {
+type State = {
+  date: Date;
+  photo: {
+    title: string;
+    url: string;
+    explanation: string;
+  };
+};
+
+class NASA extends React.Component<{}, State> {
+  state: State = {
     date: new Date(),
-    photo: "",
+    photo: {
+      title: "",
+      url: "",
+      explanation: "",
+    },
   };
 
-  getPhoto = (date) => {
+  getPhoto = (date: string) => {
     fetch(`https://api.nasa.gov/planetary/apod?date=${date}&api_key=${API_KEY}`)
       .then((response) => response.json())
       .then((data) => this.setState({photo: data}));
@@ -52,7 +66,7 @@ class NASA extends React.Component {
   //   await this.getPhoto(this.state.date);
   // };
 
-  changeDate = async (dateFromInput) => {
+  changeDate = async (dateFromInput: Date) => {
     await this.setState({date: dateFromInput});
     await this.getPhoto(this.state.date.toISOString().split("T")[0]);
   };

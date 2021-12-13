@@ -1,6 +1,68 @@
 import React from "react";
-import DatePicker from "react-datepicker";
+import DatePicker, {CalendarContainer} from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import styled from "styled-components";
+
+const Button = styled.button`
+  font-size: 1em;
+  margin: 1em 5px;
+  padding: 1em;
+  background-color: #202020;
+  color: whitesmoke;
+  border-radius: 5px;
+  min-width: 180px;
+  cursor: pointer;
+  &:hover {
+    color: #202020;
+    background-color: lightgray;
+    border: 2px solid #202020;
+  }
+`;
+
+const ButtonInput = styled.button`
+  font-size: 1em;
+  margin: 1em 5px;
+  padding: 1em;
+  background-color: #216ba5;
+  color: whitesmoke;
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    color: #216ba5;
+    background-color: lightgray;
+    border: 2px solid #216ba5;
+  }
+`;
+
+const Div = styled.div`
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: baseline;
+  align-content: flex-start;
+`;
+const Line = styled.p`
+  margin: 5px;
+  min-width: 160px;
+`;
+
+const calendarContainer = ({className, children}) => {
+  return (
+    <div style={{padding: "16px", background: "#216ba5", color: "#fff"}}>
+      <CalendarContainer className={className}>
+        <div style={{background: "#f0f0f0"}}>Select a Date:</div>
+        <div style={{position: "relative"}}>{children}</div>
+      </CalendarContainer>
+    </div>
+  );
+};
+
+const CustomInput = React.forwardRef(({value, onClick}, ref) => (
+  <ButtonInput style={{minWidth: "180px"}} onClick={onClick} ref={ref}>
+    {value}
+  </ButtonInput>
+));
 
 const DateInput = (props) => {
   // console.log("props:", props);
@@ -11,15 +73,20 @@ const DateInput = (props) => {
         <input type="date" min="1995-06-16" max={new Date().toISOString().split("T")[0]} />
         <input type="submit" value="Submit" />
       </form> */}
-      Select a Date:
-      <DatePicker
-        selected={new Date(props.date)}
-        onChange={props.changeDate}
-        dateFormat="yyyy-MM-dd"
-        minDate={new Date("1995-06-16")}
-        maxDate={new Date()}
-      />
-      <button onClick={props.randomDate}> Random photo</button>
+      <Div>
+        <Button onClick={props.randomDate}>Random photo</Button>
+        <Line>or select a date:</Line>
+        <DatePicker
+          selected={new Date(props.date)}
+          onChange={props.changeDate}
+          dateFormat="yyyy-MM-dd"
+          minDate={new Date("1995-06-16")}
+          maxDate={new Date()}
+          calendarContainer={calendarContainer}
+          customInput={<CustomInput />}
+          showWeekNumbers
+        />
+      </Div>
     </React.Fragment>
   );
 };

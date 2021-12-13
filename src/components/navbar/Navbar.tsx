@@ -43,13 +43,15 @@ const Navbar = (): JSX.Element => {
           <img src={Logo} alt="logo" />
           <br />
           Home
+          <br />
+          <div style={{fontSize: "65%", color: "palevioletred"}}>(APOD)</div>
         </Link>
         <nav className={`${classes.navbar_content_nav} ${menuOpen && size.width < 768 ? classes.isMenu : ""}`}>
           <ul>
             {size.width > 768 ? null : (
               <li>
                 <Link to="/" onClick={menuToggleHandler}>
-                  Home
+                  Home (APOD)
                 </Link>
               </li>
             )}

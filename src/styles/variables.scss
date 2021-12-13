@@ -15,7 +15,7 @@ $spacing-lg: 32px;
 $borderRadius: 12px;
 
 // Navbar height
-$headerHeight: 100px;
+$headerHeight: 105px;
 
 @mixin breakpoint($point) {
   @if $point == md {

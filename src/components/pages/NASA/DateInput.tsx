@@ -41,6 +41,8 @@ const Div = styled.div`
   justify-content: flex-start;
   align-items: baseline;
   align-content: flex-start;
+  margin-left: auto;
+  margin-right: auto;
 `;
 const Line = styled.p`
   margin: 5px;

@@ -15,6 +15,8 @@ const Div = styled.div`
   flex-direction: column;
   justify-content: center;
   align-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 const H1 = styled.h1`

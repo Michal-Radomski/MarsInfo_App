@@ -55,11 +55,13 @@ class NASA extends React.Component<{}, State> {
     const savedDate = JSON.parse(localStorage.getItem("chosenDate") as string);
     // console.log("savedDateMount0:", savedDate);
     savedDate !== null ? this.getPhoto(savedDate) : this.getPhoto("");
-    localStorage.setItem("chosenDate", JSON.stringify(this.state.date.toISOString().split("T")[0]));
-    // console.log("savedDateMount1:", savedDate);
-    const dateFromLocalStorage = new Date(savedDate);
-    this.setState({date: dateFromLocalStorage});
-    console.log("this.state.date-mount:", this.state?.date.toISOString().split("T")[0]);
+    if (savedDate !== null) {
+      // console.log("savedDateMount1:", savedDate);
+      const dateFromLocalStorage = new Date(savedDate);
+      // console.log("dateFromLocalStorage:", dateFromLocalStorage);
+      this.setState({date: dateFromLocalStorage});
+      // console.log("this.state.date-mount:", this.state?.date.toISOString().split("T")[0]);
+    }
   }
 
   componentDidUpdate() {

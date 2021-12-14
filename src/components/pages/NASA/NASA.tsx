@@ -73,7 +73,7 @@ class NASA extends React.Component<{}, State> {
   // changeDate = async (event) => {
   //   event.preventDefault();
   //   let dateFromInput = event.target[0].value;
-  //   // console.log("dateFromInput:", dateFromInput);
+  //   console.log("dateFromInput:", dateFromInput);
   //   await this.setState({date: dateFromInput});
   //   await this.getPhoto(this.state.date);
   // };

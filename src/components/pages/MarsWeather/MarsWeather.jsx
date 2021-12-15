@@ -1,7 +1,11 @@
-import React from "react";
+import MarsMap from "./MarsMap";
 
 const MarsWeather = () => {
-  return <div>MarsWeather</div>;
+  return (
+    <div>
+      <MarsMap />
+    </div>
+  );
 };
 
 export default MarsWeather;

@@ -9,6 +9,8 @@
 
 3. Mars Weather was created according to this [tutorial](https://www.youtube.com/watch?v=gQVR2M3IxMs).
 
+4. InSight Mars Lander transparent icon was taken from [https://www.pngaaa.com/](https://www.pngaaa.com/).
+
 ## APIs
 
 1. NASA Astronomy Picture of the Day and Mars Weather are taken from from [https://api.nasa.gov](https://api.nasa.gov). API

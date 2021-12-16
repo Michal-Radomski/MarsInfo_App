@@ -11,5 +11,7 @@
 
 ## APIs
 
-1. NASA Astronomy Picture of the Day and Mars Weather are taken from from this [API](https://api.nasa.gov/). API Key is not
-   hosted on [github.com](https://github.com/).
+1. NASA Astronomy Picture of the Day and Mars Weather are taken from from [https://api.nasa.gov](https://api.nasa.gov). API
+   Key is not hosted on [github.com](https://github.com).
+
+2. Map of Mars is provided by [https://www.openplanetary.org](https://www.openplanetary.org).

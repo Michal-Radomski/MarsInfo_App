@@ -11,20 +11,20 @@ const DivMap = styled.div`
 `;
 
 type Position = [number, number];
-const defaultPosition: Position = [51.505, -0.09];
+const defaultPosition: Position = [4.5024, 135.6234];
 console.log("defaultPosition:", defaultPosition);
 
 const MarsMap = (): JSX.Element => {
   return (
     <DivMap>
-      <MapContainer center={defaultPosition} zoom={13} scrollWheelZoom={false} style={{width: "100%", height: "100%"}}>
+      <MapContainer center={defaultPosition} zoom={3} scrollWheelZoom={false} style={{width: "100%", height: "100%"}}>
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openplanetary.org/" target="_blank">Open Planetary</a>'
+          url="https://cartocdn-gusc.global.ssl.fastly.net/opmbuilder/api/v1/map/named/opm-mars-basemap-v0-2/all/{z}/{x}/{y}.png"
         />
         <Marker position={defaultPosition}>
-          <Popup>Text</Popup>
-          <Tooltip>You are here...</Tooltip>
+          <Popup>Elysium Planitia</Popup>
+          <Tooltip>InSight Landing site</Tooltip>
         </Marker>
       </MapContainer>
     </DivMap>

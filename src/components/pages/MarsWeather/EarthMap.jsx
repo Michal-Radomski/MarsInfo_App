@@ -3,23 +3,30 @@ import Map from "ol/Map";
 import View from "ol/View";
 import TileLayer from "ol/layer/Tile";
 import OSM from "ol/source/OSM";
+import {fromLonLat} from "ol/proj";
+import {connect} from "react-redux";
 
 class EarthMap extends React.Component {
-  state = {center: [0, 0], zoom: 1};
-  mapRef = React.createRef();
+  constructor(props) {
+    // console.log("props.location:", props.location);
+    super(props);
+    this.state = {center: props.location.center, zoom: props.location.zoom};
+    // console.log("this.state:", this.state);
+    this.mapRef = React.createRef();
 
-  OL_Map = new Map({
-    target: undefined,
-    layers: [
-      new TileLayer({
-        source: new OSM(),
+    this.OL_Map = new Map({
+      target: "olMap",
+      layers: [
+        new TileLayer({
+          source: new OSM(),
+        }),
+      ],
+      view: new View({
+        center: fromLonLat(this.state.center),
+        zoom: this.state.zoom,
       }),
-    ],
-    view: new View({
-      center: this.state.center,
-      zoom: this.state.zoom,
-    }),
-  });
+    });
+  }
 
   componentDidMount() {
     const mapNode = this.mapRef.current;
@@ -28,8 +35,12 @@ class EarthMap extends React.Component {
   }
 
   render() {
-    return <div ref={this.mapRef} style={{width: "100%", height: "400px"}}></div>;
+    return <div div="olMap" ref={this.mapRef} style={{width: "100%", height: "800px"}}></div>;
   }
 }
 
-export default EarthMap;
+const mapStateToProps = (state) => {
+  return {location: state.location};
+};
+
+export default connect(mapStateToProps, null)(EarthMap);

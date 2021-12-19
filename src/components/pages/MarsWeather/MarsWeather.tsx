@@ -4,8 +4,8 @@ import EarthMap from "./EarthMap";
 const MarsWeather = () => {
   return (
     <div>
-      <MarsMap />
       <EarthMap />
+      <MarsMap />
     </div>
   );
 };

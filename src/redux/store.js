@@ -3,7 +3,7 @@ import {createStore} from "redux";
 const initialState = {
   location: {
     center: [18, 54],
-    zoom: 10,
+    zoom: undefined,
   },
 };
 

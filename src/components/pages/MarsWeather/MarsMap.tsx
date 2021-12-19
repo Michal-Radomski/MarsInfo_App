@@ -5,10 +5,11 @@ import InSightIcon from "./Image/InSight.png";
 
 const DivMap = styled.div`
   position: absolute;
-  top: 100px;
+  top: 400px;
   left: 5px;
   right: 5px;
-  height: 600px;
+  height: 400px;
+  width: calc(100% -10px);
 `;
 
 const InSight = L.icon({
@@ -45,7 +46,7 @@ const primeMeridianLine2 = {color: "blue", weight: 2.0};
 const MarsMap = (): JSX.Element => {
   return (
     <DivMap>
-      <h1 style={{textAlign: "center"}}>Weather conditions at Elysium Planitia</h1>
+      <h1 style={{textAlign: "center"}}>The location of InSight Mars Lander in Elysium Planitia on Mars</h1>
       <MapContainer
         center={InSightPosition}
         zoom={3}

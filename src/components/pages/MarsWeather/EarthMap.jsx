@@ -2,9 +2,11 @@ import React from "react";
 import Map from "ol/Map";
 import View from "ol/View";
 import TileLayer from "ol/layer/Tile";
-import OSM from "ol/source/OSM";
+import OSM, {ATTRIBUTION} from "ol/source/OSM";
 import {fromLonLat} from "ol/proj";
 import Overlay from "ol/Overlay";
+import {Attribution, ScaleLine, defaults as defaultControls} from "ol/control";
+
 import {connect} from "react-redux";
 import styled from "styled-components";
 
@@ -33,11 +35,21 @@ class EarthMap extends React.Component {
     // console.log("this.state:", this.state);
     this.mapRef = React.createRef();
 
+    const attribution = new Attribution({
+      collapsible: true,
+    });
+    const scaleLine = new ScaleLine({
+      units: "metric",
+    });
+
     this.OL_Map = new Map({
+      controls: defaultControls({attribution: false}).extend([attribution, scaleLine]),
       target: "olMap",
       layers: [
         new TileLayer({
-          source: new OSM(),
+          source: new OSM({
+            attributions: [ATTRIBUTION, `<a href="https://openlayers.org" target="_blank">OpenLayers</a>`],
+          }),
         }),
       ],
       view: new View({

@@ -6,6 +6,7 @@ import OSM, {ATTRIBUTION} from "ol/source/OSM";
 import {fromLonLat} from "ol/proj";
 import Overlay from "ol/Overlay";
 import {Attribution, ScaleLine, defaults as defaultControls} from "ol/control";
+import {toStringHDMS} from "ol/coordinate";
 
 import {connect} from "react-redux";
 import styled from "styled-components";
@@ -34,6 +35,9 @@ class EarthMap extends React.Component {
     this.state = {center: props.location.center, zoom: zoomNext};
     // console.log("this.state:", this.state);
     this.mapRef = React.createRef();
+
+    this.position = toStringHDMS(this.state.center);
+    // console.log("this.position:", this.position);
 
     const attribution = new Attribution({
       collapsible: true,
@@ -82,7 +86,8 @@ class EarthMap extends React.Component {
       <React.Fragment>
         {this.state.center[0] !== 0 && this.state.center[1] !== 0 ? (
           <DivMap>
-            <h1 style={{textAlign: "center"}}>Your location: {`${this.state.center[0]}, ${this.state.center[1]}`}</h1>
+            {/* <h1 style={{textAlign: "center"}}>Your location: {`${this.state.center[0]}, ${this.state.center[1]}`}</h1> */}
+            <h1 style={{textAlign: "center"}}>Your location: {this.position}</h1>
             <div id="olMap" ref={this.mapRef} style={{height: "250px"}}></div>
             <div
               id="marker"

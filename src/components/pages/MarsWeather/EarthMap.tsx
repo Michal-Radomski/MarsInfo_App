@@ -128,7 +128,7 @@ class EarthMap extends React.Component<Props, State> {
                   backgroundColor: "#0FF",
                   opacity: "0.5",
                 }}
-              />
+              ></div>
             </OverlayTrigger>
           </DivMap>
         ) : (

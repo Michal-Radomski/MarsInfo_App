@@ -5,7 +5,7 @@ import InSightIcon from "./Image/InSight.png";
 
 const DivMap = styled.div`
   position: absolute;
-  top: 400px;
+  top: 420px;
   left: 5px;
   right: 5px;
   height: 400px;

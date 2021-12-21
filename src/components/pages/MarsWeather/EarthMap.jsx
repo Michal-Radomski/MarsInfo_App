@@ -10,6 +10,8 @@ import {toStringHDMS} from "ol/coordinate";
 
 import {connect} from "react-redux";
 import styled from "styled-components";
+import Popover from "react-bootstrap/Popover";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 const DivMap = styled.div`
   position: absolute;
@@ -39,15 +41,15 @@ class EarthMap extends React.Component {
     this.position = toStringHDMS(this.state.center);
     // console.log("this.position:", this.position);
 
-    const attribution = new Attribution({
+    this.attribution = new Attribution({
       collapsible: true,
     });
-    const scaleLine = new ScaleLine({
+    this.scaleLine = new ScaleLine({
       units: "metric",
     });
 
     this.OL_Map = new Map({
-      controls: defaultControls({attribution: false}).extend([attribution, scaleLine]),
+      controls: defaultControls({attribution: false}).extend([this.attribution, this.scaleLine]),
       target: "olMap",
       layers: [
         new TileLayer({
@@ -61,6 +63,15 @@ class EarthMap extends React.Component {
         zoom: this.state.zoom,
       }),
     });
+
+    this.popover = (
+      <Popover id="popover-basic">
+        <Popover.Header as="h3">Yor are here</Popover.Header>
+        <Popover.Body>
+          Your location is: <strong>{`${this.state.center[0]}, ${this.state.center[1]}`}</strong>.
+        </Popover.Body>
+      </Popover>
+    );
   }
 
   componentDidMount() {
@@ -86,21 +97,22 @@ class EarthMap extends React.Component {
       <React.Fragment>
         {this.state.center[0] !== 0 && this.state.center[1] !== 0 ? (
           <DivMap>
-            {/* <h1 style={{textAlign: "center"}}>Your location: {`${this.state.center[0]}, ${this.state.center[1]}`}</h1> */}
             <h1 style={{textAlign: "center"}}>Your location: {this.position}</h1>
             <div id="olMap" ref={this.mapRef} style={{height: "250px"}}></div>
-            <div
-              id="marker"
-              title={this.state.center}
-              style={{
-                width: "20px",
-                height: "20px",
-                border: "2px solid #088",
-                borderRadius: "10px",
-                backgroundColor: "#0FF",
-                opacity: "0.5",
-              }}
-            />
+            <OverlayTrigger trigger="click" placement="right-start" overlay={this.popover}>
+              <div
+                id="marker"
+                // title={this.state.center} //- original tooltip
+                style={{
+                  width: "20px",
+                  height: "20px",
+                  border: "2px solid #088",
+                  borderRadius: "10px",
+                  backgroundColor: "#0FF",
+                  opacity: "0.5",
+                }}
+              />
+            </OverlayTrigger>
           </DivMap>
         ) : (
           <DivMap>

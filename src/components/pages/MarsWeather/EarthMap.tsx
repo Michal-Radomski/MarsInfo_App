@@ -22,9 +22,11 @@ const DivMap = styled.div`
 `;
 
 interface Props {
-  location?: {
-    center: [number, number];
-    zoom: undefined | number;
+  state?: {
+    location: {
+      center: [number, number];
+      zoom: undefined | number;
+    };
   };
 }
 
@@ -38,18 +40,18 @@ class EarthMap extends React.Component<Props, State> {
   marker!: Overlay;
 
   constructor(props: Props) {
-    // console.log("props.location:", props.location);
+    // console.log("props.state.location:", props?.state?.location);
     super(props);
 
     let zoomNext;
-    if (props.location?.center[0] === 0 && props.location?.center[1] === 0) {
+    if (props?.state?.location.center[0] === 0 && props?.state?.location.center[1] === 0) {
       zoomNext = 1;
     } else {
       zoomNext = 10;
     }
     // console.log("zoomNext:", zoomNext);
 
-    this.state = {center: props.location?.center, zoom: zoomNext};
+    this.state = {center: props?.state?.location.center, zoom: zoomNext};
     // console.log("this.state:", this.state);
     this.mapRef = React.createRef();
 
@@ -96,7 +98,7 @@ class EarthMap extends React.Component<Props, State> {
     this.marker = new Overlay({
       position: fromLonLat(this.state.center),
       positioning: "center-center",
-      // element: document.getElementById("marker"),
+      element: document.getElementById("marker") as HTMLDivElement,
       stopEvent: false,
     });
     // console.log("this.marker:", this.marker);
@@ -114,10 +116,10 @@ class EarthMap extends React.Component<Props, State> {
           <DivMap>
             <h1 style={{textAlign: "center"}}>Your location: {this.position}</h1>
             <div id="olMap" ref={this.mapRef} style={{height: "250px"}}></div>
-            <OverlayTrigger trigger="click" placement="right-start" overlay={this.popover}>
+            <OverlayTrigger trigger="click" placement="right-end" overlay={this.popover}>
               <div
                 id="marker"
-                // title={this.state.center} //- original tooltip
+                title={this.state.center} //- original tooltip
                 style={{
                   width: "20px",
                   height: "20px",
@@ -141,7 +143,7 @@ class EarthMap extends React.Component<Props, State> {
 }
 
 const mapStateToProps = (state: State) => {
-  return {state: state.location};
+  return {state: state};
 };
 
 export default connect(mapStateToProps, null)(EarthMap);

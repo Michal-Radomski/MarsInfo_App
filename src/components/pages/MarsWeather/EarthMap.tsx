@@ -21,20 +21,35 @@ const DivMap = styled.div`
   width: calc(100% -10px);
 `;
 
-class EarthMap extends React.Component {
-  constructor(props) {
+interface Props {
+  location?: {
+    center: [number, number];
+    zoom: undefined | number;
+  };
+}
+
+class EarthMap extends React.Component<Props, State> {
+  mapRef: React.RefObject<HTMLDivElement> | any;
+  attribution: Attribution;
+  scaleLine: ScaleLine;
+  position: string;
+  OL_Map: Map;
+  popover: JSX.Element;
+  marker!: Overlay;
+
+  constructor(props: Props) {
     // console.log("props.location:", props.location);
     super(props);
 
     let zoomNext;
-    if (props.location.center[0] === 0 && props.location.center[1] === 0) {
+    if (props.location?.center[0] === 0 && props.location?.center[1] === 0) {
       zoomNext = 1;
     } else {
       zoomNext = 10;
     }
     // console.log("zoomNext:", zoomNext);
 
-    this.state = {center: props.location.center, zoom: zoomNext};
+    this.state = {center: props.location?.center, zoom: zoomNext};
     // console.log("this.state:", this.state);
     this.mapRef = React.createRef();
 
@@ -81,7 +96,7 @@ class EarthMap extends React.Component {
     this.marker = new Overlay({
       position: fromLonLat(this.state.center),
       positioning: "center-center",
-      element: document.getElementById("marker"),
+      // element: document.getElementById("marker"),
       stopEvent: false,
     });
     // console.log("this.marker:", this.marker);
@@ -125,8 +140,8 @@ class EarthMap extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {location: state.location};
+const mapStateToProps = (state: State) => {
+  return {state: state.location};
 };
 
 export default connect(mapStateToProps, null)(EarthMap);

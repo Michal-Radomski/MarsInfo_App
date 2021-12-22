@@ -7,6 +7,7 @@ import {fromLonLat} from "ol/proj";
 import Overlay from "ol/Overlay";
 import {Attribution, ScaleLine, defaults as defaultControls} from "ol/control";
 import {toStringHDMS} from "ol/coordinate";
+import {defaults} from "ol/interaction";
 
 import {connect} from "react-redux";
 import styled from "styled-components";
@@ -67,6 +68,7 @@ class EarthMap extends React.Component<Props, State> {
     });
 
     this.OL_Map = new Map({
+      interactions: defaults({mouseWheelZoom: false}),
       controls: defaultControls({attribution: false}).extend([this.attribution, this.scaleLine]),
       target: "olMap",
       layers: [

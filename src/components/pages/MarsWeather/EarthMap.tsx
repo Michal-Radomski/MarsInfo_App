@@ -11,7 +11,7 @@ import {toStringHDMS} from "ol/coordinate";
 import {connect} from "react-redux";
 import styled from "styled-components";
 import Popover from "react-bootstrap/Popover";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import OverlayTrigger, {OverlayTriggerType} from "react-bootstrap/OverlayTrigger";
 
 const DivMap = styled.div`
   position: absolute;
@@ -38,6 +38,7 @@ class EarthMap extends React.Component<Props, State> {
   OL_Map: Map;
   popover: JSX.Element;
   marker!: Overlay;
+  hover!: OverlayTriggerType[];
 
   constructor(props: Props) {
     // console.log("props.state.location:", props?.state?.location);
@@ -83,7 +84,7 @@ class EarthMap extends React.Component<Props, State> {
 
     this.popover = (
       <Popover id="popover-basic">
-        <Popover.Header as="h3">Yor are here</Popover.Header>
+        <Popover.Header as="h3">Yor are here:</Popover.Header>
         <Popover.Body>
           Your location is: <strong>{`${this.state.center[0]}, ${this.state.center[1]}`}</strong>.
         </Popover.Body>
@@ -116,10 +117,10 @@ class EarthMap extends React.Component<Props, State> {
           <DivMap>
             <h1 style={{textAlign: "center"}}>Your location: {this.position}</h1>
             <div id="olMap" ref={this.mapRef} style={{height: "250px"}}></div>
-            <OverlayTrigger trigger="click" placement="right-end" overlay={this.popover}>
+            <OverlayTrigger trigger={this.hover} placement="right-end" overlay={this.popover} rootClose={true}>
               <div
                 id="marker"
-                title={this.state.center} //- original tooltip
+                // title={this.state.center} //- original tooltip
                 style={{
                   width: "20px",
                   height: "20px",
@@ -133,7 +134,7 @@ class EarthMap extends React.Component<Props, State> {
           </DivMap>
         ) : (
           <DivMap>
-            <h2 style={{textAlign: "center"}}>Your location is unknown </h2>
+            <h2 style={{textAlign: "center"}}>Your location is unknown</h2>
             <div id="olMap" ref={this.mapRef} style={{height: "250px"}}></div>
           </DivMap>
         )}

@@ -3,18 +3,7 @@ import thunkMiddleware from "redux-thunk";
 import loggerMiddleware from "redux-logger";
 import {composeWithDevTools} from "redux-devtools-extension";
 
-// import rootReducer from './rootReducer'
-
-const initialState: State = {
-  location: {
-    center: [18.60677, 54.4047],
-    zoom: undefined,
-  },
-};
-
-const rootReducer = (state = initialState, action: Dispatch) => {
-  return state;
-};
+import rootReducer from "./reducers";
 
 const middleware = [loggerMiddleware, thunkMiddleware];
 const middlewareEnhancer = applyMiddleware(...middleware);

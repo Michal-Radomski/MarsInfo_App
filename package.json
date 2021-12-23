@@ -13,6 +13,7 @@
     "@types/redux-logger": "^3.0.9",
     "@types/sass": "^1.43.0",
     "@types/styled-components": "^5.1.17",
+    "axios": "^0.24.0",
     "leaflet": "^1.7.1",
     "moment-random": "^1.1.0",
     "ol": "^6.9.0",

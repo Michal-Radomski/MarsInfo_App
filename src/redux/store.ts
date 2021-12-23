@@ -16,10 +16,6 @@ const rootReducer = (state = initialState, action: Dispatch) => {
   return state;
 };
 
-// const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-
-// export default store;
-
 const middleware = [loggerMiddleware, thunkMiddleware];
 const middlewareEnhancer = applyMiddleware(...middleware);
 const enhancer = compose(middlewareEnhancer);

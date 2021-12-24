@@ -14,10 +14,9 @@ export const GET_USER_GEO_DATA = "GET_USER_GEO_DATA";
 //       method: "GET",
 //       url: `https://ipwhois.app/json/?objects=ip,country,city,latitude,longitude`,
 //     })
-//       .then((response) => response.json())
-//       .then((data) => {
-//         console.log("Fetched geolocation data:", data);
-//         dispatch({type: GET_USER_GEO_DATA, payload: data});
+//       .then((response) => {
+//         console.log("Fetched geolocation data:", response.data);
+//         dispatch({type: GET_USER_GEO_DATA, payload: response.data});
 //       })
 //       .catch((error) => {
 //         console.log(error);
@@ -25,16 +24,27 @@ export const GET_USER_GEO_DATA = "GET_USER_GEO_DATA";
 //   };
 // };
 
-export const GetUserGeoDate = async () => {
+export const GetUserGeoDate = () => {
   console.log("test1");
-  try {
-    const response = await axios({
-      method: "GET",
-      url: `https://ipwhois.app/json/?objects=ip,country,city,latitude,longitude`,
-    });
-    console.log(response);
-    return response;
-  } catch (error) {
-    console.log(error);
-  }
+  return async (dispatch) => {
+    try {
+      console.log("test2");
+      const {data} = await axios.get(`https://ipwhois.app/json/?objects=ip,country,city,latitude,longitude`);
+      console.log(data);
+      dispatch({type: GET_USER_GEO_DATA, payload: data});
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };
+
+// export const GetUserGeoDate = () => (dispatch) => {
+//   console.log("test1");
+//   axios
+//     .get("https://ipwhois.app/json/?objects=ip,country,city,latitude,longitude")
+//     .then((response) => dispatch({type: GET_USER_GEO_DATA, payload: response.data}))
+//     .then((response) => console.log(response))
+//     .catch((error) => {
+//       console.log(error);
+//     });
+// };

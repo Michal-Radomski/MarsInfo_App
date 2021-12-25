@@ -47,7 +47,7 @@ class EarthMap extends React.Component<Props, State> {
   hover!: OverlayTriggerType[];
 
   constructor(props: Props) {
-    console.log("props.state.location:", props?.state?.location);
+    // console.log("props.state.location:", props?.state?.location);
     super(props);
 
     if (props?.state?.location.longitude === undefined && props?.state?.location.latitude === undefined) {

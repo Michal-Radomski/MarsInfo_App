@@ -3,12 +3,12 @@ import {connect} from "react-redux";
 
 import MarsMap from "./MarsMap";
 import EarthMap from "./EarthMap";
-import {GetUserGeoDate} from "../../../redux/actions";
+import {getUserGeoDate} from "../../../redux/actions";
 
-class MarsWeather extends React.Component<any, any> {
+class MarsWeather extends React.Component<{getUserGeoDate: Fetch}, State> {
   componentDidMount() {
-    console.log("this.props:", this.props);
-    this.props.GetUserGeoDate();
+    // console.log("this.props:", this.props);
+    this.props.getUserGeoDate();
   }
   render() {
     return (
@@ -24,4 +24,4 @@ const mapStateToProps = (state: State) => ({
   state: state.location,
 });
 
-export default connect(mapStateToProps, {GetUserGeoDate})(MarsWeather);
+export default connect(mapStateToProps, {getUserGeoDate})(MarsWeather);

@@ -52,21 +52,21 @@ class EarthMap extends React.Component<Props, State> {
 
     this.mapRef = React.createRef();
 
-    const savedLongitude = JSON.parse(localStorage.getItem("longitude") as string);
     const savedLatitude = JSON.parse(localStorage.getItem("latitude") as string);
-    console.log("savedLongitude & savedLatitude:", savedLongitude, savedLatitude);
+    const savedLongitude = JSON.parse(localStorage.getItem("longitude") as string);
+    // console.log("savedLatitude & savedLongitude:", savedLatitude, savedLongitude);
 
-    if (savedLongitude && savedLatitude) {
+    if (savedLatitude && savedLongitude) {
       this.state = {center: [savedLongitude, savedLatitude], zoom: 10}; //- center: [longitude, latitude]
     } else if (props?.state?.location.longitude === undefined && props?.state?.location.latitude === undefined) {
       this.state = {center: [0, 0], zoom: 1}; //- center: [longitude, latitude]
     } else {
       this.state = {center: [props?.state?.location.longitude, props?.state?.location.latitude], zoom: 10}; //- center: [longitude, latitude]
     }
-    console.log("this.state:", this.state);
+    // console.log("this.state:", this.state);
 
     this.position = toStringHDMS(this.state.center);
-    console.log("this.position:", this.position);
+    // console.log("this.position:", this.position);
 
     this.attribution = new Attribution({
       collapsible: true,
@@ -96,7 +96,7 @@ class EarthMap extends React.Component<Props, State> {
       <Popover id="popover-basic">
         <Popover.Header as="h3">Yor are here:</Popover.Header>
         <Popover.Body>
-          Your location is: <strong>{`${this.state.center[0].toFixed(5)}, ${this.state.center[1].toFixed(5)}`}</strong>.
+          Your location is: <strong>{`${this.state.center[1].toFixed(5)}, ${this.state.center[0].toFixed(5)}`}</strong>.
         </Popover.Body>
       </Popover>
     );

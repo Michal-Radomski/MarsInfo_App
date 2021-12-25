@@ -7,13 +7,13 @@ import {getUserGeoDate} from "../../redux/actions";
 class Home extends React.Component<{getUserGeoDate: Fetch; state: State}, State> {
   componentDidMount() {
     this.props.getUserGeoDate();
-    console.log("this.props:", this.props);
+    // console.log("this.props.state.location:", this.props.state.location);
   }
 
   componentDidUpdate() {
-    console.log("this.props-updated:", this.props);
-    localStorage.setItem("longitude", JSON.stringify(this.props.state.location.longitude));
+    // console.log("this.props.state.location-updated:", this.props.state.location);
     localStorage.setItem("latitude", JSON.stringify(this.props.state.location.latitude));
+    localStorage.setItem("longitude", JSON.stringify(this.props.state.location.longitude));
   }
 
   render() {

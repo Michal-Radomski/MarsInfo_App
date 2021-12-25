@@ -50,14 +50,14 @@ class EarthMap extends React.Component<Props, State> {
     // console.log("props.state.location:", props?.state?.location);
     super(props);
 
+    this.mapRef = React.createRef();
+
     if (props?.state?.location.longitude === undefined && props?.state?.location.latitude === undefined) {
       this.state = {center: [0, 0], zoom: 1}; //- center: [longitude, latitude]
     } else {
       this.state = {center: [props?.state?.location.longitude, props?.state?.location.latitude], zoom: 10}; //- center: [longitude, latitude]
     }
-
     console.log("this.state:", this.state);
-    this.mapRef = React.createRef();
 
     this.position = toStringHDMS(this.state.center);
     console.log("this.position:", this.position);
@@ -90,7 +90,7 @@ class EarthMap extends React.Component<Props, State> {
       <Popover id="popover-basic">
         <Popover.Header as="h3">Yor are here:</Popover.Header>
         <Popover.Body>
-          Your location is: <strong>{`${this.state.center[0]}, ${this.state.center[1]}`}</strong>.
+          Your location is: <strong>{`${this.state.center[0].toFixed(5)}, ${this.state.center[1].toFixed(5)}`}</strong>.
         </Popover.Body>
       </Popover>
     );
@@ -112,10 +112,6 @@ class EarthMap extends React.Component<Props, State> {
       this.OL_Map.addOverlay(this.marker);
     }
     // console.log("this.OL_Map:", this.OL_Map);
-  }
-
-  componentDidUpdate() {
-    console.log("this.state:", this.state);
   }
 
   render() {

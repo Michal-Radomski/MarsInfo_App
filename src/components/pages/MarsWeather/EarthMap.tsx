@@ -52,7 +52,13 @@ class EarthMap extends React.Component<Props, State> {
 
     this.mapRef = React.createRef();
 
-    if (props?.state?.location.longitude === undefined && props?.state?.location.latitude === undefined) {
+    const savedLongitude = JSON.parse(localStorage.getItem("longitude") as string);
+    const savedLatitude = JSON.parse(localStorage.getItem("latitude") as string);
+    console.log("savedLongitude & savedLatitude:", savedLongitude, savedLatitude);
+
+    if (savedLongitude && savedLatitude) {
+      this.state = {center: [savedLongitude, savedLatitude], zoom: 10}; //- center: [longitude, latitude]
+    } else if (props?.state?.location.longitude === undefined && props?.state?.location.latitude === undefined) {
       this.state = {center: [0, 0], zoom: 1}; //- center: [longitude, latitude]
     } else {
       this.state = {center: [props?.state?.location.longitude, props?.state?.location.latitude], zoom: 10}; //- center: [longitude, latitude]

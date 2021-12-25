@@ -14,6 +14,9 @@ class Home extends React.Component<{getUserGeoDate: Fetch; state: State}, State>
     // console.log("this.props.state.location-updated:", this.props.state.location);
     localStorage.setItem("latitude", JSON.stringify(this.props.state.location.latitude));
     localStorage.setItem("longitude", JSON.stringify(this.props.state.location.longitude));
+    localStorage.setItem("city", JSON.stringify(this.props.state.location.city));
+    localStorage.setItem("country", JSON.stringify(this.props.state.location.country));
+    localStorage.setItem("IP", JSON.stringify(this.props.state.location.ip));
   }
 
   render() {

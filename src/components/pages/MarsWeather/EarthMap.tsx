@@ -54,14 +54,23 @@ class EarthMap extends React.Component<Props, State> {
 
     const savedLatitude = JSON.parse(localStorage.getItem("latitude") as string);
     const savedLongitude = JSON.parse(localStorage.getItem("longitude") as string);
+    const savedCity = JSON.parse(localStorage.getItem("city") as string);
+    const savedCountry = JSON.parse(localStorage.getItem("country") as string);
+    const savedIP = JSON.parse(localStorage.getItem("IP") as string);
     // console.log("savedLatitude & savedLongitude:", savedLatitude, savedLongitude);
 
     if (savedLatitude && savedLongitude) {
-      this.state = {center: [savedLongitude, savedLatitude], zoom: 10}; //- center: [longitude, latitude]
+      this.state = {center: [savedLongitude, savedLatitude], zoom: 10, city: savedCity, country: savedCountry, IP: savedIP};
     } else if (props?.state?.location.longitude === undefined && props?.state?.location.latitude === undefined) {
       this.state = {center: [0, 0], zoom: 1}; //- center: [longitude, latitude]
     } else {
-      this.state = {center: [props?.state?.location.longitude, props?.state?.location.latitude], zoom: 10}; //- center: [longitude, latitude]
+      this.state = {
+        center: [props?.state?.location.longitude, props?.state?.location.latitude],
+        zoom: 10,
+        city: props?.state?.location.city,
+        country: props?.state?.location.country,
+        IP: props?.state?.location.ip,
+      }; //- center: [longitude, latitude]
     }
     // console.log("this.state:", this.state);
 
@@ -94,8 +103,9 @@ class EarthMap extends React.Component<Props, State> {
 
     this.popover = (
       <Popover id="popover-basic">
-        <Popover.Header as="h3">Yor are here:</Popover.Header>
+        <Popover.Header as="h3">Yor are in: {`${this.state.city}, ${this.state.country}`}</Popover.Header>
         <Popover.Body>
+          Your IP is: <strong>{`${this.state.IP}`}</strong>.<br />
           Your location is: <strong>{`${this.state.center[1].toFixed(5)}, ${this.state.center[0].toFixed(5)}`}</strong>.
         </Popover.Body>
       </Popover>

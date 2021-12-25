@@ -62,10 +62,26 @@ class EarthMap extends React.Component<Props, State> {
     const savedIP = JSON.parse(localStorage.getItem("IP") as string);
     // console.log("savedLatitude & savedLongitude:", savedLatitude, savedLongitude);
 
-    if (savedLatitude && savedLongitude) {
+    if (!this.props?.state?.location.longitude && !this.props?.state?.location.latitude) {
+      fetch("https://ipwhois.app/json/?objects=ip,country,city,latitude,longitude")
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Fetched geolocation data - constructor:", data);
+
+          this.state = {
+            center: [this.props?.state?.location.longitude, this.props?.state?.location.latitude],
+            zoom: 10,
+            city: this.props?.state?.location.city,
+            country: this.props?.state?.location.country,
+            IP: this.props?.state?.location.ip,
+          };
+        });
+    } else if (savedLatitude && savedLongitude) {
       this.state = {center: [savedLongitude, savedLatitude], zoom: 10, city: savedCity, country: savedCountry, IP: savedIP};
+      console.log("test1");
     } else if (props?.state?.location.longitude === undefined && props?.state?.location.latitude === undefined) {
       this.state = {center: [0, 0], zoom: 1}; //- center: [longitude, latitude]
+      console.log("test2");
     } else {
       this.state = {
         center: [props?.state?.location.longitude, props?.state?.location.latitude],
@@ -74,8 +90,9 @@ class EarthMap extends React.Component<Props, State> {
         country: props?.state?.location.country,
         IP: props?.state?.location.ip,
       }; //- center: [longitude, latitude]
+      console.log("test3");
     }
-    // console.log("this.state:", this.state);
+    console.log("this.state:", this.state);
 
     this.position = toStringHDMS(this.state.center);
     // console.log("this.position:", this.position);
@@ -131,11 +148,6 @@ class EarthMap extends React.Component<Props, State> {
       this.OL_Map.addOverlay(this.marker);
     }
     // console.log("this.OL_Map:", this.OL_Map);
-
-    if (!this.props?.state?.location.longitude && !this.props?.state?.location.latitude) {
-      console.log("test");
-      this.props.getUserGeoDate();
-    }
   }
 
   render() {

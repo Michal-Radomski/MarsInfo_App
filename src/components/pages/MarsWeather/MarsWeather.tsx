@@ -7,9 +7,12 @@ import {getUserGeoDate} from "../../../redux/actions";
 
 class MarsWeather extends React.Component<{getUserGeoDate: Fetch}, State> {
   componentDidMount() {
-    // console.log("this.props:", this.props);
     this.props.getUserGeoDate();
+    // console.log("this.props:", this.props);
   }
+  // componentDidUpdate() {
+  //   console.log("this.props:", this.props);
+  // }
   render() {
     return (
       <div>

@@ -8,9 +8,9 @@ const initialState = {
     city: undefined,
     country: undefined,
     ip: undefined,
-    latitude: 0,
-    longitude: 0,
-    center: [18.60677, 54.4047],
+    latitude: undefined,
+    longitude: undefined,
+    // center: [18.60677, 54.4047], //- [longitude, latitude]
     zoom: undefined,
   },
 };

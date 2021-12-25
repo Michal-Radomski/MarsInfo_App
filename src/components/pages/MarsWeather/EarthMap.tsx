@@ -25,8 +25,13 @@ const DivMap = styled.div`
 interface Props {
   state?: {
     location: {
+      city: string;
+      country: string;
+      ip: string;
+      latitude: number;
+      longitude: number;
       center: [number, number];
-      zoom: undefined | number;
+      zoom: number;
     };
   };
 }
@@ -42,23 +47,20 @@ class EarthMap extends React.Component<Props, State> {
   hover!: OverlayTriggerType[];
 
   constructor(props: Props) {
-    // console.log("props.state.location:", props?.state?.location);
+    console.log("props.state.location:", props?.state?.location);
     super(props);
 
-    let zoomNext;
-    if (props?.state?.location.center[0] === 0 && props?.state?.location.center[1] === 0) {
-      zoomNext = 1;
+    if (props?.state?.location.longitude === undefined && props?.state?.location.latitude === undefined) {
+      this.state = {center: [0, 0], zoom: 1}; //- center: [longitude, latitude]
     } else {
-      zoomNext = 10;
+      this.state = {center: [props?.state?.location.longitude, props?.state?.location.latitude], zoom: 10}; //- center: [longitude, latitude]
     }
-    // console.log("zoomNext:", zoomNext);
 
-    this.state = {center: props?.state?.location.center, zoom: zoomNext};
-    // console.log("this.state:", this.state);
+    console.log("this.state:", this.state);
     this.mapRef = React.createRef();
 
     this.position = toStringHDMS(this.state.center);
-    // console.log("this.position:", this.position);
+    console.log("this.position:", this.position);
 
     this.attribution = new Attribution({
       collapsible: true,
@@ -112,6 +114,10 @@ class EarthMap extends React.Component<Props, State> {
     // console.log("this.OL_Map:", this.OL_Map);
   }
 
+  componentDidUpdate() {
+    console.log("this.state:", this.state);
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -122,7 +128,7 @@ class EarthMap extends React.Component<Props, State> {
             <OverlayTrigger trigger={this.hover} placement="right-end" overlay={this.popover} rootClose={true}>
               <div
                 id="marker"
-                // title={this.state.center} //- original tooltip
+                // title={this.state.center}  //- original tooltip
                 style={{
                   width: "20px",
                   height: "20px",

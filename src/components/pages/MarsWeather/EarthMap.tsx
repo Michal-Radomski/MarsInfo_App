@@ -14,6 +14,8 @@ import styled from "styled-components";
 import Popover from "react-bootstrap/Popover";
 import OverlayTrigger, {OverlayTriggerType} from "react-bootstrap/OverlayTrigger";
 
+import {getUserGeoDate} from "../../../redux/actions";
+
 const DivMap = styled.div`
   position: absolute;
   top: 110px;
@@ -34,6 +36,7 @@ interface Props {
       zoom: number;
     };
   };
+  getUserGeoDate?: Fetch;
 }
 
 class EarthMap extends React.Component<Props, State> {
@@ -47,7 +50,7 @@ class EarthMap extends React.Component<Props, State> {
   hover!: OverlayTriggerType[];
 
   constructor(props: Props) {
-    // console.log("props.state.location:", props?.state?.location);
+    console.log("props.state.location:", props?.state?.location);
     super(props);
 
     this.mapRef = React.createRef();
@@ -128,6 +131,11 @@ class EarthMap extends React.Component<Props, State> {
       this.OL_Map.addOverlay(this.marker);
     }
     // console.log("this.OL_Map:", this.OL_Map);
+
+    if (!this.props?.state?.location.longitude && !this.props?.state?.location.latitude) {
+      console.log("test");
+      this.props.getUserGeoDate();
+    }
   }
 
   render() {
@@ -167,4 +175,4 @@ const mapStateToProps = (state: State) => {
   return {state: state};
 };
 
-export default connect(mapStateToProps, null)(EarthMap);
+export default connect(mapStateToProps, {getUserGeoDate})(EarthMap);

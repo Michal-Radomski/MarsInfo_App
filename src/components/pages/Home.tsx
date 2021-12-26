@@ -2,11 +2,11 @@ import React from "react";
 import {connect} from "react-redux";
 
 import NASA from "./NASA/NASA";
-import {getUserGeoDate} from "../../redux/actions";
+import {getUserGeoData} from "../../redux/actions";
 
-class Home extends React.Component<{getUserGeoDate: Fetch; state: State}, State> {
+class Home extends React.Component<{getUserGeoData: Fetch; state: State}, State> {
   componentDidMount() {
-    this.props.getUserGeoDate();
+    this.props.getUserGeoData();
     // console.log("this.props.state.location:", this.props.state.location);
   }
 
@@ -32,4 +32,4 @@ const mapStateToProps = (state: State) => ({
   state: state,
 });
 
-export default connect(mapStateToProps, {getUserGeoDate})(Home);
+export default connect(mapStateToProps, {getUserGeoData})(Home);

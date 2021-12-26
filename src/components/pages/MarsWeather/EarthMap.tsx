@@ -14,7 +14,7 @@ import styled from "styled-components";
 import Popover from "react-bootstrap/Popover";
 import OverlayTrigger, {OverlayTriggerType} from "react-bootstrap/OverlayTrigger";
 
-import {getUserGeoDate} from "../../../redux/actions";
+import {getUserGeoData} from "../../../redux/actions";
 
 const DivMap = styled.div`
   position: absolute;
@@ -180,4 +180,4 @@ const mapStateToProps = (state: State) => {
   return {state: state};
 };
 
-export default connect(mapStateToProps, {getUserGeoDate})(EarthMap);
+export default connect(mapStateToProps, {getUserGeoData})(EarthMap);

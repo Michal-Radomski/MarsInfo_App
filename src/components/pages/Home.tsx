@@ -17,6 +17,9 @@ class Home extends React.Component<{getUserGeoData: Fetch; state: State}, State>
     localStorage.setItem("city", JSON.stringify(this.props.state.location.city));
     localStorage.setItem("country", JSON.stringify(this.props.state.location.country));
     localStorage.setItem("IP", JSON.stringify(this.props.state.location.ip));
+    localStorage.setItem("country_flag", JSON.stringify(this.props.state.location.country_flag));
+    localStorage.setItem("currency", JSON.stringify(this.props.state.location.currency));
+    localStorage.setItem("currency_code", JSON.stringify(this.props.state.location.currency_code));
   }
 
   render() {

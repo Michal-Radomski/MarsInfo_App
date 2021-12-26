@@ -34,10 +34,10 @@ interface Props {
       latitude: number;
       longitude: number;
       center: [number, number];
-      zoom: number;
+      country_flag: string;
     };
   };
-  getUserGeoDate?: Fetch;
+  getUserGeoData?: Fetch;
 }
 
 class EarthMap extends React.Component<Props, State> {
@@ -60,10 +60,18 @@ class EarthMap extends React.Component<Props, State> {
     const savedCity = JSON.parse(localStorage.getItem("city") as string);
     const savedCountry = JSON.parse(localStorage.getItem("country") as string);
     const savedIP = JSON.parse(localStorage.getItem("IP") as string);
+    const savedCountryFlag = JSON.parse(localStorage.getItem("country_flag") as string);
     // console.log("savedLatitude & savedLongitude:", savedLatitude, savedLongitude);
 
     if (savedLatitude && savedLongitude) {
-      this.state = {center: [savedLongitude, savedLatitude], zoom: 10, city: savedCity, country: savedCountry, IP: savedIP};
+      this.state = {
+        center: [savedLongitude, savedLatitude],
+        zoom: 10,
+        city: savedCity,
+        country: savedCountry,
+        IP: savedIP,
+        country_flag: savedCountryFlag,
+      };
     } else if (props?.state?.location.longitude === undefined && props?.state?.location.latitude === undefined) {
       this.state = {center: [0, 0], zoom: 1}; //- center: [longitude, latitude]
     } else {
@@ -73,6 +81,7 @@ class EarthMap extends React.Component<Props, State> {
         city: props?.state?.location.city,
         country: props?.state?.location.country,
         IP: props?.state?.location.ip,
+        country_flag: props?.state?.location.country_flag,
       }; //- center: [longitude, latitude]
     }
     // console.log("this.state:", this.state);
@@ -105,9 +114,19 @@ class EarthMap extends React.Component<Props, State> {
     });
 
     this.popover = (
-      <Popover id="popover-basic" style={{width: "20%"}}>
+      <Popover id="popover-basic" style={{minWidth: "20%"}}>
         <Popover.Header as="h3">
-          Yor are in: <span style={{float: "right"}}>{`${this.state.city}, ${this.state.country}`}</span>
+          Yor are in:
+          <span style={{float: "right"}}>
+            {`${this.state.city}, ${this.state.country}`}
+            {"\u00A0 \u00A0"}
+            <img
+              src={this.state.country_flag}
+              height="16px"
+              alt="Country flag"
+              style={{marginBottom: "5px", border: "1px solid #666"}}
+            />
+          </span>
         </Popover.Header>
         <Popover.Body>
           Your IP is: <strong style={{float: "right"}}>{`${this.state.IP}`}</strong>
@@ -123,7 +142,7 @@ class EarthMap extends React.Component<Props, State> {
 
   componentDidMount() {
     if (this.props?.state?.location.longitude === undefined && this.props?.state?.location.latitude === undefined) {
-      this.props.getUserGeoDate();
+      this.props.getUserGeoData();
     }
 
     const mapNode = this.mapRef.current;

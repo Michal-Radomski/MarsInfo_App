@@ -10,6 +10,9 @@ const initialState = {
     ip: undefined,
     latitude: undefined,
     longitude: undefined,
+    country_flag: undefined,
+    currency: undefined,
+    currency_code: undefined,
   },
 };
 

@@ -10,7 +10,6 @@ const initialState = {
     ip: undefined,
     latitude: undefined,
     longitude: undefined,
-    zoom: undefined,
   },
 };
 

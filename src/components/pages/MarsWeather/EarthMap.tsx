@@ -22,6 +22,7 @@ const DivMap = styled.div`
   left: 5px;
   right: 5px;
   width: calc(100% -10px);
+  cursor: pointer;
 `;
 
 interface Props {

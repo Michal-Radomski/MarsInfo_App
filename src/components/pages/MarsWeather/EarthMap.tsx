@@ -14,6 +14,8 @@ import styled from "styled-components";
 import Popover from "react-bootstrap/Popover";
 import OverlayTrigger, {OverlayTriggerType} from "react-bootstrap/OverlayTrigger";
 
+import {getUserGeoDate} from "../../../redux/actions";
+
 const DivMap = styled.div`
   position: absolute;
   top: 110px;
@@ -102,17 +104,27 @@ class EarthMap extends React.Component<Props, State> {
     });
 
     this.popover = (
-      <Popover id="popover-basic">
-        <Popover.Header as="h3">Yor are in: {`${this.state.city}, ${this.state.country}`}</Popover.Header>
+      <Popover id="popover-basic" style={{width: "20%"}}>
+        <Popover.Header as="h3">
+          Yor are in: <span style={{float: "right"}}>{`${this.state.city}, ${this.state.country}`}</span>
+        </Popover.Header>
         <Popover.Body>
-          Your IP is: <strong>{`${this.state.IP}`}</strong>.<br />
-          Your location is: <strong>{`${this.state.center[1].toFixed(5)}, ${this.state.center[0].toFixed(5)}`}</strong>.
+          Your IP is: <strong style={{float: "right"}}>{`${this.state.IP}`}</strong>
+          <br />
+          Your location is:
+          <strong style={{float: "right"}}>{`${this.state.center[1].toFixed(5)}, ${this.state.center[0].toFixed(
+            5
+          )}`}</strong>
         </Popover.Body>
       </Popover>
     );
   }
 
   componentDidMount() {
+    if (this.props?.state?.location.longitude === undefined && this.props?.state?.location.latitude === undefined) {
+      this.props.getUserGeoDate();
+    }
+
     const mapNode = this.mapRef.current;
     // console.log("mapNode:", mapNode);
 
@@ -167,4 +179,4 @@ const mapStateToProps = (state: State) => {
   return {state: state};
 };
 
-export default connect(mapStateToProps, null)(EarthMap);
+export default connect(mapStateToProps, {getUserGeoDate})(EarthMap);

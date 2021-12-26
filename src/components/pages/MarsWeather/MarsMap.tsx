@@ -66,6 +66,10 @@ const MarsMap = (): JSX.Element => {
             Landing site: <b>Elysium Planitia</b>
             <br />
             Coordinates: <b>4.5024°N 135.6234°E</b>
+            <br />
+            <a href="https://en.wikipedia.org/wiki/InSight" target="_blank" rel="noreferrer">
+              Read more...
+            </a>
           </Popup>
           <Tooltip>
             <b>InSight Mars Lander:</b>

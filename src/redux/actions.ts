@@ -6,7 +6,7 @@ export const GET_USER_GEO_DATA = "GET_USER_GEO_DATA";
 
 // Action creator getUserGeoDate
 export const getUserGeoData = () => {
-  return async function (dispatch) {
+  return async function (dispatch: Dispatch) {
     try {
       const {data} = await axios.get(
         `https://ipwhois.app/json/?objects=ip,country,city,latitude,longitude,country_flag,currency_code,currency`

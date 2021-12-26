@@ -17,7 +17,7 @@ const initialState = {
 };
 
 // Reducer
-const rootReducer = (state = initialState, action) => {
+const rootReducer = (state = initialState, action: Dispatch) => {
   switch (action.type) {
     case GET_USER_GEO_DATA:
       return {...state, location: action.payload};

@@ -35,6 +35,8 @@ interface Props {
       longitude: number;
       center: [number, number];
       country_flag: string;
+      currency: string;
+      currency_code: string;
     };
   };
   getUserGeoData?: Fetch;
@@ -160,6 +162,17 @@ class EarthMap extends React.Component<Props, State> {
       this.OL_Map.addOverlay(this.marker);
     }
     // console.log("this.OL_Map:", this.OL_Map);
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem("latitude", JSON.stringify(this.props.state?.location.latitude));
+    localStorage.setItem("longitude", JSON.stringify(this.props.state?.location.longitude));
+    localStorage.setItem("city", JSON.stringify(this.props.state?.location.city));
+    localStorage.setItem("country", JSON.stringify(this.props.state?.location.country));
+    localStorage.setItem("IP", JSON.stringify(this.props.state?.location.ip));
+    localStorage.setItem("country_flag", JSON.stringify(this.props.state?.location.country_flag));
+    localStorage.setItem("currency", JSON.stringify(this.props.state?.location.currency));
+    localStorage.setItem("currency_code", JSON.stringify(this.props.state?.location.currency_code));
   }
 
   render() {

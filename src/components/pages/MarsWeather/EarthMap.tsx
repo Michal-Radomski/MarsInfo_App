@@ -22,7 +22,6 @@ const DivMap = styled.div`
   left: 5px;
   right: 5px;
   width: calc(100% -10px);
-  cursor: pointer;
 `;
 
 interface Props {
@@ -181,7 +180,7 @@ class EarthMap extends React.Component<Props, State> {
         {this.state.center[0] !== 0 && this.state.center[1] !== 0 ? (
           <DivMap>
             <h1 style={{textAlign: "center"}}>Your location: {this.position}</h1>
-            <div id="olMap" ref={this.mapRef} style={{height: "250px"}}></div>
+            <div id="olMap" ref={this.mapRef} style={{height: "250px", cursor: "pointer"}}></div>
             <OverlayTrigger trigger={this.hover} placement="right-end" overlay={this.popover} rootClose={true}>
               <div
                 id="marker"
@@ -200,7 +199,7 @@ class EarthMap extends React.Component<Props, State> {
         ) : (
           <DivMap>
             <h2 style={{textAlign: "center"}}>Your location is unknown</h2>
-            <div id="olMap" ref={this.mapRef} style={{height: "250px"}}></div>
+            <div id="olMap" ref={this.mapRef} style={{height: "250px", cursor: "pointer"}}></div>
           </DivMap>
         )}
       </React.Fragment>

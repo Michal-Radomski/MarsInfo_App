@@ -7,9 +7,7 @@
 2. NASA Astronomy Picture of the Day was created according to this
    [tutorial](https://medium.com/@jen.snyder/how-to-use-react-to-display-nasas-astronomy-picture-of-the-day-283c01ff9e31).
 
-3. Mars Weather was created according to this [tutorial](https://www.youtube.com/watch?v=gQVR2M3IxMs).
-
-4. InSight Mars Lander transparent icon was taken from [https://www.pngaaa.com/](https://www.pngaaa.com/).
+3. Nasa's Mars Lander and Rovers transparent icons were taken from [https://www.pngaaa.com/](https://www.pngaaa.com/).
 
 ## APIs
 

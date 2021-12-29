@@ -60,7 +60,7 @@ const primeMeridianLine2 = {color: "blue", weight: 2.0};
 const MarsMap = (): JSX.Element => {
   return (
     <DivMap>
-      <h1 style={{textAlign: "center"}}>Nasa's Operational Mars Lander and Rover Locations</h1>
+      <h1 style={{textAlign: "center"}}>Nasa's Operational Mars Lander and Rovers Locations</h1>
       <MapContainer
         center={[0, 107]}
         zoom={3}
@@ -107,7 +107,7 @@ const MarsMap = (): JSX.Element => {
 
         <Marker position={PerseverancePosition} icon={Perseverance}>
           <Popup>
-            <b>Perseverance Mars Rover:</b>
+            <b style={{backgroundColor: "orange"}}>Perseverance Mars Rover:</b>
             <br />
             Launch Date: <b>30 July 2020</b>
             <br />

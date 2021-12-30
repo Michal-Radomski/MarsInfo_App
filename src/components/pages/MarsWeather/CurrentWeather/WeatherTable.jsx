@@ -1,7 +1,7 @@
-import React from "react";
 import Table from "react-bootstrap/Table";
 
-const WeatherTable = () => {
+const WeatherTable = (props) => {
+  console.log("props.weatherLast:", props.weatherLast);
   return (
     <div>
       <Table striped bordered hover size="sm">

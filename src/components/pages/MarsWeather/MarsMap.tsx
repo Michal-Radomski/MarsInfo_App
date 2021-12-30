@@ -28,8 +28,8 @@ const Curiosity = L.icon({
 });
 const Perseverance = L.icon({
   iconUrl: PerseveranceIcon,
-  iconSize: [50, 25.5],
-  iconAnchor: [25, 12.75],
+  iconSize: [80, 40.8],
+  iconAnchor: [40, 20.4],
 });
 
 type Position = [number, number];
@@ -59,7 +59,7 @@ const primeMeridian2: Line = [
 ];
 const primeMeridianLine2 = {color: "blue", weight: 2.0};
 
-const MarsMap = (props: Sol): JSX.Element => {
+const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
   // console.log("props:", props);
   return (
     <DivMap>
@@ -129,7 +129,7 @@ const MarsMap = (props: Sol): JSX.Element => {
             <a href="https://en.wikipedia.org/wiki/Perseverance_(rover)" target="_blank" rel="noreferrer">
               Read more...
             </a>
-            <WeatherTable />
+            {props.weatherLast ? <WeatherTable weatherLast={props.weatherLast} /> : <div>Loading...</div>}
           </Popup>
         </Marker>
 

@@ -78,7 +78,7 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
           url="https://cartocdn-gusc.global.ssl.fastly.net/opmbuilder/api/v1/map/named/opm-mars-basemap-v0-2/all/{z}/{x}/{y}.png"
         />
 
-        {/* //- InSight Lander */}
+        {/* // InSight Lander */}
         <Marker position={InSightPosition} icon={InSight}>
           <Tooltip>Click the Icon...</Tooltip>
           <Popup>
@@ -114,11 +114,18 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
           </Popup>
         </Marker>
 
-        {/* //- Perseverance Rover */}
+        {/* //+ Perseverance Rover */}
         <Marker position={PerseverancePosition} icon={Perseverance}>
           <Tooltip>Click the Icon...</Tooltip>
           <Popup>
-            <b style={{backgroundColor: "orange"}}>Perseverance Mars Rover:</b>
+            <b style={{backgroundColor: "orange"}}>
+              Perseverance Mars Rover:
+              <span style={{float: "right"}}>
+                <a href="https://en.wikipedia.org/wiki/Perseverance_(rover)" target="_blank" rel="noreferrer">
+                  Read more...
+                </a>
+              </span>
+            </b>
             <br />
             Launch Date: <b>30 July 2020</b>
             <br />
@@ -126,9 +133,6 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
             <br />
             Coordinates: <b>18.4447°N, 77.4508°E</b>
             <br />
-            <a href="https://en.wikipedia.org/wiki/Perseverance_(rover)" target="_blank" rel="noreferrer">
-              Read more...
-            </a>
             {props.weatherLast ? <WeatherTable weatherLast={props.weatherLast} /> : <div>Loading...</div>}
           </Popup>
         </Marker>

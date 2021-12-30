@@ -5,6 +5,8 @@ import InSightIcon from "./Images/InSight.png";
 import CuriosityIcon from "./Images/Curiosity.png";
 import PerseveranceIcon from "./Images/Perseverance.png";
 
+import WeatherTable from "./CurrentWeather/WeatherTable";
+
 const DivMap = styled.div`
   position: absolute;
   top: 430px;
@@ -62,6 +64,7 @@ const MarsMap = (props: Sol): JSX.Element => {
   return (
     <DivMap>
       <h1 style={{textAlign: "center"}}>Nasa's Operational Mars Lander and Rovers Locations</h1>
+      <h3 style={{textAlign: "center"}}>Click the Icon to see more...</h3>
       <MapContainer
         center={[0, 107]}
         zoom={3}
@@ -74,7 +77,10 @@ const MarsMap = (props: Sol): JSX.Element => {
           attribution='&copy; <a href="https://www.openplanetary.org/" target="_blank">Open Planetary</a>'
           url="https://cartocdn-gusc.global.ssl.fastly.net/opmbuilder/api/v1/map/named/opm-mars-basemap-v0-2/all/{z}/{x}/{y}.png"
         />
+
+        {/* //- InSight Lander */}
         <Marker position={InSightPosition} icon={InSight}>
+          <Tooltip>Click the Icon...</Tooltip>
           <Popup>
             <b>InSight Mars Lander:</b>
             <br />
@@ -90,7 +96,9 @@ const MarsMap = (props: Sol): JSX.Element => {
           </Popup>
         </Marker>
 
+        {/* //- Curiosity Rover */}
         <Marker position={CuriosityPosition} icon={Curiosity}>
+          <Tooltip>Click the Icon...</Tooltip>
           <Popup>
             <b>Curiosity Mars Rover:</b>
             <br />
@@ -106,7 +114,9 @@ const MarsMap = (props: Sol): JSX.Element => {
           </Popup>
         </Marker>
 
+        {/* //- Perseverance Rover */}
         <Marker position={PerseverancePosition} icon={Perseverance}>
+          <Tooltip>Click the Icon...</Tooltip>
           <Popup>
             <b style={{backgroundColor: "orange"}}>Perseverance Mars Rover:</b>
             <br />
@@ -119,6 +129,7 @@ const MarsMap = (props: Sol): JSX.Element => {
             <a href="https://en.wikipedia.org/wiki/Perseverance_(rover)" target="_blank" rel="noreferrer">
               Read more...
             </a>
+            <WeatherTable />
           </Popup>
         </Marker>
 

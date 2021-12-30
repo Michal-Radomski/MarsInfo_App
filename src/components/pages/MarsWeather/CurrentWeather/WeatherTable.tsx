@@ -1,6 +1,6 @@
 import Table from "react-bootstrap/Table";
 
-const WeatherTable = (props) => {
+const WeatherTable = (props: {weatherLast: Sol}) => {
   // console.log("props.weatherLast:", props.weatherLast);
   const weatherCondition = props.weatherLast;
   // console.log("weatherCondition:", weatherCondition);
@@ -9,8 +9,10 @@ const WeatherTable = (props) => {
       <Table striped bordered hover size="sm">
         <thead>
           <tr>
-            <th colSpan="2">
-              Latest Weather Conditions at Jezero Crater for Terrestrial Date:{" "}
+            <th colSpan={2}>
+              Latest Weather Conditions at Jezero Crater for
+              <br />
+              Terrestrial Date:{" "}
               <span style={{fontStyle: "italic", color: "maroon"}}>{weatherCondition.terrestrial_date}</span>
               <span style={{fontStyle: "italic", float: "right"}}>
                 <a href="https://mars.nasa.gov/mars2020/weather/" target="_blank" rel="noreferrer">

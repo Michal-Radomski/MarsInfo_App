@@ -120,7 +120,7 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
           <Popup>
             <b style={{backgroundColor: "orange"}}>
               Perseverance Mars Rover:
-              <span style={{float: "right"}}>
+              <span style={{float: "right", fontStyle: "italic"}}>
                 <a href="https://en.wikipedia.org/wiki/Perseverance_(rover)" target="_blank" rel="noreferrer">
                   Read more...
                 </a>

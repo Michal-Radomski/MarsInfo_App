@@ -3,7 +3,7 @@ import Table from "react-bootstrap/Table";
 const WeatherTable = (props) => {
   // console.log("props.weatherLast:", props.weatherLast);
   const weatherCondition = props.weatherLast;
-  console.log("weatherCondition:", weatherCondition);
+  // console.log("weatherCondition:", weatherCondition);
   return (
     <div>
       <Table striped bordered hover size="sm">
@@ -18,10 +18,6 @@ const WeatherTable = (props) => {
                 </a>
               </span>
             </th>
-          </tr>
-          <tr>
-            <th>Variable</th>
-            <th>Value</th>
           </tr>
         </thead>
         <tbody>
@@ -48,6 +44,10 @@ const WeatherTable = (props) => {
           <tr>
             <td>Sunset (Local Mean Solar Time)</td>
             <td style={{fontWeight: "bold"}}>{weatherCondition.sunset}</td>
+          </tr>
+          <tr>
+            <td>Martian Season</td>
+            <td style={{fontWeight: "bold", textTransform: "capitalize"}}>{weatherCondition.season}</td>
           </tr>
         </tbody>
       </Table>

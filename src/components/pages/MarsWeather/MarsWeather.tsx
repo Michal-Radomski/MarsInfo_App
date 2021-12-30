@@ -16,9 +16,8 @@ class MarsWeather extends React.Component<Props, State> {
     this.state = {
       marsWeather: null,
       marsWeatherLast: null,
-      loaded: true,
+      loaded: false,
     };
-    console.log(props);
   }
 
   componentDidMount() {
@@ -29,7 +28,7 @@ class MarsWeather extends React.Component<Props, State> {
         const marsWeatherLast = response.data.sols[6];
         // console.log("marsWeather:", marsWeather);
         // console.log("marsWeatherLast:", marsWeatherLast);
-        await this.setState({marsWeather: marsWeather, marsWeatherLast: marsWeatherLast, loaded: false});
+        await this.setState({marsWeather: marsWeather, marsWeatherLast: marsWeatherLast, loaded: true});
         // console.log(this.state);
       } catch (error) {
         console.error(error);
@@ -39,7 +38,7 @@ class MarsWeather extends React.Component<Props, State> {
   }
 
   render() {
-    if (this.state.loaded) {
+    if (!this.state.loaded) {
       return <div>Loading...</div>;
     }
     return (

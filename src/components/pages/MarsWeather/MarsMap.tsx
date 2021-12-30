@@ -57,7 +57,8 @@ const primeMeridian2: Line = [
 ];
 const primeMeridianLine2 = {color: "blue", weight: 2.0};
 
-const MarsMap = (): JSX.Element => {
+const MarsMap = (props: any): JSX.Element => {
+  console.log(props);
   return (
     <DivMap>
       <h1 style={{textAlign: "center"}}>Nasa's Operational Mars Lander and Rovers Locations</h1>

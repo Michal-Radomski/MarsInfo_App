@@ -2,7 +2,7 @@ import React from "react";
 
 class Mars extends React.Component {
   componentDidMount() {
-    console.log("this.props.weather:", this.props.weather);
+    // console.log("this.props.weather:", this.props.weather);
   }
 
   render() {

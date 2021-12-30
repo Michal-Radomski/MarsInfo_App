@@ -8,17 +8,18 @@ import Mars from "./CurrentWeather/Mars";
 const Mars2020_URL = process.env.REACT_APP_MARS2020_API as string;
 // console.log("Mars2020_URL:", Mars2020_URL);
 
-class MarsWeather extends React.Component<{}, State> {
-  constructor(props: any) {
+declare interface Props {}
+
+class MarsWeather extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       marsWeather: null,
       marsWeatherLast: null,
       loaded: true,
     };
+    console.log(props);
   }
-
-  marsWeatherLast: any;
 
   componentDidMount() {
     const fetchMarsWeather = async () => {

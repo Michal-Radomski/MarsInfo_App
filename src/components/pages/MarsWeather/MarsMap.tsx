@@ -1,4 +1,4 @@
-import {MapContainer, TileLayer, Marker, Popup, Tooltip, ScaleControl, Polyline} from "react-leaflet";
+import {MapContainer, TileLayer, Marker, Popup, Tooltip, ScaleControl, Polyline, LayersControl} from "react-leaflet";
 import L from "leaflet";
 import styled from "styled-components";
 import InSightIcon from "./Images/InSight.png";
@@ -73,14 +73,21 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
         bounds={mapBounds}
         zoomControl={true}
       >
+        <LayersControl position="topright"></LayersControl>
         <TileLayer
+          tms={false}
           attribution='&copy; <a href="https://www.openplanetary.org/" target="_blank">Open Planetary</a>'
           url="https://cartocdn-gusc.global.ssl.fastly.net/opmbuilder/api/v1/map/named/opm-mars-basemap-v0-2/all/{z}/{x}/{y}.png"
         />
+        {/* <TileLayer
+          tms={true}
+          attribution='&copy; <a href="https://www.openplanetary.org/" target="_blank">Open Planetary</a>'
+          url="http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/mola-color/{z}/{x}/{y}.png"
+        /> */}
 
         {/* // InSight Lander */}
         <Marker position={InSightPosition} icon={InSight}>
-          <Tooltip>Click the Icon...</Tooltip>
+          <Tooltip direction="bottom">Click the Icon...</Tooltip>
           <Popup>
             <b>InSight Mars Lander:</b>
             <br />
@@ -98,7 +105,7 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
 
         {/* //- Curiosity Rover */}
         <Marker position={CuriosityPosition} icon={Curiosity}>
-          <Tooltip>Click the Icon...</Tooltip>
+          <Tooltip direction="bottom">Click the Icon...</Tooltip>
           <Popup>
             <b>Curiosity Mars Rover:</b>
             <br />
@@ -116,7 +123,7 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
 
         {/* //+ Perseverance Rover */}
         <Marker position={PerseverancePosition} icon={Perseverance}>
-          <Tooltip>Click the Icon...</Tooltip>
+          <Tooltip direction="bottom">Click the Icon...</Tooltip>
           <Popup>
             <b style={{backgroundColor: "orange"}}>
               Perseverance Mars Rover:
@@ -139,7 +146,7 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
 
         <ScaleControl metric={true} position="topleft" maxWidth={100} />
         <Polyline positions={equator} pathOptions={equatorLine}>
-          <Tooltip>The Equator</Tooltip>
+          <Tooltip direction="top">The Equator</Tooltip>
         </Polyline>
         <Polyline positions={primeMeridian} pathOptions={primeMeridianLine}>
           <Tooltip>The Prime Meridian</Tooltip>

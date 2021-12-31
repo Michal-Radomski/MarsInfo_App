@@ -24,7 +24,17 @@ const WeatherTable = (props: {weatherLast: Sol}) => {
         </thead>
         <tbody>
           <tr>
-            <td>Sol number</td>
+            <td>
+              <a
+                href="https://en.wikipedia.org/wiki/Sol_(day_on_Mars)"
+                target="_blank"
+                rel="noreferrer"
+                style={{fontStyle: "italic", fontWeight: "bold"}}
+              >
+                Sol
+              </a>{" "}
+              number
+            </td>
             <td style={{fontWeight: "bold"}}>{weatherCondition.sol}</td>
           </tr>
           <tr>

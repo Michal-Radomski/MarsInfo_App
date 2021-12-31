@@ -73,17 +73,29 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
         bounds={mapBounds}
         zoomControl={true}
       >
-        <LayersControl position="topright"></LayersControl>
-        <TileLayer
-          tms={false}
-          attribution='&copy; <a href="https://www.openplanetary.org/" target="_blank">Open Planetary</a>'
-          url="https://cartocdn-gusc.global.ssl.fastly.net/opmbuilder/api/v1/map/named/opm-mars-basemap-v0-2/all/{z}/{x}/{y}.png"
-        />
-        {/* <TileLayer
-          tms={true}
-          attribution='&copy; <a href="https://www.openplanetary.org/" target="_blank">Open Planetary</a>'
-          url="http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/mola-color/{z}/{x}/{y}.png"
-        /> */}
+        <LayersControl position="topright">
+          <LayersControl.BaseLayer name="Mars BaseMap v0.2" checked={true}>
+            <TileLayer
+              tms={false}
+              attribution='&copy; <a href="https://www.openplanetary.org/" target="_blank">Open Planetary</a>'
+              url="https://cartocdn-gusc.global.ssl.fastly.net/opmbuilder/api/v1/map/named/opm-mars-basemap-v0-2/all/{z}/{x}/{y}.png"
+            />
+          </LayersControl.BaseLayer>
+          <LayersControl.BaseLayer name="Mars Shaded Colour MOLA Elevation">
+            <TileLayer
+              tms={true}
+              attribution='&copy; <a href="https://www.openplanetary.org/" target="_blank">Open Planetary</a>'
+              url="http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/mola-color/{z}/{x}/{y}.png"
+            />
+          </LayersControl.BaseLayer>
+          <LayersControl.BaseLayer name="Mars Viking MDIM2.1">
+            <TileLayer
+              tms={true}
+              attribution='&copy; <a href="https://www.openplanetary.org/" target="_blank">Open Planetary</a>'
+              url="http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/viking_mdim21_global/{z}/{x}/{y}.png"
+            />
+          </LayersControl.BaseLayer>
+        </LayersControl>
 
         {/* // InSight Lander */}
         <Marker position={InSightPosition} icon={InSight}>

@@ -1,11 +1,14 @@
 import {MapContainer, TileLayer, Marker, Popup, Tooltip, ScaleControl, Polyline, LayersControl} from "react-leaflet";
-import L from "leaflet";
+import * as L from "leaflet";
 import styled from "styled-components";
 import InSightIcon from "./Images/InSight.png";
 import CuriosityIcon from "./Images/Curiosity.png";
 import PerseveranceIcon from "./Images/Perseverance.png";
+// import MolaColourKey from "./Images/MOLA_elevation_key.jpg";
 
 import WeatherTable from "./CurrentWeather/WeatherTable";
+import Legend from "./Legend";
+import React from "react";
 
 const DivMap = styled.div`
   position: absolute;
@@ -61,6 +64,8 @@ const primeMeridianLine2 = {color: "blue", weight: 2.0};
 
 const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
   // console.log("props:", props);
+  const [map, setMap] = React.useState(null);
+
   return (
     <DivMap>
       <h1 style={{textAlign: "center"}}>Nasa's Operational Mars Lander and Rovers Locations</h1>
@@ -72,7 +77,10 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
         style={{width: "100%", height: "100%"}}
         bounds={mapBounds}
         zoomControl={true}
+        // @ts-ignore
+        whenCreated={setMap}
       >
+        <Legend map={map} />
         <LayersControl position="topright">
           <LayersControl.BaseLayer name="Mars BaseMap v0.2" checked={true}>
             <TileLayer
@@ -81,6 +89,7 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
               url="https://cartocdn-gusc.global.ssl.fastly.net/opmbuilder/api/v1/map/named/opm-mars-basemap-v0-2/all/{z}/{x}/{y}.png"
             />
           </LayersControl.BaseLayer>
+
           <LayersControl.BaseLayer name="Mars Shaded Colour MOLA Elevation">
             <TileLayer
               tms={true}
@@ -96,7 +105,6 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
             />
           </LayersControl.BaseLayer>
         </LayersControl>
-
         {/* // InSight Lander */}
         <Marker position={InSightPosition} icon={InSight}>
           <Tooltip direction="bottom">Click the Icon...</Tooltip>
@@ -114,7 +122,6 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
             </a>
           </Popup>
         </Marker>
-
         {/* //- Curiosity Rover */}
         <Marker position={CuriosityPosition} icon={Curiosity}>
           <Tooltip direction="bottom">Click the Icon...</Tooltip>
@@ -132,7 +139,6 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
             </a>
           </Popup>
         </Marker>
-
         {/* //+ Perseverance Rover */}
         <Marker position={PerseverancePosition} icon={Perseverance}>
           <Tooltip direction="bottom">Click the Icon...</Tooltip>
@@ -155,7 +161,6 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
             {props.weatherLast ? <WeatherTable weatherLast={props.weatherLast} /> : <div>Loading...</div>}
           </Popup>
         </Marker>
-
         <ScaleControl metric={true} position="topleft" maxWidth={100} />
         <Polyline positions={equator} pathOptions={equatorLine}>
           <Tooltip direction="top">The Equator</Tooltip>

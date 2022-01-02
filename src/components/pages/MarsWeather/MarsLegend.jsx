@@ -1,16 +1,16 @@
-import {useEffect} from "react";
-import L from "leaflet";
+import React from "react";
+import * as L from "leaflet";
 import "./Legend.css";
 
-function Legend({map}) {
-  console.log(map);
-  useEffect(() => {
+function MarsLegend({map}) {
+  console.log("map:", map);
+  React.useEffect(() => {
     if (map) {
       const legend = L.control({position: "topright"});
 
       legend.onAdd = () => {
         const div = L.DomUtil.create("div", "info legend");
-        div.innerHTML = "<h4>This is the legend</h4>" + "<b>0=610 Pa</b>";
+        div.innerHTML = "<h4>This is the legend</h4> <br/><b>0=610 Pa</b>";
         return div;
       };
 
@@ -20,4 +20,4 @@ function Legend({map}) {
   return null;
 }
 
-export default Legend;
+export default MarsLegend;

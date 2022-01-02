@@ -1,14 +1,13 @@
+import React from "react";
 import {MapContainer, TileLayer, Marker, Popup, Tooltip, ScaleControl, Polyline, LayersControl} from "react-leaflet";
 import * as L from "leaflet";
 import styled from "styled-components";
 import InSightIcon from "./Images/InSight.png";
 import CuriosityIcon from "./Images/Curiosity.png";
 import PerseveranceIcon from "./Images/Perseverance.png";
-// import MolaColourKey from "./Images/MOLA_elevation_key.jpg";
 
 import WeatherTable from "./CurrentWeather/WeatherTable";
-import Legend from "./Legend";
-import React from "react";
+import MarsLegend from "./MarsLegend";
 
 const DivMap = styled.div`
   position: absolute;
@@ -81,7 +80,7 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
         // @ts-ignore
         whenCreated={setMap}
       >
-        <Legend map={map} />
+        <MarsLegend map={map} />
         <LayersControl position="bottomright">
           <LayersControl.BaseLayer name="Mars BaseMap v0.2" checked={true}>
             <TileLayer
@@ -98,6 +97,7 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
               url="http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/mola-color/{z}/{x}/{y}.png"
             />
           </LayersControl.BaseLayer>
+
           <LayersControl.BaseLayer name="Mars Viking MDIM2.1">
             <TileLayer
               tms={true}

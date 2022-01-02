@@ -77,11 +77,12 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
         style={{width: "100%", height: "100%"}}
         bounds={mapBounds}
         zoomControl={true}
+        doubleClickZoom={false}
         // @ts-ignore
         whenCreated={setMap}
       >
         <Legend map={map} />
-        <LayersControl position="topright">
+        <LayersControl position="bottomright">
           <LayersControl.BaseLayer name="Mars BaseMap v0.2" checked={true}>
             <TileLayer
               tms={false}
@@ -161,7 +162,7 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
             {props.weatherLast ? <WeatherTable weatherLast={props.weatherLast} /> : <div>Loading...</div>}
           </Popup>
         </Marker>
-        <ScaleControl metric={true} position="topleft" maxWidth={100} />
+        <ScaleControl metric={true} position="bottomleft" maxWidth={100} />
         <Polyline positions={equator} pathOptions={equatorLine}>
           <Tooltip direction="top">The Equator</Tooltip>
         </Polyline>

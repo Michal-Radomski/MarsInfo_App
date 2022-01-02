@@ -9,4 +9,11 @@
   text-align: left;
   line-height: 18px;
   color: #555;
+  width: 600px;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  z-index: 1;
 }

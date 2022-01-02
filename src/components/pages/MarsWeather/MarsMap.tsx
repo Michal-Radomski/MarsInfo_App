@@ -70,7 +70,7 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
       <h1 style={{textAlign: "center"}}>Nasa's Operational Mars Lander and Rovers Locations</h1>
       <h3 style={{textAlign: "center"}}>Click the Icon to see more...</h3>
       <MapContainer
-        center={[0, 107]}
+        center={[0, 70]}
         zoom={3}
         scrollWheelZoom={false}
         style={{width: "100%", height: "100%"}}
@@ -81,7 +81,7 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
         whenCreated={setMap}
       >
         <MarsLegend map={map} />
-        <LayersControl position="bottomright">
+        <LayersControl position="topright">
           <LayersControl.BaseLayer name="Mars BaseMap v0.2" checked={true}>
             <TileLayer
               tms={false}
@@ -143,6 +143,7 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
         {/* //+ Perseverance Rover */}
         <Marker position={PerseverancePosition} icon={Perseverance}>
           <Tooltip direction="bottom">Click the Icon...</Tooltip>
+          {/* @ts-ignore */}
           <Popup>
             <b style={{backgroundColor: "orange"}}>
               Perseverance Mars Rover:
@@ -162,7 +163,7 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
             {props.weatherLast ? <WeatherTable weatherLast={props.weatherLast} /> : <div>Loading...</div>}
           </Popup>
         </Marker>
-        <ScaleControl metric={true} position="bottomleft" maxWidth={100} />
+        <ScaleControl metric={true} position="topleft" maxWidth={100} />
         <Polyline positions={equator} pathOptions={equatorLine}>
           <Tooltip direction="top">The Equator</Tooltip>
         </Polyline>

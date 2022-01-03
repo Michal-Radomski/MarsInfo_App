@@ -1,18 +1,18 @@
-.info {
-  padding: 8px;
-  font: 14px/16px Arial, Helvetica, sans-serif;
-  background: whitesmoke;
-  border-radius: 5px;
-}
-
 .legend {
+  padding: 0 5px;
+  /* font-size/line-height: */
+  font: 14px/16px Arial, sans-serif;
+  background: whitesmoke;
+  border-radius: 0 5px 0 0;
+  opacity: 0.8;
   text-align: left;
   line-height: 18px;
   color: #555;
-  width: 600px;
+  width: 522px;
+  margin: 0 !important;
 }
 
 .image {
-  width: 100%;
-  height: auto;
+  margin: 0 !important;
+  padding: 0 !important;
 }

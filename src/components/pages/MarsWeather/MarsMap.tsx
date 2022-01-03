@@ -14,7 +14,7 @@ const DivMap = styled.div`
   top: 430px;
   left: 5px;
   right: 5px;
-  height: 400px;
+  height: 500px;
   width: calc(100% -10px);
 `;
 

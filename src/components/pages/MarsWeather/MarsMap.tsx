@@ -174,6 +174,7 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
           <Tooltip>The Prime Meridian</Tooltip>
         </Polyline>
       </MapContainer>
+      <br />
     </DivMap>
   );
 };

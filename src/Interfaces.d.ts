@@ -1,6 +1,7 @@
 // Types and Interfaces
 
 declare module "moment-random";
+
 type ProcessEnv = string | any;
 
 type State = ReturnType<typeof store.getState>;

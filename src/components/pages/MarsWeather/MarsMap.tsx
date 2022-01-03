@@ -82,7 +82,7 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
       >
         <MarsLegend map={map} />
         <LayersControl position="topright">
-          <LayersControl.BaseLayer name="Mars BaseMap v0.2" checked={true}>
+          <LayersControl.BaseLayer name="Mars BaseMap v0.2">
             <TileLayer
               tms={false}
               attribution='&copy; <a href="https://www.openplanetary.org/" target="_blank">Open Planetary</a>'
@@ -90,7 +90,7 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
             />
           </LayersControl.BaseLayer>
 
-          <LayersControl.BaseLayer name="Mars Shaded Colour MOLA Elevation">
+          <LayersControl.BaseLayer name="Mars Shaded Colour MOLA Elevation" checked={true}>
             <TileLayer
               tms={true}
               attribution='&copy; <a href="https://www.openplanetary.org/" target="_blank">Open Planetary</a>'

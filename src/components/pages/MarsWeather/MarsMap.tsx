@@ -87,6 +87,7 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
               tms={false}
               attribution='&copy; <a href="https://www.openplanetary.org/" target="_blank">Open Planetary</a>'
               url="https://cartocdn-gusc.global.ssl.fastly.net/opmbuilder/api/v1/map/named/opm-mars-basemap-v0-2/all/{z}/{x}/{y}.png"
+              maxZoom={16}
             />
           </LayersControl.BaseLayer>
 
@@ -95,6 +96,7 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
               tms={true}
               attribution='&copy; <a href="https://www.openplanetary.org/" target="_blank">Open Planetary</a>'
               url="http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/mola-color/{z}/{x}/{y}.png"
+              maxZoom={6}
             />
           </LayersControl.BaseLayer>
 
@@ -103,6 +105,7 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
               tms={true}
               attribution='&copy; <a href="https://www.openplanetary.org/" target="_blank">Open Planetary</a>'
               url="http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/viking_mdim21_global/{z}/{x}/{y}.png"
+              maxZoom={7}
             />
           </LayersControl.BaseLayer>
         </LayersControl>

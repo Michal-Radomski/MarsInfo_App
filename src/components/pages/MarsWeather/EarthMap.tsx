@@ -1,4 +1,11 @@
+// React + Redux + Other libraries
 import React from "react";
+import {connect} from "react-redux";
+import styled from "styled-components";
+import Popover from "react-bootstrap/Popover";
+import OverlayTrigger, {OverlayTriggerType} from "react-bootstrap/OverlayTrigger";
+
+// OpenLayers
 import Map from "ol/Map";
 import View from "ol/View";
 import TileLayer from "ol/layer/Tile";
@@ -8,20 +15,17 @@ import Overlay from "ol/Overlay";
 import {Attribution, ScaleLine, defaults as defaultControls} from "ol/control";
 import {toStringHDMS} from "ol/coordinate";
 import {defaults} from "ol/interaction";
-
+import LayerGroup from "ol/layer/Group";
 import XYZ from "ol/source/XYZ";
+import "ol/ol.css";
+
+// OpenLayers Switcher
 import LayerSwitcher from "ol-layerswitcher";
 import {BaseLayerOptions, GroupLayerOptions} from "ol-layerswitcher";
-import "ol/ol.css";
 import "ol-layerswitcher/dist/ol-layerswitcher.css";
 
-import {connect} from "react-redux";
-import styled from "styled-components";
-import Popover from "react-bootstrap/Popover";
-import OverlayTrigger, {OverlayTriggerType} from "react-bootstrap/OverlayTrigger";
-
+// Redux Global Store
 import {getUserGeoData} from "../../../redux/actions";
-import LayerGroup from "ol/layer/Group";
 
 const DivMap = styled.div`
   position: absolute;
@@ -57,8 +61,9 @@ class EarthMap extends React.Component<Props, State> {
   popover: JSX.Element;
   marker!: Overlay;
   hover!: OverlayTriggerType[];
-  map1!: TileLayer<OSM>;
-  map2!: TileLayer<any>;
+  mapOSM!: TileLayer<OSM>;
+  mapStamen!: TileLayer<XYZ>;
+  map3!: TileLayer<any>;
 
   constructor(props: Props) {
     super(props);
@@ -106,33 +111,45 @@ class EarthMap extends React.Component<Props, State> {
       units: "metric",
     });
 
-    const map1 = new TileLayer({
+    const mapOSM = new TileLayer({
       //@ts-ignore
-      title: "OSM",
+      title: "OpenStreetMap",
       type: "base",
       visible: true,
       source: new OSM({
         attributions: [ATTRIBUTION, `<a href="https://openlayers.org" target="_blank">OpenLayers</a>`],
       } as BaseLayerOptions),
     });
-    const map2 = new TileLayer({
-      //@ts-ignore
-      title: "Stamen",
+    const mapStamen = new TileLayer({
+      title: "Stamen - terrain",
       type: "base",
-      visible: true,
+      visible: false,
       source: new XYZ({
         url: "http://{a-d}.tile.stamen.com/terrain/{z}/{x}/{y}.png",
+        attributions: [
+          'Map tiles by <a href="http://stamen.com" target="_blank">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0" target="_blank">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org" target="_blank">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0" target="_blank">CC BY SA</a>',
+        ],
+      }),
+    } as BaseLayerOptions);
+
+    const map3 = new TileLayer({
+      title: "mapa3",
+      type: "base",
+      visible: false,
+      source: new XYZ({
+        url: "https://gibs-{s}.earthdata.nasa.gov/wmts/epsg3857/best/BlueMarble_ShadedRelief_Bathymetry/default//EPSG3857_500m/{z}/{y}/{x}.jpeg",
       }),
     } as BaseLayerOptions);
 
     const layerSwitcher = new LayerSwitcher({
-      reverse: true,
+      label: "«",
+      reverse: false,
       groupSelectStyle: "group",
     });
 
     const baseMaps = new LayerGroup({
       title: "Base maps",
-      layers: [map1, map2],
+      layers: [mapOSM, mapStamen],
     } as GroupLayerOptions);
 
     this.OL_Map = new Map({

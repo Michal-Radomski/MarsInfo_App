@@ -9,12 +9,19 @@ import {Attribution, ScaleLine, defaults as defaultControls} from "ol/control";
 import {toStringHDMS} from "ol/coordinate";
 import {defaults} from "ol/interaction";
 
+import XYZ from "ol/source/XYZ";
+import LayerSwitcher from "ol-layerswitcher";
+import {BaseLayerOptions, GroupLayerOptions} from "ol-layerswitcher";
+import "ol/ol.css";
+import "ol-layerswitcher/dist/ol-layerswitcher.css";
+
 import {connect} from "react-redux";
 import styled from "styled-components";
 import Popover from "react-bootstrap/Popover";
 import OverlayTrigger, {OverlayTriggerType} from "react-bootstrap/OverlayTrigger";
 
 import {getUserGeoData} from "../../../redux/actions";
+import LayerGroup from "ol/layer/Group";
 
 const DivMap = styled.div`
   position: absolute;
@@ -50,6 +57,8 @@ class EarthMap extends React.Component<Props, State> {
   popover: JSX.Element;
   marker!: Overlay;
   hover!: OverlayTriggerType[];
+  map1!: TileLayer<OSM>;
+  map2!: TileLayer<any>;
 
   constructor(props: Props) {
     super(props);
@@ -97,22 +106,49 @@ class EarthMap extends React.Component<Props, State> {
       units: "metric",
     });
 
+    const map1 = new TileLayer({
+      //@ts-ignore
+      title: "OSM",
+      type: "base",
+      visible: true,
+      source: new OSM({
+        attributions: [ATTRIBUTION, `<a href="https://openlayers.org" target="_blank">OpenLayers</a>`],
+      } as BaseLayerOptions),
+    });
+    const map2 = new TileLayer({
+      //@ts-ignore
+      title: "Stamen",
+      type: "base",
+      visible: true,
+      source: new XYZ({
+        url: "http://{a-d}.tile.stamen.com/terrain/{z}/{x}/{y}.png",
+      }),
+    } as BaseLayerOptions);
+
+    const layerSwitcher = new LayerSwitcher({
+      reverse: true,
+      groupSelectStyle: "group",
+    });
+
+    const baseMaps = new LayerGroup({
+      title: "Base maps",
+      layers: [map1, map2],
+    } as GroupLayerOptions);
+
     this.OL_Map = new Map({
       interactions: defaults({mouseWheelZoom: false}),
       controls: defaultControls({attribution: false}).extend([this.attribution, this.scaleLine]),
       target: "olMap",
-      layers: [
-        new TileLayer({
-          source: new OSM({
-            attributions: [ATTRIBUTION, `<a href="https://openlayers.org" target="_blank">OpenLayers</a>`],
-          }),
-        }),
-      ],
+
+      layers: [baseMaps],
+
       view: new View({
         center: fromLonLat(this.state.center),
         zoom: this.state.zoom,
       }),
     });
+
+    this.OL_Map.addControl(layerSwitcher);
 
     this.popover = (
       <Popover id="popover-basic" style={{minWidth: "20%"}}>

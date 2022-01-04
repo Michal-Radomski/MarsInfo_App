@@ -63,7 +63,7 @@ class EarthMap extends React.Component<Props, State> {
   hover!: OverlayTriggerType[];
   mapOSM!: TileLayer<OSM>;
   mapStamen!: TileLayer<XYZ>;
-  map3!: TileLayer<any>;
+  mapNASA!: TileLayer<any>;
 
   constructor(props: Props) {
     super(props);
@@ -132,8 +132,8 @@ class EarthMap extends React.Component<Props, State> {
       }),
     } as BaseLayerOptions);
 
-    const map3 = new TileLayer({
-      title: "mapa3",
+    const mapNASA = new TileLayer({
+      title: "Nasa BlueMarble",
       type: "base",
       visible: false,
       source: new XYZ({
@@ -149,7 +149,7 @@ class EarthMap extends React.Component<Props, State> {
 
     const baseMaps = new LayerGroup({
       title: "Base maps",
-      layers: [mapOSM, mapStamen],
+      layers: [mapOSM, mapStamen, mapNASA],
     } as GroupLayerOptions);
 
     this.OL_Map = new Map({

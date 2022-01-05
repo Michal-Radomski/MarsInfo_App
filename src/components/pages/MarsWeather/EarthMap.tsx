@@ -63,7 +63,7 @@ class EarthMap extends React.Component<Props, State> {
   hover!: OverlayTriggerType[];
   mapOSM!: TileLayer<OSM>;
   mapStamen!: TileLayer<XYZ>;
-  mapNASA!: TileLayer<any>;
+  mapNASA!: TileLayer<XYZ>;
 
   constructor(props: Props) {
     super(props);
@@ -133,11 +133,17 @@ class EarthMap extends React.Component<Props, State> {
     } as BaseLayerOptions);
 
     const mapNASA = new TileLayer({
-      title: "Nasa BlueMarble",
+      title: "NASA - BlueMarble",
       type: "base",
       visible: false,
       source: new XYZ({
-        url: "https://gibs-{s}.earthdata.nasa.gov/wmts/epsg3857/best/BlueMarble_ShadedRelief_Bathymetry/default//EPSG3857_500m/{z}/{y}/{x}.jpeg",
+        maxZoom: 19,
+        // url: "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+        url: "https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}",
+        attributions: [
+          "Powered by Esri",
+          "Source: Esri, DigitalGlobe, GeoEye, Earthstar Geographics, CNES/Airbus DS, USDA, USGS, AeroGRID, IGN, and the GIS User Community",
+        ],
       }),
     } as BaseLayerOptions);
 

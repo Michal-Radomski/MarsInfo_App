@@ -16,7 +16,7 @@
 
 2. Maps of Mars are provided by [https://www.openplanetary.org](https://www.openplanetary.org).
 
-3. Earth maps are provided by [https://maps.stamen.com/terrain](Stamen Maps) and
-   [https://www.openstreetmap.org](OpenStreetMap).
+3. Earth maps are provided by [Stamen Maps](https://maps.stamen.com/terrain) and
+   [OpenStreetMap](https://www.openstreetmap.org).
 
-4. World Imagery is provided by [https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer](ArcGIS).
+4. World Imagery is provided by [ArcGIS](https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer).

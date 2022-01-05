@@ -141,8 +141,8 @@ class EarthMap extends React.Component<Props, State> {
         maxZoom: 18,
         url: "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
         attributions: [
-          "Powered by Esri",
-          "Source: Esri, Maxar, GeoEye, Earthstar Geographics, CNES/Airbus DS, USDA, USGS, AeroGRID, IGN, and the GIS User Community",
+          'Tiles © <a href="https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer" target="_blank">ArcGIS</a>',
+          "Source: <a href='https://www.esri.com/' target='_blank'>Esri</a>, Maxar, GeoEye, Earthstar Geographics, CNES/Airbus DS, USDA, USGS, AeroGRID, IGN, and the GIS User Community",
         ],
       }),
     } as BaseLayerOptions);

@@ -11,7 +11,7 @@ import MarsLegend from "./MarsLegend";
 
 const DivMap = styled.div`
   position: absolute;
-  top: 430px;
+  top: 580px;
   left: 5px;
   right: 5px;
   height: 500px;

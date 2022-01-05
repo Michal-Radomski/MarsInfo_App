@@ -63,7 +63,7 @@ class EarthMap extends React.Component<Props, State> {
   hover!: OverlayTriggerType[];
   mapOSM!: TileLayer<OSM>;
   mapStamen!: TileLayer<XYZ>;
-  mapNASA!: TileLayer<XYZ>;
+  mapArcGIS!: TileLayer<XYZ>;
 
   constructor(props: Props) {
     super(props);
@@ -120,8 +120,9 @@ class EarthMap extends React.Component<Props, State> {
         attributions: [ATTRIBUTION, `<a href="https://openlayers.org" target="_blank">OpenLayers</a>`],
       } as BaseLayerOptions),
     });
+
     const mapStamen = new TileLayer({
-      title: "Stamen - terrain",
+      title: "Stamen-terrain",
       type: "base",
       visible: false,
       source: new XYZ({
@@ -132,17 +133,16 @@ class EarthMap extends React.Component<Props, State> {
       }),
     } as BaseLayerOptions);
 
-    const mapNASA = new TileLayer({
-      title: "NASA - BlueMarble",
+    const mapArcGIS = new TileLayer({
+      title: "ArcGIS-WorldImagery",
       type: "base",
       visible: false,
       source: new XYZ({
-        maxZoom: 19,
-        // url: "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-        url: "https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}",
+        maxZoom: 18,
+        url: "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
         attributions: [
           "Powered by Esri",
-          "Source: Esri, DigitalGlobe, GeoEye, Earthstar Geographics, CNES/Airbus DS, USDA, USGS, AeroGRID, IGN, and the GIS User Community",
+          "Source: Esri, Maxar, GeoEye, Earthstar Geographics, CNES/Airbus DS, USDA, USGS, AeroGRID, IGN, and the GIS User Community",
         ],
       }),
     } as BaseLayerOptions);
@@ -155,7 +155,7 @@ class EarthMap extends React.Component<Props, State> {
 
     const baseMaps = new LayerGroup({
       title: "Base maps",
-      layers: [mapOSM, mapStamen, mapNASA],
+      layers: [mapOSM, mapStamen, mapArcGIS],
     } as GroupLayerOptions);
 
     this.OL_Map = new Map({
@@ -239,7 +239,7 @@ class EarthMap extends React.Component<Props, State> {
         {this.state.center[0] !== 0 && this.state.center[1] !== 0 ? (
           <DivMap>
             <h1 style={{textAlign: "center"}}>Your location: {this.position}</h1>
-            <div id="olMap" ref={this.mapRef} style={{height: "250px", cursor: "pointer"}}></div>
+            <div id="olMap" ref={this.mapRef} style={{height: "400px", cursor: "pointer"}}></div>
             <OverlayTrigger trigger={this.hover} placement="right-end" overlay={this.popover} rootClose={true}>
               <div
                 id="marker"

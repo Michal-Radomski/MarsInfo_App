@@ -14,9 +14,10 @@ import {fromLonLat} from "ol/proj";
 import Overlay from "ol/Overlay";
 import {Attribution, ScaleLine, defaults as defaultControls} from "ol/control";
 import {toStringHDMS} from "ol/coordinate";
-import {defaults} from "ol/interaction";
+import {defaults, MouseWheelZoom} from "ol/interaction";
 import LayerGroup from "ol/layer/Group";
 import XYZ from "ol/source/XYZ";
+import {platformModifierKeyOnly} from "ol/events/condition";
 import "ol/ol.css";
 
 // OpenLayers Switcher
@@ -170,6 +171,12 @@ class EarthMap extends React.Component<Props, State> {
         zoom: this.state.zoom,
       }),
     });
+
+    let mouseWheelInt = new MouseWheelZoom({condition: platformModifierKeyOnly});
+    if (mouseWheelInt) {
+      // console.log("mouseWheelInt:", mouseWheelInt);
+      this.OL_Map.addInteraction(mouseWheelInt);
+    }
 
     this.OL_Map.addControl(layerSwitcher);
 

@@ -15,6 +15,7 @@
     "@types/styled-components": "^5.1.17",
     "axios": "^0.24.0",
     "leaflet": "^1.7.1",
+    "leaflet-gesture-handling": "^1.2.2",
     "moment-random": "^1.1.0",
     "ol": "^6.9.0",
     "ol-layerswitcher": "^3.8.3",

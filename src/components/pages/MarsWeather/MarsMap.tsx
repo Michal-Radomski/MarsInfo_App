@@ -2,6 +2,11 @@ import React from "react";
 import {MapContainer, TileLayer, Marker, Popup, Tooltip, ScaleControl, Polyline, LayersControl} from "react-leaflet";
 import * as L from "leaflet";
 import styled from "styled-components";
+
+import {GestureHandling} from "leaflet-gesture-handling";
+import "leaflet/dist/leaflet.css";
+import "leaflet-gesture-handling/dist/leaflet-gesture-handling.css";
+
 import InSightIcon from "./Images/InSight.png";
 import CuriosityIcon from "./Images/Curiosity.png";
 import PerseveranceIcon from "./Images/Perseverance.png";
@@ -65,6 +70,8 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
   // console.log("props:", props);
   const [map, setMap] = React.useState(null);
 
+  L.Map.addInitHook("addHandler", "gestureHandling", GestureHandling);
+
   return (
     <DivMap>
       <h1 style={{textAlign: "center"}}>Nasa's Operational Mars Lander and Rovers Locations</h1>
@@ -79,6 +86,8 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
         doubleClickZoom={false}
         // @ts-ignore
         whenCreated={setMap}
+        gestureHandling={true}
+        gestureHandlingOptions={{duration: 750}}
       >
         <MarsLegend map={map} />
         <LayersControl position="topright">

@@ -65,6 +65,7 @@ class EarthMap extends React.Component<Props, State> {
   mapOSM!: TileLayer<OSM>;
   mapStamen!: TileLayer<XYZ>;
   mapArcGIS!: TileLayer<XYZ>;
+  mouseWheelInt!: MouseWheelZoom;
 
   constructor(props: Props) {
     super(props);
@@ -172,13 +173,12 @@ class EarthMap extends React.Component<Props, State> {
       }),
     });
 
-    let mouseWheelInt = new MouseWheelZoom({condition: platformModifierKeyOnly});
-    if (mouseWheelInt) {
-      // console.log("mouseWheelInt:", mouseWheelInt);
-      this.OL_Map.addInteraction(mouseWheelInt);
-    }
-
     this.OL_Map.addControl(layerSwitcher);
+
+    const mouseWheelInt = new MouseWheelZoom({
+      condition: platformModifierKeyOnly,
+    });
+    this.OL_Map.addInteraction(mouseWheelInt);
 
     this.popover = (
       <Popover id="popover-basic" style={{minWidth: "20%"}}>

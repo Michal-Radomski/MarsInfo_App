@@ -20,8 +20,9 @@ class MarsWeather extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      marsWeather: null,
-      marsWeatherLast: null,
+      PerseveranceWeather: null,
+      CuriosityWeather: null,
+      InSightWeather: null,
       loaded: false,
     };
   }
@@ -36,14 +37,21 @@ class MarsWeather extends React.Component<Props, State> {
         });
         // await console.log("response:", response);
         const marsWeathers = await response.map((marsWeather) => marsWeather.data);
-        await console.log("marsWeather:", marsWeathers);
+        // await console.log("marsWeathers:", marsWeathers);
+        const marsWeatherModified = {
+          PerseveranceWeather: marsWeathers[0].sols,
+          CuriosityWeather: marsWeathers[1].soles.slice(0, 7).reverse(),
+          InSightWeather: marsWeathers[2],
+        };
+        // await console.log("marsWeatherModified:", marsWeatherModified);
+        await this.setState({
+          PerseveranceWeather: marsWeatherModified.PerseveranceWeather,
+          CuriosityWeather: marsWeatherModified.CuriosityWeather,
+          InSightWeather: marsWeatherModified.InSightWeather,
+          loaded: true,
+        });
 
-        // const marsWeather = response.data;
-        // const marsWeatherLast = response.data.sols[6];
-        // console.log("marsWeather:", marsWeather);
-        // console.log("marsWeatherLast:", marsWeatherLast);
-        // await this.setState({marsWeather: marsWeather, marsWeatherLast: marsWeatherLast, loaded: true});
-        // console.log(this.state);
+        // console.log("this.state:", this.state);
       } catch (error) {
         console.error(error);
       }
@@ -58,10 +66,14 @@ class MarsWeather extends React.Component<Props, State> {
     return (
       <div>
         <EarthMap />
+        <MarsMap
+          //@ts-ignore:
+          Perseverance_Weather={this.state.PerseveranceWeather.at(-1)}
+          Curiosity_Weather={this.state.CuriosityWeather.at(-1)}
+          InSight_Weather={this.state.InSightWeather}
+        />
         {/* @ts-ignore: */}
-        <MarsMap weatherLast={this.state.marsWeatherLast} />
-        {/* @ts-ignore: */}
-        <Mars weather={this.state.marsWeather} />
+        <Mars Perseverance_Weather={this.state.PerseveranceWeather} Curiosity_Weather={this.state.CuriosityWeather} />
       </div>
     );
   }

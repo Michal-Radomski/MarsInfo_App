@@ -31,10 +31,10 @@ class MarsWeather extends React.Component<Props, State> {
       try {
         // const response = await axios.all(URLs.map((url) => axios.get(url))).then((data) => {
         const response = await axios.all(URLs.map((url) => axios.get(url))).then((data) => {
-          console.log("data:", data);
+          // console.log("data:", data);
           return data;
         });
-        await console.log("response:", response);
+        // await console.log("response:", response);
         const marsWeathers = await response.map((marsWeather) => marsWeather.data);
         await console.log("marsWeather:", marsWeathers);
 

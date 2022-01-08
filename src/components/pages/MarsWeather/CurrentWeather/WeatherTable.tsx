@@ -10,10 +10,10 @@ const WeatherTable = (props: {weatherLastRecord: Sol; location: string; URL_href
         <thead>
           <tr>
             <th colSpan={2}>
-              Latest Weather Conditions at {props.location} for
+              Latest Weather Conditions at <span style={{fontStyle: "italic", color: "maroon"}}>{props.location}</span> for
               <br />
               Terrestrial Date:{" "}
-              <span style={{fontStyle: "italic", color: "maroon"}}>{weatherCondition.terrestrial_date}</span>
+              <span style={{fontStyle: "italic", color: "maroon"}}>{weatherCondition.terrestrial_date ?? "No Data"}</span>
               <span style={{fontStyle: "italic", float: "right"}}>
                 <a href={props.URL_href} target="_blank" rel="noreferrer">
                   Read more...
@@ -35,31 +35,31 @@ const WeatherTable = (props: {weatherLastRecord: Sol; location: string; URL_href
               </a>{" "}
               number
             </td>
-            <td style={{fontWeight: "bold"}}>{weatherCondition.sol}</td>
+            <td style={{fontWeight: "bold"}}>{weatherCondition.sol ?? "No Data"}</td>
           </tr>
           <tr>
             <td>Min temp</td>
-            <td style={{fontWeight: "bold"}}>{weatherCondition.min_temp} °C</td>
+            <td style={{fontWeight: "bold"}}>{weatherCondition.min_temp ?? "No Data"} °C</td>
           </tr>
           <tr>
             <td>Max temp</td>
-            <td style={{fontWeight: "bold"}}>{weatherCondition.max_temp} °C</td>
+            <td style={{fontWeight: "bold"}}>{weatherCondition.max_temp ?? "No Data"} °C</td>
           </tr>
           <tr>
             <td>Pressure</td>
-            <td style={{fontWeight: "bold"}}>{weatherCondition.pressure} Pa</td>
+            <td style={{fontWeight: "bold"}}>{weatherCondition.pressure ?? "No Data"} Pa</td>
           </tr>
           <tr>
             <td>Sunrise (Local Mean Solar Time)</td>
-            <td style={{fontWeight: "bold"}}>{weatherCondition.sunrise}</td>
+            <td style={{fontWeight: "bold"}}>{weatherCondition.sunrise ?? "No Data"}</td>
           </tr>
           <tr>
             <td>Sunset (Local Mean Solar Time)</td>
-            <td style={{fontWeight: "bold"}}>{weatherCondition.sunset}</td>
+            <td style={{fontWeight: "bold"}}>{weatherCondition.sunset ?? "No Data"}</td>
           </tr>
           <tr>
             <td>Martian Season</td>
-            <td style={{fontWeight: "bold", textTransform: "capitalize"}}>{weatherCondition.season}</td>
+            <td style={{fontWeight: "bold", textTransform: "capitalize"}}>{weatherCondition.season ?? "No Data"}</td>
           </tr>
         </tbody>
       </Table>

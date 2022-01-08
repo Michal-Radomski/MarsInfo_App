@@ -59,7 +59,7 @@ class MarsWeather extends React.Component<Props, State> {
           InSightWeather: marsWeatherModified.InSightWeather,
           loaded: true,
         });
-        await console.log("this.state:", this.state);
+        // await console.log("this.state:", this.state);
       } catch (error) {
         console.error(error);
       }

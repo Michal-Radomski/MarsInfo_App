@@ -1,8 +1,8 @@
 import Table from "react-bootstrap/Table";
 
-const WeatherTable = (props: {weatherLast: Sol}) => {
+const WeatherTable = (props: {weatherLastRecord: Sol}) => {
   // console.log("props.weatherLast:", props.weatherLast);
-  const weatherCondition = props.weatherLast;
+  const weatherCondition = props.weatherLastRecord;
   // console.log("weatherCondition:", weatherCondition);
   return (
     <div>

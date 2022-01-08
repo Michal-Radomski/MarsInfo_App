@@ -66,7 +66,7 @@ const primeMeridian2: Line = [
 ];
 const primeMeridianLine2 = {color: "blue", weight: 2.0};
 
-const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
+const MarsMap = (props: {Perseverance_Weather: Sol; Curiosity_Weather: Sol; InSight_Weather: State}): JSX.Element => {
   // console.log("props:", props);
   const [map, setMap] = React.useState(null);
 
@@ -172,7 +172,11 @@ const MarsMap = (props: {weatherLast: Sol}): JSX.Element => {
             <br />
             Coordinates: <b>18.4447°N, 77.4508°E</b>
             <br />
-            {props.weatherLast ? <WeatherTable weatherLast={props.weatherLast} /> : <div>Loading...</div>}
+            {props.Perseverance_Weather ? (
+              <WeatherTable weatherLastRecord={props.Perseverance_Weather} />
+            ) : (
+              <div>No Data</div>
+            )}
           </Popup>
         </Marker>
         <ScaleControl metric={true} position="topleft" maxWidth={100} />

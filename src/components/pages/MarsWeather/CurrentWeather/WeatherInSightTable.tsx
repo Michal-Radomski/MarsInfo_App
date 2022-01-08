@@ -1,25 +1,25 @@
 import React from "react";
 import {useTable} from "react-table";
 
-const WeatherInSightTable = () => {
+const WeatherInSightTable = (): JSX.Element => {
   const data = React.useMemo(
     () => [
       {
-        col1: "Hello",
+        col1: "Hello" as string,
 
-        col2: "World",
+        col2: "World" as string,
       },
 
       {
-        col1: "react-table",
+        col1: "react-table" as string,
 
-        col2: "rocks",
+        col2: "rocks" as string,
       },
 
       {
-        col1: "whatever",
+        col1: "whatever" as string,
 
-        col2: "you want",
+        col2: "you want" as string,
       },
     ],
 
@@ -29,15 +29,15 @@ const WeatherInSightTable = () => {
   const columns = React.useMemo(
     () => [
       {
-        Header: "Column 1",
+        Header: "Column 1" as string,
 
-        accessor: "col1", // accessor is the "key" in the data
+        accessor: "col1" as string, // accessor is the "key" in the data
       },
 
       {
-        Header: "Column 2",
+        Header: "Column 2" as string,
 
-        accessor: "col2",
+        accessor: "col2" as string,
       },
     ],
 
@@ -46,14 +46,11 @@ const WeatherInSightTable = () => {
 
   const {
     getTableProps,
-
     getTableBodyProps,
-
     headerGroups,
-
     rows,
-
     prepareRow,
+    //@ts-ignore
   } = useTable({columns, data});
 
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 
-class Mars extends React.Component {
+class Mars extends React.Component<{}, {}> {
   componentDidMount() {
     // console.log(
     //   "those.props.Perseverance_Weather and Curiosity_Weather:",

@@ -1,28 +1,23 @@
 import React from "react";
 import {useTable} from "react-table";
 
-const WeatherInSightTable = (): JSX.Element => {
+const WeatherInSightTable = (props: any): JSX.Element => {
+  console.log("props:", props);
   const data = React.useMemo(
     () => [
       {
         col1: "Hello" as string,
-
         col2: "World" as string,
       },
-
       {
         col1: "react-table" as string,
-
         col2: "rocks" as string,
       },
-
       {
         col1: "whatever" as string,
-
         col2: "you want" as string,
       },
     ],
-
     []
   );
 
@@ -30,17 +25,13 @@ const WeatherInSightTable = (): JSX.Element => {
     () => [
       {
         Header: "Column 1" as string,
-
         accessor: "col1" as string, // accessor is the "key" in the data
       },
-
       {
         Header: "Column 2" as string,
-
         accessor: "col2" as string,
       },
     ],
-
     []
   );
 
@@ -54,7 +45,7 @@ const WeatherInSightTable = (): JSX.Element => {
   } = useTable({columns, data});
 
   return (
-    <table {...getTableProps()} style={{border: "solid 1px blue"}}>
+    <table {...getTableProps()} style={{border: "solid 1px blue", width: "275px"}}>
       <thead>
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
@@ -63,11 +54,8 @@ const WeatherInSightTable = (): JSX.Element => {
                 {...column.getHeaderProps()}
                 style={{
                   borderBottom: "solid 3px red",
-
                   background: "aliceblue",
-
                   color: "black",
-
                   fontWeight: "bold",
                 }}
               >
@@ -90,9 +78,7 @@ const WeatherInSightTable = (): JSX.Element => {
                     {...cell.getCellProps()}
                     style={{
                       padding: "10px",
-
                       border: "solid 1px gray",
-
                       background: "papayawhip",
                     }}
                   >

@@ -139,16 +139,16 @@ const MarsMap = (props: {Perseverance_Weather: Sol; Curiosity_Weather: Sol; InSi
             <br />
             Coordinates: <b>4.5024°N 135.6234°E</b>
             <br />
-            {/* {props.InSight_Weather ? (
-              <WeatherTable
+            {props.InSight_Weather ? (
+              <WeatherInSightTable
+                //@ts-ignore
                 weatherLastRecord={props.InSight_Weather}
                 location="Elysium Planitia"
                 URL_href="https://mars.nasa.gov/insight/weather"
               />
             ) : (
               <div>No Data</div>
-            )} */}
-            <WeatherInSightTable />
+            )}
           </Popup>
         </Marker>
         {/* //- Curiosity Rover */}

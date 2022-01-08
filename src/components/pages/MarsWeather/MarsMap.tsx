@@ -11,8 +11,9 @@ import InSightIcon from "./Images/InSight.png";
 import CuriosityIcon from "./Images/Curiosity.png";
 import PerseveranceIcon from "./Images/Perseverance.png";
 
-import WeatherTable from "./CurrentWeather/WeatherTable";
 import MarsLegend from "./MarsLegend";
+import WeatherTable from "./CurrentWeather/WeatherTable";
+import WeatherInSightTable from "./CurrentWeather/WeatherInSightTable";
 
 const DivMap = styled.div`
   position: absolute;
@@ -138,7 +139,7 @@ const MarsMap = (props: {Perseverance_Weather: Sol; Curiosity_Weather: Sol; InSi
             <br />
             Coordinates: <b>4.5024°N 135.6234°E</b>
             <br />
-            {props.InSight_Weather ? (
+            {/* {props.InSight_Weather ? (
               <WeatherTable
                 weatherLastRecord={props.InSight_Weather}
                 location="Elysium Planitia"
@@ -146,7 +147,8 @@ const MarsMap = (props: {Perseverance_Weather: Sol; Curiosity_Weather: Sol; InSi
               />
             ) : (
               <div>No Data</div>
-            )}
+            )} */}
+            <WeatherInSightTable />
           </Popup>
         </Marker>
         {/* //- Curiosity Rover */}

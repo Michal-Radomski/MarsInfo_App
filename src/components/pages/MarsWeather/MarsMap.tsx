@@ -118,11 +118,19 @@ const MarsMap = (props: {Perseverance_Weather: Sol; Curiosity_Weather: Sol; InSi
             />
           </LayersControl.BaseLayer>
         </LayersControl>
+
         {/* // InSight Lander */}
         <Marker position={InSightPosition} icon={InSight}>
           <Tooltip direction="bottom">Click the Icon...</Tooltip>
           <Popup>
-            <b>InSight Mars Lander:</b>
+            <b style={{backgroundColor: "orange"}}>
+              InSight Mars Lander:
+              <span style={{float: "right", fontStyle: "italic"}}>
+                <a href="https://en.wikipedia.org/wiki/InSight" target="_blank" rel="noreferrer">
+                  Read more...
+                </a>
+              </span>
+            </b>
             <br />
             Launch Date: <b>5 May 2018</b>
             <br />
@@ -130,16 +138,21 @@ const MarsMap = (props: {Perseverance_Weather: Sol; Curiosity_Weather: Sol; InSi
             <br />
             Coordinates: <b>4.5024°N 135.6234°E</b>
             <br />
-            <a href="https://en.wikipedia.org/wiki/InSight" target="_blank" rel="noreferrer">
-              Read more...
-            </a>
+            {props.InSight_Weather ? <WeatherTable weatherLastRecord={props.InSight_Weather} /> : <div>No Data</div>}
           </Popup>
         </Marker>
         {/* //- Curiosity Rover */}
         <Marker position={CuriosityPosition} icon={Curiosity}>
           <Tooltip direction="bottom">Click the Icon...</Tooltip>
           <Popup>
-            <b>Curiosity Mars Rover:</b>
+            <b style={{backgroundColor: "orange"}}>
+              Curiosity Mars Rover:
+              <span style={{float: "right", fontStyle: "italic"}}>
+                <a href="https://en.wikipedia.org/wiki/Curiosity_(rover)" target="_blank" rel="noreferrer">
+                  Read more...
+                </a>
+              </span>
+            </b>
             <br />
             Launch Date: <b>26 November 2011</b>
             <br />
@@ -147,17 +160,12 @@ const MarsMap = (props: {Perseverance_Weather: Sol; Curiosity_Weather: Sol; InSi
             <br />
             Coordinates: <b>4.5895°S, 137.4417°E</b>
             <br />
-            <a href="https://en.wikipedia.org/wiki/Curiosity_(rover)" target="_blank" rel="noreferrer">
-              Read more...
-            </a>
-            <br />
             {props.Curiosity_Weather ? <WeatherTable weatherLastRecord={props.Curiosity_Weather} /> : <div>No Data</div>}
           </Popup>
         </Marker>
         {/* //+ Perseverance Rover */}
         <Marker position={PerseverancePosition} icon={Perseverance}>
           <Tooltip direction="bottom">Click the Icon...</Tooltip>
-          {/* @ts-ignore */}
           <Popup>
             <b style={{backgroundColor: "orange"}}>
               Perseverance Mars Rover:
@@ -181,6 +189,7 @@ const MarsMap = (props: {Perseverance_Weather: Sol; Curiosity_Weather: Sol; InSi
             )}
           </Popup>
         </Marker>
+
         <ScaleControl metric={true} position="topleft" maxWidth={100} />
         <Polyline positions={equator} pathOptions={equatorLine}>
           <Tooltip direction="top">The Equator</Tooltip>

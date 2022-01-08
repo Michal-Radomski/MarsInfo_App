@@ -150,6 +150,8 @@ const MarsMap = (props: {Perseverance_Weather: Sol; Curiosity_Weather: Sol; InSi
             <a href="https://en.wikipedia.org/wiki/Curiosity_(rover)" target="_blank" rel="noreferrer">
               Read more...
             </a>
+            <br />
+            {props.Curiosity_Weather ? <WeatherTable weatherLastRecord={props.Curiosity_Weather} /> : <div>No Data</div>}
           </Popup>
         </Marker>
         {/* //+ Perseverance Rover */}

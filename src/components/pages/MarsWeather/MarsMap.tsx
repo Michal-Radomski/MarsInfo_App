@@ -119,7 +119,7 @@ const MarsMap = (props: {Perseverance_Weather: Sol; Curiosity_Weather: Sol; InSi
           </LayersControl.BaseLayer>
         </LayersControl>
 
-        {/* // InSight Lander */}
+        {/* //* InSight Lander */}
         <Marker position={InSightPosition} icon={InSight}>
           <Tooltip direction="bottom">Click the Icon...</Tooltip>
           <Popup>
@@ -138,7 +138,15 @@ const MarsMap = (props: {Perseverance_Weather: Sol; Curiosity_Weather: Sol; InSi
             <br />
             Coordinates: <b>4.5024°N 135.6234°E</b>
             <br />
-            {props.InSight_Weather ? <WeatherTable weatherLastRecord={props.InSight_Weather} /> : <div>No Data</div>}
+            {props.InSight_Weather ? (
+              <WeatherTable
+                weatherLastRecord={props.InSight_Weather}
+                location="Elysium Planitia"
+                URL_href="https://mars.nasa.gov/insight/weather"
+              />
+            ) : (
+              <div>No Data</div>
+            )}
           </Popup>
         </Marker>
         {/* //- Curiosity Rover */}
@@ -160,7 +168,15 @@ const MarsMap = (props: {Perseverance_Weather: Sol; Curiosity_Weather: Sol; InSi
             <br />
             Coordinates: <b>4.5895°S, 137.4417°E</b>
             <br />
-            {props.Curiosity_Weather ? <WeatherTable weatherLastRecord={props.Curiosity_Weather} /> : <div>No Data</div>}
+            {props.Curiosity_Weather ? (
+              <WeatherTable
+                weatherLastRecord={props.Curiosity_Weather}
+                location="Gale Crater"
+                URL_href="https://mars.nasa.gov/msl/weather"
+              />
+            ) : (
+              <div>No Data</div>
+            )}
           </Popup>
         </Marker>
         {/* //+ Perseverance Rover */}
@@ -183,7 +199,11 @@ const MarsMap = (props: {Perseverance_Weather: Sol; Curiosity_Weather: Sol; InSi
             Coordinates: <b>18.4447°N, 77.4508°E</b>
             <br />
             {props.Perseverance_Weather ? (
-              <WeatherTable weatherLastRecord={props.Perseverance_Weather} />
+              <WeatherTable
+                weatherLastRecord={props.Perseverance_Weather}
+                location="Jezero Crater"
+                URL_href="https://mars.nasa.gov/mars2020/weather"
+              />
             ) : (
               <div>No Data</div>
             )}

@@ -1,6 +1,6 @@
 import Table from "react-bootstrap/Table";
 
-const WeatherTable = (props: {weatherLastRecord: Sol}): JSX.Element => {
+const WeatherTable = (props: {weatherLastRecord: Sol; location: string; URL_href: string}): JSX.Element => {
   // console.log("props.weatherLast:", props.weatherLast);
   const weatherCondition = props.weatherLastRecord;
   // console.log("weatherCondition:", weatherCondition);
@@ -10,12 +10,12 @@ const WeatherTable = (props: {weatherLastRecord: Sol}): JSX.Element => {
         <thead>
           <tr>
             <th colSpan={2}>
-              Latest Weather Conditions at Jezero Crater for
+              Latest Weather Conditions at {props.location} for
               <br />
               Terrestrial Date:{" "}
               <span style={{fontStyle: "italic", color: "maroon"}}>{weatherCondition.terrestrial_date}</span>
               <span style={{fontStyle: "italic", float: "right"}}>
-                <a href="https://mars.nasa.gov/mars2020/weather/" target="_blank" rel="noreferrer">
+                <a href={props.URL_href} target="_blank" rel="noreferrer">
                   Read more...
                 </a>
               </span>

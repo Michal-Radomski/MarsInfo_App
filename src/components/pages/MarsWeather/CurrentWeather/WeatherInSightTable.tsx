@@ -33,37 +33,80 @@ const Styles = styled.div`
 
 const WeatherInSightTable = (props: any): JSX.Element => {
   console.log("props:", props);
+  const temp = props.weatherLastRecord.AT;
+  const pressure = props.weatherLastRecord.PRE;
+  const wind = props.weatherLastRecord.WD.most_common;
+
   const data = React.useMemo(
     () => [
       {
-        col1: "Hello" as string,
-        col2: "World" as string,
+        col1: "Sol number" as string,
+        // col2: `${temp.av.toFixed(2)} °C` as string,
       },
       {
-        col1: "react-table" as string,
-        col2: "rocks" as string,
+        col1: "Average Temp" as string,
+        col2: `${temp.av.toFixed(2)} °C` as string,
       },
       {
-        col1: "whatever" as string,
-        col2: "you want" as string,
+        col1: "Min Temp" as string,
+        col2: `${temp.mn.toFixed(2)} °C` as string,
+      },
+      {
+        col1: "Max Temp" as string,
+        col2: `${temp.mx.toFixed(2)} °C` as string,
+      },
+      {
+        col1: "Average Pressure" as string,
+        col2: `${pressure.av.toFixed(2)} Pa` as string,
+      },
+      {
+        col1: "Average Horizontal Wind Speed" as string,
+        col2: `${props.weatherLastRecord.HWS.av.toFixed(2)} m/s` as string,
+      },
+      {
+        col1: "Wind Direction/ Compass Point" as string,
+        col2: `${wind.compass_degrees} deg/ ${wind.compass_point}` as string,
       },
     ],
-    []
+    [pressure.av, props.weatherLastRecord.HWS.av, temp.av, temp.mn, temp.mx, wind.compass_degrees, wind.compass_point]
   );
 
   const columns = React.useMemo(
     () => [
       {
-        Header: "Column 1" as string,
-        accessor: "col1" as string, // accessor is the "key" in the data
-      },
-      {
-        Header: "Column 2" as string,
-        accessor: "col2" as string,
+        Header: "Header",
+        columns: [
+          {
+            Header: "Column1" as string,
+            accessor: "col1" as string, // accessor is the "key" in the data
+          },
+          {
+            Header: "Column2" as string,
+            accessor: "col2" as string,
+          },
+        ],
       },
     ],
     []
   );
+  //* const columns = React.useMemo(
+  //*   () => [
+  //*     {
+  //*       Header: "Name" as string,
+  //*       columns: [
+  //*         {
+  //*           Header: "Column1" as string,
+  //*           accessor: "col1" as string, // accessor is the "key" in the data
+  //*         },
+  //*         {
+  //*           Header: "Column2" as string,
+  //*           accessor: "col2" as string,
+  //*         },
+  //*       ],
+  //*     },
+  //*   ],
+  //*   []
+  //* );
 
   const {
     getTableProps,

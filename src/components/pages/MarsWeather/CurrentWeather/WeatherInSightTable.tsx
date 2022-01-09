@@ -33,15 +33,15 @@ const Styles = styled.div`
 
 const WeatherInSightTable = (props: any): JSX.Element => {
   console.log("props:", props);
-  const temp = props.weatherLastRecord.AT;
-  const pressure = props.weatherLastRecord.PRE;
-  const wind = props.weatherLastRecord.WD.most_common;
+  const temp = props.weatherLastRecord.InSight_Weather_Data.AT;
+  const pressure = props.weatherLastRecord.InSight_Weather_Data.PRE;
+  const wind = props.weatherLastRecord.InSight_Weather_Data.WD.most_common;
 
   const data = React.useMemo(
     () => [
       {
         col1: "Sol number" as string,
-        // col2: `${temp.av.toFixed(2)} °C` as string,
+        col2: parseInt(props.weatherLastRecord.InSight_sol) as number,
       },
       {
         col1: "Average Temp" as string,
@@ -61,14 +61,23 @@ const WeatherInSightTable = (props: any): JSX.Element => {
       },
       {
         col1: "Average Horizontal Wind Speed" as string,
-        col2: `${props.weatherLastRecord.HWS.av.toFixed(2)} m/s` as string,
+        col2: `${props.weatherLastRecord.InSight_Weather_Data.HWS.av.toFixed(2)} m/s` as string,
       },
       {
         col1: "Wind Direction/ Compass Point" as string,
         col2: `${wind.compass_degrees} deg/ ${wind.compass_point}` as string,
       },
     ],
-    [pressure.av, props.weatherLastRecord.HWS.av, temp.av, temp.mn, temp.mx, wind.compass_degrees, wind.compass_point]
+    [
+      pressure.av,
+      props.weatherLastRecord.InSight_Weather_Data.HWS.av,
+      props.weatherLastRecord.InSight_sol,
+      temp.av,
+      temp.mn,
+      temp.mx,
+      wind.compass_degrees,
+      wind.compass_point,
+    ]
   );
 
   const columns = React.useMemo(

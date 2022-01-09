@@ -22,7 +22,7 @@ class MarsWeather extends React.Component<Props, State> {
     this.state = {
       PerseveranceWeather: null,
       CuriosityWeather: null,
-      InSightWeather: null,
+      InSightWeather: {InSight_Weather_Data: null, InSight_sol: 1},
       loaded: false,
     };
   }
@@ -34,6 +34,8 @@ class MarsWeather extends React.Component<Props, State> {
     // console.log("solKeysMax:", solKeysMax);
     const result = solKeysMax !== "No Data" ? fetchObj[solKeysMax] : "No Data";
     // console.log("result:", result);
+    //* Setting the State partially
+    this.setState({InSightWeather: {...this.state.InSightWeather, InSight_sol: solKeysMax}});
     return result;
   };
 
@@ -56,7 +58,10 @@ class MarsWeather extends React.Component<Props, State> {
         await this.setState({
           PerseveranceWeather: marsWeatherModified.PerseveranceWeather,
           CuriosityWeather: marsWeatherModified.CuriosityWeather,
-          InSightWeather: marsWeatherModified.InSightWeather,
+          //* Alternative version of partial setState
+          // InSightWeather: {InSight_Weather_Data: marsWeatherModified.InSightWeather, InSight_sol: this.state.InSightWeather.InSight_sol},
+          //* Setting the State partially
+          InSightWeather: {...this.state.InSightWeather, InSight_Weather_Data: marsWeatherModified.InSightWeather},
           loaded: true,
         });
         // await console.log("this.state:", this.state);

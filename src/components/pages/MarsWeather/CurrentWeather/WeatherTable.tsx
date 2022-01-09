@@ -58,7 +58,7 @@ const WeatherTable = (props: {weatherLastRecord: Sol; location: string; URL_href
             <td style={{fontWeight: "bold"}}>{weatherCondition.sunset ?? "No Data"}</td>
           </tr>
           <tr>
-            <td>Martian Season</td>
+            <td>Martian Season or Month</td>
             <td style={{fontWeight: "bold", textTransform: "capitalize"}}>{weatherCondition.season ?? "No Data"}</td>
           </tr>
         </tbody>

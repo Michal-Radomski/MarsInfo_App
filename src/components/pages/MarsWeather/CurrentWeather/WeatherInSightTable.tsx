@@ -20,6 +20,14 @@ const Styles = styled.div`
       padding: 0.25rem;
       border-right: 1px solid blue;
     }
+    tbody {
+      tr:nth-child(odd) {
+        background: papayawhip;
+      }
+      tr:nth-child(even) {
+        background: lightyellow;
+      }
+    }
     tfoot {
       text-transform: capitalize;
       font-weight: bold;
@@ -42,7 +50,19 @@ const WeatherInSightTable = (props: State): JSX.Element => {
   const data = React.useMemo(
     () => [
       {
-        col1: "Sol number" as string,
+        col1: (
+          <div>
+            <a
+              href="https://en.wikipedia.org/wiki/Sol_(day_on_Mars)"
+              target="_blank"
+              rel="noreferrer"
+              style={{fontStyle: "italic", fontWeight: "bold"}}
+            >
+              Sol
+            </a>{" "}
+            number
+          </div>
+        ) as React.HTMLAttributes<HTMLDivElement>,
         col2: (parseInt(props.weatherLastRecord.InSight_sol) || "No Data") as number,
       },
       {
@@ -66,8 +86,8 @@ const WeatherInSightTable = (props: State): JSX.Element => {
         col2: (`${props.weatherLastRecord.InSight_Weather_Data.HWS.av.toFixed(2)} m/s` || "No Data") as string,
       },
       {
-        col1: "Wind Direction/ Compass Point" as string,
-        col2: (`${wind.compass_degrees} deg/ ${wind.compass_point}` || "No Data") as string,
+        col1: "Wind Direction / Compass Point" as string,
+        col2: (`${wind.compass_degrees} deg / ${wind.compass_point}` || "No Data") as string,
       },
     ],
     [
@@ -85,23 +105,33 @@ const WeatherInSightTable = (props: State): JSX.Element => {
   const columns = React.useMemo(
     () => [
       {
-        Header: `Latest Weather Conditions at ${props.location ?? "No Data"}:` as string,
+        Header: (
+          <div>
+            Latest Weather Conditions at{" "}
+            <span style={{fontStyle: "italic", color: "maroon"}}>{props.location || "No Data"}</span> for:
+          </div>
+        ) as React.HTMLAttributes<HTMLDivElement>,
         Footer: (
           <a style={{color: "#002aa8"}} href={props.URL_href} target="_blank" rel="noreferrer">
             Read more...
           </a>
-        ),
+        ) as React.AnchorHTMLAttributes<HTMLAnchorElement>,
+        id: "header_top",
         columns: [
           {
             Header: "Terrestrial Date:" as string,
             accessor: "col1" as string, //* accessor is the "key" in the data
-            Footer: "Northern/ Southern Season" as string,
+            Footer: "Northern / Southern Season" as string,
           },
           {
-            Header: (new Date(props.weatherLastRecord.InSight_Weather_Data.First_UTC).toDateString() || "No Data") as string,
+            Header: (
+              <div style={{fontStyle: "italic", color: "maroon"}}>
+                {new Date(props.weatherLastRecord.InSight_Weather_Data.First_UTC).toDateString() || "No Data"}
+              </div>
+            ) as React.HTMLAttributes<HTMLDivElement>,
             accessor: "col2" as string,
             Cell: ({value}: {value: string}) => <b>{value}</b>,
-            Footer: (`${baseSeason.Northern_season}/ ${baseSeason.Southern_season}` || "No Data") as string,
+            Footer: (`${baseSeason.Northern_season} / ${baseSeason.Southern_season}` || "No Data") as string,
           },
         ],
       },
@@ -153,7 +183,7 @@ const WeatherInSightTable = (props: State): JSX.Element => {
                       style={{
                         padding: "0.25rem",
                         border: "solid 1px darkGrey",
-                        background: "papayawhip",
+                        // background: "papayawhip",
                       }}
                     >
                       {cell.render("Cell")}

@@ -51,7 +51,7 @@ const WeatherInSightTable = (props: State): JSX.Element => {
     () => [
       {
         col1: (
-          <div>
+          <p>
             <a
               href="https://en.wikipedia.org/wiki/Sol_(day_on_Mars)"
               target="_blank"
@@ -61,8 +61,8 @@ const WeatherInSightTable = (props: State): JSX.Element => {
               Sol
             </a>{" "}
             number
-          </div>
-        ) as React.HTMLAttributes<HTMLDivElement>,
+          </p>
+        ) as React.HTMLAttributes<HTMLParagraphElement>,
         col2: (parseInt(props.weatherLastRecord.InSight_sol) || "No Data") as number,
       },
       {

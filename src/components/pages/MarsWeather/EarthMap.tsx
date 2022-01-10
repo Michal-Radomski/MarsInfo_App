@@ -29,11 +29,12 @@ import "ol-layerswitcher/dist/ol-layerswitcher.css";
 import {getUserGeoData} from "../../../redux/actions";
 
 const DivMap = styled.div`
-  position: absolute;
-  top: 110px;
+  /* position: absolute;
+  top: 110px; */
   left: 5px;
   right: 5px;
   width: calc(100% -10px);
+  height: auto;
 `;
 
 interface Props {
@@ -246,7 +247,7 @@ class EarthMap extends React.Component<Props, State> {
         {this.state.center[0] !== 0 && this.state.center[1] !== 0 ? (
           <DivMap>
             <h1 style={{textAlign: "center"}}>Your location: {this.position}</h1>
-            <div id="olMap" ref={this.mapRef} style={{height: "400px", cursor: "pointer"}}></div>
+            <div id="olMap" ref={this.mapRef} style={{height: "350px", cursor: "pointer"}}></div>
             <OverlayTrigger trigger={this.hover} placement="right-end" overlay={this.popover} rootClose={true}>
               <div
                 id="marker"

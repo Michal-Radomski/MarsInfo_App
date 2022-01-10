@@ -16,8 +16,8 @@ import WeatherTable from "./CurrentWeather/WeatherTable";
 import WeatherInSightTable from "./CurrentWeather/WeatherInSightTable";
 
 const DivMap = styled.div`
-  position: absolute;
-  top: 580px;
+  /* position: absolute;
+  top: 580px; */
   left: 5px;
   right: 5px;
   height: 500px;

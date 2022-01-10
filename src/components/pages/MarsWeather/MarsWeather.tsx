@@ -3,7 +3,7 @@ import axios from "axios";
 
 import MarsMap from "./MarsMap";
 import EarthMap from "./EarthMap";
-import Mars from "./CurrentWeather/Mars";
+import MarsWeatherChart from "./CurrentWeather/MarsWeatherChart";
 
 const Mars2020_URL = process.env.REACT_APP_MARS2020_API as string;
 // console.log("Mars2020_URL:", Mars2020_URL);
@@ -89,7 +89,7 @@ class MarsWeather extends React.Component<Props, State> {
       return <div>Loading...</div>;
     }
     return (
-      <div>
+      <div style={{position: "absolute", top: "110px", width: "100%", height: "auto"}}>
         <EarthMap />
         <MarsMap
           //@ts-ignore:
@@ -97,8 +97,13 @@ class MarsWeather extends React.Component<Props, State> {
           Curiosity_Weather={this.state.CuriosityWeather.at(-1)}
           InSight_Weather={this.state.InSightWeather}
         />
-        {/* @ts-ignore: */}
-        <Mars Perseverance_Weather={this.state.PerseveranceWeather} Curiosity_Weather={this.state.CuriosityWeather} />
+        <br />
+
+        <MarsWeatherChart
+          //@ts-ignore:
+          Perseverance_Weather={this.state.PerseveranceWeather}
+          Curiosity_Weather={this.state.CuriosityWeather}
+        />
       </div>
     );
   }

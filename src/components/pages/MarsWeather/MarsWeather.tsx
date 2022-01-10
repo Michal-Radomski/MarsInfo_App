@@ -69,7 +69,19 @@ class MarsWeather extends React.Component<Props, State> {
         console.error(error);
       }
     };
-    fetchMarsWeather();
+
+    const savedNasaData: State = JSON.parse(localStorage.getItem("fetchedDataFromNasa") as string);
+    // console.log("savedNasaData:", savedNasaData);
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    savedNasaData !== null
+      ? (this.setState(savedNasaData), console.log("setting the State from the localStorage"))
+      : (fetchMarsWeather(), console.log("fetchingMarsWeather"));
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem("fetchedDataFromNasa", JSON.stringify(this.state));
+    // console.log("fetchedDataFromNasa was set in the localStorage");
   }
 
   render() {

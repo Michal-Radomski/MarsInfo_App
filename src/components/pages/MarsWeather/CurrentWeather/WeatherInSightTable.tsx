@@ -86,7 +86,11 @@ const WeatherInSightTable = (props: State): JSX.Element => {
     () => [
       {
         Header: `Latest Weather Conditions at ${props.location ?? "No Data"}:` as string,
-        Footer: "Here will be a link" as string,
+        Footer: (
+          <a style={{color: "#002aa8"}} href={props.URL_href} target="_blank" rel="noreferrer">
+            Read more...
+          </a>
+        ),
         columns: [
           {
             Header: "Terrestrial Date:" as string,
@@ -105,6 +109,7 @@ const WeatherInSightTable = (props: State): JSX.Element => {
     [
       baseSeason.Northern_season,
       baseSeason.Southern_season,
+      props.URL_href,
       props.location,
       props.weatherLastRecord.InSight_Weather_Data.First_UTC,
     ]

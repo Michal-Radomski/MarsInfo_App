@@ -123,7 +123,7 @@ const MarsMap = (props: {Perseverance_Weather: Sol; Curiosity_Weather: Sol; InSi
         {/* //* InSight Lander */}
         <Marker position={InSightPosition} icon={InSight}>
           <Tooltip direction="bottom">Click the Icon...</Tooltip>
-          <Popup>
+          <Popup minWidth={340}>
             <b style={{backgroundColor: "orange"}}>
               InSight Mars Lander:
               <span style={{float: "right", fontStyle: "italic"}}>

@@ -9,7 +9,8 @@ const Styles = styled.div`
     thead {
       font-style: italic;
       tr:first-child {
-        text-align: center !important;
+        text-align: center;
+        font-size: 105%;
       }
     }
     ,
@@ -19,6 +20,15 @@ const Styles = styled.div`
       padding: 0.25rem;
       border-right: 1px solid blue;
     }
+    tfoot {
+      text-transform: capitalize;
+      font-weight: bold;
+      font-style: italic;
+      tr:last-child {
+        text-align: right;
+        font-size: 105%;
+      }
+    }
   }
 `;
 
@@ -27,6 +37,7 @@ const WeatherInSightTable = (props: State): JSX.Element => {
   const temp = props.weatherLastRecord.InSight_Weather_Data.AT;
   const pressure = props.weatherLastRecord.InSight_Weather_Data.PRE;
   const wind = props.weatherLastRecord.InSight_Weather_Data.WD.most_common;
+  const baseSeason = props.weatherLastRecord.InSight_Weather_Data;
 
   const data = React.useMemo(
     () => [
@@ -74,24 +85,32 @@ const WeatherInSightTable = (props: State): JSX.Element => {
   const columns = React.useMemo(
     () => [
       {
-        Header: `Latest Weather Conditions at ${props.location ?? "No Data"}:`,
+        Header: `Latest Weather Conditions at ${props.location ?? "No Data"}:` as string,
+        Footer: "Here will be a link" as string,
         columns: [
           {
             Header: "Terrestrial Date:" as string,
             accessor: "col1" as string, //* accessor is the "key" in the data
+            Footer: "Northern/ Southern Season" as string,
           },
           {
             Header: (new Date(props.weatherLastRecord.InSight_Weather_Data.First_UTC).toDateString() || "No Data") as string,
             accessor: "col2" as string,
-            Cell: ({value}: any) => <b>{value}</b>,
+            Cell: ({value}: {value: string}) => <b>{value}</b>,
+            Footer: (`${baseSeason.Northern_season}/ ${baseSeason.Southern_season}` || "No Data") as string,
           },
         ],
       },
     ],
-    [props.location, props.weatherLastRecord.InSight_Weather_Data.First_UTC]
+    [
+      baseSeason.Northern_season,
+      baseSeason.Southern_season,
+      props.location,
+      props.weatherLastRecord.InSight_Weather_Data.First_UTC,
+    ]
   );
 
-  const {getTableProps, getTableBodyProps, headerGroups, rows, prepareRow} = useTable({columns, data});
+  const {getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, footerGroups} = useTable({columns, data});
 
   return (
     <Styles>
@@ -140,6 +159,26 @@ const WeatherInSightTable = (props: State): JSX.Element => {
             );
           })}
         </tbody>
+
+        <tfoot>
+          {footerGroups.map((group) => (
+            <tr {...group.getFooterGroupProps()}>
+              {group.headers.map((column) => (
+                <td
+                  {...column.getFooterProps()}
+                  style={{
+                    borderTop: "solid 2px red",
+                    background: "aliceblue",
+                    color: "black",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {column.render("Footer")}{" "}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tfoot>
       </table>
     </Styles>
   );

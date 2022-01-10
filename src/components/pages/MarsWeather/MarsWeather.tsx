@@ -89,22 +89,26 @@ class MarsWeather extends React.Component<Props, State> {
       return <div>Loading...</div>;
     }
     return (
-      <div style={{position: "absolute", top: "110px", width: "100%", height: "auto"}}>
-        <EarthMap />
-        <MarsMap
-          //@ts-ignore:
-          Perseverance_Weather={this.state.PerseveranceWeather.at(-1)}
-          Curiosity_Weather={this.state.CuriosityWeather.at(-1)}
-          InSight_Weather={this.state.InSightWeather}
-        />
+      <>
+        <div style={{position: "absolute", top: "110px", width: "100%", height: "auto"}}>
+          <EarthMap />
+          <MarsMap
+            //@ts-ignore:
+            Perseverance_Weather={this.state.PerseveranceWeather.at(-1)}
+            Curiosity_Weather={this.state.CuriosityWeather.at(-1)}
+            InSight_Weather={this.state.InSightWeather}
+          />
+        </div>
+        <div style={{position: "absolute", top: "1150px", width: "100%", height: "auto", border: "1px solid black"}}>
+          <MarsWeatherChart
+            //@ts-ignore:
+            Perseverance_Weather={this.state.PerseveranceWeather}
+            Curiosity_Weather={this.state.CuriosityWeather}
+          />
+          <br />
+        </div>
         <br />
-
-        <MarsWeatherChart
-          //@ts-ignore:
-          Perseverance_Weather={this.state.PerseveranceWeather}
-          Curiosity_Weather={this.state.CuriosityWeather}
-        />
-      </div>
+      </>
     );
   }
 }

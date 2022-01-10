@@ -4,32 +4,26 @@ import styled from "styled-components";
 
 const Styles = styled.div`
   padding: 0.25rem;
-
   table {
     border-spacing: 0;
-    border: 1px solid darkGray;
-    tr {
-      :last-child {
-        td {
-          border-bottom: 0;
-        }
+    thead {
+      font-style: italic;
+      tr:first-child {
+        text-align: center !important;
       }
     }
+    ,
     th,
     td {
       margin: 0;
       padding: 0.25rem;
-      border-bottom: 1px solid black;
-      border-right: 1px solid black;
-      :last-child {
-        border-right: 0;
-      }
+      border-right: 1px solid blue;
     }
   }
 `;
 
 const WeatherInSightTable = (props: State): JSX.Element => {
-  console.log("props:", props);
+  // console.log("props:", props);
   const temp = props.weatherLastRecord.InSight_Weather_Data.AT;
   const pressure = props.weatherLastRecord.InSight_Weather_Data.PRE;
   const wind = props.weatherLastRecord.InSight_Weather_Data.WD.most_common;
@@ -101,7 +95,7 @@ const WeatherInSightTable = (props: State): JSX.Element => {
 
   return (
     <Styles>
-      <table {...getTableProps()} style={{border: "solid 1px blue", width: "auto"}}>
+      <table {...getTableProps()} style={{border: "solid 1px blue", minWidth: "285px", borderBottom: "solid 2px green"}}>
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
@@ -109,7 +103,7 @@ const WeatherInSightTable = (props: State): JSX.Element => {
                 <th
                   {...column.getHeaderProps()}
                   style={{
-                    borderBottom: "solid 3px red",
+                    borderBottom: "solid 2px red",
                     background: "aliceblue",
                     color: "black",
                     fontWeight: "bold",
@@ -134,7 +128,7 @@ const WeatherInSightTable = (props: State): JSX.Element => {
                       {...cell.getCellProps()}
                       style={{
                         padding: "0.25rem",
-                        border: "solid 1px Darkgray",
+                        border: "solid 1px darkGrey",
                         background: "papayawhip",
                       }}
                     >

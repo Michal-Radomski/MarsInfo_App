@@ -99,7 +99,15 @@ class MarsWeather extends React.Component<Props, State> {
             InSight_Weather={this.state.InSightWeather}
           />
         </div>
-        <div style={{position: "absolute", top: "1150px", width: "100%", height: "auto", border: "1px solid black"}}>
+        <div
+          style={{
+            position: "absolute",
+            top: "1150px",
+            width: "100%",
+            height: "auto",
+            border: "1px solid black",
+          }}
+        >
           <MarsWeatherChart
             //@ts-ignore:
             Perseverance_Weather={this.state.PerseveranceWeather}

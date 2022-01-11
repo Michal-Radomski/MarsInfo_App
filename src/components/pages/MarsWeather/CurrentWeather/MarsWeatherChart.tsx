@@ -2,45 +2,10 @@ import React from "react";
 import {Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend} from "chart.js";
 import {Line} from "react-chartjs-2";
 
-// ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
-
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "top" as const,
-    },
-    title: {
-      display: true,
-      text: "Chart.js Line Chart",
-    },
-  },
-};
-
-const labels = ["January", "February", "March", "April", "May", "June", "July"];
-
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: "Dataset 1",
-      data: [12, 19, 3, 5, 2, 3],
-      borderColor: "rgb(255, 99, 132)",
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-    },
-    {
-      label: "Dataset 2",
-      data: [1, 1, 13, 15, 12, 13],
-      borderColor: "rgb(53, 162, 235)",
-      backgroundColor: "rgba(53, 162, 235, 0.5)",
-    },
-  ],
-};
-
 class MarsWeatherChart extends React.Component<{}, {}> {
   data: any;
   options: any;
-  labels: string[];
+  labels!: string[];
   constructor(props: any) {
     super(props);
     this.state = {};
@@ -63,7 +28,7 @@ class MarsWeatherChart extends React.Component<{}, {}> {
     this.labels = ["January", "February", "March", "April", "May", "June", "July"];
 
     this.data = {
-      labels,
+      labels: this.labels,
       datasets: [
         {
           label: "Dataset 1",
@@ -85,7 +50,7 @@ class MarsWeatherChart extends React.Component<{}, {}> {
     return (
       <div>
         MarsWeatherChart
-        <Line options={this.options} data={this.data} />;
+        <Line options={this.options} data={this.data} />
       </div>
     );
   }

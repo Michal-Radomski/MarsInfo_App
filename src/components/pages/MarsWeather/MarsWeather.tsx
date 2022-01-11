@@ -103,8 +103,8 @@ class MarsWeather extends React.Component<Props, State> {
           style={{
             position: "absolute",
             top: "1150px",
-            width: "100%",
-            height: "auto",
+            width: "50%",
+            height: "50%",
             border: "1px solid black",
           }}
         >

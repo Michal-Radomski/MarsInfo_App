@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import styled from "styled-components";
 
 import MarsMap from "./MarsMap";
 import EarthMap from "./EarthMap";
@@ -14,15 +15,23 @@ const InSight_URL = process.env.REACT_APP_InSight_API as string;
 const URLs = [Mars2020_URL, MSL_URL, InSight_URL];
 // console.log("URLs:", URLs);
 
+const Div = styled.div`
+  width: "auto";
+  height: "auto";
+  left: 50%;
+  transform: translate(-50%);
+  margin: 0;
+`;
+
 declare interface Props {}
 
 class MarsWeather extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      PerseveranceWeather: null,
-      CuriosityWeather: null,
-      InSightWeather: {InSight_Weather_Data: null, InSight_sol: 1},
+      PerseveranceWeather: {},
+      CuriosityWeather: {},
+      InSightWeather: {InSight_Weather_Data: {}, InSight_sol: undefined},
       loaded: false,
     };
   }
@@ -99,13 +108,10 @@ class MarsWeather extends React.Component<Props, State> {
             InSight_Weather={this.state.InSightWeather}
           />
         </div>
-        <div
+        <Div
           style={{
             position: "absolute",
             top: "1150px",
-            width: "50%",
-            height: "50%",
-            border: "1px solid black",
           }}
         >
           <MarsWeatherChart
@@ -114,7 +120,7 @@ class MarsWeather extends React.Component<Props, State> {
             Curiosity_Weather={this.state.CuriosityWeather}
           />
           <br />
-        </div>
+        </Div>
         <br />
       </>
     );

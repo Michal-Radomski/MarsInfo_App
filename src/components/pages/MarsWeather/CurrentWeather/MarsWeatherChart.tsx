@@ -39,10 +39,6 @@ const H2 = styled.h2`
 `;
 
 class MarsWeatherChart extends React.Component<{}, {}> {
-  data: State;
-  options: State;
-  labels!: string[];
-  options2: State;
   constructor(props: State) {
     super(props);
     // console.log("props.Perseverance_Weather and Curiosity_Weather:", props.Perseverance_Weather, props.Curiosity_Weather);
@@ -60,7 +56,7 @@ class MarsWeatherChart extends React.Component<{}, {}> {
     const PerseveranceSol: number[] = [];
     props.Perseverance_Weather.map((day: {sol: string}) => PerseveranceSol.push(parseInt(day.sol)));
     // console.log("PerseveranceSol:", PerseveranceSol);
-    const PerseveranceTerrestrialDate: String[] = [];
+    const PerseveranceTerrestrialDate: string[] = [];
     props.Perseverance_Weather.map((day: {terrestrial_date: string}) =>
       PerseveranceTerrestrialDate.push(new Date(day.terrestrial_date).toDateString())
     );
@@ -70,7 +66,8 @@ class MarsWeatherChart extends React.Component<{}, {}> {
       temp_Min: PerseveranceTempMin,
       pressure: PerseverancePressure,
       sol: PerseveranceSol,
-      TerrestrialDate: PerseveranceTerrestrialDate,
+      terrestrialDate: PerseveranceTerrestrialDate,
+      name: "Perseverance Mars Rover" as string,
     };
     console.log("PerseveranceWeatherData:", PerseveranceWeatherData);
 
@@ -87,7 +84,7 @@ class MarsWeatherChart extends React.Component<{}, {}> {
     const CuriositySol: number[] = [];
     props.Curiosity_Weather.map((day: {sol: string}) => CuriositySol.push(parseInt(day.sol)));
     // console.log("CuriositySol:", CuriositySol);
-    const CuriosityTerrestrialDate: String[] = [];
+    const CuriosityTerrestrialDate: string[] = [];
     props.Curiosity_Weather.map((day: {terrestrial_date: string}) =>
       CuriosityTerrestrialDate.push(new Date(day.terrestrial_date).toDateString())
     );
@@ -97,11 +94,16 @@ class MarsWeatherChart extends React.Component<{}, {}> {
       temp_Min: CuriosityTempMin,
       pressure: CuriosityPressure,
       sol: CuriositySol,
-      TerrestrialDate: CuriosityTerrestrialDate,
+      terrestrialDate: CuriosityTerrestrialDate,
+      name: "Curiosity Mars Rover" as string,
     };
     console.log("CuriosityWeatherData:", CuriosityWeatherData);
 
-    this.state = {};
+    this.state = {
+      lineChartData: [],
+      barChartData: [],
+    };
+    // console.log("this.state:", this.state);
 
     ChartJS.register(
       CategoryScale,
@@ -115,56 +117,56 @@ class MarsWeatherChart extends React.Component<{}, {}> {
       BarController,
       Filler
     );
-
-    this.options = {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: "top" as const,
-        },
-        title: {
-          display: true,
-          text: "Chart.js Line Chart",
-        },
-      },
-    };
-
-    this.options2 = {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: "top" as const,
-        },
-        title: {
-          display: true,
-          text: "Chart.js Bar Chart",
-        },
-      },
-    };
-
-    this.labels = ["January", "February", "March", "April", "May", "June"];
-
-    this.data = {
-      labels: this.labels,
-
-      datasets: [
-        {
-          label: "Dataset 1",
-          data: [12, 19, 3, 5, 2, 3],
-          borderColor: "rgb(255, 99, 132)",
-          backgroundColor: "rgba(255, 99, 132, 0.5)",
-          fill: true,
-        },
-        {
-          label: "Dataset 2",
-          data: [1, 1, 13, 15, 12, 13],
-          borderColor: "rgb(53, 162, 235)",
-          backgroundColor: "rgba(53, 162, 235, 0.5)",
-          fill: true,
-        },
-      ],
-    };
   }
+
+  optionsTemp = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top" as const,
+      },
+      title: {
+        display: true,
+        text: "Chart.js Line Chart",
+      },
+    },
+  };
+
+  optionsPressure = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top" as const,
+      },
+      title: {
+        display: true,
+        text: "Chart.js Bar Chart",
+      },
+    },
+  };
+
+  labels = ["January", "February", "March", "April", "May", "June"];
+
+  data = {
+    labels: this.labels,
+
+    datasets: [
+      {
+        label: "Dataset 1",
+        data: [12, 19, 3, 5, 2, 3],
+        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        fill: true,
+      },
+      {
+        label: "Dataset 2",
+        data: [1, 1, 13, 15, 12, 13],
+        borderColor: "rgb(53, 162, 235)",
+        backgroundColor: "rgba(53, 162, 235, 0.5)",
+        fill: true,
+      },
+    ],
+  };
 
   render() {
     return (
@@ -175,11 +177,11 @@ class MarsWeatherChart extends React.Component<{}, {}> {
         <Div>
           <div style={{width: "600px"}}>
             <button>Perseverance</button>
-            <Line options={this.options} data={this.data} />
+            <Line options={this.optionsTemp} data={this.data} />
           </div>
           <div style={{width: "600px"}}>
             <button>Curiosity</button>
-            <Bar options={this.options2} data={this.data} />
+            <Bar options={this.optionsPressure} data={this.data} />
           </div>
         </Div>
       </>

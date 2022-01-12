@@ -45,8 +45,9 @@ class MarsWeatherChart extends React.Component<{}, {}> {
   options2: State;
   constructor(props: State) {
     super(props);
-    console.log("props.Perseverance_Weather and Curiosity_Weather:", props.Perseverance_Weather, props.Curiosity_Weather);
+    // console.log("props.Perseverance_Weather and Curiosity_Weather:", props.Perseverance_Weather, props.Curiosity_Weather);
 
+    //* Perseverance Weather Data Object
     const PerseveranceTempMax: number[] = [];
     props.Perseverance_Weather.map((day: {max_temp: number}) => PerseveranceTempMax.push(day.max_temp));
     // console.log("PerseveranceTempMax:", PerseveranceTempMax);
@@ -73,9 +74,34 @@ class MarsWeatherChart extends React.Component<{}, {}> {
     };
     console.log("PerseveranceWeatherData:", PerseveranceWeatherData);
 
-    this.state = {
-      CuriosityWeather: {},
+    //* Curiosity Weather Data Object
+    const CuriosityTempMax: number[] = [];
+    props.Curiosity_Weather.map((day: {max_temp: string}) => CuriosityTempMax.push(parseFloat(day.max_temp)));
+    // console.log("CuriosityTempMax:", CuriosityTempMax);
+    const CuriosityTempMin: number[] = [];
+    props.Curiosity_Weather.map((day: {min_temp: string}) => CuriosityTempMin.push(parseFloat(day.min_temp)));
+    // console.log("CuriosityTempMin:", CuriosityTempMin);
+    const CuriosityPressure: number[] = [];
+    props.Curiosity_Weather.map((day: {pressure: string}) => CuriosityPressure.push(parseFloat(day.pressure)));
+    // console.log("CuriosityPressure:", CuriosityPressure);
+    const CuriositySol: number[] = [];
+    props.Curiosity_Weather.map((day: {sol: string}) => CuriositySol.push(parseInt(day.sol)));
+    // console.log("CuriositySol:", CuriositySol);
+    const CuriosityTerrestrialDate: String[] = [];
+    props.Curiosity_Weather.map((day: {terrestrial_date: string}) =>
+      CuriosityTerrestrialDate.push(new Date(day.terrestrial_date).toDateString())
+    );
+    // console.log("CuriosityTerrestrialDate:", CuriosityTerrestrialDate);
+    const CuriosityWeatherData = {
+      temp_Max: CuriosityTempMax,
+      temp_Min: CuriosityTempMin,
+      pressure: CuriosityPressure,
+      sol: CuriositySol,
+      TerrestrialDate: CuriosityTerrestrialDate,
     };
+    console.log("CuriosityWeatherData:", CuriosityWeatherData);
+
+    this.state = {};
 
     ChartJS.register(
       CategoryScale,

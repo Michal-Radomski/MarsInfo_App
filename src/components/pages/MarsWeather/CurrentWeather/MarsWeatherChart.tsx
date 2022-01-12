@@ -13,6 +13,7 @@ import {
   Legend,
   BarElement,
   BarController,
+  Filler,
 } from "chart.js";
 
 const Div = styled.div`
@@ -38,14 +39,44 @@ const H2 = styled.h2`
 `;
 
 class MarsWeatherChart extends React.Component<{}, {}> {
-  data: any; //+
-  options: any;
+  data: State;
+  options: State;
   labels!: string[];
-  options2: any;
-  constructor(props: any) {
+  options2: State;
+  constructor(props: State) {
     super(props);
-    this.state = {};
     console.log("props.Perseverance_Weather and Curiosity_Weather:", props.Perseverance_Weather, props.Curiosity_Weather);
+
+    const PerseveranceTempMax: number[] = [];
+    props.Perseverance_Weather.map((day: {max_temp: number}) => PerseveranceTempMax.push(day.max_temp));
+    // console.log("PerseveranceTempMax:", PerseveranceTempMax);
+    const PerseveranceTempMin: number[] = [];
+    props.Perseverance_Weather.map((day: {min_temp: number}) => PerseveranceTempMin.push(day.min_temp));
+    // console.log("PerseveranceTempMin:", PerseveranceTempMin);
+    const PerseverancePressure: number[] = [];
+    props.Perseverance_Weather.map((day: {pressure: number}) => PerseverancePressure.push(day.pressure));
+    // console.log("PerseverancePressure:", PerseverancePressure);
+    const PerseveranceSol: number[] = [];
+    props.Perseverance_Weather.map((day: {sol: string}) => PerseveranceSol.push(parseInt(day.sol)));
+    // console.log("PerseveranceSol:", PerseveranceSol);
+    const PerseveranceTerrestrialDate: String[] = [];
+    props.Perseverance_Weather.map((day: {terrestrial_date: string}) =>
+      PerseveranceTerrestrialDate.push(new Date(day.terrestrial_date).toDateString())
+    );
+    // console.log("PerseveranceTerrestrialDate:", PerseveranceTerrestrialDate);
+    const PerseveranceWeatherData = {
+      temp_Max: PerseveranceTempMax,
+      temp_Min: PerseveranceTempMin,
+      pressure: PerseverancePressure,
+      sol: PerseveranceSol,
+      TerrestrialDate: PerseveranceTerrestrialDate,
+    };
+    console.log("PerseveranceWeatherData:", PerseveranceWeatherData);
+
+    this.state = {
+      CuriosityWeather: {},
+    };
+
     ChartJS.register(
       CategoryScale,
       LinearScale,
@@ -55,7 +86,8 @@ class MarsWeatherChart extends React.Component<{}, {}> {
       Tooltip,
       Legend,
       BarElement,
-      BarController
+      BarController,
+      Filler
     );
 
     this.options = {
@@ -88,18 +120,21 @@ class MarsWeatherChart extends React.Component<{}, {}> {
 
     this.data = {
       labels: this.labels,
+
       datasets: [
         {
           label: "Dataset 1",
           data: [12, 19, 3, 5, 2, 3],
           borderColor: "rgb(255, 99, 132)",
           backgroundColor: "rgba(255, 99, 132, 0.5)",
+          fill: true,
         },
         {
           label: "Dataset 2",
           data: [1, 1, 13, 15, 12, 13],
           borderColor: "rgb(53, 162, 235)",
           backgroundColor: "rgba(53, 162, 235, 0.5)",
+          fill: true,
         },
       ],
     };
@@ -117,7 +152,7 @@ class MarsWeatherChart extends React.Component<{}, {}> {
             <Line options={this.options} data={this.data} />
           </div>
           <div style={{width: "600px"}}>
-            <button>Curiosity_Weather</button>
+            <button>Curiosity</button>
             <Bar options={this.options2} data={this.data} />
           </div>
         </Div>

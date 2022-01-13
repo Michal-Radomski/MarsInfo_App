@@ -38,12 +38,12 @@ const H2 = styled.h2`
   text-align: center;
 `;
 
-class MarsWeatherChart extends React.Component<{}, {lineChartData: any; barChartData: any}> {
+class MarsWeatherChart extends React.Component<{}, {lineChartData: State; barChartData: State}> {
   constructor(props: State) {
     super(props);
     // console.log("props.Perseverance_Weather and Curiosity_Weather:", props.Perseverance_Weather, props.Curiosity_Weather);
 
-    //* Setting the State
+    //* Setting the Initial State
     this.state = {
       lineChartData: {},
       barChartData: {},

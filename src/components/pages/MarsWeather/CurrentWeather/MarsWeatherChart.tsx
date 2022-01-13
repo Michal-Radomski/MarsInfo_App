@@ -43,7 +43,62 @@ class MarsWeatherChart extends React.Component<{}, {lineChartData: any; barChart
     super(props);
     // console.log("props.Perseverance_Weather and Curiosity_Weather:", props.Perseverance_Weather, props.Curiosity_Weather);
 
-    //-  -------------------------------------
+    //* Perseverance Weather Data Object
+    const PerseveranceTempMax: number[] = [];
+    props.Perseverance_Weather.map((day: {max_temp: number}) => PerseveranceTempMax.push(day.max_temp));
+    // console.log("PerseveranceTempMax:", PerseveranceTempMax);
+    const PerseveranceTempMin: number[] = [];
+    props.Perseverance_Weather.map((day: {min_temp: number}) => PerseveranceTempMin.push(day.min_temp));
+    // console.log("PerseveranceTempMin:", PerseveranceTempMin);
+    const PerseverancePressure: number[] = [];
+    props.Perseverance_Weather.map((day: {pressure: number}) => PerseverancePressure.push(day.pressure));
+    // console.log("PerseverancePressure:", PerseverancePressure);
+    const PerseveranceSol: number[] = [];
+    props.Perseverance_Weather.map((day: {sol: string}) => PerseveranceSol.push(parseInt(day.sol)));
+    // console.log("PerseveranceSol:", PerseveranceSol);
+    const PerseveranceTerrestrialDate: string[] = [];
+    props.Perseverance_Weather.map((day: {terrestrial_date: string}) =>
+      PerseveranceTerrestrialDate.push(new Date(day.terrestrial_date).toDateString())
+    );
+    // console.log("PerseveranceTerrestrialDate:", PerseveranceTerrestrialDate);
+    const PerseveranceWeatherData = {
+      temp_Max: PerseveranceTempMax,
+      temp_Min: PerseveranceTempMin,
+      pressure: PerseverancePressure,
+      sol: PerseveranceSol,
+      terrestrialDate: PerseveranceTerrestrialDate,
+      name: "Perseverance Mars Rover" as string,
+    };
+    console.log("PerseveranceWeatherData:", PerseveranceWeatherData);
+
+    //* Curiosity Weather Data Object
+    const CuriosityTempMax: number[] = [];
+    props.Curiosity_Weather.map((day: {max_temp: string}) => CuriosityTempMax.push(parseFloat(day.max_temp)));
+    // console.log("CuriosityTempMax:", CuriosityTempMax);
+    const CuriosityTempMin: number[] = [];
+    props.Curiosity_Weather.map((day: {min_temp: string}) => CuriosityTempMin.push(parseFloat(day.min_temp)));
+    // console.log("CuriosityTempMin:", CuriosityTempMin);
+    const CuriosityPressure: number[] = [];
+    props.Curiosity_Weather.map((day: {pressure: string}) => CuriosityPressure.push(parseFloat(day.pressure)));
+    // console.log("CuriosityPressure:", CuriosityPressure);
+    const CuriositySol: number[] = [];
+    props.Curiosity_Weather.map((day: {sol: string}) => CuriositySol.push(parseInt(day.sol)));
+    // console.log("CuriositySol:", CuriositySol);
+    const CuriosityTerrestrialDate: string[] = [];
+    props.Curiosity_Weather.map((day: {terrestrial_date: string}) =>
+      CuriosityTerrestrialDate.push(new Date(day.terrestrial_date).toDateString())
+    );
+    // console.log("CuriosityTerrestrialDate:", CuriosityTerrestrialDate);
+    const CuriosityWeatherData = {
+      temp_Max: CuriosityTempMax,
+      temp_Min: CuriosityTempMin,
+      pressure: CuriosityPressure,
+      sol: CuriositySol,
+      terrestrialDate: CuriosityTerrestrialDate,
+      name: "Curiosity Mars Rover" as string,
+    };
+    console.log("CuriosityWeatherData:", CuriosityWeatherData);
+
     this.state = {
       lineChartData: {
         optionsTemp: {

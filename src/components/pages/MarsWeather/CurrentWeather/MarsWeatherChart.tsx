@@ -38,16 +38,13 @@ const H2 = styled.h2`
   text-align: center;
 `;
 
-class MarsWeatherChart extends React.Component<{}, {lineChartData: State; barChartData: State}> {
+class MarsWeatherChart extends React.Component<
+  {},
+  {lineChartData: State; barChartData: State; PerseveranceWeatherData: State; CuriosityWeatherData: State}
+> {
   constructor(props: State) {
     super(props);
     // console.log("props.Perseverance_Weather and Curiosity_Weather:", props.Perseverance_Weather, props.Curiosity_Weather);
-
-    //* Setting the Initial State
-    this.state = {
-      lineChartData: {},
-      barChartData: {},
-    };
 
     //* Perseverance Weather Data Object
     const PerseveranceTempMax: number[] = [];
@@ -75,7 +72,7 @@ class MarsWeatherChart extends React.Component<{}, {lineChartData: State; barCha
       terrestrialDate: PerseveranceTerrestrialDate,
       name: "Perseverance Mars Rover" as string,
     };
-    console.log("PerseveranceWeatherData:", PerseveranceWeatherData);
+    // console.log("PerseveranceWeatherData:", PerseveranceWeatherData);
 
     //* Curiosity Weather Data Object
     const CuriosityTempMax: number[] = [];
@@ -103,7 +100,17 @@ class MarsWeatherChart extends React.Component<{}, {lineChartData: State; barCha
       terrestrialDate: CuriosityTerrestrialDate,
       name: "Curiosity Mars Rover" as string,
     };
-    console.log("CuriosityWeatherData:", CuriosityWeatherData);
+    // console.log("CuriosityWeatherData:", CuriosityWeatherData);
+
+    //* Setting the Initial State
+    this.state = {
+      PerseveranceWeatherData: PerseveranceWeatherData,
+      CuriosityWeatherData: CuriosityWeatherData,
+      lineChartData: {},
+      barChartData: {},
+    };
+
+    console.log("this.state:", this.state);
 
     ChartJS.register(
       CategoryScale,
@@ -121,6 +128,8 @@ class MarsWeatherChart extends React.Component<{}, {lineChartData: State; barCha
 
   setPerseverance = () => {
     this.setState({
+      PerseveranceWeatherData: this.state.PerseveranceWeatherData,
+      CuriosityWeatherData: this.state.CuriosityWeatherData,
       lineChartData: {
         optionsTemp: {
           responsive: true,
@@ -193,6 +202,8 @@ class MarsWeatherChart extends React.Component<{}, {lineChartData: State; barCha
 
   setCuriosity = () => {
     this.setState({
+      PerseveranceWeatherData: this.state.PerseveranceWeatherData,
+      CuriosityWeatherData: this.state.CuriosityWeatherData,
       lineChartData: {
         optionsTemp: {
           responsive: true,

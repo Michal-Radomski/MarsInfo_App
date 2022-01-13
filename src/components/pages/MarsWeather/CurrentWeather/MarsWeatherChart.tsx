@@ -109,8 +109,6 @@ class MarsWeatherChart extends React.Component<{}, {lineChartData: any; barChart
 
     this.state = {
       lineChartData: {
-        labels: ["January", "February", "March", "April", "May", "June"],
-
         optionsTemp: {
           responsive: true,
           plugins: {
@@ -125,7 +123,7 @@ class MarsWeatherChart extends React.Component<{}, {lineChartData: any; barChart
         },
 
         dataTemp: {
-          labels: this.labels,
+          labels: ["January", "February", "March", "April", "May", "June"],
 
           datasets: [
             {
@@ -160,7 +158,7 @@ class MarsWeatherChart extends React.Component<{}, {lineChartData: any; barChart
         },
 
         dataPressure: {
-          labels: this.labels,
+          labels: ["January", "February", "March", "April", "May", "June"],
 
           datasets: [
             {

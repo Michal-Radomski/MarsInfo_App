@@ -38,7 +38,8 @@ const H2 = styled.h2`
   text-align: center;
 `;
 
-class MarsWeatherChart extends React.Component<{}, {}> {
+class MarsWeatherChart extends React.Component<{}, {lineChartData: any; barChartData: any}> {
+  labels!: string[];
   constructor(props: State) {
     super(props);
     // console.log("props.Perseverance_Weather and Curiosity_Weather:", props.Perseverance_Weather, props.Curiosity_Weather);
@@ -119,80 +120,80 @@ class MarsWeatherChart extends React.Component<{}, {}> {
     );
   }
 
-  optionsTemp = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top" as const,
-      },
-      title: {
-        display: true,
-        text: "Chart.js Line Chart",
-      },
-    },
-  };
+  // optionsTemp = {
+  //   responsive: true,
+  //   plugins: {
+  //     legend: {
+  //       position: "top" as const,
+  //     },
+  //     title: {
+  //       display: true,
+  //       text: "Chart.js Line Chart",
+  //     },
+  //   },
+  // };
 
-  optionsPressure = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top" as const,
-      },
-      title: {
-        display: true,
-        text: "Chart.js Bar Chart",
-      },
-    },
-  };
+  // optionsPressure = {
+  //   responsive: true,
+  //   plugins: {
+  //     legend: {
+  //       position: "top" as const,
+  //     },
+  //     title: {
+  //       display: true,
+  //       text: "Chart.js Bar Chart",
+  //     },
+  //   },
+  // };
 
-  labels = ["January", "February", "March", "April", "May", "June"];
+  // labels = ["January", "February", "March", "April", "May", "June"];
 
-  dataTemp = {
-    labels: this.labels,
+  // dataTemp = {
+  //   labels: this.labels,
 
-    datasets: [
-      {
-        label: "Dataset 1",
-        data: [12, 19, 3, 5, 2, 3],
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
-        fill: true,
-      },
-      {
-        label: "Dataset 2",
-        data: [1, 1, 13, 15, 12, 13],
-        borderColor: "rgb(53, 162, 235)",
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
-        fill: true,
-      },
-    ],
-  };
-  dataPressure = {
-    labels: this.labels,
+  //   datasets: [
+  //     {
+  //       label: "Dataset 1",
+  //       data: [12, 19, 3, 5, 2, 3],
+  //       borderColor: "rgb(255, 99, 132)",
+  //       backgroundColor: "rgba(255, 99, 132, 0.5)",
+  //       fill: true,
+  //     },
+  //     {
+  //       label: "Dataset 2",
+  //       data: [1, 1, 13, 15, 12, 13],
+  //       borderColor: "rgb(53, 162, 235)",
+  //       backgroundColor: "rgba(53, 162, 235, 0.5)",
+  //       fill: true,
+  //     },
+  //   ],
+  // };
+  // dataPressure = {
+  //   labels: this.labels,
 
-    datasets: [
-      {
-        label: "Dataset 1",
-        data: [12, 19, 3, 5, 2, 3],
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
-        fill: true,
-      },
-      {
-        label: "Dataset 2",
-        data: [1, 1, 13, 15, 12, 13],
-        borderColor: "rgb(53, 162, 235)",
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
-        fill: true,
-      },
-    ],
-  };
+  //   datasets: [
+  //     {
+  //       label: "Dataset 1",
+  //       data: [12, 19, 3, 5, 2, 3],
+  //       borderColor: "rgb(255, 99, 132)",
+  //       backgroundColor: "rgba(255, 99, 132, 0.5)",
+  //       fill: true,
+  //     },
+  //     {
+  //       label: "Dataset 2",
+  //       data: [1, 1, 13, 15, 12, 13],
+  //       borderColor: "rgb(53, 162, 235)",
+  //       backgroundColor: "rgba(53, 162, 235, 0.5)",
+  //       fill: true,
+  //     },
+  //   ],
+  // };
 
   setPerseverance = () => {
     this.setState({
-      labels: ["January", "February", "March", "April", "May", "June"],
-
       lineChartData: {
+        labels: ["January", "February", "March", "April", "May", "June"],
+
         optionsTemp: {
           responsive: true,
           plugins: {
@@ -265,6 +266,10 @@ class MarsWeatherChart extends React.Component<{}, {}> {
     });
   };
 
+  componentDidMount() {
+    this.setPerseverance();
+  }
+
   render() {
     return (
       <>
@@ -274,11 +279,11 @@ class MarsWeatherChart extends React.Component<{}, {}> {
         <Div>
           <div style={{width: "600px"}}>
             <button>Perseverance</button>
-            <Line options={this.optionsTemp} data={this.dataTemp} />
+            <Line options={this.state.lineChartData.optionsTemp} data={this.state.lineChartData.dataTemp} />
           </div>
           <div style={{width: "600px"}}>
             <button>Curiosity</button>
-            <Bar options={this.optionsPressure} data={this.dataPressure} />
+            <Bar options={this.state.barChartData.optionsPressure} data={this.state.barChartData.dataPressure} />
           </div>
         </Div>
       </>

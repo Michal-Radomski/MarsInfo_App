@@ -51,7 +51,7 @@ const WeatherInSightTable = (props: State): JSX.Element => {
     () => [
       {
         col1: (
-          <p>
+          <p style={{margin: "0"}}>
             <a
               href="https://en.wikipedia.org/wiki/Sol_(day_on_Mars)"
               target="_blank"

@@ -139,23 +139,23 @@ class MarsWeatherChart extends React.Component<
             },
             title: {
               display: true,
-              text: "Chart.js Line Chart",
+              text: `Charts of Min/ Max Temp for ${this.state.PerseveranceWeatherData.name}`,
             },
           },
         },
         dataTemp: {
-          labels: ["January", "February", "March", "April", "May", "June"],
+          labels: this.state.PerseveranceWeatherData.sol,
           datasets: [
             {
-              label: "Dataset 1",
-              data: [12, 19, 3, 5, 2, 3],
+              label: "Max Temp",
+              data: this.state.PerseveranceWeatherData.temp_Max,
               borderColor: "rgb(255, 99, 132)",
               backgroundColor: "rgba(255, 99, 132, 0.5)",
               fill: true,
             },
             {
-              label: "Dataset 2",
-              data: [1, 1, 13, 15, 12, 13],
+              label: "Min Temp",
+              data: this.state.PerseveranceWeatherData.temp_Min,
               borderColor: "rgb(53, 162, 235)",
               backgroundColor: "rgba(53, 162, 235, 0.5)",
               fill: true,
@@ -173,25 +173,18 @@ class MarsWeatherChart extends React.Component<
             },
             title: {
               display: true,
-              text: "Chart.js Bar Chart",
+              text: `Chart of Pressure for ${this.state.PerseveranceWeatherData.name}`,
             },
           },
         },
         dataPressure: {
-          labels: ["January", "February", "March", "April", "May", "June"],
+          labels: this.state.PerseveranceWeatherData.sol,
           datasets: [
             {
-              label: "Dataset 1",
-              data: [12, 19, 3, 5, 2, 3],
+              label: "Pressure [Pa]",
+              data: this.state.PerseveranceWeatherData.pressure,
               borderColor: "rgb(255, 99, 132)",
               backgroundColor: "rgba(255, 99, 132, 0.5)",
-              fill: true,
-            },
-            {
-              label: "Dataset 2",
-              data: [1, 1, 13, 15, 12, 13],
-              borderColor: "rgb(53, 162, 235)",
-              backgroundColor: "rgba(53, 162, 235, 0.5)",
               fill: true,
             },
           ],

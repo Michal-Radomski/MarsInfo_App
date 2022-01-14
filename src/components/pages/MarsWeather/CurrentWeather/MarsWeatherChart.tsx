@@ -206,23 +206,23 @@ class MarsWeatherChart extends React.Component<
             },
             title: {
               display: true,
-              text: "Chart.js Line Chart",
+              text: `Charts of Min/ Max Temp for ${this.state.CuriosityWeatherData.name}`,
             },
           },
         },
         dataTemp: {
-          labels: ["1", "2", "3", "4", "5", "6"],
+          labels: this.state.CuriosityWeatherData.sol,
           datasets: [
             {
-              label: "Dataset 1",
-              data: [121, 191, 31, 51, 21, 31],
+              label: "Max Temp",
+              data: this.state.CuriosityWeatherData.temp_Max,
               borderColor: "rgb(255, 99, 132)",
               backgroundColor: "rgba(255, 99, 132, 0.5)",
               fill: true,
             },
             {
-              label: "Dataset 2",
-              data: [1, 1, 13, 15, 12, 13],
+              label: "Min Temp",
+              data: this.state.CuriosityWeatherData.temp_Min,
               borderColor: "rgb(53, 162, 235)",
               backgroundColor: "rgba(53, 162, 235, 0.5)",
               fill: true,
@@ -240,25 +240,18 @@ class MarsWeatherChart extends React.Component<
             },
             title: {
               display: true,
-              text: "Chart.js Bar Chart",
+              text: `Chart of Pressure for ${this.state.CuriosityWeatherData.name}`,
             },
           },
         },
         dataPressure: {
-          labels: ["1", "2", "3", "4", "5", "6"],
+          labels: this.state.CuriosityWeatherData.sol,
           datasets: [
             {
-              label: "Dataset 1",
-              data: [121, 191, 31, 51, 21, 31],
+              label: "Pressure [Pa]",
+              data: this.state.CuriosityWeatherData.pressure,
               borderColor: "rgb(255, 99, 132)",
               backgroundColor: "rgba(255, 99, 132, 0.5)",
-              fill: true,
-            },
-            {
-              label: "Dataset 2",
-              data: [1, 1, 13, 15, 12, 13],
-              borderColor: "rgb(53, 162, 235)",
-              backgroundColor: "rgba(53, 162, 235, 0.5)",
               fill: true,
             },
           ],

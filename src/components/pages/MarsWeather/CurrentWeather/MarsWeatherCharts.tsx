@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import ChartDataLabels from "chartjs-plugin-datalabels";
 
 import {Line, Bar} from "react-chartjs-2";
 import {
@@ -122,7 +123,8 @@ class MarsWeatherCharts extends React.Component<
       Legend,
       BarElement,
       BarController,
-      Filler
+      Filler,
+      ChartDataLabels
     );
   }
   //------------------------------------------------
@@ -178,6 +180,23 @@ class MarsWeatherCharts extends React.Component<
               display: true,
               text: `Charts of Min/ Max Temp for ${this.state.PerseveranceWeatherData.name}`,
             },
+            datalabels: {
+              display: true,
+              color: "black",
+              align: "end",
+              anchor: "end",
+              labels: {
+                padding: {top: 2},
+                title: {
+                  font: {
+                    weight: "bold",
+                  },
+                },
+              },
+              formatter: function (value: number) {
+                return "\n" + value;
+              },
+            },
           },
         },
         dataTemp: {
@@ -189,6 +208,7 @@ class MarsWeatherCharts extends React.Component<
               borderColor: "rgb(255, 99, 132)",
               backgroundColor: "rgba(255, 99, 132, 0.5)",
               fill: true,
+              tension: 0.5,
             },
             {
               label: "Min Temp [℃]",
@@ -196,6 +216,7 @@ class MarsWeatherCharts extends React.Component<
               borderColor: "rgb(53, 162, 235)",
               backgroundColor: "rgba(53, 162, 235, 0.5)",
               fill: true,
+              tension: 0.5,
             },
           ],
         },
@@ -243,6 +264,23 @@ class MarsWeatherCharts extends React.Component<
             title: {
               display: true,
               text: `Chart of Pressure for ${this.state.PerseveranceWeatherData.name}`,
+            },
+            datalabels: {
+              display: true,
+              color: "black",
+              align: "end",
+              anchor: "end",
+              labels: {
+                padding: {top: 2},
+                title: {
+                  font: {
+                    weight: "bold",
+                  },
+                },
+              },
+              formatter: function (value: number) {
+                return "\n" + value;
+              },
             },
           },
           elements: {
@@ -319,6 +357,23 @@ class MarsWeatherCharts extends React.Component<
               display: true,
               text: `Charts of Min/ Max Temp for ${this.state.CuriosityWeatherData.name}`,
             },
+            datalabels: {
+              display: true,
+              color: "black",
+              align: "end",
+              anchor: "end",
+              labels: {
+                padding: {top: 2},
+                title: {
+                  font: {
+                    weight: "bold",
+                  },
+                },
+              },
+              formatter: function (value: number) {
+                return "\n" + value;
+              },
+            },
           },
         },
         dataTemp: {
@@ -330,6 +385,7 @@ class MarsWeatherCharts extends React.Component<
               borderColor: "rgb(255, 159, 64)",
               backgroundColor: "rgba(255, 159, 64, 0.5)",
               fill: true,
+              tension: 0.5,
             },
             {
               label: "Min Temp [℃]",
@@ -337,6 +393,7 @@ class MarsWeatherCharts extends React.Component<
               borderColor: "rgb(153, 102, 255)",
               backgroundColor: "rgba(153, 102, 255, 0.5)",
               fill: true,
+              tension: 0.5,
             },
           ],
         },
@@ -384,6 +441,23 @@ class MarsWeatherCharts extends React.Component<
             title: {
               display: true,
               text: `Chart of Pressure for ${this.state.CuriosityWeatherData.name}`,
+            },
+            datalabels: {
+              display: true,
+              color: "black",
+              align: "end",
+              anchor: "end",
+              labels: {
+                padding: {top: 2},
+                title: {
+                  font: {
+                    weight: "bold",
+                  },
+                },
+              },
+              formatter: function (value: number) {
+                return "\n" + value;
+              },
             },
           },
           elements: {

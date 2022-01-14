@@ -38,7 +38,7 @@ const H2 = styled.h2`
   text-align: center;
 `;
 
-class MarsWeatherChart extends React.Component<
+class MarsWeatherCharts extends React.Component<
   {},
   {lineChartData: State; barChartData: State; PerseveranceWeatherData: State; CuriosityWeatherData: State}
 > {
@@ -110,7 +110,7 @@ class MarsWeatherChart extends React.Component<
       barChartData: {},
     };
 
-    console.log("this.state:", this.state);
+    // console.log("this.state:", this.state);
 
     ChartJS.register(
       CategoryScale,
@@ -147,14 +147,14 @@ class MarsWeatherChart extends React.Component<
           labels: this.state.PerseveranceWeatherData.sol,
           datasets: [
             {
-              label: "Max Temp",
+              label: "Max Temp [℃]",
               data: this.state.PerseveranceWeatherData.temp_Max,
               borderColor: "rgb(255, 99, 132)",
               backgroundColor: "rgba(255, 99, 132, 0.5)",
               fill: true,
             },
             {
-              label: "Min Temp",
+              label: "Min Temp [℃]",
               data: this.state.PerseveranceWeatherData.temp_Min,
               borderColor: "rgb(53, 162, 235)",
               backgroundColor: "rgba(53, 162, 235, 0.5)",
@@ -214,14 +214,14 @@ class MarsWeatherChart extends React.Component<
           labels: this.state.CuriosityWeatherData.sol,
           datasets: [
             {
-              label: "Max Temp",
+              label: "Max Temp [℃]",
               data: this.state.CuriosityWeatherData.temp_Max,
               borderColor: "rgb(255, 99, 132)",
               backgroundColor: "rgba(255, 99, 132, 0.5)",
               fill: true,
             },
             {
-              label: "Min Temp",
+              label: "Min Temp [℃]",
               data: this.state.CuriosityWeatherData.temp_Min,
               borderColor: "rgb(53, 162, 235)",
               backgroundColor: "rgba(53, 162, 235, 0.5)",
@@ -294,4 +294,4 @@ class MarsWeatherChart extends React.Component<
   }
 }
 
-export default MarsWeatherChart;
+export default MarsWeatherCharts;

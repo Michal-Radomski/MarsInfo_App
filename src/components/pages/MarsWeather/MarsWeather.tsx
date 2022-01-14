@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import MarsMap from "./MarsMap";
 import EarthMap from "./EarthMap";
-import MarsWeatherChart from "./CurrentWeather/MarsWeatherChart";
+import MarsWeatherCharts from "./CurrentWeather/MarsWeatherCharts";
 
 const Mars2020_URL = process.env.REACT_APP_MARS2020_API as string;
 // console.log("Mars2020_URL:", Mars2020_URL);
@@ -114,7 +114,7 @@ class MarsWeather extends React.Component<Props, State> {
             top: "1150px",
           }}
         >
-          <MarsWeatherChart
+          <MarsWeatherCharts
             //@ts-ignore:
             Perseverance_Weather={this.state.PerseveranceWeather}
             Curiosity_Weather={this.state.CuriosityWeather}

@@ -153,6 +153,9 @@ class MarsWeatherCharts extends React.Component<
             y: {
               ticks: {
                 color: "darkblue",
+                callback: function (value: number) {
+                  return `${value} ℃`;
+                },
               },
               display: true,
               title: {
@@ -243,6 +246,9 @@ class MarsWeatherCharts extends React.Component<
             y: {
               ticks: {
                 color: "darkblue",
+                callback: function (value: number) {
+                  return `${value} Pa`;
+                },
               },
               display: true,
               title: {
@@ -330,6 +336,9 @@ class MarsWeatherCharts extends React.Component<
             y: {
               ticks: {
                 color: "darkblue",
+                callback: function (value: number) {
+                  return `${value} ℃`;
+                },
               },
               display: true,
               title: {
@@ -420,6 +429,9 @@ class MarsWeatherCharts extends React.Component<
             y: {
               ticks: {
                 color: "darkblue",
+                callback: function (value: number) {
+                  return `${value} Pa`;
+                },
               },
               display: true,
               title: {

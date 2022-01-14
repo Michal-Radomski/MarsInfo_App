@@ -165,6 +165,11 @@ class MarsWeatherCharts extends React.Component<
             },
           },
           responsive: true,
+          //* Only for multi datasets
+          interaction: {
+            intersect: false,
+            mode: "index",
+          },
           plugins: {
             legend: {
               position: "top" as const,
@@ -240,6 +245,11 @@ class MarsWeatherCharts extends React.Component<
               text: `Chart of Pressure for ${this.state.PerseveranceWeatherData.name}`,
             },
           },
+          elements: {
+            bar: {
+              borderWidth: 3,
+            },
+          },
         },
         dataPressure: {
           labels: this.state.PerseveranceWeatherData.sol,
@@ -249,79 +259,13 @@ class MarsWeatherCharts extends React.Component<
               data: this.state.PerseveranceWeatherData.pressure,
               borderColor: "rgb(255, 99, 132)",
               backgroundColor: "rgba(255, 99, 132, 0.5)",
-              fill: true,
             },
           ],
         },
       },
     });
   };
-  // setPerseverance = () => {
-  //   this.setState({
-  //     PerseveranceWeatherData: this.state.PerseveranceWeatherData,
-  //     CuriosityWeatherData: this.state.CuriosityWeatherData,
-  //     lineChartData: {
-  //       optionsTemp: {
-  //         responsive: true,
-  //         plugins: {
-  //           legend: {
-  //             position: "top" as const,
-  //           },
-  //           title: {
-  //             display: true,
-  //             text: `Charts of Min/ Max Temp for ${this.state.PerseveranceWeatherData.name}`,
-  //           },
-  //         },
-  //       },
-  //       dataTemp: {
-  //         labels: this.state.PerseveranceWeatherData.sol,
-  //         datasets: [
-  //           {
-  //             label: "Max Temp [℃]",
-  //             data: this.state.PerseveranceWeatherData.temp_Max,
-  //             borderColor: "rgb(255, 99, 132)",
-  //             backgroundColor: "rgba(255, 99, 132, 0.5)",
-  //             fill: true,
-  //           },
-  //           {
-  //             label: "Min Temp [℃]",
-  //             data: this.state.PerseveranceWeatherData.temp_Min,
-  //             borderColor: "rgb(53, 162, 235)",
-  //             backgroundColor: "rgba(53, 162, 235, 0.5)",
-  //             fill: true,
-  //           },
-  //         ],
-  //       },
-  //     },
 
-  //     barChartData: {
-  //       optionsPressure: {
-  //         responsive: true,
-  //         plugins: {
-  //           legend: {
-  //             position: "top" as const,
-  //           },
-  //           title: {
-  //             display: true,
-  //             text: `Chart of Pressure for ${this.state.PerseveranceWeatherData.name}`,
-  //           },
-  //         },
-  //       },
-  //       dataPressure: {
-  //         labels: this.state.PerseveranceWeatherData.sol,
-  //         datasets: [
-  //           {
-  //             label: "Pressure [Pa]",
-  //             data: this.state.PerseveranceWeatherData.pressure,
-  //             borderColor: "rgb(255, 99, 132)",
-  //             backgroundColor: "rgba(255, 99, 132, 0.5)",
-  //             fill: true,
-  //           },
-  //         ],
-  //       },
-  //     },
-  //   });
-  // };
   //++++++++++++++++++++++++++++++++++++
   setCuriosity = () => {
     this.setState({
@@ -329,7 +273,44 @@ class MarsWeatherCharts extends React.Component<
       CuriosityWeatherData: this.state.CuriosityWeatherData,
       lineChartData: {
         optionsTemp: {
+          scales: {
+            x: {
+              ticks: {
+                color: "blue",
+              },
+              display: true,
+              title: {
+                display: true,
+                text: "Sol number",
+                color: "maroon",
+                font: {
+                  size: 16,
+                  weight: "bold",
+                },
+              },
+            },
+            y: {
+              ticks: {
+                color: "darkblue",
+              },
+              display: true,
+              title: {
+                display: true,
+                text: "Min/ Max Temp [℃]",
+                color: "maroon",
+                font: {
+                  size: 16,
+                  weight: "bold",
+                },
+              },
+            },
+          },
           responsive: true,
+          //* Only for multi datasets
+          interaction: {
+            intersect: false,
+            mode: "index",
+          },
           plugins: {
             legend: {
               position: "top" as const,
@@ -363,6 +344,38 @@ class MarsWeatherCharts extends React.Component<
 
       barChartData: {
         optionsPressure: {
+          scales: {
+            x: {
+              ticks: {
+                color: "green",
+              },
+              display: true,
+              title: {
+                display: true,
+                text: "Sol number",
+                color: "maroon",
+                font: {
+                  size: 16,
+                  weight: "bold",
+                },
+              },
+            },
+            y: {
+              ticks: {
+                color: "darkblue",
+              },
+              display: true,
+              title: {
+                display: true,
+                text: "Pressure [Pa]",
+                color: "maroon",
+                font: {
+                  size: 16,
+                  weight: "bold",
+                },
+              },
+            },
+          },
           responsive: true,
           plugins: {
             legend: {
@@ -371,6 +384,11 @@ class MarsWeatherCharts extends React.Component<
             title: {
               display: true,
               text: `Chart of Pressure for ${this.state.CuriosityWeatherData.name}`,
+            },
+          },
+          elements: {
+            bar: {
+              borderWidth: 3,
             },
           },
         },
@@ -382,7 +400,6 @@ class MarsWeatherCharts extends React.Component<
               data: this.state.CuriosityWeatherData.pressure,
               borderColor: "rgb(255, 99, 132)",
               backgroundColor: "rgba(255, 99, 132, 0.5)",
-              fill: true,
             },
           ],
         },

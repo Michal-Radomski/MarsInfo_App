@@ -41,6 +41,15 @@ const H2 = styled.h2`
 
 const options: State = {weekday: "short", year: "numeric", month: "numeric", day: "numeric"};
 
+//* An average Temp of the Day
+const average = (tooltipItems: any[]): string => {
+  let average: number = 0;
+  tooltipItems.forEach(function (tooltipItem) {
+    average += (tooltipItem.parsed.y / 2) as number;
+  });
+  return ("Average: " + average.toFixed(2) + " ℃") as string;
+};
+
 class MarsWeatherCharts extends React.Component<
   {},
   {lineChartData: State; barChartData: State; PerseveranceWeatherData: State; CuriosityWeatherData: State}
@@ -180,7 +189,7 @@ class MarsWeatherCharts extends React.Component<
                 text: "Min/ Max Temp [℃]",
                 color: "maroon",
                 font: {
-                  size: 16,
+                  size: 14,
                   weight: "bold",
                 },
               },
@@ -205,6 +214,7 @@ class MarsWeatherCharts extends React.Component<
               color: "black",
               align: "end",
               anchor: "end",
+              clamp: true,
               labels: {
                 padding: {top: 2},
                 title: {
@@ -214,7 +224,12 @@ class MarsWeatherCharts extends React.Component<
                 },
               },
               formatter: function (value: number) {
-                return "\n" + value;
+                return "\n" + value + "℃";
+              },
+            },
+            tooltip: {
+              callbacks: {
+                footer: average,
               },
             },
           },
@@ -294,6 +309,7 @@ class MarsWeatherCharts extends React.Component<
               color: "black",
               align: "end",
               anchor: "end",
+              clamp: true,
               labels: {
                 padding: {top: 2},
                 title: {
@@ -303,7 +319,7 @@ class MarsWeatherCharts extends React.Component<
                 },
               },
               formatter: function (value: number) {
-                return "\n" + value;
+                return "\n" + value + " Pa";
               },
             },
           },
@@ -364,7 +380,7 @@ class MarsWeatherCharts extends React.Component<
                 text: "Min/ Max Temp [℃]",
                 color: "maroon",
                 font: {
-                  size: 16,
+                  size: 14,
                   weight: "bold",
                 },
               },
@@ -389,6 +405,7 @@ class MarsWeatherCharts extends React.Component<
               color: "black",
               align: "end",
               anchor: "end",
+              clamp: true,
               labels: {
                 padding: {top: 2},
                 title: {
@@ -398,7 +415,12 @@ class MarsWeatherCharts extends React.Component<
                 },
               },
               formatter: function (value: number) {
-                return "\n" + value;
+                return "\n" + value + "℃";
+              },
+            },
+            tooltip: {
+              callbacks: {
+                footer: average,
               },
             },
           },
@@ -478,6 +500,7 @@ class MarsWeatherCharts extends React.Component<
               color: "black",
               align: "end",
               anchor: "end",
+              clamp: true,
               labels: {
                 padding: {top: 2},
                 title: {
@@ -487,7 +510,7 @@ class MarsWeatherCharts extends React.Component<
                 },
               },
               formatter: function (value: number) {
-                return "\n" + value;
+                return "\n" + value + " Pa";
               },
             },
           },

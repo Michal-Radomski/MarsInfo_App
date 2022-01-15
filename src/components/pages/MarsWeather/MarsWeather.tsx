@@ -39,7 +39,10 @@ class MarsWeather extends React.Component<Props, State> {
   InSight_fetching = (fetchObj: State) => {
     const solKeys = fetchObj?.sol_keys ?? "No Data";
     // console.log("solKeys:", solKeys, solKeys.length, typeof solKeys);
-    const solKeysMax = solKeys !== "No Data" ? Math.max.apply(null, solKeys).toString() : "No Data";
+    let solKeysMax = solKeys !== "No Data" ? Math.max.apply(null, solKeys).toString() : "No Data";
+    if (solKeys.length === 0) {
+      solKeysMax = "No Data";
+    }
     // console.log("solKeysMax:", solKeysMax);
     const result = solKeysMax !== "No Data" ? fetchObj[solKeysMax] : "No Data";
     // console.log("result:", result);

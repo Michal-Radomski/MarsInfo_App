@@ -139,7 +139,7 @@ const MarsMap = (props: {Perseverance_Weather: Sol; Curiosity_Weather: Sol; InSi
             <br />
             Coordinates: <b>4.5024°N 135.6234°E</b>
             <br />
-            {props.InSight_Weather ? (
+            {props.InSight_Weather.InSight_Weather_Data !== "No Data" || props.InSight_Weather.InSight_sol !== "No Data" ? (
               <WeatherInSightTable
                 //@ts-ignore
                 weatherLastRecord={props.InSight_Weather}
@@ -147,7 +147,19 @@ const MarsMap = (props: {Perseverance_Weather: Sol; Curiosity_Weather: Sol; InSi
                 URL_href="https://mars.nasa.gov/insight/weather"
               />
             ) : (
-              <div>No Data</div>
+              <>
+                <br />
+                <h4 style={{fontStyle: "italic", textAlign: "center", fontWeight: "bold"}}>No Weather Data Available</h4>
+                <a
+                  style={{float: "right", fontWeight: "bold", fontStyle: "italic"}}
+                  href="https://mars.nasa.gov/insight/weather"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Read more...
+                </a>
+                <br />
+              </>
             )}
           </Popup>
         </Marker>

@@ -39,6 +39,8 @@ const H2 = styled.h2`
   text-align: center;
 `;
 
+const options: State = {weekday: "short", year: "numeric", month: "numeric", day: "numeric"};
+
 class MarsWeatherCharts extends React.Component<
   {},
   {lineChartData: State; barChartData: State; PerseveranceWeatherData: State; CuriosityWeatherData: State}
@@ -62,9 +64,15 @@ class MarsWeatherCharts extends React.Component<
     // console.log("PerseveranceSol:", PerseveranceSol);
     const PerseveranceTerrestrialDate: string[] = [];
     props.Perseverance_Weather.map((day: {terrestrial_date: string}) =>
-      PerseveranceTerrestrialDate.push(new Date(day.terrestrial_date).toDateString())
+      PerseveranceTerrestrialDate.push(new Date(day.terrestrial_date).toLocaleDateString(undefined, options))
     );
     // console.log("PerseveranceTerrestrialDate:", PerseveranceTerrestrialDate);
+    const combinedDatePerseverance: string[] = [];
+    for (let i = 0; i < PerseveranceSol.length && i < PerseveranceTerrestrialDate.length; i++) {
+      combinedDatePerseverance.push(PerseveranceSol[i] + " / " + PerseveranceTerrestrialDate[i]);
+    }
+    // console.log("combinedDatePerseverance:", combinedDatePerseverance);
+
     const PerseveranceWeatherData = {
       temp_Max: PerseveranceTempMax,
       temp_Min: PerseveranceTempMin,
@@ -72,6 +80,7 @@ class MarsWeatherCharts extends React.Component<
       sol: PerseveranceSol,
       terrestrialDate: PerseveranceTerrestrialDate,
       name: "Perseverance Mars Rover" as string,
+      combinedDatePerseverance: combinedDatePerseverance,
     };
     // console.log("PerseveranceWeatherData:", PerseveranceWeatherData);
 
@@ -93,6 +102,12 @@ class MarsWeatherCharts extends React.Component<
       CuriosityTerrestrialDate.push(new Date(day.terrestrial_date).toDateString())
     );
     // console.log("CuriosityTerrestrialDate:", CuriosityTerrestrialDate);
+    const combinedDateCuriosity: string[] = [];
+    for (let i = 0; i < CuriositySol.length && i < CuriosityTerrestrialDate.length; i++) {
+      combinedDateCuriosity.push(CuriositySol[i] + " / " + CuriosityTerrestrialDate[i]);
+    }
+    // console.log("combinedDateCuriosity:", combinedDateCuriosity);
+
     const CuriosityWeatherData = {
       temp_Max: CuriosityTempMax,
       temp_Min: CuriosityTempMin,
@@ -100,6 +115,7 @@ class MarsWeatherCharts extends React.Component<
       sol: CuriositySol,
       terrestrialDate: CuriosityTerrestrialDate,
       name: "Curiosity Mars Rover" as string,
+      combinedDateCuriosity: combinedDateCuriosity,
     };
     // console.log("CuriosityWeatherData:", CuriosityWeatherData);
 
@@ -127,7 +143,7 @@ class MarsWeatherCharts extends React.Component<
       ChartDataLabels
     );
   }
-  //------------------------------------------------
+
   setPerseverance = () => {
     this.setState({
       PerseveranceWeatherData: this.state.PerseveranceWeatherData,
@@ -142,15 +158,16 @@ class MarsWeatherCharts extends React.Component<
               display: true,
               title: {
                 display: true,
-                text: "Sol number",
+                text: "Sol Number / Terrestrial Date",
                 color: "maroon",
                 font: {
-                  size: 16,
+                  size: 14,
                   weight: "bold",
                 },
               },
             },
             y: {
+              beginAtZero: true,
               ticks: {
                 color: "darkblue",
                 callback: function (value: number) {
@@ -203,7 +220,7 @@ class MarsWeatherCharts extends React.Component<
           },
         },
         dataTemp: {
-          labels: this.state.PerseveranceWeatherData.sol,
+          labels: this.state.PerseveranceWeatherData.combinedDatePerseverance,
           datasets: [
             {
               label: "Max Temp [℃]",
@@ -235,15 +252,16 @@ class MarsWeatherCharts extends React.Component<
               display: true,
               title: {
                 display: true,
-                text: "Sol number",
+                text: "Sol Number / Terrestrial Date",
                 color: "maroon",
                 font: {
-                  size: 16,
+                  size: 14,
                   weight: "bold",
                 },
               },
             },
             y: {
+              beginAtZero: true,
               ticks: {
                 color: "darkblue",
                 callback: function (value: number) {
@@ -256,7 +274,7 @@ class MarsWeatherCharts extends React.Component<
                 text: "Pressure [Pa]",
                 color: "maroon",
                 font: {
-                  size: 16,
+                  size: 14,
                   weight: "bold",
                 },
               },
@@ -296,7 +314,7 @@ class MarsWeatherCharts extends React.Component<
           },
         },
         dataPressure: {
-          labels: this.state.PerseveranceWeatherData.sol,
+          labels: this.state.PerseveranceWeatherData.combinedDatePerseverance,
           datasets: [
             {
               label: "Pressure [Pa]",
@@ -310,7 +328,6 @@ class MarsWeatherCharts extends React.Component<
     });
   };
 
-  //++++++++++++++++++++++++++++++++++++
   setCuriosity = () => {
     this.setState({
       PerseveranceWeatherData: this.state.PerseveranceWeatherData,
@@ -325,15 +342,16 @@ class MarsWeatherCharts extends React.Component<
               display: true,
               title: {
                 display: true,
-                text: "Sol number",
+                text: "Sol Number / Terrestrial Date",
                 color: "maroon",
                 font: {
-                  size: 16,
+                  size: 14,
                   weight: "bold",
                 },
               },
             },
             y: {
+              beginAtZero: true,
               ticks: {
                 color: "darkblue",
                 callback: function (value: number) {
@@ -386,7 +404,7 @@ class MarsWeatherCharts extends React.Component<
           },
         },
         dataTemp: {
-          labels: this.state.CuriosityWeatherData.sol,
+          labels: this.state.CuriosityWeatherData.combinedDateCuriosity,
           datasets: [
             {
               label: "Max Temp [℃]",
@@ -418,15 +436,16 @@ class MarsWeatherCharts extends React.Component<
               display: true,
               title: {
                 display: true,
-                text: "Sol number",
+                text: "Sol Number / Terrestrial Date",
                 color: "maroon",
                 font: {
-                  size: 16,
+                  size: 14,
                   weight: "bold",
                 },
               },
             },
             y: {
+              beginAtZero: true,
               ticks: {
                 color: "darkblue",
                 callback: function (value: number) {
@@ -439,7 +458,7 @@ class MarsWeatherCharts extends React.Component<
                 text: "Pressure [Pa]",
                 color: "maroon",
                 font: {
-                  size: 16,
+                  size: 14,
                   weight: "bold",
                 },
               },
@@ -479,7 +498,7 @@ class MarsWeatherCharts extends React.Component<
           },
         },
         dataPressure: {
-          labels: this.state.CuriosityWeatherData.sol,
+          labels: this.state.CuriosityWeatherData.combinedDateCuriosity,
           datasets: [
             {
               label: "Pressure [Pa]",
@@ -504,7 +523,7 @@ class MarsWeatherCharts extends React.Component<
           <H2>Charts of Weather on Mars</H2>
         </div>
         <Div>
-          <div style={{width: "600px"}}>
+          <div style={{width: "740px"}}>
             <button onClick={this.setPerseverance}>Perseverance</button>
             {this.state.lineChartData.dataTemp === undefined ? (
               <div>Fetching Mars Weather Data...</div>
@@ -513,7 +532,7 @@ class MarsWeatherCharts extends React.Component<
             )}
           </div>
 
-          <div style={{width: "600px"}}>
+          <div style={{width: "740px"}}>
             <button onClick={this.setCuriosity}>Curiosity</button>
             {this.state.barChartData.dataPressure === undefined ? (
               <div>Fetching Mars Weather Data...</div>

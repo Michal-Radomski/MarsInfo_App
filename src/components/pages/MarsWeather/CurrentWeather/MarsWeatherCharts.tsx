@@ -42,12 +42,12 @@ const H2 = styled.h2`
 const options: State = {weekday: "short", year: "numeric", month: "numeric", day: "numeric"};
 
 //* An average Temp of the Day
-const average = (tooltipItems: any[]): string => {
-  let average: number = 0;
+const averageTemp = (tooltipItems: any[]): string => {
+  let average_temp: number = 0;
   tooltipItems.forEach(function (tooltipItem) {
-    average += (tooltipItem.parsed.y / 2) as number;
+    average_temp += (tooltipItem.parsed.y / 2) as number;
   });
-  return ("Average: " + average.toFixed(2) + " ℃") as string;
+  return ("Average Temp: " + average_temp.toFixed(2) + " ℃") as string;
 };
 
 class MarsWeatherCharts extends React.Component<
@@ -229,7 +229,7 @@ class MarsWeatherCharts extends React.Component<
             },
             tooltip: {
               callbacks: {
-                footer: average,
+                footer: averageTemp,
               },
             },
           },
@@ -420,7 +420,7 @@ class MarsWeatherCharts extends React.Component<
             },
             tooltip: {
               callbacks: {
-                footer: average,
+                footer: averageTemp,
               },
             },
           },

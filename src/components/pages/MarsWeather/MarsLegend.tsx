@@ -24,7 +24,7 @@ function MarsLegend({map}: Map): JSX.Element {
         div.style.width = "522px";
         div.style.margin = "0";
         div.innerHTML =
-          "<h5 style='color:orangered;text-align:center; margin: 0.2rem'>Legend:<a href='https://en.wikipedia.org/wiki/Mars_Orbiter_Laser_Altimeter' target='_blank' style='text-decoration: none; font-weight: bolder'> MOLA </a>Elevation Key</h5> <br/><b>The zero point of elevation on Mars, is the elevation at which the atmosphere pressure is 610 Pascals</b><br/>";
+          "<h5 style='color:orangered;text-align:center; margin: 0.2rem'>Legend: <a href='https://en.wikipedia.org/wiki/Mars_Orbiter_Laser_Altimeter' target='_blank' style='text-decoration: underline; font-weight: bolder; font-style:italic'>MOLA</a> Elevation Key</h5> <br/><b>The zero point of elevation on Mars, is the elevation at which the atmosphere pressure is 610 Pascals</b><br/>";
         const img = DomUtil.create("img", "");
         img.src = MOLA_elevation;
         img.style.width = "512px";

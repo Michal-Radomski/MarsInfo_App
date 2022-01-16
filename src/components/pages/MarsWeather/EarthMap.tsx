@@ -27,13 +27,25 @@ import "ol-layerswitcher/dist/ol-layerswitcher.css";
 
 // Redux Global Store
 import {getUserGeoData} from "../../../redux/actions";
+import LocalWeather from "./LocalWeather";
 
-const DivMap = styled.div`
-  /* position: absolute;
-  top: 110px; */
+const DivLocal = styled.div`
   left: 5px;
   right: 5px;
   width: calc(100% -10px);
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+  align-content: center;
+`;
+
+const DivMap = styled.div`
+  left: 5px;
+  right: 5px;
+  width: 100%;
   height: auto;
 `;
 
@@ -243,7 +255,7 @@ class EarthMap extends React.Component<Props, State> {
 
   render() {
     return (
-      <React.Fragment>
+      <DivLocal>
         {this.state.center[0] !== 0 && this.state.center[1] !== 0 ? (
           <DivMap>
             <h1 style={{textAlign: "center"}}>Your location: {this.position}</h1>
@@ -266,10 +278,11 @@ class EarthMap extends React.Component<Props, State> {
         ) : (
           <DivMap>
             <h2 style={{textAlign: "center"}}>Your location is unknown</h2>
-            <div id="olMap" ref={this.mapRef} style={{height: "250px", cursor: "pointer"}}></div>
+            <div id="olMap" ref={this.mapRef} style={{height: "350px", cursor: "pointer"}}></div>
           </DivMap>
         )}
-      </React.Fragment>
+        <LocalWeather />
+      </DivLocal>
     );
   }
 }

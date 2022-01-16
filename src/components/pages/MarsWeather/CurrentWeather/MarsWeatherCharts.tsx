@@ -208,6 +208,7 @@ class MarsWeatherCharts extends React.Component<
             title: {
               display: true,
               text: `Charts of Min/ Max Temp for ${this.state.PerseveranceWeatherData.name}`,
+              color: "blue",
             },
             datalabels: {
               display: true,
@@ -303,6 +304,7 @@ class MarsWeatherCharts extends React.Component<
             title: {
               display: true,
               text: `Chart of Pressure for ${this.state.PerseveranceWeatherData.name}`,
+              color: "green",
             },
             datalabels: {
               display: true,
@@ -399,6 +401,7 @@ class MarsWeatherCharts extends React.Component<
             title: {
               display: true,
               text: `Charts of Min/ Max Temp for ${this.state.CuriosityWeatherData.name}`,
+              color: "blue",
             },
             datalabels: {
               display: true,
@@ -494,6 +497,7 @@ class MarsWeatherCharts extends React.Component<
             title: {
               display: true,
               text: `Chart of Pressure for ${this.state.CuriosityWeatherData.name}`,
+              color: "green",
             },
             datalabels: {
               display: true,

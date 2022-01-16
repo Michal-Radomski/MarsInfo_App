@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import ChartDataLabels from "chartjs-plugin-datalabels";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Button from "react-bootstrap/Button";
 
 import {Line, Bar} from "react-chartjs-2";
 import {
@@ -52,7 +54,13 @@ const averageTemp = (tooltipItems: any[]): string => {
 
 class MarsWeatherCharts extends React.Component<
   {},
-  {lineChartData: State; barChartData: State; PerseveranceWeatherData: State; CuriosityWeatherData: State}
+  {
+    lineChartData: State;
+    barChartData: State;
+    PerseveranceWeatherData: State;
+    CuriosityWeatherData: State;
+    isPerseveranceButtonActive: boolean;
+  }
 > {
   constructor(props: State) {
     super(props);
@@ -134,6 +142,7 @@ class MarsWeatherCharts extends React.Component<
       CuriosityWeatherData: CuriosityWeatherData,
       lineChartData: {},
       barChartData: {},
+      isPerseveranceButtonActive: true,
     };
 
     // console.log("this.state:", this.state);
@@ -157,6 +166,7 @@ class MarsWeatherCharts extends React.Component<
     this.setState({
       PerseveranceWeatherData: this.state.PerseveranceWeatherData,
       CuriosityWeatherData: this.state.CuriosityWeatherData,
+      isPerseveranceButtonActive: true,
       lineChartData: {
         optionsTemp: {
           scales: {
@@ -350,6 +360,7 @@ class MarsWeatherCharts extends React.Component<
     this.setState({
       PerseveranceWeatherData: this.state.PerseveranceWeatherData,
       CuriosityWeatherData: this.state.CuriosityWeatherData,
+      isPerseveranceButtonActive: false,
       lineChartData: {
         optionsTemp: {
           scales: {
@@ -552,6 +563,7 @@ class MarsWeatherCharts extends React.Component<
   componentDidUpdate() {
     localStorage.setItem("MarsWeatherCharts", JSON.stringify(this.state));
     // console.log("MarsWeatherCharts was set to the localStorage");
+    // console.log("this.state:", this.state);
   }
 
   render() {
@@ -559,10 +571,27 @@ class MarsWeatherCharts extends React.Component<
       <>
         <div>
           <H2>Charts of Weather on Mars</H2>
+          <ButtonGroup size="lg" className="mb-2" style={{left: "50%", transform: "translate(-50%,0)"}}>
+            <Button
+              variant="outline-primary"
+              onClick={this.setPerseverance}
+              active={this.state.isPerseveranceButtonActive}
+              style={{width: "160px"}}
+            >
+              Perseverance
+            </Button>
+            <Button
+              variant="outline-primary"
+              onClick={this.setCuriosity}
+              active={!this.state.isPerseveranceButtonActive}
+              style={{width: "160px"}}
+            >
+              Curiosity
+            </Button>
+          </ButtonGroup>
         </div>
         <Div>
           <div style={{width: "740px"}}>
-            <button onClick={this.setPerseverance}>Perseverance</button>
             {this.state.lineChartData.dataTemp === undefined ? (
               <div>Fetching Mars Weather Data...</div>
             ) : (
@@ -571,7 +600,6 @@ class MarsWeatherCharts extends React.Component<
           </div>
 
           <div style={{width: "740px"}}>
-            <button onClick={this.setCuriosity}>Curiosity</button>
             {this.state.barChartData.dataPressure === undefined ? (
               <div>Fetching Mars Weather Data...</div>
             ) : (

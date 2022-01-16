@@ -536,7 +536,18 @@ class MarsWeatherCharts extends React.Component<
   };
 
   componentDidMount() {
-    this.setPerseverance();
+    const savedMarsWeatherCharts: State = JSON.parse(localStorage.getItem("MarsWeatherCharts") as string);
+    // console.log("savedMarsWeatherCharts:", savedMarsWeatherCharts);
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    savedMarsWeatherCharts !== null
+      ? (this.setState(savedMarsWeatherCharts), console.log("setting the Mars Charts from the localStorage"))
+      : (this.setPerseverance(), console.log("setPerseverance() was called"));
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem("MarsWeatherCharts", JSON.stringify(this.state));
+    // console.log("MarsWeatherCharts was set to the localStorage");
   }
 
   render() {

@@ -3,7 +3,7 @@
 import {SET_APOD_DATE, GET_USER_GEO_DATA} from "./actions";
 
 // Initial Global State
-const initialState = {
+const initialState: State = {
   location: {
     city: undefined,
     country: undefined,

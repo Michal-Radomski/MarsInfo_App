@@ -26,7 +26,8 @@ const LocalWeather = (props) => {
   const longitude = positionObject?.longitude;
 
   const [localWeather, setLocalWeather] = React.useState({});
-  console.log("localWeather:", localWeather);
+  const [isLoading, setIsLoading] = React.useState(undefined);
+  console.log("localWeather:", localWeather, "isLoading:", isLoading);
 
   React.useEffect(() => {
     // Fetching local weather data
@@ -35,8 +36,10 @@ const LocalWeather = (props) => {
         .then((response) => response.json())
         .then((data) => {
           // console.log("Weather:", data);
+          setIsLoading(true);
           setLocalWeather(data);
-        });
+        })
+        .catch((error) => console.log(error));
     }
     fetchWeather();
   }, [latitude, longitude]);

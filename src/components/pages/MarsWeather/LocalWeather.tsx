@@ -13,12 +13,16 @@ const apiKey = process.env.REACT_APP_OpenWeatherMap_API_KEY as string;
 // console.log("apiKey:", apiKey);
 
 const LocalWeather = (props: State): JSX.Element => {
+  const dispatch: Dispatch = useDispatch();
+  const location_Redux = useSelector((state: State) => state.location);
+  console.log("location_Redux:", location_Redux);
+
   // console.log("props:", props);
   const positionObject = {
-    latitude: props?.state?.location?.latitude as number,
-    longitude: props?.state?.location?.longitude as number,
-    city: props?.state?.location?.city as number,
-    country: props?.state?.location?.country as number,
+    latitude: location_Redux?.latitude as number,
+    longitude: location_Redux?.longitude as number,
+    city: location_Redux?.city as number,
+    country: location_Redux?.country as number,
   };
   // console.log("positionObject:", positionObject);
 
@@ -26,8 +30,8 @@ const LocalWeather = (props: State): JSX.Element => {
   const longitude = positionObject?.longitude;
 
   const [localWeather, setLocalWeather] = React.useState<State>({});
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  console.log("localWeather:", localWeather, "isLoading:", isLoading);
+  const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
+  console.log("localWeather:", localWeather, "isLoading:", isLoaded);
 
   React.useEffect(() => {
     // Fetching local weather data
@@ -36,7 +40,7 @@ const LocalWeather = (props: State): JSX.Element => {
         .then((response) => response.json())
         .then((data) => {
           // console.log("Weather:", data);
-          setIsLoading(true);
+          setIsLoaded(true);
           setLocalWeather(data);
         })
         .catch((error) => console.log(error));

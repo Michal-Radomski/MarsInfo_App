@@ -16,7 +16,9 @@ const apiKey = process.env.REACT_APP_OpenWeatherMap_API_KEY as string;
 const LocalWeather = (): JSX.Element => {
   const dispatch: Dispatch = useDispatch();
   const location_Redux = useSelector((state: State) => state.location);
-  console.log("location_Redux:", location_Redux);
+  const weather_Redux = useSelector((state: State) => state.weather);
+  // console.log("location_Redux:", location_Redux);
+  console.log("weather_Redux:", weather_Redux);
 
   const positionObject = {
     latitude: location_Redux?.latitude as number,
@@ -29,9 +31,10 @@ const LocalWeather = (): JSX.Element => {
   const latitude = positionObject?.latitude;
   const longitude = positionObject?.longitude;
 
-  const [localWeather, setLocalWeather] = React.useState<State>({});
-  const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
-  console.log("localWeather:", localWeather, "isLoading:", isLoaded);
+  //* Local State is Unnecessary
+  // const [localWeather, setLocalWeather] = React.useState<State>({});
+  // const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
+  // console.log("localWeather:", localWeather, "isLoaded:", isLoaded);
 
   React.useEffect(() => {
     // Fetching local weather data
@@ -53,9 +56,9 @@ const LocalWeather = (): JSX.Element => {
             sunrise: new Date(data.sys.sunrise * 1000).toLocaleString() as string,
             sunset: new Date(data.sys.sunset * 1000).toLocaleString() as string,
           };
-          console.log("weather_Redux:", weather_Redux);
-          setIsLoaded(true);
-          setLocalWeather(weather_Redux);
+          // console.log("weather_Redux:", weather_Redux);
+          // setIsLoaded(true);
+          // setLocalWeather(weather_Redux);
           dispatch({type: GET_USER_WEATHER_CONDITIONS, payload: weather_Redux});
         })
         .catch((error) => console.log(error));

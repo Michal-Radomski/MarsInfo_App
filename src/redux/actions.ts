@@ -3,6 +3,7 @@ import axios from "axios";
 // Action types
 export const SET_APOD_DATE = "SET_APOD_DATE";
 export const GET_USER_GEO_DATA = "GET_USER_GEO_DATA";
+export const GET_USER_WEATHER_CONDITIONS = "GET_USER_WEATHER_CONDITIONS";
 
 // Action creator getUserGeoDate
 export const getUserGeoData = () => {

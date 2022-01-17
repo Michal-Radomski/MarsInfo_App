@@ -1,6 +1,6 @@
 // import {combineReducers} from "redux";
 
-import {SET_APOD_DATE, GET_USER_GEO_DATA} from "./actions";
+import {SET_APOD_DATE, GET_USER_GEO_DATA, GET_USER_WEATHER_CONDITIONS} from "./actions";
 
 // Initial Global State
 const initialState: State = {
@@ -14,6 +14,18 @@ const initialState: State = {
     currency: undefined,
     currency_code: undefined,
   },
+  weather: {
+    general_description: undefined,
+    current_temp: undefined,
+    max_temp: undefined,
+    min_temp: undefined,
+    pressure: undefined,
+    humidity: undefined,
+    speedOfWind: undefined,
+    directionOfWind: undefined,
+    sunrise: undefined,
+    sunset: undefined,
+  },
 };
 
 // Reducer
@@ -23,6 +35,8 @@ const rootReducer = (state = initialState, action: Dispatch) => {
       return {...state, location: action.payload};
     case SET_APOD_DATE:
       return {...state, date: action.payload};
+    case GET_USER_WEATHER_CONDITIONS:
+      return {...state, weather: action.payload};
 
     default:
       return state;

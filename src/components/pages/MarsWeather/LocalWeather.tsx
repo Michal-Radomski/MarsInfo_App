@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import {useSelector, useDispatch} from "react-redux";
+import {GET_USER_WEATHER_CONDITIONS} from "../../../redux/actions";
 
 const DivLocalWeather = styled.div`
   background-color: lightyellow;
@@ -12,12 +13,11 @@ const DivLocalWeather = styled.div`
 const apiKey = process.env.REACT_APP_OpenWeatherMap_API_KEY as string;
 // console.log("apiKey:", apiKey);
 
-const LocalWeather = (props: State): JSX.Element => {
+const LocalWeather = (): JSX.Element => {
   const dispatch: Dispatch = useDispatch();
   const location_Redux = useSelector((state: State) => state.location);
   console.log("location_Redux:", location_Redux);
 
-  // console.log("props:", props);
   const positionObject = {
     latitude: location_Redux?.latitude as number,
     longitude: location_Redux?.longitude as number,
@@ -42,6 +42,20 @@ const LocalWeather = (props: State): JSX.Element => {
           // console.log("Weather:", data);
           setIsLoaded(true);
           setLocalWeather(data);
+          const weather_Redux = {
+            general_description: data.weather[0].description,
+            current_temp: data.main.temp.toFixed(1),
+            max_temp: data.main.temp_max.toFixed(1),
+            min_temp: data.main.temp_min.toFixed(1),
+            pressure: data.main.pressure,
+            humidity: data.main.humidity,
+            speedOfWind: data.wind.speed,
+            directionOfWind: data.wind.deg,
+            sunrise: new Date(data.sys.sunrise * 1000).toLocaleString(),
+            sunset: new Date(data.sys.sunset * 1000).toLocaleString(),
+          };
+          console.log("weather_Redux:", weather_Redux);
+          dispatch({type: GET_USER_WEATHER_CONDITIONS, payload: weather_Redux});
         })
         .catch((error) => console.log(error));
     }

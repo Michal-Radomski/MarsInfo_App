@@ -22,26 +22,24 @@ const LocalWeather = (props) => {
   };
   // console.log("positionObject:", positionObject);
 
-  // Fetching local weather data
-  function fetchWeather(object) {
-    fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${object.latitude}&lon=${object.longitude}&${apiKey}&units=metric`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Weather:", data);
-        setLocalWeather(data);
-      });
-  }
+  const latitude = positionObject?.latitude;
+  const longitude = positionObject?.longitude;
 
   const [localWeather, setLocalWeather] = React.useState({});
+  console.log("localWeather:", localWeather);
 
   React.useEffect(() => {
-    if (props.state.location.latitude) {
-      fetchWeather(positionObject);
+    // Fetching local weather data
+    function fetchWeather() {
+      fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&${apiKey}&units=metric`)
+        .then((response) => response.json())
+        .then((data) => {
+          // console.log("Weather:", data);
+          setLocalWeather(data);
+        });
     }
-    console.log("localWeather:", localWeather);
-  }, []);
+    fetchWeather();
+  }, [latitude, longitude]);
 
   return <DivLocalWeather>Local Weather</DivLocalWeather>;
 };

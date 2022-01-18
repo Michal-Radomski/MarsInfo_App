@@ -21,3 +21,6 @@
    [OpenStreetMap](https://www.openstreetmap.org).
 
 4. World Imagery is provided by [ArcGIS](https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer).
+
+5. Local weather conditions are provided by [OpenWeatherMap](https://openweathermap.org/). The Api Key is not hosted on
+   [github.com](https://github.com).

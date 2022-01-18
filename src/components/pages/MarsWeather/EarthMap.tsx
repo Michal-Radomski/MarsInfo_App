@@ -89,7 +89,7 @@ class EarthMap extends React.Component<Props, State> {
     const savedLongitude = JSON.parse(localStorage.getItem("longitude") as string);
     const savedCity = JSON.parse(localStorage.getItem("city") as string);
     const savedCountry = JSON.parse(localStorage.getItem("country") as string);
-    const savedIP = JSON.parse(localStorage.getItem("IP") as string);
+    const savedIP = JSON.parse(localStorage.getItem("ip") as string);
     const savedCountryFlag = JSON.parse(localStorage.getItem("country_flag") as string);
     // console.log("savedLatitude & savedLongitude:", savedLatitude, savedLongitude);
 
@@ -243,14 +243,18 @@ class EarthMap extends React.Component<Props, State> {
   }
 
   componentDidUpdate() {
-    localStorage.setItem("latitude", JSON.stringify(this.props.state?.location.latitude));
-    localStorage.setItem("longitude", JSON.stringify(this.props.state?.location.longitude));
-    localStorage.setItem("city", JSON.stringify(this.props.state?.location.city));
-    localStorage.setItem("country", JSON.stringify(this.props.state?.location.country));
-    localStorage.setItem("IP", JSON.stringify(this.props.state?.location.ip));
-    localStorage.setItem("country_flag", JSON.stringify(this.props.state?.location.country_flag));
-    localStorage.setItem("currency", JSON.stringify(this.props.state?.location.currency));
-    localStorage.setItem("currency_code", JSON.stringify(this.props.state?.location.currency_code));
+    // localStorage.setItem("latitude", JSON.stringify(this.props.state?.location.latitude));
+    // localStorage.setItem("longitude", JSON.stringify(this.props.state?.location.longitude));
+    // localStorage.setItem("city", JSON.stringify(this.props.state?.location.city));
+    // localStorage.setItem("country", JSON.stringify(this.props.state?.location.country));
+    // localStorage.setItem("ip", JSON.stringify(this.props.state?.location.ip));
+    // localStorage.setItem("country_flag", JSON.stringify(this.props.state?.location.country_flag));
+    // localStorage.setItem("currency", JSON.stringify(this.props.state?.location.currency));
+    // localStorage.setItem("currency_code", JSON.stringify(this.props.state?.location.currency_code));
+
+    //* The same as above
+    const localStorageEntries = Object.entries(this?.props?.state?.location ?? "No Data");
+    localStorageEntries.forEach((entry) => localStorage.setItem(entry[0], JSON.stringify(entry[1])));
   }
 
   render() {

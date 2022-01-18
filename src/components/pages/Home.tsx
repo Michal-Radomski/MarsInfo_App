@@ -12,14 +12,20 @@ class Home extends React.Component<{getUserGeoData: Fetch; state: State}, State>
 
   componentDidUpdate() {
     // console.log("this.props.state.location-update:", this.props.state.location);
-    localStorage.setItem("latitude", JSON.stringify(this.props.state.location.latitude));
-    localStorage.setItem("longitude", JSON.stringify(this.props.state.location.longitude));
-    localStorage.setItem("city", JSON.stringify(this.props.state.location.city));
-    localStorage.setItem("country", JSON.stringify(this.props.state.location.country));
-    localStorage.setItem("IP", JSON.stringify(this.props.state.location.ip));
-    localStorage.setItem("country_flag", JSON.stringify(this.props.state.location.country_flag));
-    localStorage.setItem("currency", JSON.stringify(this.props.state.location.currency));
-    localStorage.setItem("currency_code", JSON.stringify(this.props.state.location.currency_code));
+    // localStorage.setItem("latitude", JSON.stringify(this.props.state.location.latitude));
+    // localStorage.setItem("longitude", JSON.stringify(this.props.state.location.longitude));
+    // localStorage.setItem("city", JSON.stringify(this.props.state.location.city));
+    // localStorage.setItem("country", JSON.stringify(this.props.state.location.country));
+    // localStorage.setItem("ip", JSON.stringify(this.props.state.location.ip));
+    // localStorage.setItem("country_flag", JSON.stringify(this.props.state.location.country_flag));
+    // localStorage.setItem("currency", JSON.stringify(this.props.state.location.currency));
+    // localStorage.setItem("currency_code", JSON.stringify(this.props.state.location.currency_code));
+    //* The same as above
+    const localStorageEntries = Object.entries(this.props.state.location);
+    console.log("localStorageEntries:", localStorageEntries);
+    for (let i = 0; i < localStorageEntries.length; i++) {
+      localStorage.setItem(localStorageEntries[i][0], JSON.stringify(localStorageEntries[i][1]));
+    }
   }
 
   render() {

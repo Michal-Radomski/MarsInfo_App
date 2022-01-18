@@ -109,8 +109,3 @@ const LocalWeather = (): JSX.Element => {
 };
 
 export default LocalWeather;
-
-// eslint-disable-next-line no-lone-blocks
-{
-  /* <a href="https://www.flaticon.com/free-icons/direction" title="direction icons">Direction icons created by Alfredo Hernandez - Flaticon</a> */
-}

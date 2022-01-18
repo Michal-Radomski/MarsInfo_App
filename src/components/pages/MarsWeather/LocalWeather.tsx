@@ -79,7 +79,20 @@ const LocalWeather = (): JSX.Element => {
       : (fetchWeather(), console.log("fetchWeather() was called"));
   }, [dispatch, latitude, longitude]);
 
-  return <DivLocalWeather>Local Weather Description: {weather_Redux.general_description}</DivLocalWeather>;
+  return (
+    <DivLocalWeather>
+      {/* {console.log(
+        "Are there any Undefined in weather_Redux? :",
+        Object.values(weather_Redux).some((value) => value === undefined)
+      )} */}
+      Local Weather at your Location:
+      {Object.values(weather_Redux).some((value) => value === undefined) ? (
+        <p>Loading...</p>
+      ) : (
+        <p>Weather Description:{weather_Redux.general_description}</p>
+      )}
+    </DivLocalWeather>
+  );
 };
 
 export default LocalWeather;

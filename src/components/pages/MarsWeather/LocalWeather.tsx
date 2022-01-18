@@ -21,7 +21,7 @@ const LocalWeather = (): JSX.Element => {
   // const weather_Redux = useSelector((state: State) => state.weather);
   const [location_Redux, weather_Redux] = useSelector((state: State) => [state.location, state.weather]);
   // console.log("location_Redux:", location_Redux);
-  console.log("weather_Redux:", weather_Redux);
+  // console.log("weather_Redux:", weather_Redux);
 
   const positionObject = {
     latitude: location_Redux?.latitude as number,
@@ -63,13 +63,20 @@ const LocalWeather = (): JSX.Element => {
           // setIsLoaded(true);
           // setLocalWeather(weather_Redux);
           dispatch({type: GET_USER_WEATHER_CONDITIONS, payload: weather_Redux});
+          localStorage.setItem("LocalWeather", JSON.stringify(weather_Redux));
         })
         .catch((error) => console.log(error));
     }
-    fetchWeather();
+
+    const Local_Weather: State = JSON.parse(localStorage.getItem("LocalWeather") as string);
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    Local_Weather !== null
+      ? (dispatch({type: GET_USER_WEATHER_CONDITIONS, payload: Local_Weather}),
+        console.log("Setting the Store from the localStorage"))
+      : (fetchWeather(), console.log("fetchWeather() was called"));
   }, [dispatch, latitude, longitude]);
 
-  return <DivLocalWeather>Local Weather</DivLocalWeather>;
+  return <DivLocalWeather>Local Weather Description: {weather_Redux.general_description}</DivLocalWeather>;
 };
 
 export default LocalWeather;

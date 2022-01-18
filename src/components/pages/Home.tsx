@@ -32,7 +32,7 @@ class Home extends React.Component<{getUserGeoData: Fetch; state: State}, State>
 }
 
 const mapStateToProps = (state: State) => ({
-  state: state,
+  state: state.rootReducer,
 });
 
 export default connect(mapStateToProps, {getUserGeoData})(Home);

@@ -288,7 +288,7 @@ class EarthMap extends React.Component<Props, State> {
 }
 
 const mapStateToProps = (state: State) => {
-  return {state: state};
+  return {state: state.rootReducer};
 };
 
 export default connect(mapStateToProps, {getUserGeoData})(EarthMap);

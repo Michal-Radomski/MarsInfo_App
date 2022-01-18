@@ -17,9 +17,12 @@ const LocalWeather = (): JSX.Element => {
   const dispatch: Dispatch = useDispatch();
 
   //* Below the same as commented
-  // const location_Redux = useSelector((state: State) => state.location);
-  // const weather_Redux = useSelector((state: State) => state.weather);
-  const [location_Redux, weather_Redux] = useSelector((state: State) => [state.location, state.weather]);
+  // const location_Redux = useSelector((state: State) => state.rootReducer.location);
+  // const weather_Redux = useSelector((state: State) => state.rootReducer.weather);
+  const [location_Redux, weather_Redux] = useSelector((state: State) => [
+    state.rootReducer.location,
+    state.rootReducer.weather,
+  ]);
   // console.log("location_Redux:", location_Redux);
   // console.log("weather_Redux:", weather_Redux);
 

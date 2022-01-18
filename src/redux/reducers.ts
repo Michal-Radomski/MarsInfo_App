@@ -25,6 +25,7 @@ const initialState: State = {
     directionOfWind: undefined,
     sunrise: undefined,
     sunset: undefined,
+    icon: undefined,
   },
 };
 

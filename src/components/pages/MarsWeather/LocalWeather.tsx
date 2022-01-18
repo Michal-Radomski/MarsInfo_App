@@ -48,7 +48,7 @@ const LocalWeather = (): JSX.Element => {
       fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&${apiKey}&units=metric`)
         .then((response) => response.json())
         .then((data) => {
-          // console.log("Weather:", data);
+          console.log("Weather:", data);
 
           const weather_Redux = {
             general_description: data.weather[0].description as string,
@@ -61,6 +61,7 @@ const LocalWeather = (): JSX.Element => {
             directionOfWind: data.wind.deg as number,
             sunrise: new Date(data.sys.sunrise * 1000).toLocaleString() as string,
             sunset: new Date(data.sys.sunset * 1000).toLocaleString() as string,
+            icon: data.weather[0].icon as string,
           };
           // console.log("weather_Redux:", weather_Redux);
           // setIsLoaded(true);
@@ -89,7 +90,10 @@ const LocalWeather = (): JSX.Element => {
       {Object.values(weather_Redux).some((value) => value === undefined) ? (
         <p>Loading...</p>
       ) : (
-        <p>Weather Description:{weather_Redux.general_description}</p>
+        <div>
+          <p>Weather Description:{weather_Redux.general_description}</p>
+          <img src={`https://openweathermap.org/img/wn/${weather_Redux.icon}@2x.png`} alt="weather conditions" />
+        </div>
       )}
     </DivLocalWeather>
   );

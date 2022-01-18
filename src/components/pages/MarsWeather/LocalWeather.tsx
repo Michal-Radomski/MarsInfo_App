@@ -3,9 +3,11 @@ import styled from "styled-components";
 import {useSelector, useDispatch} from "react-redux";
 import {GET_USER_WEATHER_CONDITIONS} from "../../../redux/actions";
 
+import WindDirection from "./Images/WindDirection.png";
+
 const DivLocalWeather = styled.div`
   background-color: lightyellow;
-  min-width: 150px;
+  min-width: 320px;
   height: 350px;
 `;
 
@@ -48,7 +50,7 @@ const LocalWeather = (): JSX.Element => {
       fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&${apiKey}&units=metric`)
         .then((response) => response.json())
         .then((data) => {
-          console.log("Weather:", data);
+          // console.log("Weather:", data);
 
           const weather_Redux = {
             general_description: data.weather[0].description as string,
@@ -86,13 +88,20 @@ const LocalWeather = (): JSX.Element => {
         "Are there any Undefined in weather_Redux? :",
         Object.values(weather_Redux).some((value) => value === undefined)
       )} */}
-      Local Weather at your Location:
+      Current Weather at your Location:
       {Object.values(weather_Redux).some((value) => value === undefined) ? (
         <p>Loading...</p>
       ) : (
         <div>
           <p>Weather Description:{weather_Redux.general_description}</p>
-          <img src={`https://openweathermap.org/img/wn/${weather_Redux.icon}@2x.png`} alt="weather conditions" />
+          <img src={`https://openweathermap.org/img/wn/${weather_Redux.icon}@2x.png`} alt="Local Weather Conditions" />
+          <img
+            src={WindDirection}
+            alt="Wind Direction"
+            width="100px"
+            height="auto"
+            style={{transform: `rotate(${weather_Redux.directionOfWind}deg)`}}
+          />
         </div>
       )}
     </DivLocalWeather>
@@ -100,3 +109,8 @@ const LocalWeather = (): JSX.Element => {
 };
 
 export default LocalWeather;
+
+// eslint-disable-next-line no-lone-blocks
+{
+  /* <a href="https://www.flaticon.com/free-icons/direction" title="direction icons">Direction icons created by Alfredo Hernandez - Flaticon</a> */
+}

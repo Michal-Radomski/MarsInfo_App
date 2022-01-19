@@ -1,11 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import Card from "react-bootstrap/Card";
+
 import {useSelector, useDispatch} from "react-redux";
 import {GET_USER_WEATHER_CONDITIONS} from "../../../redux/actions";
 
 import WindDirection from "./Images/WindDirection.png";
 
 const DivLocalWeather = styled.div`
+  margin: 5px;
   background-color: lightyellow;
   min-width: 320px;
   height: 350px;
@@ -84,10 +87,15 @@ const LocalWeather = (): JSX.Element => {
 
   return (
     <DivLocalWeather>
-      {/* {console.log(
-        "Are there any Undefined in weather_Redux? :",
-        Object.values(weather_Redux).some((value) => value === undefined)
-      )} */}
+      <Card border="primary" style={{width: "18rem"}}>
+        <Card.Header>Header</Card.Header>
+        <Card.Body>
+          <Card.Title>Primary Card Title</Card.Title>
+          <Card.Text>
+            Some quick example text to build on the card title and make up the bulk of the card's content.
+          </Card.Text>
+        </Card.Body>
+      </Card>
       Current Weather at your Location:
       {Object.values(weather_Redux).some((value) => value === undefined) ? (
         <p>Loading...</p>

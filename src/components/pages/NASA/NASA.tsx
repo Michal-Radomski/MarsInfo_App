@@ -25,7 +25,7 @@ const H1 = styled.h1`
   margin: 5px;
 `;
 
-type State = {
+type LocalState = {
   date: Date;
   photo: {
     title: string;
@@ -34,8 +34,8 @@ type State = {
   };
 };
 
-class NASA extends React.Component<{}, State> {
-  state: State = {
+class NASA extends React.Component<{}, LocalState> {
+  state: LocalState = {
     date: new Date(),
     photo: {
       title: "",

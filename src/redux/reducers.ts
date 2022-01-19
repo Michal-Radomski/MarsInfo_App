@@ -4,6 +4,9 @@ import {SET_APOD_DATE, GET_USER_GEO_DATA, GET_USER_WEATHER_CONDITIONS} from "./a
 
 // Initial Global State
 const initialState: State = {
+  NASA_APOD: {
+    selectedDate: "" as string,
+  },
   location: {
     city: undefined,
     country: undefined,
@@ -35,7 +38,7 @@ const reducer = (state = initialState, action: Dispatch) => {
     case GET_USER_GEO_DATA:
       return {...state, location: action.payload};
     case SET_APOD_DATE:
-      return {...state, date: action.payload};
+      return {...state, NASA_APOD: {selectedDate: action.payload}};
     case GET_USER_WEATHER_CONDITIONS:
       return {...state, weather: action.payload};
 

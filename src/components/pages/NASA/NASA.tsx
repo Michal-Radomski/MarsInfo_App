@@ -1,9 +1,11 @@
 import React from "react";
 import momentRandom from "moment-random";
 import styled from "styled-components";
+import {connect} from "react-redux";
 
 import DateInput from "./DateInput";
 import Photo from "./Photo";
+import {setAPOD_Date} from "../../../redux/actions";
 
 const API_KEY = process.env.REACT_APP_NASA_API_KEY as string;
 // console.log("API_KEY:", API_KEY);
@@ -34,9 +36,9 @@ type LocalState = {
   };
 };
 
-class NASA extends React.Component<{}, LocalState> {
+class NASA extends React.Component<{state: {NASA_APOD: {selectedDate: string}}; setAPOD_Date: Dispatch}, State> {
   state: LocalState = {
-    date: new Date(),
+    date: this.props.state.NASA_APOD.selectedDate === "" ? new Date() : new Date(this.props.state.NASA_APOD.selectedDate),
     photo: {
       title: "",
       url: "",
@@ -56,12 +58,19 @@ class NASA extends React.Component<{}, LocalState> {
     // console.log("savedDateMount0:", savedDate);
     savedDate !== null ? this.getPhoto(savedDate) : this.getPhoto("");
     if (savedDate !== null) {
-      // console.log("savedDateMount1:", savedDate);
+      console.log("savedDateMount1:", savedDate);
       const dateFromLocalStorage = new Date(savedDate);
       // console.log("dateFromLocalStorage:", dateFromLocalStorage);
       this.setState({date: dateFromLocalStorage});
       // console.log("this.state.date-mount:", this.state?.date.toISOString().split("T")[0]);
     }
+    //* Setting the Global Store
+    setTimeout(() => {
+      const selectedDate = this.state.date.toISOString().split("T")[0];
+      // console.log("this.props.setAPOD_Date:", this.props.setAPOD_Date);
+      console.log("selectedDate:", selectedDate);
+      this.props.setAPOD_Date(selectedDate);
+    }, 500);
   }
 
   componentDidUpdate() {
@@ -81,6 +90,7 @@ class NASA extends React.Component<{}, LocalState> {
   changeDate = async (dateFromInput: Date) => {
     await this.setState({date: dateFromInput});
     await this.getPhoto(this.state.date.toISOString().split("T")[0]);
+    await this.props.setAPOD_Date(this.state.date.toISOString().split("T")[0]);
   };
 
   randomDate = async () => {
@@ -90,6 +100,7 @@ class NASA extends React.Component<{}, LocalState> {
     // console.log("randomDate:", randomDate);
     await this.setState({date: randomDate});
     await this.getPhoto(this.state.date.toISOString().split("T")[0]);
+    await this.props.setAPOD_Date(this.state.date.toISOString().split("T")[0]);
   };
 
   render() {
@@ -103,4 +114,8 @@ class NASA extends React.Component<{}, LocalState> {
   }
 }
 
-export default NASA;
+const mapStateToProps = (state: State) => ({
+  state: state.rootReducer,
+});
+
+export default connect(mapStateToProps, {setAPOD_Date})(NASA);

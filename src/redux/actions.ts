@@ -19,3 +19,8 @@ export const getUserGeoData = () => {
     }
   };
 };
+
+// Other Action Creators
+export const setAPOD_Date = (selectedDate: string) => (dispatch: Dispatch) => {
+  dispatch({type: SET_APOD_DATE, payload: selectedDate});
+};

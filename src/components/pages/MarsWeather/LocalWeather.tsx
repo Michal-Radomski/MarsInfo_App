@@ -100,7 +100,7 @@ const LocalWeather = (): JSX.Element => {
             alt="Wind Direction"
             width="100px"
             height="auto"
-            style={{transform: `rotate(${weather_Redux.directionOfWind}deg)`}}
+            style={{transform: `rotate(${360 - weather_Redux.directionOfWind}deg)`}}
           />
         </div>
       )}

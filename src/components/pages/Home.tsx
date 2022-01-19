@@ -21,11 +21,13 @@ class Home extends React.Component<{getUserGeoData: Fetch; state: State}, State>
     // localStorage.setItem("currency", JSON.stringify(this.props.state.location.currency));
     // localStorage.setItem("currency_code", JSON.stringify(this.props.state.location.currency_code));
     //* The same as above
-    const localStorageEntries = Object.entries(this.props.state.location);
-    console.log("localStorageEntries:", localStorageEntries);
-    for (let i = 0; i < localStorageEntries.length; i++) {
-      localStorage.setItem(localStorageEntries[i][0], JSON.stringify(localStorageEntries[i][1]));
-    }
+    // const localStorageEntries = Object.entries(this.props.state.location);
+    // // console.log("localStorageEntries:", localStorageEntries);
+    // for (let i = 0; i < localStorageEntries.length; i++) {
+    //   localStorage.setItem(localStorageEntries[i][0], JSON.stringify(localStorageEntries[i][1]));
+    // }
+    //* The same as above - one line
+    Object.entries(this.props.state.location).forEach((entry) => localStorage.setItem(entry[0], JSON.stringify(entry[1])));
   }
 
   render() {

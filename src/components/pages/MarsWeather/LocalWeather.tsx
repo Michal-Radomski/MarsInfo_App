@@ -10,7 +10,7 @@ import WindDirection from "./Images/WindDirection.png";
 const DivLocalWeather = styled.div`
   background-color: transparent;
   min-width: 400px;
-  height: 350px;
+  height: 390px;
 `;
 
 //* Api Key: ${apiKey} is not hosted on GitHub.com
@@ -68,7 +68,7 @@ const LocalWeather = (): JSX.Element => {
               sunrise: new Date(data.sys.sunrise * 1000).toLocaleString() as string,
               sunset: new Date(data.sys.sunset * 1000).toLocaleString() as string,
               icon: data.weather[0].icon as string,
-              calculationTime: new Date(data.dt * 1000).toUTCString() as string,
+              calculationTime: new Date(data.dt * 1000).toISOString() as string,
             };
             // console.log("weather_Redux:", weather_Redux);
             // setIsLoaded(true);
@@ -117,7 +117,9 @@ const LocalWeather = (): JSX.Element => {
               src={`https://openweathermap.org/img/wn/${weather_Redux.icon}@2x.png`}
               alt="Local Weather Conditions"
             />
-          ) : null}
+          ) : (
+            "No Data"
+          )}
         </Card.Header>
         {Object.values(weather_Redux).some((value) => value === undefined) ? (
           <Card.Body>
@@ -144,7 +146,7 @@ const LocalWeather = (): JSX.Element => {
                 Current Temperature:{" "}
                 <span style={{float: "right", fontWeight: "bold"}}>{weather_Redux.current_temp} °C</span>
               </Card.Text>
-              {/* <Card.Text style={{marginBottom: "0px"}}>
+              <Card.Text style={{marginBottom: "0px"}}>
                 Min/ Max Temp:{" "}
                 <span style={{float: "right", fontWeight: "bold"}}>
                   {weather_Redux.min_temp}/ {weather_Redux.max_temp} °C
@@ -155,7 +157,7 @@ const LocalWeather = (): JSX.Element => {
               </Card.Text>
               <Card.Text style={{marginBottom: "0px"}}>
                 Humidity: <span style={{float: "right", fontWeight: "bold"}}>{weather_Redux.humidity} %</span>
-              </Card.Text> */}
+              </Card.Text>
               <Card.Text style={{textTransform: "none", marginBottom: "0px"}}>
                 Speed of Wind: <span style={{float: "right", fontWeight: "bold"}}>{weather_Redux.speedOfWind} m/s</span>
               </Card.Text>
@@ -179,7 +181,6 @@ const LocalWeather = (): JSX.Element => {
             </div>
           </Card.Body>
         )}
-
         <Card.Footer
           style={{
             color: "white",
@@ -191,10 +192,12 @@ const LocalWeather = (): JSX.Element => {
             alignItems: "center",
             alignContent: "center",
             padding: "0.25rem 1rem",
+            fontSize: "80%",
           }}
         >
-          <Card.Text style={{marginBottom: "0px"}}>
-            Calculation Time: <span style={{float: "right", fontWeight: "bold"}}>{weather_Redux.calculationTime}</span>
+          <Card.Text style={{marginBottom: "0px"}}>Weather Calculation Time:</Card.Text>
+          <Card.Text style={{marginBottom: "0px", fontWeight: "900"}}>
+            {weather_Redux.calculationTime ? weather_Redux.calculationTime : "No Data"}
           </Card.Text>
         </Card.Footer>
       </Card>

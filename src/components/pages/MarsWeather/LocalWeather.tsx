@@ -88,10 +88,12 @@ const LocalWeather = (): JSX.Element => {
     }
     localWeather();
 
-    // Updating weather every one hour
-    setInterval(() => {
-      localWeather();
-    }, 3600000);
+    // Updating local weather every 10 minutes
+    setInterval(async () => {
+      await localStorage.removeItem("LocalWeather");
+      // console.log("LocalWeather Item was remove, now fetching...");
+      await localWeather();
+    }, 10000);
   }, [dispatch, latitude, longitude]);
 
   return (

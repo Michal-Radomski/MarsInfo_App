@@ -48,41 +48,49 @@ const LocalWeather = (): JSX.Element => {
   // console.log("localWeather:", localWeather, "isLoaded:", isLoaded);
 
   React.useEffect(() => {
-    // Fetching local weather data
-    function fetchWeather() {
-      fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&${apiKey}&units=metric`)
-        .then((response) => response.json())
-        .then((data) => {
-          // console.log("Weather:", data);
+    function localWeather() {
+      // console.log("function localWeather was called!");
+      //* Fetching local weather data
+      function fetchWeather() {
+        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&${apiKey}&units=metric`)
+          .then((response) => response.json())
+          .then((data) => {
+            // console.log("Weather:", data);
+            const weather_Redux = {
+              general_description: data.weather[0].description as string,
+              current_temp: data.main.temp.toFixed(1) as number,
+              max_temp: data.main.temp_max.toFixed(1) as number,
+              min_temp: data.main.temp_min.toFixed(1) as number,
+              pressure: data.main.pressure as number,
+              humidity: data.main.humidity as number,
+              speedOfWind: data.wind.speed as number,
+              directionOfWind: data.wind.deg as number,
+              sunrise: new Date(data.sys.sunrise * 1000).toLocaleString() as string,
+              sunset: new Date(data.sys.sunset * 1000).toLocaleString() as string,
+              icon: data.weather[0].icon as string,
+            };
+            // console.log("weather_Redux:", weather_Redux);
+            // setIsLoaded(true);
+            // setLocalWeather(weather_Redux);
+            dispatch({type: GET_USER_WEATHER_CONDITIONS, payload: weather_Redux});
+            localStorage.setItem("LocalWeather", JSON.stringify(weather_Redux));
+          })
+          .catch((error) => console.log(error));
+      }
 
-          const weather_Redux = {
-            general_description: data.weather[0].description as string,
-            current_temp: data.main.temp.toFixed(1) as number,
-            max_temp: data.main.temp_max.toFixed(1) as number,
-            min_temp: data.main.temp_min.toFixed(1) as number,
-            pressure: data.main.pressure as number,
-            humidity: data.main.humidity as number,
-            speedOfWind: data.wind.speed as number,
-            directionOfWind: data.wind.deg as number,
-            sunrise: new Date(data.sys.sunrise * 1000).toLocaleString() as string,
-            sunset: new Date(data.sys.sunset * 1000).toLocaleString() as string,
-            icon: data.weather[0].icon as string,
-          };
-          // console.log("weather_Redux:", weather_Redux);
-          // setIsLoaded(true);
-          // setLocalWeather(weather_Redux);
-          dispatch({type: GET_USER_WEATHER_CONDITIONS, payload: weather_Redux});
-          localStorage.setItem("LocalWeather", JSON.stringify(weather_Redux));
-        })
-        .catch((error) => console.log(error));
+      const Local_Weather: State = JSON.parse(localStorage.getItem("LocalWeather") as string);
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      Local_Weather !== null
+        ? (dispatch({type: GET_USER_WEATHER_CONDITIONS, payload: Local_Weather}),
+          console.log("Setting the Store from the localStorage"))
+        : (fetchWeather(), console.log("fetchWeather() was called"));
     }
+    localWeather();
 
-    const Local_Weather: State = JSON.parse(localStorage.getItem("LocalWeather") as string);
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    Local_Weather !== null
-      ? (dispatch({type: GET_USER_WEATHER_CONDITIONS, payload: Local_Weather}),
-        console.log("Setting the Store from the localStorage"))
-      : (fetchWeather(), console.log("fetchWeather() was called"));
+    // Updating weather every one hour
+    setInterval(() => {
+      localWeather();
+    }, 3600000);
   }, [dispatch, latitude, longitude]);
 
   return (
@@ -116,7 +124,7 @@ const LocalWeather = (): JSX.Element => {
             <Card.Text>Wait a moment...</Card.Text>
           </Card.Body>
         ) : (
-          <Card.Body style={{padding: "auto 1rem"}}>
+          <Card.Body style={{padding: "0.5rem 1rem"}}>
             <Card.Title style={{fontWeight: "bold", marginBottom: "0.25rem"}}>
               {positionObject.city}, {positionObject.country}{" "}
               <img

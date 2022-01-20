@@ -93,7 +93,7 @@ const LocalWeather = (): JSX.Element => {
       await localStorage.removeItem("LocalWeather");
       // console.log("LocalWeather Item was remove, now fetching...");
       await localWeather();
-    }, 10000);
+    }, 600000);
   }, [dispatch, latitude, longitude]);
 
   return (

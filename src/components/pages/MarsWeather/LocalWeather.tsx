@@ -63,7 +63,7 @@ const LocalWeather = (): JSX.Element => {
               min_temp: data.main.temp_min.toFixed(1) as number,
               pressure: data.main.pressure as number,
               humidity: data.main.humidity as number,
-              speedOfWind: data.wind.speed as number,
+              speedOfWind: data.wind.speed.toFixed(1) as number,
               directionOfWind: data.wind.deg as number,
               sunrise: new Date(data.sys.sunrise * 1000).toLocaleString() as string,
               sunset: new Date(data.sys.sunset * 1000).toLocaleString() as string,

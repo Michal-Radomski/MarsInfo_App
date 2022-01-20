@@ -88,16 +88,27 @@ const LocalWeather = (): JSX.Element => {
   return (
     <DivLocalWeather>
       <Card border="info" style={{width: "100%", height: "100%"}}>
-        <Card.Header style={{color: "white", backgroundColor: "#0DCAF0", fontWeight: "bolder"}}>
-          <p>Current Weather At Your Location:</p>
-
-          <span style={{float: "right", marginBottom: "-5px"}}>
+        <Card.Header
+          style={{
+            color: "white",
+            backgroundColor: "#0DCAF0",
+            fontWeight: "bolder",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            alignContent: "center",
+            padding: "0.25rem 1rem",
+          }}
+        >
+          <p style={{marginBottom: 0, float: "left"}}>Current Weather At Your Location:</p>
+          {weather_Redux.icon ? (
             <img
-              height="50px"
+              height="60px"
               src={`https://openweathermap.org/img/wn/${weather_Redux.icon}@2x.png`}
               alt="Local Weather Conditions"
             />
-          </span>
+          ) : null}
         </Card.Header>
         {Object.values(weather_Redux).some((value) => value === undefined) ? (
           <Card.Body>
@@ -105,8 +116,8 @@ const LocalWeather = (): JSX.Element => {
             <Card.Text>Wait a moment...</Card.Text>
           </Card.Body>
         ) : (
-          <Card.Body>
-            <Card.Title style={{fontWeight: "bold"}}>
+          <Card.Body style={{padding: "auto 1rem"}}>
+            <Card.Title style={{fontWeight: "bold", marginBottom: "0.25rem"}}>
               {positionObject.city}, {positionObject.country}{" "}
               <img
                 src={positionObject.country_flag}
@@ -127,7 +138,7 @@ const LocalWeather = (): JSX.Element => {
               <Card.Text style={{marginBottom: "0px"}}>
                 Min/ Max Temp:{" "}
                 <span style={{float: "right", fontWeight: "bold"}}>
-                  {weather_Redux.min_temp}/{weather_Redux.max_temp} °C
+                  {weather_Redux.min_temp}/ {weather_Redux.max_temp} °C
                 </span>
               </Card.Text>
               <Card.Text style={{textTransform: "none", marginBottom: "0px"}}>
@@ -167,11 +178,3 @@ const LocalWeather = (): JSX.Element => {
 };
 
 export default LocalWeather;
-
-{
-  /* <img
-                height="60px"
-                src={`https://openweathermap.org/img/wn/${weather_Redux.icon}@2x.png`}
-                alt="Local Weather Conditions"
-              /> */
-}

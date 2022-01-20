@@ -87,9 +87,17 @@ const LocalWeather = (): JSX.Element => {
 
   return (
     <DivLocalWeather>
-      <Card border="primary" style={{width: "100%", height: "100%"}}>
-        <Card.Header style={{color: "white", backgroundColor: "#0D6EFD", fontWeight: "bolder"}}>
-          Current Weather at your Location:
+      <Card border="info" style={{width: "100%", height: "100%"}}>
+        <Card.Header style={{color: "white", backgroundColor: "#0DCAF0", fontWeight: "bolder"}}>
+          <p>Current Weather At Your Location:</p>
+
+          <span style={{float: "right", marginBottom: "-5px"}}>
+            <img
+              height="50px"
+              src={`https://openweathermap.org/img/wn/${weather_Redux.icon}@2x.png`}
+              alt="Local Weather Conditions"
+            />
+          </span>
         </Card.Header>
         {Object.values(weather_Redux).some((value) => value === undefined) ? (
           <Card.Body>
@@ -98,21 +106,58 @@ const LocalWeather = (): JSX.Element => {
           </Card.Body>
         ) : (
           <Card.Body>
-            <Card.Title>
-              {positionObject.city}, {positionObject.country}
-            </Card.Title>
-            <Card.Text></Card.Text>
-
-            <div>
-              <p>Weather Description:{weather_Redux.general_description}</p>
-              <img src={`https://openweathermap.org/img/wn/${weather_Redux.icon}@2x.png`} alt="Local Weather Conditions" />
+            <Card.Title style={{fontWeight: "bold"}}>
+              {positionObject.city}, {positionObject.country}{" "}
               <img
-                src={WindDirection}
-                alt="Wind Direction"
-                width="100px"
-                height="auto"
-                style={{transform: `rotate(${360 - weather_Redux.directionOfWind}deg)`}}
+                src={positionObject.country_flag}
+                height="16px"
+                alt="Country flag"
+                style={{marginBottom: "5px", border: "1px solid #666"}}
               />
+            </Card.Title>
+            <div style={{textTransform: "capitalize"}}>
+              <Card.Text style={{marginBottom: "0px"}}>
+                General Description:{" "}
+                <span style={{float: "right", fontWeight: "bold"}}>{weather_Redux.general_description}</span>
+              </Card.Text>
+              <Card.Text style={{marginBottom: "0px"}}>
+                Current Temperature:{" "}
+                <span style={{float: "right", fontWeight: "bold"}}>{weather_Redux.current_temp} °C</span>
+              </Card.Text>
+              <Card.Text style={{marginBottom: "0px"}}>
+                Min/ Max Temp:{" "}
+                <span style={{float: "right", fontWeight: "bold"}}>
+                  {weather_Redux.min_temp}/{weather_Redux.max_temp} °C
+                </span>
+              </Card.Text>
+              <Card.Text style={{textTransform: "none", marginBottom: "0px"}}>
+                Pressure: <span style={{float: "right", fontWeight: "bold"}}>{weather_Redux.pressure} hPa</span>
+              </Card.Text>
+              <Card.Text style={{marginBottom: "0px"}}>
+                Humidity: <span style={{float: "right", fontWeight: "bold"}}>{weather_Redux.humidity} %</span>
+              </Card.Text>
+              <Card.Text style={{textTransform: "none", marginBottom: "0px"}}>
+                Speed of Wind: <span style={{float: "right", fontWeight: "bold"}}>{weather_Redux.speedOfWind} m/s</span>
+              </Card.Text>
+              <Card.Text style={{textTransform: "none", marginBottom: "0px"}}>
+                Direction of Wind:{" "}
+                <span style={{float: "right", fontWeight: "bold"}}>
+                  {weather_Redux.directionOfWind} deg{" "}
+                  <img
+                    src={WindDirection}
+                    alt="Wind Direction"
+                    width="auto"
+                    height="27px"
+                    style={{transform: `rotate(${360 - weather_Redux.directionOfWind}deg)`, marginBottom: "-5px"}}
+                  />
+                </span>
+              </Card.Text>
+              <Card.Text style={{marginBottom: "0px"}}>
+                Sunrise: <span style={{float: "right", fontWeight: "bold"}}>{weather_Redux.sunrise}</span>
+              </Card.Text>
+              <Card.Text style={{marginBottom: "0px"}}>
+                Sunset: <span style={{float: "right", fontWeight: "bold"}}>{weather_Redux.sunset}</span>
+              </Card.Text>
             </div>
           </Card.Body>
         )}
@@ -122,3 +167,11 @@ const LocalWeather = (): JSX.Element => {
 };
 
 export default LocalWeather;
+
+{
+  /* <img
+                height="60px"
+                src={`https://openweathermap.org/img/wn/${weather_Redux.icon}@2x.png`}
+                alt="Local Weather Conditions"
+              /> */
+}

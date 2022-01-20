@@ -8,9 +8,8 @@ import {GET_USER_WEATHER_CONDITIONS} from "../../../redux/actions";
 import WindDirection from "./Images/WindDirection.png";
 
 const DivLocalWeather = styled.div`
-  margin: 5px;
-  background-color: lightyellow;
-  min-width: 320px;
+  background-color: transparent;
+  min-width: 400px;
   height: 350px;
 `;
 
@@ -36,6 +35,7 @@ const LocalWeather = (): JSX.Element => {
     longitude: location_Redux?.longitude as number,
     city: location_Redux?.city as number,
     country: location_Redux?.country as number,
+    country_flag: location_Redux?.country_flag as string,
   };
   // console.log("positionObject:", positionObject);
 
@@ -87,31 +87,36 @@ const LocalWeather = (): JSX.Element => {
 
   return (
     <DivLocalWeather>
-      <Card border="primary" style={{width: "18rem"}}>
-        <Card.Header>Header</Card.Header>
-        <Card.Body>
-          <Card.Title>Primary Card Title</Card.Title>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the bulk of the card's content.
-          </Card.Text>
-        </Card.Body>
+      <Card border="primary" style={{width: "100%", height: "100%"}}>
+        <Card.Header style={{color: "white", backgroundColor: "#0D6EFD", fontWeight: "bolder"}}>
+          Current Weather at your Location:
+        </Card.Header>
+        {Object.values(weather_Redux).some((value) => value === undefined) ? (
+          <Card.Body>
+            <Card.Title>Loading...</Card.Title>
+            <Card.Text>Wait a moment...</Card.Text>
+          </Card.Body>
+        ) : (
+          <Card.Body>
+            <Card.Title>
+              {positionObject.city}, {positionObject.country}
+            </Card.Title>
+            <Card.Text></Card.Text>
+
+            <div>
+              <p>Weather Description:{weather_Redux.general_description}</p>
+              <img src={`https://openweathermap.org/img/wn/${weather_Redux.icon}@2x.png`} alt="Local Weather Conditions" />
+              <img
+                src={WindDirection}
+                alt="Wind Direction"
+                width="100px"
+                height="auto"
+                style={{transform: `rotate(${360 - weather_Redux.directionOfWind}deg)`}}
+              />
+            </div>
+          </Card.Body>
+        )}
       </Card>
-      Current Weather at your Location:
-      {Object.values(weather_Redux).some((value) => value === undefined) ? (
-        <p>Loading...</p>
-      ) : (
-        <div>
-          <p>Weather Description:{weather_Redux.general_description}</p>
-          <img src={`https://openweathermap.org/img/wn/${weather_Redux.icon}@2x.png`} alt="Local Weather Conditions" />
-          <img
-            src={WindDirection}
-            alt="Wind Direction"
-            width="100px"
-            height="auto"
-            style={{transform: `rotate(${360 - weather_Redux.directionOfWind}deg)`}}
-          />
-        </div>
-      )}
     </DivLocalWeather>
   );
 };

@@ -29,6 +29,7 @@ const initialState: State = {
     sunrise: undefined,
     sunset: undefined,
     icon: undefined,
+    calculationTime: undefined,
   },
 };
 

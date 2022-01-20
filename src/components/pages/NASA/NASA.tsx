@@ -58,7 +58,7 @@ class NASA extends React.Component<{state: {NASA_APOD: {selectedDate: string}}; 
     // console.log("savedDateMount0:", savedDate);
     savedDate !== null ? this.getPhoto(savedDate) : this.getPhoto("");
     if (savedDate !== null) {
-      console.log("savedDateMount1:", savedDate);
+      // console.log("savedDateMount1:", savedDate);
       const dateFromLocalStorage = new Date(savedDate);
       // console.log("dateFromLocalStorage:", dateFromLocalStorage);
       this.setState({date: dateFromLocalStorage});

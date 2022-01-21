@@ -5,7 +5,7 @@ import "./styles/App.scss";
 import Home from "./components/pages/Home";
 import MarsWeather from "./components/pages/MarsWeather/MarsWeather";
 import Navbar from "./components/navbar/Navbar";
-import Mars3D from "./components/pages/Mars3D";
+import Mars3D from "./components/pages/Mars3D/Mars3D";
 import Covid from "./components/pages/Covid";
 import Weather from "./components/pages/Weather";
 

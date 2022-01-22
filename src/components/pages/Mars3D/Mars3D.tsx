@@ -44,7 +44,7 @@ const optsMars = {
 const imageryProvider = new Cesium.WebMapServiceImageryProvider({
   url: "https://planetarymaps.usgs.gov/cgi-bin/mapserv?map=/maps/mars/mars_simp_cyl.map&service=WMS",
   layers: "MDIM21_color,MOLA_THEMIS_blend",
-  // layers: "MOLA_THEMIS_blend",
+  credit: `<a href="https://www.usgs.gov/centers/astrogeology-science-center/maps" target="_blank">USGS - Astrogeology Science Center</a>`,
   parameters: {
     transparent: false,
     format: "image/png",

@@ -57,13 +57,11 @@ const imageryProvider = new Cesium.WebMapServiceImageryProvider({
 const Mars3D = (): JSX.Element => {
   const ref = React.useRef<CesiumComponentRef<Cesium.Viewer>>(null);
 
-  // React.useEffect(() => {
-
-  //   if (ref.current && ref.current.cesiumElement) {
-  //     // ref.current.cesiumElement is Cesium's Viewer
-  //     // DO SOMETHING
-  //   }
-  // }, []);
+  React.useEffect(() => {
+    if (ref.current && ref.current.cesiumElement) {
+      console.log("ref:", ref);
+    }
+  }, []);
 
   return (
     <Viewer
@@ -76,7 +74,6 @@ const Mars3D = (): JSX.Element => {
         bottom: 0,
       }}
       animation={false}
-      globe={globeMars}
       terrainProvider={terrainProvider}
       baseLayerPicker={false}
       geocoder={false}
@@ -91,7 +88,12 @@ const Mars3D = (): JSX.Element => {
       scene3DOnly={true}
     >
       <ImageryLayer imageryProvider={imageryProvider} />
-      {/* <Globe enableLighting={false} showGroundAtmosphere={false} depthTestAgainstTerrain={false} /> */}
+      <Globe
+        enableLighting={false}
+        showGroundAtmosphere={false}
+        depthTestAgainstTerrain={false}
+        // material={new Cesium.Material()}
+      />
       <Entity position={position} name="Gdansk">
         <PointGraphics pixelSize={10} color={Cesium.Color.RED} />
         <EntityDescription>

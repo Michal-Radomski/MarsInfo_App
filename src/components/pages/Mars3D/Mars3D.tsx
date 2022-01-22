@@ -1,5 +1,15 @@
 import React from "react";
-import {Viewer, Entity, PointGraphics, EntityDescription, ImageryLayer, Globe, CameraFlyTo, Scene} from "resium";
+import {
+  Viewer,
+  Entity,
+  PointGraphics,
+  EntityDescription,
+  ImageryLayer,
+  Globe,
+  CameraFlyTo,
+  Scene,
+  CesiumComponentRef,
+} from "resium";
 import * as Cesium from "cesium";
 
 import "./Mars3D.scss";
@@ -45,8 +55,19 @@ const imageryProvider = new Cesium.WebMapServiceImageryProvider({
 });
 
 const Mars3D = (): JSX.Element => {
+  const ref = React.useRef<CesiumComponentRef<Cesium.Viewer>>(null);
+
+  // React.useEffect(() => {
+
+  //   if (ref.current && ref.current.cesiumElement) {
+  //     // ref.current.cesiumElement is Cesium's Viewer
+  //     // DO SOMETHING
+  //   }
+  // }, []);
+
   return (
     <Viewer
+      ref={ref}
       style={{
         position: "absolute",
         top: 105,
@@ -80,6 +101,16 @@ const Mars3D = (): JSX.Element => {
       </Entity>
 
       {/* <CameraFlyTo duration={5} destination={Cesium.Cartesian3.fromDegrees(139.767052, 35.681167, 1000000)} /> */}
+
+      {/* <CameraFlyTo
+
+destination={Cartesian3.fromDegrees(139.767052, 35.681167, 100)}
+
+orientation={{ pitch: CesiumMath.toRadian(-60) }}
+
+duration={3}
+
+/> */}
     </Viewer>
   );
 };

@@ -1,4 +1,4 @@
-//* terrainProvider, cesiumAccount, credits USGS, oraz spinner i modal?
+//* terrainProvider, credits +USGS, oraz spinner i modal? //map by state, attribution, camera Bilbord, moons
 
 import React from "react";
 import {Viewer, Entity, PointGraphics, EntityDescription, Globe, CameraFlyTo, CesiumComponentRef} from "resium";

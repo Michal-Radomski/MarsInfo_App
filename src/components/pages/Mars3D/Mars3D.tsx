@@ -71,17 +71,7 @@ const Mars3D = (): JSX.Element => {
         </EntityDescription>
       </Entity>
 
-      {/* <CameraFlyTo duration={5} destination={Cesium.Cartesian3.fromDegrees(139.767052, 35.681167, 1000000)} /> */}
-
-      {/* <CameraFlyTo
-
-destination={Cartesian3.fromDegrees(139.767052, 35.681167, 100)}
-
-orientation={{ pitch: CesiumMath.toRadian(-60) }}
-
-duration={3}
-
-/> */}
+      <CameraFlyTo duration={5} destination={initialPosition} />
     </Viewer>
   );
 };

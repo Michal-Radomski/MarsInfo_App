@@ -1,8 +1,9 @@
-//* oraz spinner i modal? //map by state, attribution, moons
+//* spinner, moons
 
 import React from "react";
 import {Viewer, Entity, PointGraphics, EntityDescription, Globe, CameraFlyTo, CesiumComponentRef} from "resium";
 import * as Cesium from "cesium";
+import BootstrapSwitchButton from "bootstrap-switch-button-react";
 
 import "./Mars3D.scss";
 
@@ -24,7 +25,7 @@ const ellipsoidMars = new Cesium.Ellipsoid(3396190, 3376200, 3396190);
 const Mars3D = (): JSX.Element => {
   const ref = React.useRef<CesiumComponentRef<Cesium.Viewer>>(null);
 
-  const Layers: string[] = ["MOLA_THEMIS_blend", "MDIM21_color"];
+  const Layers: string[] = ["MDIM21_color", "MOLA_THEMIS_blend"];
 
   const [selectedLayer, setSelectedLayer] = React.useState(Layers[0]);
 
@@ -43,9 +44,10 @@ const Mars3D = (): JSX.Element => {
 
   React.useEffect(() => {
     if (ref?.current?.cesiumElement?.scene?.globe?.tilesLoaded) {
-      console.log("Mars 3D is ready");
+      console.log("Mars 3D model is ready");
       console.log("selectedLayer:", selectedLayer);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const options = {
@@ -63,44 +65,71 @@ const Mars3D = (): JSX.Element => {
   };
 
   return (
-    <Viewer
-      ref={ref}
-      imageryProvider={imageryProvider}
-      style={{
-        position: "absolute",
-        top: 105,
-        left: 0,
-        right: 0,
-        bottom: 0,
-      }}
-      {...options}
-      skyAtmosphere={false}
-    >
-      <Globe enableLighting={false} showGroundAtmosphere={false} depthTestAgainstTerrain={false} />
-      <CameraFlyTo duration={5} destination={initialPosition} />
+    <>
+      <div
+        style={{
+          zIndex: "99",
+          position: "absolute",
+          top: "110px",
+          left: "50%",
+          transform: " translate(-50%, 0)",
+          margin: "10px",
+          color: "whiteSmoke",
+          fontWeight: "bolder",
+        }}
+      >
+        Select a Layer:{" "}
+        <BootstrapSwitchButton
+          onstyle="primary"
+          offstyle="warning"
+          checked={true}
+          onlabel={Layers[0]}
+          offlabel={Layers[1]}
+          width={180}
+          onChange={(checked: boolean) => {
+            checked ? setSelectedLayer(Layers[0]) : setSelectedLayer(Layers[1]);
+          }}
+        />
+      </div>
+      <Viewer
+        ref={ref}
+        imageryProvider={imageryProvider}
+        style={{
+          position: "absolute",
+          top: 105,
+          left: 0,
+          right: 0,
+          bottom: 0,
+        }}
+        {...options}
+        skyAtmosphere={false}
+      >
+        <Globe enableLighting={false} showGroundAtmosphere={false} depthTestAgainstTerrain={false} />
+        <CameraFlyTo duration={5} destination={initialPosition} />
 
-      <Entity position={perseverancePosition} name="Perseverance Position">
-        <PointGraphics pixelSize={10} color={Cesium.Color.RED} />
-        <EntityDescription>
-          <h1>Hello world!</h1>
-          <p>from Perseverance Position</p>
-        </EntityDescription>
-      </Entity>
-      <Entity position={curiosityPosition} name="Curiosity Position">
-        <PointGraphics pixelSize={10} color={Cesium.Color.DEEPPINK} />
-        <EntityDescription>
-          <h1>Hello world!</h1>
-          <p>from Curiosity Position</p>
-        </EntityDescription>
-      </Entity>
-      <Entity position={inSightPosition} name="InSight Position">
-        <PointGraphics pixelSize={10} color={Cesium.Color.DARKORANGE} />
-        <EntityDescription>
-          <h1>Hello world!</h1>
-          <p>from InSight Position</p>
-        </EntityDescription>
-      </Entity>
-    </Viewer>
+        <Entity position={perseverancePosition} name="Perseverance Position">
+          <PointGraphics pixelSize={10} color={Cesium.Color.RED} />
+          <EntityDescription>
+            <h1>Hello world!</h1>
+            <p>from Perseverance Position</p>
+          </EntityDescription>
+        </Entity>
+        <Entity position={curiosityPosition} name="Curiosity Position">
+          <PointGraphics pixelSize={10} color={Cesium.Color.DEEPPINK} />
+          <EntityDescription>
+            <h1>Hello world!</h1>
+            <p>from Curiosity Position</p>
+          </EntityDescription>
+        </Entity>
+        <Entity position={inSightPosition} name="InSight Position">
+          <PointGraphics pixelSize={10} color={Cesium.Color.DARKORANGE} />
+          <EntityDescription>
+            <h1>Hello world!</h1>
+            <p>from InSight Position</p>
+          </EntityDescription>
+        </Entity>
+      </Viewer>
+    </>
   );
 };
 

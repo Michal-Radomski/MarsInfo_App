@@ -17,6 +17,7 @@
     "@types/sass": "^1.43.0",
     "@types/styled-components": "^5.1.17",
     "axios": "^0.24.0",
+    "bootstrap-switch-button-react": "^1.2.0",
     "cesium": "^1.89.0",
     "chart.js": "^3.7.0",
     "chartjs-plugin-datalabels": "^2.0.0",

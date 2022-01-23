@@ -1,3 +1,5 @@
+// Styles for Cesium/ Resium
+
 .cesium-viewer-bottom {
   left: 10px !important;
 }
@@ -8,4 +10,11 @@
 
 button.cesium-button:nth-child(2) {
   display: none !important;
+}
+
+// Styles for Bootstrap-Switch-Button-React
+span.switch-on.btn.btn-primary,
+span.switch-off.btn.btn-warning {
+  font-weight: bolder !important;
+  font-style: italic !important;
 }

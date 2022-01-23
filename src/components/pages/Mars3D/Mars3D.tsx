@@ -1,4 +1,4 @@
-//* spinner, moons
+//* spinner, moons, vehiclesInfo
 
 import React from "react";
 import {Viewer, Entity, PointGraphics, EntityDescription, Globe, CameraFlyTo, CesiumComponentRef} from "resium";
@@ -27,7 +27,10 @@ const Mars3D = (): JSX.Element => {
 
   const Layers: string[] = ["MDIM21_color", "MOLA_THEMIS_blend"];
 
-  const [selectedLayer, setSelectedLayer] = React.useState(Layers[0]);
+  const Mars3D_selectedLayer = JSON.parse(localStorage.getItem("Mars3D_selectedLayer") as string);
+  const [selectedLayer, setSelectedLayer] = React.useState<string>(
+    Mars3D_selectedLayer === null ? Layers[0] : Mars3D_selectedLayer
+  );
 
   const imageryProvider = new Cesium.WebMapServiceImageryProvider({
     url: "https://planetarymaps.usgs.gov/cgi-bin/mapserv?map=/maps/mars/mars_simp_cyl.map&service=WMS",
@@ -45,7 +48,8 @@ const Mars3D = (): JSX.Element => {
   React.useEffect(() => {
     if (ref?.current?.cesiumElement?.scene?.globe?.tilesLoaded) {
       console.log("Mars 3D model is ready");
-      console.log("selectedLayer:", selectedLayer);
+      // console.log("selectedLayer:", selectedLayer);
+      localStorage.setItem("Mars3D_selectedLayer", JSON.stringify(selectedLayer));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -70,7 +74,7 @@ const Mars3D = (): JSX.Element => {
         style={{
           zIndex: "99",
           position: "absolute",
-          top: "110px",
+          top: "108px",
           left: "50%",
           transform: " translate(-50%, 0)",
           margin: "10px",

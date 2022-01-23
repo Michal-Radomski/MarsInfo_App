@@ -1,4 +1,4 @@
-//* credits +USGS, oraz spinner i modal? //map by state, attribution, camera Bilbord, moons
+//* oraz spinner i modal? //map by state, attribution, moons
 
 import React from "react";
 import {Viewer, Entity, PointGraphics, EntityDescription, Globe, CameraFlyTo, CesiumComponentRef} from "resium";
@@ -21,25 +21,30 @@ const inSightPosition = Cesium.Cartesian3.fromDegrees(InSightPosition[1], InSigh
 
 const ellipsoidMars = new Cesium.Ellipsoid(3396190, 3376200, 3396190);
 
-const imageryProvider = new Cesium.WebMapServiceImageryProvider({
-  url: "https://planetarymaps.usgs.gov/cgi-bin/mapserv?map=/maps/mars/mars_simp_cyl.map&service=WMS",
-  layers: "MDIM21_color,MOLA_THEMIS_blend",
-  credit: `<a href="https://www.usgs.gov/centers/astrogeology-science-center/maps" target="_blank">USGS - Astrogeology Science Center</a>`,
-  parameters: {
-    transparent: false,
-    format: "image/png",
-  },
-  tilingScheme: new Cesium.GeographicTilingScheme({ellipsoid: ellipsoidMars}),
-  tileWidth: 512,
-  tileHeight: 512,
-});
-
 const Mars3D = (): JSX.Element => {
   const ref = React.useRef<CesiumComponentRef<Cesium.Viewer>>(null);
+
+  const Layers: string[] = ["MOLA_THEMIS_blend", "MDIM21_color"];
+
+  const [selectedLayer, setSelectedLayer] = React.useState(Layers[0]);
+
+  const imageryProvider = new Cesium.WebMapServiceImageryProvider({
+    url: "https://planetarymaps.usgs.gov/cgi-bin/mapserv?map=/maps/mars/mars_simp_cyl.map&service=WMS",
+    layers: selectedLayer as string,
+    credit: `<a href="https://www.usgs.gov/centers/astrogeology-science-center/maps" target="_blank">USGS - Astrogeology Science Center</a>`,
+    parameters: {
+      transparent: false,
+      format: "image/png",
+    },
+    tilingScheme: new Cesium.GeographicTilingScheme({ellipsoid: ellipsoidMars}),
+    tileWidth: 512,
+    tileHeight: 512,
+  });
 
   React.useEffect(() => {
     if (ref?.current?.cesiumElement?.scene?.globe?.tilesLoaded) {
       console.log("Mars 3D is ready");
+      console.log("selectedLayer:", selectedLayer);
     }
   }, []);
 

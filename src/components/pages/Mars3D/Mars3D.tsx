@@ -1,4 +1,4 @@
-//* terrainProvider, credits +USGS, oraz spinner i modal? //map by state, attribution, camera Bilbord, moons
+//* credits +USGS, oraz spinner i modal? //map by state, attribution, camera Bilbord, moons
 
 import React from "react";
 import {Viewer, Entity, PointGraphics, EntityDescription, Globe, CameraFlyTo, CesiumComponentRef} from "resium";
@@ -19,8 +19,7 @@ const perseverancePosition = Cesium.Cartesian3.fromDegrees(PerseverancePosition[
 const curiosityPosition = Cesium.Cartesian3.fromDegrees(CuriosityPosition[1], CuriosityPosition[0], 0);
 const inSightPosition = Cesium.Cartesian3.fromDegrees(InSightPosition[1], InSightPosition[0], 0);
 
-const terrainProvider = Cesium.createWorldTerrain();
-const ellipsoidMars = new Cesium.Ellipsoid(3396200, 3376200, 3396200);
+const ellipsoidMars = new Cesium.Ellipsoid(3396190, 3376200, 3396190);
 
 const imageryProvider = new Cesium.WebMapServiceImageryProvider({
   url: "https://planetarymaps.usgs.gov/cgi-bin/mapserv?map=/maps/mars/mars_simp_cyl.map&service=WMS",
@@ -70,7 +69,6 @@ const Mars3D = (): JSX.Element => {
         bottom: 0,
       }}
       {...options}
-      terrainProvider={terrainProvider}
       skyAtmosphere={false}
     >
       <Globe enableLighting={false} showGroundAtmosphere={false} depthTestAgainstTerrain={false} />

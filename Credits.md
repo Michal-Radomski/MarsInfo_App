@@ -26,3 +26,6 @@
 
 5. Local weather conditions are provided by [OpenWeatherMap](https://openweathermap.org/). The Api Key is not hosted on
    [github.com](https://github.com).
+
+6. Mars Imagery is provided by
+   [USGS - Astrogeology Science Center](https://www.usgs.gov/centers/astrogeology-science-center/maps).

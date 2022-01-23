@@ -1,45 +1,19 @@
 import React from "react";
-import {
-  Viewer,
-  Entity,
-  PointGraphics,
-  EntityDescription,
-  ImageryLayer,
-  Globe,
-  CameraFlyTo,
-  Scene,
-  CesiumComponentRef,
-} from "resium";
+import {Viewer, Entity, PointGraphics, EntityDescription, Globe, CameraFlyTo, CesiumComponentRef} from "resium";
 import * as Cesium from "cesium";
 
 import "./Mars3D.scss";
 
 //* Mars Vehicles' positions:
-type Position = [number, number];
-const InSightPosition: Position = [4.5024, 135.6234];
-const CuriosityPosition: Position = [-4.5895, 137.4417];
-const PerseverancePosition: Position = [18.4447, 77.4508];
+// type Position = [number, number];
+// const InSightPosition: Position = [4.5024, 135.6234];
+// const CuriosityPosition: Position = [-4.5895, 137.4417];
+// const PerseverancePosition: Position = [18.4447, 77.4508];
 
 // Setting the initial position
-const position = Cesium.Cartesian3.fromDegrees(70, 0, 0);
+const initialPosition = Cesium.Cartesian3.fromDegrees(105, 0, 0);
 const terrainProvider = Cesium.createWorldTerrain();
-
-const ellipsoidMars = new Cesium.Ellipsoid(3396000, 3376000, 3389500);
-
-const mapProjectionMars = new Cesium.GeographicProjection(ellipsoidMars);
-const globeMars = new Cesium.Globe(ellipsoidMars);
-
-// globeMars.showGroundAtmosphere = false; // necessary for tiles to show in non-earth ellipsoid
-// globeMars.depthTestAgainstTerrain = true;
-
-const optsMars = {
-  mapProjection: mapProjectionMars,
-  globe: globeMars,
-  // baseLayerPicker: false,
-  // skyAtmosphere: false,
-};
-
-// const viewer = new Cesium.Viewer("cesiumContainer", optsMars);
+const ellipsoidMars = new Cesium.Ellipsoid(3396200, 3376200, 3396200);
 
 const imageryProvider = new Cesium.WebMapServiceImageryProvider({
   url: "https://planetarymaps.usgs.gov/cgi-bin/mapserv?map=/maps/mars/mars_simp_cyl.map&service=WMS",
@@ -66,6 +40,7 @@ const Mars3D = (): JSX.Element => {
   return (
     <Viewer
       ref={ref}
+      imageryProvider={imageryProvider}
       style={{
         position: "absolute",
         top: 105,
@@ -87,14 +62,8 @@ const Mars3D = (): JSX.Element => {
       navigationInstructionsInitiallyVisible={false}
       scene3DOnly={true}
     >
-      <ImageryLayer imageryProvider={imageryProvider} />
-      <Globe
-        enableLighting={false}
-        showGroundAtmosphere={false}
-        depthTestAgainstTerrain={false}
-        // material={new Cesium.Material()}
-      />
-      <Entity position={position} name="Gdansk">
+      <Globe enableLighting={false} showGroundAtmosphere={false} depthTestAgainstTerrain={false} />
+      <Entity position={initialPosition} name="Gdansk">
         <PointGraphics pixelSize={10} color={Cesium.Color.RED} />
         <EntityDescription>
           <h1>Hello world!</h1>

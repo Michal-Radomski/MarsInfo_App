@@ -48,10 +48,7 @@ const Mars3D = (): JSX.Element => {
   React.useEffect(() => {
     if (ref?.current?.cesiumElement?.scene?.globe?.tilesLoaded) {
       console.log("Mars 3D model is ready");
-      // console.log("selectedLayer:", selectedLayer);
-      localStorage.setItem("Mars3D_selectedLayer", JSON.stringify(selectedLayer));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const options = {
@@ -67,6 +64,9 @@ const Mars3D = (): JSX.Element => {
     navigationInstructionsInitiallyVisible: false,
     scene3DOnly: true,
   };
+
+  // console.log("selectedLayer:", selectedLayer);
+  localStorage.setItem("Mars3D_selectedLayer", JSON.stringify(selectedLayer));
 
   return (
     <>
@@ -86,7 +86,7 @@ const Mars3D = (): JSX.Element => {
         <BootstrapSwitchButton
           onstyle="primary"
           offstyle="warning"
-          checked={true}
+          checked={selectedLayer === Layers[0] ? true : false}
           onlabel={Layers[0]}
           offlabel={Layers[1]}
           width={180}

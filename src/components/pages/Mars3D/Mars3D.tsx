@@ -1,14 +1,16 @@
-//* spinner, moons, vehiclesInfo
+//* moons, vehiclesInfo
 
 import React from "react";
 import {Viewer, Entity, PointGraphics, EntityDescription, Globe, CameraFlyTo, CesiumComponentRef} from "resium";
 import * as Cesium from "cesium";
 import BootstrapSwitchButton from "bootstrap-switch-button-react";
-import Spinner from "react-bootstrap/Spinner";
-// import "bootstrap/dist/css/bootstrap.css";
 
 import "./Mars3D.scss";
 
+//- Defining the Spinner
+const Spinner = (): JSX.Element => <div className="loader"></div>;
+
+//- Defining the Mars3D Model
 //* Mars Vehicles' positions:
 type Position = [number, number];
 const PerseverancePosition: Position = [18.4447, 77.4508];
@@ -30,10 +32,11 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
   const Layers: string[] = ["MDIM21_color", "MOLA_THEMIS_blend"];
 
   const Mars3D_selectedLayer = JSON.parse(localStorage.getItem("Mars3D_selectedLayer") as string);
+
+  const [isLoading, setIsLoading] = React.useState<boolean>(true);
   const [selectedLayer, setSelectedLayer] = React.useState<string>(
     Mars3D_selectedLayer === null ? Layers[0] : Mars3D_selectedLayer
   );
-  const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
   const imageryProvider = new Cesium.WebMapServiceImageryProvider({
     url: "https://planetarymaps.usgs.gov/cgi-bin/mapserv?map=/maps/mars/mars_simp_cyl.map&service=WMS",
@@ -53,10 +56,9 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
       if (ref?.current?.cesiumElement?.scene?.globe?.tilesLoaded) {
         console.log("Mars 3D model is ready");
       }
-
       setIsLoading(false);
-      console.log("isLoading:", isLoading);
-    }, 1000);
+      // console.log("isLoading:", isLoading);
+    }, 1200);
   }, [isLoading]);
 
   const options = {
@@ -77,9 +79,10 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
   localStorage.setItem("Mars3D_selectedLayer", JSON.stringify(selectedLayer));
 
   return isLoading ? (
-    <Spinner animation="grow" variant="primary" role="status">
-      <span className="visually-hidden">Loading...</span>
-    </Spinner>
+    <div className="center">
+      <p style={{textAlign: "center", marginBottom: "10px", fontSize: "160%", fontWeight: "bolder"}}>Loading...</p>
+      <Spinner />
+    </div>
   ) : (
     <>
       <div

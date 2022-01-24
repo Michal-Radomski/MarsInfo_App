@@ -1,13 +1,10 @@
 // Styles for Cesium/ Resium
-
 .cesium-viewer-bottom {
   left: 10px !important;
 }
-
 .cesium-credit-textContainer {
   display: none !important;
 }
-
 button.cesium-button:nth-child(2) {
   display: none !important;
 }
@@ -17,4 +14,36 @@ span.switch-on.btn.btn-primary,
 span.switch-off.btn.btn-warning {
   font-weight: bolder !important;
   font-style: italic !important;
+}
+
+// Spinner (Loader)
+.center {
+  position: fixed;
+  top: calc(50% - 60px);
+  left: calc(50% - 60px);
+}
+.loader {
+  border: 15px solid whitesmoke;
+  border-top: 10px solid #3498db;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 1.2s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }

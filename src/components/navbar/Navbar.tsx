@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 
 import classes from "./Navbar.module.scss";
 import Logo from "./image/Logo.png";
+import CreditsModal from "../pages/CreditsModal";
 
 const Navbar = (): JSX.Element => {
   const [menuOpen, setMenuOpen] = React.useState(false);
@@ -71,9 +72,7 @@ const Navbar = (): JSX.Element => {
               </Link>
             </li>
             <li>
-              <Link to="/credits" onClick={menuToggleHandler}>
-                Credits
-              </Link>
+              <CreditsModal />
             </li>
           </ul>
         </nav>

@@ -2,7 +2,7 @@ import React from "react";
 import {Button} from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 
-const Credits = (): JSX.Element => {
+const CreditsModal = (): JSX.Element => {
   const [show, setShow] = React.useState(false);
 
   const handleClose = () => setShow(false);
@@ -10,11 +10,11 @@ const Credits = (): JSX.Element => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
+      <Button onClick={handleShow} variant="link">
+        Credits
       </Button>
 
-      <Modal show={show} onHide={handleClose} animation={false}>
+      <Modal show={show} onHide={handleClose} animation={true}>
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
@@ -37,4 +37,4 @@ const Credits = (): JSX.Element => {
   );
 };
 
-export default Credits;
+export default CreditsModal;

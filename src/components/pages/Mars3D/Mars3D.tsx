@@ -89,15 +89,15 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
         style={{
           zIndex: "99",
           position: "absolute",
-          top: "108px",
+          top: "69px",
           left: "50%",
           transform: " translate(-50%, 0)",
-          margin: "10px",
           color: "whiteSmoke",
           fontWeight: "bolder",
+          backgroundColor: "inherit",
         }}
       >
-        Select a Layer:{" "}
+        Change the Layer:{" "}
         <BootstrapSwitchButton
           onstyle="primary"
           offstyle="warning"

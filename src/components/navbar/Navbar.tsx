@@ -71,8 +71,8 @@ const Navbar = (): JSX.Element => {
               </Link>
             </li>
             <li>
-              <Link to="/weather" onClick={menuToggleHandler}>
-                Weather
+              <Link to="/credits" onClick={menuToggleHandler}>
+                Credits
               </Link>
             </li>
           </ul>

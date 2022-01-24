@@ -1,4 +1,4 @@
-//* moons, vehiclesInfo
+//* vehiclesInfo, odległość, marsInfo !!!
 
 import React from "react";
 import {Viewer, Entity, PointGraphics, EntityDescription, Globe, CameraFlyTo, CesiumComponentRef} from "resium";

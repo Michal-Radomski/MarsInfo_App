@@ -1,5 +1,5 @@
-# VariousInfoApp
+# MarsInfo_App
 
-React Redux application providing various information.
+React Redux application providing various information about Mars.
 
 App under construction ...

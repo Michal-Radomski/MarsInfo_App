@@ -66,8 +66,8 @@ const Navbar = (): JSX.Element => {
               </Link>
             </li>
             <li>
-              <Link to="/covid" onClick={menuToggleHandler}>
-                Covid
+              <Link to="/pictures" onClick={menuToggleHandler}>
+                Mars Pictures
               </Link>
             </li>
             <li>

@@ -6,7 +6,7 @@ import Home from "./components/pages/Home";
 import MarsWeather from "./components/pages/MarsWeather/MarsWeather";
 import Navbar from "./components/navbar/Navbar";
 import Mars3D from "./components/pages/Mars3D/Mars3D";
-import Covid from "./components/pages/Covid";
+import MarsPictures from "./components/pages/MarsPictures";
 import Weather from "./components/pages/Weather";
 
 function App(): JSX.Element {
@@ -18,7 +18,7 @@ function App(): JSX.Element {
           <Route path="/" exact={true} component={Home} />
           <Route path="/mars" component={MarsWeather} />
           <Route path="/mars3d" component={Mars3D} />
-          <Route path="/covid" component={Covid} />
+          <Route path="/pictures" component={MarsPictures} />
           <Route path="/weather" component={Weather} />
         </Switch>
       </Router>

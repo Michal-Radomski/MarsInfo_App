@@ -4,6 +4,8 @@ import React from "react";
 import {Viewer, Entity, PointGraphics, EntityDescription, Globe, CameraFlyTo, CesiumComponentRef} from "resium";
 import * as Cesium from "cesium";
 import BootstrapSwitchButton from "bootstrap-switch-button-react";
+import Spinner from "react-bootstrap/Spinner";
+// import "bootstrap/dist/css/bootstrap.css";
 
 import "./Mars3D.scss";
 
@@ -22,7 +24,7 @@ const inSightPosition = Cesium.Cartesian3.fromDegrees(InSightPosition[1], InSigh
 
 const ellipsoidMars = new Cesium.Ellipsoid(3396190, 3376200, 3396190);
 
-const Mars3D = (): JSX.Element => {
+const Mars3D: React.FC<{}> = (): JSX.Element => {
   const ref = React.useRef<CesiumComponentRef<Cesium.Viewer>>(null);
 
   const Layers: string[] = ["MDIM21_color", "MOLA_THEMIS_blend"];
@@ -31,6 +33,7 @@ const Mars3D = (): JSX.Element => {
   const [selectedLayer, setSelectedLayer] = React.useState<string>(
     Mars3D_selectedLayer === null ? Layers[0] : Mars3D_selectedLayer
   );
+  const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
   const imageryProvider = new Cesium.WebMapServiceImageryProvider({
     url: "https://planetarymaps.usgs.gov/cgi-bin/mapserv?map=/maps/mars/mars_simp_cyl.map&service=WMS",
@@ -46,10 +49,15 @@ const Mars3D = (): JSX.Element => {
   });
 
   React.useEffect(() => {
-    if (ref?.current?.cesiumElement?.scene?.globe?.tilesLoaded) {
-      console.log("Mars 3D model is ready");
-    }
-  }, []);
+    setTimeout(() => {
+      if (ref?.current?.cesiumElement?.scene?.globe?.tilesLoaded) {
+        console.log("Mars 3D model is ready");
+      }
+
+      setIsLoading(false);
+      console.log("isLoading:", isLoading);
+    }, 1000);
+  }, [isLoading]);
 
   const options = {
     animation: false,
@@ -68,7 +76,11 @@ const Mars3D = (): JSX.Element => {
   // console.log("selectedLayer:", selectedLayer);
   localStorage.setItem("Mars3D_selectedLayer", JSON.stringify(selectedLayer));
 
-  return (
+  return isLoading ? (
+    <Spinner animation="grow" variant="primary" role="status">
+      <span className="visually-hidden">Loading...</span>
+    </Spinner>
+  ) : (
     <>
       <div
         style={{

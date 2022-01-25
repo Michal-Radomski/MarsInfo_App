@@ -1,4 +1,4 @@
-//* vehiclesInfo, odległość, marsInfo !!!
+//* vehiclesInfo, marsInfo !!!
 
 import React from "react";
 import {Viewer, Entity, PointGraphics, EntityDescription, Globe, CameraFlyTo, CesiumComponentRef} from "resium";
@@ -6,11 +6,8 @@ import * as Cesium from "cesium";
 import BootstrapSwitchButton from "bootstrap-switch-button-react";
 
 import "./Mars3D.scss";
+import Spinner from "../../../Spinner";
 
-//- Defining the Spinner
-const Spinner = (): JSX.Element => <div className="loader"></div>;
-
-//- Defining the Mars3D Model
 //* Mars Vehicles' positions:
 type Position = [number, number];
 const PerseverancePosition: Position = [18.4447, 77.4508];
@@ -79,10 +76,7 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
   localStorage.setItem("Mars3D_selectedLayer", JSON.stringify(selectedLayer));
 
   return isLoading ? (
-    <div className="center">
-      <p style={{textAlign: "center", marginBottom: "10px", fontSize: "160%", fontWeight: "bolder"}}>Loading...</p>
-      <Spinner />
-    </div>
+    <Spinner />
   ) : (
     <>
       <div

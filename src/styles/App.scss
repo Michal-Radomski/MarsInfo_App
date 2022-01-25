@@ -1,10 +1,9 @@
+// General styles
 @import "./variables.scss";
-
 * {
   box-sizing: border-box;
   margin: 0;
 }
-
 body {
   background-color: $light;
   font-family: $Ubuntu-font;
@@ -12,7 +11,41 @@ body {
   width: 100%;
   max-width: 1920px;
 }
-
 #root {
   height: 100%;
+}
+
+// Spinner (Loader)
+.center {
+  position: fixed;
+  top: calc(50% - 60px);
+  left: calc(50% - 60px);
+}
+.loader {
+  // border: 15px solid whitesmoke;
+  border-top: 15px solid #3498db;
+  border-right: 15px solid lightgreen;
+  border-bottom: 15px solid orangered;
+  border-left: 15px solid yellow;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 1.2s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }

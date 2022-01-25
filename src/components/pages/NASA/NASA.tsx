@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import DateInput from "./DateInput";
 import Photo from "./Photo";
 import {setAPOD_Date} from "../../../redux/actions";
+import Spinner from "../../../Spinner";
 
 const API_KEY = process.env.REACT_APP_NASA_API_KEY as string;
 // console.log("API_KEY:", API_KEY);
@@ -34,6 +35,7 @@ type LocalState = {
     url: string;
     explanation: string;
   };
+  loaded: boolean;
 };
 
 class NASA extends React.Component<{state: {NASA_APOD: {selectedDate: string}}; setAPOD_Date: Dispatch}, State> {
@@ -44,12 +46,13 @@ class NASA extends React.Component<{state: {NASA_APOD: {selectedDate: string}}; 
       url: "",
       explanation: "",
     },
+    loaded: false,
   };
 
   getPhoto = (date: string) => {
     fetch(`https://api.nasa.gov/planetary/apod?date=${date}&api_key=${API_KEY}`)
       .then((response) => response.json())
-      .then((data) => this.setState({photo: data}));
+      .then((data) => setTimeout(() => this.setState({photo: data, loaded: true}), 1200));
   };
 
   componentDidMount() {
@@ -104,6 +107,10 @@ class NASA extends React.Component<{state: {NASA_APOD: {selectedDate: string}}; 
   };
 
   render() {
+    if (!this.state.loaded) {
+      return <Spinner />;
+    }
+
     return (
       <Div>
         <H1>NASA's Astronomy Picture of the Day</H1>

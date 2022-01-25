@@ -50,6 +50,7 @@ class NASA extends React.Component<{state: {NASA_APOD: {selectedDate: string}}; 
   };
 
   getPhoto = (date: string) => {
+    // console.log("date", date)
     fetch(`https://api.nasa.gov/planetary/apod?date=${date}&api_key=${API_KEY}`)
       .then((response) => response.json())
       .then((data) => setTimeout(() => this.setState({photo: data, loaded: true}), 1200));

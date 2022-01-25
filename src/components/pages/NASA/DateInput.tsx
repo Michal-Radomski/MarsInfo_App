@@ -46,7 +46,7 @@ const Div = styled.div`
 `;
 const Line = styled.p`
   margin: 5px;
-  min-width: 160px;
+  min-width: 265px;
 `;
 
 const calendarContainer = ({className, children}: {className: string; children: string[]}) => {

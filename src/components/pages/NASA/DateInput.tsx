@@ -88,7 +88,7 @@ const DateInput = (props: {
       </form> */}
       <Div>
         <Button onClick={props.randomDate}>Random photo</Button>
-        <Line>or select a date:</Line>
+        <Line>or select a date (UTC-05:00):</Line>
         <DatePicker
           selected={new Date(props.date)}
           onChange={props.changeDate}

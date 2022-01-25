@@ -38,9 +38,21 @@ type LocalState = {
   loaded: boolean;
 };
 
+const changeTimeZoneToNASA_Time = (): Date => {
+  const date = new Date();
+  // console.log("Local Time: " + date);
+  const NewYorkDateString = date.toLocaleString("en-US", {timeZone: "America/New_York"}); //* NASA Time
+  const NewYorkDate = new Date(NewYorkDateString) as Date;
+  // console.log("Date/Time in NASA (New York): " + NewYorkDate);
+  return NewYorkDate;
+};
+
 class NASA extends React.Component<{state: {NASA_APOD: {selectedDate: string}}; setAPOD_Date: Dispatch}, State> {
   state: LocalState = {
-    date: this.props.state.NASA_APOD.selectedDate === "" ? new Date() : new Date(this.props.state.NASA_APOD.selectedDate),
+    date:
+      this.props.state.NASA_APOD.selectedDate === ""
+        ? changeTimeZoneToNASA_Time()
+        : new Date(this.props.state.NASA_APOD.selectedDate),
     photo: {
       title: "",
       url: "",
@@ -53,7 +65,7 @@ class NASA extends React.Component<{state: {NASA_APOD: {selectedDate: string}}; 
     // console.log("date", date)
     fetch(`https://api.nasa.gov/planetary/apod?date=${date}&api_key=${API_KEY}`)
       .then((response) => response.json())
-      .then((data) => setTimeout(() => this.setState({photo: data, loaded: true}), 1200));
+      .then((data) => setTimeout(() => this.setState({photo: data, loaded: true, date: this.state.date}), 1200));
   };
 
   componentDidMount() {
@@ -72,7 +84,7 @@ class NASA extends React.Component<{state: {NASA_APOD: {selectedDate: string}}; 
     setTimeout(() => {
       const selectedDate = this.state.date.toISOString().split("T")[0];
       // console.log("this.props.setAPOD_Date:", this.props.setAPOD_Date);
-      console.log("selectedDate:", selectedDate);
+      // console.log("selectedDate:", selectedDate);
       this.props.setAPOD_Date(selectedDate);
     }, 500);
   }
@@ -99,7 +111,7 @@ class NASA extends React.Component<{state: {NASA_APOD: {selectedDate: string}}; 
 
   randomDate = async () => {
     let minDate = new Date("1995-06-16");
-    let maxDate = new Date();
+    let maxDate = changeTimeZoneToNASA_Time();
     let randomDate = momentRandom(maxDate, minDate)._d;
     // console.log("randomDate:", randomDate);
     await this.setState({date: randomDate});

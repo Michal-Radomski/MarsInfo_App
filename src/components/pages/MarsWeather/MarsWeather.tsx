@@ -5,6 +5,7 @@ import styled from "styled-components";
 import MarsMap from "./MarsMap";
 import EarthMap from "./EarthMap";
 import MarsWeatherCharts from "./CurrentWeather/MarsWeatherCharts";
+import Spinner from "../../../Spinner";
 
 const Mars2020_URL = process.env.REACT_APP_MARS2020_API as string;
 // console.log("Mars2020_URL:", Mars2020_URL);
@@ -52,43 +53,45 @@ class MarsWeather extends React.Component<Props, State> {
   };
 
   componentDidMount() {
-    const fetchMarsWeather = async () => {
-      try {
-        const response = await axios.all(URLs.map((url) => axios.get(url))).then((data) => {
-          // console.log("data:", data);
-          return data;
-        });
-        // await console.log("response:", response);
-        const marsWeathers = await response.map((marsWeather) => marsWeather.data);
-        // await console.log("marsWeathers:", marsWeathers);
-        const marsWeatherModified = {
-          PerseveranceWeather: marsWeathers[0].sols,
-          CuriosityWeather: marsWeathers[1].soles.slice(0, 7).reverse(),
-          InSightWeather: this.InSight_fetching(marsWeathers[2]),
-        };
-        // await console.log("marsWeatherModified:", marsWeatherModified);
-        await this.setState({
-          PerseveranceWeather: marsWeatherModified.PerseveranceWeather,
-          CuriosityWeather: marsWeatherModified.CuriosityWeather,
-          //* Alternative version of partial setState
-          // InSightWeather: {InSight_Weather_Data: marsWeatherModified.InSightWeather, InSight_sol: this.state.InSightWeather.InSight_sol},
-          //* Setting the State partially
-          InSightWeather: {...this.state.InSightWeather, InSight_Weather_Data: marsWeatherModified.InSightWeather},
-          loaded: true,
-        });
-        // await console.log("this.state:", this.state);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+    setTimeout(() => {
+      const fetchMarsWeather = async () => {
+        try {
+          const response = await axios.all(URLs.map((url) => axios.get(url))).then((data) => {
+            // console.log("data:", data);
+            return data;
+          });
+          // await console.log("response:", response);
+          const marsWeathers = await response.map((marsWeather) => marsWeather.data);
+          // await console.log("marsWeathers:", marsWeathers);
+          const marsWeatherModified = {
+            PerseveranceWeather: marsWeathers[0].sols,
+            CuriosityWeather: marsWeathers[1].soles.slice(0, 7).reverse(),
+            InSightWeather: this.InSight_fetching(marsWeathers[2]),
+          };
+          // await console.log("marsWeatherModified:", marsWeatherModified);
+          await this.setState({
+            PerseveranceWeather: marsWeatherModified.PerseveranceWeather,
+            CuriosityWeather: marsWeatherModified.CuriosityWeather,
+            //* Alternative version of partial setState
+            // InSightWeather: {InSight_Weather_Data: marsWeatherModified.InSightWeather, InSight_sol: this.state.InSightWeather.InSight_sol},
+            //* Setting the State partially
+            InSightWeather: {...this.state.InSightWeather, InSight_Weather_Data: marsWeatherModified.InSightWeather},
+            loaded: true,
+          });
+          // await console.log("this.state:", this.state);
+        } catch (error) {
+          console.error(error);
+        }
+      };
 
-    const savedNasaData: State = JSON.parse(localStorage.getItem("fetchedDataFromNasa") as string);
-    // console.log("savedNasaData:", savedNasaData);
+      const savedNasaData: State = JSON.parse(localStorage.getItem("fetchedDataFromNasa") as string);
+      // console.log("savedNasaData:", savedNasaData);
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    savedNasaData !== null
-      ? (this.setState(savedNasaData), console.log("setting the State from the localStorage"))
-      : (fetchMarsWeather(), console.log("fetchingMarsWeather"));
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      savedNasaData !== null
+        ? (this.setState(savedNasaData), console.log("setting the State from the localStorage"))
+        : (fetchMarsWeather(), console.log("fetchingMarsWeather"));
+    }, 1200);
   }
 
   componentDidUpdate() {
@@ -98,7 +101,8 @@ class MarsWeather extends React.Component<Props, State> {
 
   render() {
     if (!this.state.loaded) {
-      return <div>Loading...</div>;
+      // return <div>Loading...</div>; //* Previous version
+      return <Spinner />;
     }
     return (
       <>

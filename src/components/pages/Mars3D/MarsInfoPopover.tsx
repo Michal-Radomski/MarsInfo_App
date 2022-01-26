@@ -1,8 +1,8 @@
 import {Popover, Button, OverlayTrigger} from "react-bootstrap";
 
 const popover = (
-  <Popover id="popover-basic">
-    <Popover.Header as="h3">Popover right</Popover.Header>
+  <Popover id="marsPopover">
+    <Popover.Header as="h3">Info about Mars</Popover.Header>
     <Popover.Body>
       And here's some <strong>amazing</strong> content. It's very engaging. right?
     </Popover.Body>
@@ -10,7 +10,7 @@ const popover = (
 );
 
 const MarsInfoPopover = (): JSX.Element => (
-  <OverlayTrigger trigger="click" placement="right" overlay={popover}>
+  <OverlayTrigger trigger={["hover", "click", "focus"]} placement="right-start" overlay={popover}>
     <Button variant="success">Info about Mars</Button>
   </OverlayTrigger>
 );

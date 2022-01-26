@@ -81,7 +81,7 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
     <>
       <div
         style={{
-          zIndex: "99",
+          zIndex: "9",
           position: "absolute",
           top: "69px",
           left: "50%",
@@ -104,6 +104,21 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
           }}
         />
       </div>
+      <h5
+        style={{
+          zIndex: "9",
+          position: "absolute",
+          top: "105px",
+          left: "50%",
+          transform: " translate(-50%, 0)",
+          color: "lightyellow",
+          fontWeight: "bolder",
+          backgroundColor: "inherit",
+          textAlign: "center",
+        }}
+      >
+        Click on the colored point to see more...
+      </h5>
       <Viewer
         ref={ref}
         imageryProvider={imageryProvider}

@@ -7,6 +7,7 @@ import BootstrapSwitchButton from "bootstrap-switch-button-react";
 
 import "./Mars3D.scss";
 import Spinner from "../../../Spinner";
+import MarsInfoPopover from "./MarsInfoPopover";
 
 //* Mars Vehicles' positions:
 type Position = [number, number];
@@ -103,6 +104,18 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
             checked ? setSelectedLayer(Layers[0]) : setSelectedLayer(Layers[1]);
           }}
         />
+      </div>
+      <div
+        style={{
+          zIndex: "9",
+          position: "absolute",
+          top: "110px",
+          left: "10px",
+          fontWeight: "bolder",
+          fontStyle: "italic",
+        }}
+      >
+        <MarsInfoPopover />
       </div>
       <h5
         style={{

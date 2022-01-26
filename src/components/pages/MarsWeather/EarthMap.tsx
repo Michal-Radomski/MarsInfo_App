@@ -194,7 +194,7 @@ class EarthMap extends React.Component<Props, State> {
     this.OL_Map.addInteraction(mouseWheelInt);
 
     this.popover = (
-      <Popover id="popover-basic" style={{minWidth: "20%"}}>
+      <Popover id="popoverLocation" style={{minWidth: "20%"}}>
         <Popover.Header as="h3">
           Yor are in:
           <span style={{float: "right"}}>

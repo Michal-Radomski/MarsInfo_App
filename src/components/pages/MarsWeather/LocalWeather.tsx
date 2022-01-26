@@ -141,7 +141,7 @@ const LocalWeather = (): JSX.Element => {
             </Card.Title>
             <div style={{textTransform: "capitalize"}}>
               <Card.Text style={{marginBottom: "0px"}}>
-                Weather Descr: <span style={{float: "right", fontWeight: "bold"}}>{weather_Redux.general_description}</span>
+                Description: <span style={{float: "right", fontWeight: "bold"}}>{weather_Redux.general_description}</span>
               </Card.Text>
               <Card.Text style={{marginBottom: "0px"}}>
                 Current Temperature:{" "}

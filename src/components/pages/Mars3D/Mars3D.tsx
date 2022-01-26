@@ -1,5 +1,3 @@
-//* vehiclesInfo, marsInfo !!!
-
 import React from "react";
 import {Viewer, Entity, PointGraphics, EntityDescription, Globe, CameraFlyTo, CesiumComponentRef} from "resium";
 import * as Cesium from "cesium";

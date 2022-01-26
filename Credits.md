@@ -11,6 +11,8 @@
 
 4. Wind Direction Icon was taken from [https://www.flaticon.com](https://www.flaticon.com/free-icons/direction).
 
+5. Information is taken from [Wikipedia](https://en.wikipedia.org/wiki/Main_Page) and [NASA](https://www.nasa.gov/).
+
 ## APIs
 
 1. NASA Astronomy Picture of the Day and Mars Weather Conditions are taken from from

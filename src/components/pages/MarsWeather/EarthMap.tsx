@@ -262,7 +262,7 @@ class EarthMap extends React.Component<Props, State> {
       <DivLocal>
         {this.state.center[0] !== 0 && this.state.center[1] !== 0 ? (
           <DivMap>
-            <h1 style={{textAlign: "center"}}>Your location: {this.position}</h1>
+            <h1 style={{textAlign: "center", transform: "translate(200px,0)"}}>Your location: {this.position}</h1>
             <div id="olMap" ref={this.mapRef} style={{height: "390px", cursor: "pointer"}}></div>
             <OverlayTrigger trigger={this.hover} placement="right-end" overlay={this.popover} rootClose={true}>
               <div

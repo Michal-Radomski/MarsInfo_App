@@ -13,15 +13,19 @@ const Div = styled.div`
       font-weight: bold;
       a {
         text-decoration: none;
+        font-style: italic;
       }
     }
   }
 `;
 
-const popover = (
+const popover: JSX.Element = (
   <Popover id="marsPopover" style={{minWidth: "550px"}}>
     <Popover.Header as="h3" style={{textAlign: "center", fontWeight: "bold", fontStyle: "italic"}}>
-      Info about Mars
+      Info about{" "}
+      <a href="https://en.wikipedia.org/wiki/Mars" target="_blank" rel="noreferrer" style={{textDecoration: "none"}}>
+        Mars
+      </a>
       <CloseButton onClick={() => document.body.click()} style={{float: "right", padding: "0px"}}></CloseButton>
     </Popover.Header>
     <Popover.Body>
@@ -53,7 +57,11 @@ const popover = (
         <p>
           Surface gravity:{" "}
           <span>
-            3.72076 m/s<sup>2</sup> (0.3794 g)
+            3.72076 m/s<sup>2</sup> (0.3794{" "}
+            <a href="https://en.wikipedia.org/wiki/G-force" target="_blank" rel="noreferrer">
+              g
+            </a>
+            )
           </span>
         </p>
         <p>

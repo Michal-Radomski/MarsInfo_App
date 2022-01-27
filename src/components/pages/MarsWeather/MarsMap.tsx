@@ -143,7 +143,7 @@ const MarsMap = (props: {Perseverance_Weather: Sol; Curiosity_Weather: Sol; InSi
             <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.InSightMarsLander.landingSite}</b>
             <br />
             Coordinates:{" "}
-            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.InSightMarsLander.Coordinates}</b>
+            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.InSightMarsLander.coordinates}</b>
             <br />
             Landing Date:{" "}
             <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.InSightMarsLander.landingDate}</b>
@@ -192,7 +192,7 @@ const MarsMap = (props: {Perseverance_Weather: Sol; Curiosity_Weather: Sol; InSi
             <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.CuriosityMarsRover.landingSite}</b>
             <br />
             Coordinates:{" "}
-            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.CuriosityMarsRover.Coordinates}</b>
+            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.CuriosityMarsRover.coordinates}</b>
             <br />
             Landing Date:{" "}
             <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.CuriosityMarsRover.landingDate}</b>

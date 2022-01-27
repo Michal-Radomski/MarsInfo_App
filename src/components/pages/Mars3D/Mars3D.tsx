@@ -155,28 +155,56 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
           <PointGraphics pixelSize={10} color={Cesium.Color.RED} />
           <EntityDescription>
             <h3>
-              Position:{" "}
-              <span
-                style={{float: "right", fontWeight: "bold"}}
-              >{`${PerseverancePosition[0]}, ${PerseverancePosition[1]}`}</span>
+              Mission:{" "}
+              <span style={{float: "right"}}>
+                <a
+                  href="https://en.wikipedia.org/wiki/Mars_2020"
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{color: "#17A2B8", fontStyle: "italic"}}
+                >
+                  Mars 2020
+                </a>
+              </span>
             </h3>
-            <p>from Perseverance Position</p>
             <VehicleInfo info={storeVehicleInfo.PerseveranceMarsRover} />
           </EntityDescription>
         </Entity>
-        <Entity position={curiosityPosition} name="Curiosity Position">
+        <Entity position={curiosityPosition} name="Curiosity Mars Rover">
           <PointGraphics pixelSize={10} color={Cesium.Color.DEEPPINK} />
           <EntityDescription>
-            <h1>Hello world!</h1>
-            <p>from Curiosity Position</p>
+            <h3>
+              Mission:{" "}
+              <span style={{float: "right"}}>
+                <a
+                  href="https://en.wikipedia.org/wiki/Mars_Science_Laboratory"
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{color: "#17A2B8", fontStyle: "italic"}}
+                >
+                  Mars Science Laboratory
+                </a>
+              </span>
+            </h3>
             <VehicleInfo info={storeVehicleInfo.CuriosityMarsRover} />
           </EntityDescription>
         </Entity>
-        <Entity position={inSightPosition} name="InSight Position">
+        <Entity position={inSightPosition} name="InSight Mars Lander">
           <PointGraphics pixelSize={10} color={Cesium.Color.DARKORANGE} />
           <EntityDescription>
-            <h1>Hello world!</h1>
-            <p>from InSight Position</p>
+            <h3>
+              Mission:{" "}
+              <span style={{float: "right"}}>
+                <a
+                  href="https://en.wikipedia.org/wiki/InSight"
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{color: "#17A2B8", fontStyle: "italic"}}
+                >
+                  InSight
+                </a>
+              </span>
+            </h3>
             <VehicleInfo info={storeVehicleInfo.InSightMarsLander} />
           </EntityDescription>
         </Entity>

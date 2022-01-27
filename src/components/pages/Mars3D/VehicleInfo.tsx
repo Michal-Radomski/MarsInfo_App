@@ -1,9 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import {Table} from "react-bootstrap";
+import Spinner from "../../../Spinner";
 
 const Div = styled.div`
   background-color: yellow;
+  min-width: 300px;
+  min-height: 300px !important;
 `;
 
 const TD = styled.td`

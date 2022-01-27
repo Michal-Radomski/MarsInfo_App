@@ -6,6 +6,7 @@ import BootstrapSwitchButton from "bootstrap-switch-button-react";
 import "./Mars3D.scss";
 import Spinner from "../../../Spinner";
 import MarsInfoPopover from "./MarsInfoPopover";
+import VehicleInfo from "./VehicleInfo";
 
 //* Mars Vehicles' positions:
 type Position = [number, number];
@@ -146,11 +147,17 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
         <Globe enableLighting={false} showGroundAtmosphere={false} depthTestAgainstTerrain={false} />
         <CameraFlyTo duration={5} destination={initialPosition} />
 
-        <Entity position={perseverancePosition} name="Perseverance Position">
+        <Entity position={perseverancePosition} name="Perseverance Mars Rover">
           <PointGraphics pixelSize={10} color={Cesium.Color.RED} />
           <EntityDescription>
-            <h1>Hello world!</h1>
+            <h3>
+              Position:{" "}
+              <span
+                style={{float: "right", fontWeight: "bold"}}
+              >{`${PerseverancePosition[0]}, ${PerseverancePosition[1]}`}</span>
+            </h3>
             <p>from Perseverance Position</p>
+            <VehicleInfo />
           </EntityDescription>
         </Entity>
         <Entity position={curiosityPosition} name="Curiosity Position">

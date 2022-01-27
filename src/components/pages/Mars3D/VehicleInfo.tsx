@@ -1,32 +1,38 @@
 import React from "react";
 import styled from "styled-components";
-import {Card, Table} from "react-bootstrap";
+import {Table} from "react-bootstrap";
 
 const VehicleInfo = () => {
   return (
-    <Card as="div">
-      <Card.Header>Header</Card.Header>
-      <Card.Body>
-        <Card.Title> Card Title </Card.Title>
-        <Card.Text>Some quick example text to build on the card title and make up the bulk of the card's content.</Card.Text>
-      </Card.Body>
-      <Card.Footer
-        style={{
-          color: "white",
-          backgroundColor: "#0DCAF0",
-          fontWeight: "bolder",
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          alignContent: "center",
-          padding: "0.25rem 1rem",
-          fontSize: "80%",
-        }}
-      >
-        <Card.Text style={{marginBottom: "0px"}}>Weather Calculation Time:</Card.Text>
-      </Card.Footer>
-    </Card>
+    <Table striped bordered hover variant="dark">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Username</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td colSpan={2}>Larry the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </Table>
   );
 };
 

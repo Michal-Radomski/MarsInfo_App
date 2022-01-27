@@ -3,7 +3,6 @@ import {Viewer, Entity, PointGraphics, EntityDescription, Globe, CameraFlyTo, Ce
 import * as Cesium from "cesium";
 import BootstrapSwitchButton from "bootstrap-switch-button-react";
 import {useStore} from "react-redux";
-import Store from "../../../redux/store";
 
 import "./Mars3D.scss";
 import Spinner from "../../../Spinner";
@@ -37,9 +36,8 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
     Mars3D_selectedLayer === null ? Layers[0] : Mars3D_selectedLayer
   );
 
-  const store = useStore().getState();
-  console.log(store);
-  console.log(Store.getState());
+  const storeVehicleInfo = useStore().getState();
+  console.log("storeVehicleInfo:", storeVehicleInfo);
 
   const imageryProvider = new Cesium.WebMapServiceImageryProvider({
     url: "https://planetarymaps.usgs.gov/cgi-bin/mapserv?map=/maps/mars/mars_simp_cyl.map&service=WMS",

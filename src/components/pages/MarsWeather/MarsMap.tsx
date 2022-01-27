@@ -14,6 +14,7 @@ import PerseveranceIcon from "./Images/Perseverance.png";
 import MarsLegend from "./MarsLegend";
 import WeatherTable from "./CurrentWeather/WeatherTable";
 import WeatherInSightTable from "./CurrentWeather/WeatherInSightTable";
+import store from "../../../redux/store";
 
 const DivMap = styled.div`
   /* position: absolute;
@@ -70,6 +71,9 @@ const primeMeridianLine2 = {color: "blue", weight: 2.0};
 const MarsMap = (props: {Perseverance_Weather: Sol; Curiosity_Weather: Sol; InSight_Weather: State}): JSX.Element => {
   // console.log("props:", props);
   const [map, setMap] = React.useState(null);
+
+  const storeVehicleInfo: State = store?.getState()?.vehiclesInfo;
+  // console.log(storeVehicleInfo, storeVehicleInfo);
 
   L.Map.addInitHook("addHandler", "gestureHandling", GestureHandling);
 
@@ -133,11 +137,16 @@ const MarsMap = (props: {Perseverance_Weather: Sol; Curiosity_Weather: Sol; InSi
               </span>
             </b>
             <br />
-            Launch Date: <b>5 May 2018</b>
+            Launch Date: <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.InSightMarsLander.LaunchDate}</b>
             <br />
-            Landing site: <b>Elysium Planitia</b>
+            Landing site:{" "}
+            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.InSightMarsLander.LandingSite}</b>
             <br />
-            Coordinates: <b>4.5024°N 135.6234°E</b>
+            Coordinates:{" "}
+            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.InSightMarsLander.Coordinates}</b>
+            <br />
+            Landing Date:{" "}
+            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.InSightMarsLander.LandingDate}</b>
             <br />
             {props.InSight_Weather.InSight_Weather_Data !== "No Data" || props.InSight_Weather.InSight_sol !== "No Data" ? (
               <WeatherInSightTable
@@ -176,11 +185,17 @@ const MarsMap = (props: {Perseverance_Weather: Sol; Curiosity_Weather: Sol; InSi
               </span>
             </b>
             <br />
-            Launch Date: <b>26 November 2011</b>
+            Launch Date:{" "}
+            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.CuriosityMarsRover.LaunchDate}</b>
             <br />
-            Landing site: <b>Gale Crater</b>
+            Landing site:{" "}
+            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.CuriosityMarsRover.LandingSite}</b>
             <br />
-            Coordinates: <b>4.5895°S, 137.4417°E</b>
+            Coordinates:{" "}
+            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.CuriosityMarsRover.Coordinates}</b>
+            <br />
+            Landing Date:{" "}
+            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.CuriosityMarsRover.LandingDate}</b>
             <br />
             {props.Curiosity_Weather ? (
               <WeatherTable
@@ -206,11 +221,17 @@ const MarsMap = (props: {Perseverance_Weather: Sol; Curiosity_Weather: Sol; InSi
               </span>
             </b>
             <br />
-            Launch Date: <b>30 July 2020</b>
+            Launch Date:{" "}
+            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.PerseveranceMarsRover.LaunchDate}</b>
             <br />
-            Landing site: <b>Jezero Crater</b>
+            Landing site:{" "}
+            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.PerseveranceMarsRover.LandingSite}</b>
             <br />
-            Coordinates: <b>18.4447°N, 77.4508°E</b>
+            Coordinates:{" "}
+            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.PerseveranceMarsRover.Coordinates}</b>
+            <br />
+            Landing Date:{" "}
+            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.PerseveranceMarsRover.LandingDate}</b>
             <br />
             {props.Perseverance_Weather ? (
               <WeatherTable

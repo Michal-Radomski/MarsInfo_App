@@ -137,16 +137,16 @@ const MarsMap = (props: {Perseverance_Weather: Sol; Curiosity_Weather: Sol; InSi
               </span>
             </b>
             <br />
-            Launch Date: <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.InSightMarsLander.LaunchDate}</b>
+            Launch Date: <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.InSightMarsLander.launchDate}</b>
             <br />
             Landing site:{" "}
-            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.InSightMarsLander.LandingSite}</b>
+            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.InSightMarsLander.landingSite}</b>
             <br />
             Coordinates:{" "}
             <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.InSightMarsLander.Coordinates}</b>
             <br />
             Landing Date:{" "}
-            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.InSightMarsLander.LandingDate}</b>
+            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.InSightMarsLander.landingDate}</b>
             <br />
             {props.InSight_Weather.InSight_Weather_Data !== "No Data" || props.InSight_Weather.InSight_sol !== "No Data" ? (
               <WeatherInSightTable
@@ -186,16 +186,16 @@ const MarsMap = (props: {Perseverance_Weather: Sol; Curiosity_Weather: Sol; InSi
             </b>
             <br />
             Launch Date:{" "}
-            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.CuriosityMarsRover.LaunchDate}</b>
+            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.CuriosityMarsRover.launchDate}</b>
             <br />
             Landing site:{" "}
-            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.CuriosityMarsRover.LandingSite}</b>
+            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.CuriosityMarsRover.landingSite}</b>
             <br />
             Coordinates:{" "}
             <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.CuriosityMarsRover.Coordinates}</b>
             <br />
             Landing Date:{" "}
-            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.CuriosityMarsRover.LandingDate}</b>
+            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.CuriosityMarsRover.landingDate}</b>
             <br />
             {props.Curiosity_Weather ? (
               <WeatherTable
@@ -222,16 +222,16 @@ const MarsMap = (props: {Perseverance_Weather: Sol; Curiosity_Weather: Sol; InSi
             </b>
             <br />
             Launch Date:{" "}
-            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.PerseveranceMarsRover.LaunchDate}</b>
+            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.PerseveranceMarsRover.launchDate}</b>
             <br />
             Landing site:{" "}
-            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.PerseveranceMarsRover.LandingSite}</b>
+            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.PerseveranceMarsRover.landingSite}</b>
             <br />
             Coordinates:{" "}
-            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.PerseveranceMarsRover.Coordinates}</b>
+            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.PerseveranceMarsRover.coordinates}</b>
             <br />
             Landing Date:{" "}
-            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.PerseveranceMarsRover.LandingDate}</b>
+            <b style={{float: "right", fontStyle: "italic"}}>{storeVehicleInfo.PerseveranceMarsRover.landingDate}</b>
             <br />
             {props.Perseverance_Weather ? (
               <WeatherTable

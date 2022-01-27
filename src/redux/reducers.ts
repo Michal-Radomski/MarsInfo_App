@@ -51,22 +51,22 @@ const reducer = (state = initialState, action: Dispatch) => {
 // Constant variables
 const infoVehicles = {
   PerseveranceMarsRover: {
-    LaunchDate: "30 July 2020, 11:50:00 UTC" as string,
-    LandingSite: "Jezero Crater" as string,
-    Coordinates: "18.4447°N, 77.4508°E" as string,
-    LandingDate: "18 February 2021, 20:55 UTC" as string,
+    launchDate: "30 July 2020, 11:50:00 UTC" as string,
+    landingSite: "Jezero Crater" as string,
+    coordinates: "18.4447°N, 77.4508°E" as string,
+    landingDate: "18 February 2021, 20:55 UTC" as string,
   },
   CuriosityMarsRover: {
-    LaunchDate: "26 November 2011, 15:02:00 UTC" as string,
-    LandingSite: "Gale Crater" as string,
-    Coordinates: "4.5895°S, 137.4417°E" as string,
-    LandingDate: "6 August 2012, 05:17 UTC" as string,
+    launchDate: "26 November 2011, 15:02:00 UTC" as string,
+    landingSite: "Gale Crater" as string,
+    coordinates: "4.5895°S, 137.4417°E" as string,
+    landingDate: "6 August 2012, 05:17 UTC" as string,
   },
   InSightMarsLander: {
-    LaunchDate: "5 May 2018, 11:05:01 UTC" as string,
-    LandingSite: "Elysium Planitia" as string,
-    Coordinates: "4.5024°N 135.6234°E" as string,
-    LandingDate: "26 November 2018, 19:52:59 UTC" as string,
+    launchDate: "5 May 2018, 11:05:01 UTC" as string,
+    landingSite: "Elysium Planitia" as string,
+    coordinates: "4.5024°N 135.6234°E" as string,
+    landingDate: "26 November 2018, 19:52:59 UTC" as string,
   },
 };
 

@@ -36,8 +36,8 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
     Mars3D_selectedLayer === null ? Layers[0] : Mars3D_selectedLayer
   );
 
-  const storeVehicleInfo = useStore().getState();
-  console.log("storeVehicleInfo:", storeVehicleInfo);
+  const storeVehicleInfo = useStore().getState().vehiclesInfo;
+  // console.log("storeVehicleInfo:", storeVehicleInfo);
 
   const imageryProvider = new Cesium.WebMapServiceImageryProvider({
     url: "https://planetarymaps.usgs.gov/cgi-bin/mapserv?map=/maps/mars/mars_simp_cyl.map&service=WMS",
@@ -161,7 +161,7 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
               >{`${PerseverancePosition[0]}, ${PerseverancePosition[1]}`}</span>
             </h3>
             <p>from Perseverance Position</p>
-            <VehicleInfo />
+            <VehicleInfo info={storeVehicleInfo.PerseveranceMarsRover} />
           </EntityDescription>
         </Entity>
         <Entity position={curiosityPosition} name="Curiosity Position">
@@ -169,6 +169,7 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
           <EntityDescription>
             <h1>Hello world!</h1>
             <p>from Curiosity Position</p>
+            <VehicleInfo info={storeVehicleInfo.CuriosityMarsRover} />
           </EntityDescription>
         </Entity>
         <Entity position={inSightPosition} name="InSight Position">
@@ -176,6 +177,7 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
           <EntityDescription>
             <h1>Hello world!</h1>
             <p>from InSight Position</p>
+            <VehicleInfo info={storeVehicleInfo.InSightMarsLander} />
           </EntityDescription>
         </Entity>
       </Viewer>

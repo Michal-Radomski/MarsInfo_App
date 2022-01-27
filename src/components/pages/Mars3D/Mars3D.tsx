@@ -71,7 +71,7 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
     sceneModePicker: false,
     timeline: false,
     fullscreenButton: true,
-    selectionIndicator: false,
+    selectionIndicator: true,
     navigationInstructionsInitiallyVisible: false,
     scene3DOnly: true,
   };

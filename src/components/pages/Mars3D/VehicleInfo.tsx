@@ -13,7 +13,7 @@ const TD = styled.td`
 `;
 
 const VehicleInfo = ({info}: State) => {
-  console.log("{info}:", info);
+  // console.log("{info}:", info);
   return (
     <Div>
       <Table striped bordered hover variant="dark">

@@ -1,24 +1,22 @@
-import {Table} from "react-bootstrap";
-
-const td_Style: State = {
-  fontWeight: "bold",
-  float: "right",
-  fontStyle: "italic",
-  color: "whiteSmoke",
-};
-
 const VehicleInfo = ({info, name}: {info: State; name: string}): JSX.Element => {
   // console.log("{info}:", info);
 
+  const td_Style: State = {
+    fontWeight: "bold",
+    float: "right",
+    fontStyle: "italic",
+    color: "lightyellow",
+  };
+
   return (
-    <Table striped bordered hover variant="dark" width="100%">
+    <table width="100%">
       <thead>
         <tr>
           <th>
-            <span style={{color: "lightyellow", fontStyle: "italic", float: "left"}}>Vehicle Name:</span>
+            <span style={{color: "wheat", fontStyle: "italic", float: "left"}}>Vehicle Name:</span>
           </th>
           <th>
-            <span style={{color: "lightyellow", fontStyle: "italic", float: "right"}}>{name}</span>
+            <span style={{color: "wheat", fontStyle: "italic", float: "right"}}>{name}</span>
           </th>
         </tr>
       </thead>
@@ -40,7 +38,7 @@ const VehicleInfo = ({info, name}: {info: State; name: string}): JSX.Element => 
           <td style={td_Style}>{info.landingDate}</td>
         </tr>
       </tbody>
-    </Table>
+    </table>
   );
 };
 

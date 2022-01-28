@@ -4,6 +4,10 @@ import * as Cesium from "cesium";
 import BootstrapSwitchButton from "bootstrap-switch-button-react";
 import {useStore} from "react-redux";
 
+import InSight from "../MarsWeather/Images/InSight.png";
+import Curiosity from "../MarsWeather/Images/Curiosity.png";
+import Perseverance from "../MarsWeather/Images/Perseverance.png";
+
 import "./Mars3D.scss";
 import Spinner from "../../../Spinner";
 import MarsInfoPopover from "./MarsInfoPopover";
@@ -167,7 +171,11 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
                 </a>
               </span>
             </h3>
-            <VehicleInfo info={storeVehicleInfo.PerseveranceMarsRover} name="Perseverance Mars Rover" />
+            <VehicleInfo
+              info={storeVehicleInfo.PerseveranceMarsRover}
+              name="Perseverance Mars Rover"
+              imgName={Perseverance}
+            />
           </EntityDescription>
         </Entity>
         <Entity position={curiosityPosition} name="Info of Curiosity Mars Rover">
@@ -186,7 +194,7 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
                 </a>
               </span>
             </h3>
-            <VehicleInfo info={storeVehicleInfo.CuriosityMarsRover} name="Curiosity Mars Rover" />
+            <VehicleInfo info={storeVehicleInfo.CuriosityMarsRover} name="Curiosity Mars Rover" imgName={Curiosity} />
           </EntityDescription>
         </Entity>
         <Entity position={inSightPosition} name="Info of InSight Mars Lander">
@@ -205,7 +213,8 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
                 </a>
               </span>
             </h3>
-            <VehicleInfo info={storeVehicleInfo.InSightMarsLander} name="InSight Mars Lander" />
+            <VehicleInfo info={storeVehicleInfo.InSightMarsLander} name="InSight Mars Lander" imgName={InSight} />
+            <br />
           </EntityDescription>
         </Entity>
       </Viewer>

@@ -151,7 +151,7 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
         <Globe enableLighting={false} showGroundAtmosphere={false} depthTestAgainstTerrain={false} />
         <CameraFlyTo duration={5} destination={initialPosition} />
 
-        <Entity position={perseverancePosition} name="Perseverance Mars Rover">
+        <Entity position={perseverancePosition} name="Info of Perseverance Mars Rover">
           <PointGraphics pixelSize={10} color={Cesium.Color.RED} />
           <EntityDescription>
             <h3>
@@ -167,10 +167,10 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
                 </a>
               </span>
             </h3>
-            <VehicleInfo info={storeVehicleInfo.PerseveranceMarsRover} />
+            <VehicleInfo info={storeVehicleInfo.PerseveranceMarsRover} name="Perseverance Mars Rover" />
           </EntityDescription>
         </Entity>
-        <Entity position={curiosityPosition} name="Curiosity Mars Rover">
+        <Entity position={curiosityPosition} name="Info of Curiosity Mars Rover">
           <PointGraphics pixelSize={10} color={Cesium.Color.DEEPPINK} />
           <EntityDescription>
             <h3>
@@ -186,10 +186,10 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
                 </a>
               </span>
             </h3>
-            <VehicleInfo info={storeVehicleInfo.CuriosityMarsRover} />
+            <VehicleInfo info={storeVehicleInfo.CuriosityMarsRover} name="Curiosity Mars Rover" />
           </EntityDescription>
         </Entity>
-        <Entity position={inSightPosition} name="InSight Mars Lander">
+        <Entity position={inSightPosition} name="Info of InSight Mars Lander">
           <PointGraphics pixelSize={10} color={Cesium.Color.DARKORANGE} />
           <EntityDescription>
             <h3>
@@ -205,7 +205,7 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
                 </a>
               </span>
             </h3>
-            <VehicleInfo info={storeVehicleInfo.InSightMarsLander} />
+            <VehicleInfo info={storeVehicleInfo.InSightMarsLander} name="InSight Mars Lander" />
           </EntityDescription>
         </Entity>
       </Viewer>

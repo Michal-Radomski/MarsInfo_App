@@ -1,5 +1,14 @@
 import React from "react";
-import {Viewer, Entity, PointGraphics, EntityDescription, Globe, CameraFlyTo, CesiumComponentRef} from "resium";
+import {
+  Viewer,
+  Entity,
+  PointGraphics,
+  EntityDescription,
+  Globe,
+  CameraFlyTo,
+  CesiumComponentRef,
+  BillboardGraphics,
+} from "resium";
 import * as Cesium from "cesium";
 import BootstrapSwitchButton from "bootstrap-switch-button-react";
 import {useStore} from "react-redux";
@@ -138,7 +147,7 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
           textAlign: "center",
         }}
       >
-        Click on the colored point to see more...
+        Click on the colored point or the icon to see more...
       </h5>
       <Viewer
         ref={ref}
@@ -157,7 +166,8 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
         <CameraFlyTo duration={5} destination={initialPosition} />
 
         <Entity position={perseverancePosition} name="Info of Perseverance Mars Rover">
-          <PointGraphics pixelSize={10} color={Cesium.Color.RED} />
+          <PointGraphics pixelSize={5} color={Cesium.Color.RED} />
+          <BillboardGraphics image={Perseverance} color={Cesium.Color.WHITE} scale={0.21} />
           <EntityDescription>
             <h3>
               Mission:{" "}
@@ -180,7 +190,8 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
           </EntityDescription>
         </Entity>
         <Entity position={curiosityPosition} name="Info of Curiosity Mars Rover">
-          <PointGraphics pixelSize={10} color={Cesium.Color.DEEPPINK} />
+          <PointGraphics pixelSize={5} color={Cesium.Color.DEEPPINK} />
+          <BillboardGraphics image={Curiosity} color={Cesium.Color.WHITE} scale={0.11} />
           <EntityDescription>
             <h3>
               Mission:{" "}
@@ -199,7 +210,8 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
           </EntityDescription>
         </Entity>
         <Entity position={inSightPosition} name="Info of InSight Mars Lander">
-          <PointGraphics pixelSize={10} color={Cesium.Color.DARKORANGE} />
+          <PointGraphics pixelSize={5} color={Cesium.Color.DARKORANGE} />
+          <BillboardGraphics image={InSight} color={Cesium.Color.WHITE} scale={0.11} />
           <EntityDescription>
             <h3>
               Mission:{" "}

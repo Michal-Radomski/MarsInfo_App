@@ -54,6 +54,7 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
     tilingScheme: new Cesium.GeographicTilingScheme({ellipsoid: ellipsoidMars}),
     tileWidth: 512,
     tileHeight: 512,
+    enablePickFeatures: false,
   });
 
   React.useEffect(() => {

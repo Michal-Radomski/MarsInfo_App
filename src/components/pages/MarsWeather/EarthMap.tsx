@@ -2,7 +2,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import styled from "styled-components";
-import {Popover, OverlayTrigger} from "react-bootstrap";
+import {Popover, OverlayTrigger, Button} from "react-bootstrap";
 // import {OverlayTriggerType} from "react-bootstrap/OverlayTrigger"; //* earlier version
 
 // OpenLayers
@@ -218,6 +218,13 @@ class EarthMap extends React.Component<Props, State> {
             5
           )}`}</strong>
           <CountryInfoPopover />
+          <Button
+            onClick={() => document.body.click()}
+            variant="outline-primary"
+            style={{display: "block", width: "40%", marginLeft: "auto", marginRight: "auto"}}
+          >
+            Close
+          </Button>
         </Popover.Body>
       </Popover>
     );
@@ -269,7 +276,7 @@ class EarthMap extends React.Component<Props, State> {
             <div id="olMap" ref={this.mapRef} style={{height: "390px", cursor: "pointer"}}></div>
             {/* //- first version below */}
             {/* <OverlayTrigger trigger={this.hover} placement="right-end" overlay={this.popover} rootClose={true}> */}
-            <OverlayTrigger trigger="click" placement="right-end" overlay={this.popover} rootClose={true}>
+            <OverlayTrigger trigger="click" placement="right" overlay={this.popover} rootClose={true}>
               <div
                 id="marker"
                 title="Click the point to see more info..." //- original tooltip

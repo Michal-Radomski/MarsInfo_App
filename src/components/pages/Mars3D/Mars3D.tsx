@@ -35,7 +35,7 @@ const perseverancePosition = Cesium.Cartesian3.fromDegrees(PerseverancePosition[
 const curiosityPosition = Cesium.Cartesian3.fromDegrees(CuriosityPosition[1], CuriosityPosition[0], 0);
 const inSightPosition = Cesium.Cartesian3.fromDegrees(InSightPosition[1], InSightPosition[0], 0);
 
-const ellipsoidMars = new Cesium.Ellipsoid(3396190, 3376200, 3396190);
+const ellipsoidMars = new Cesium.Ellipsoid(3396190, 3376200, 3396190); //* Mars radiuses
 
 const Mars3D: React.FC<{}> = (): JSX.Element => {
   const ref = React.useRef<CesiumComponentRef<Cesium.Viewer>>(null);
@@ -45,6 +45,7 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
   const Mars3D_selectedLayer = JSON.parse(localStorage.getItem("Mars3D_selectedLayer") as string);
 
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
+
   const [selectedLayer, setSelectedLayer] = React.useState<string>(
     Mars3D_selectedLayer === null ? Layers[0] : Mars3D_selectedLayer
   );
@@ -75,6 +76,55 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
       // console.log("isLoading:", isLoading);
     }, 1200);
   }, [isLoading]);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      //* Adding label with current position of the cursor
+      function showPositionLabel() {
+        const viewer = ref?.current?.cesiumElement;
+        if (viewer) {
+          // console.log("ref?.current?.cesiumElement:", ref?.current?.cesiumElement);
+          const entityLabel = ref?.current?.cesiumElement?.entities.add({
+            label: {
+              show: true,
+              showBackground: true,
+              font: "15px Open Sans sans-serif",
+              horizontalOrigin: Cesium.HorizontalOrigin.LEFT,
+              verticalOrigin: Cesium.VerticalOrigin.CENTER,
+              pixelOffset: new Cesium.Cartesian2(25, 0),
+              backgroundColor: new Cesium.Color(0.165, 0.165, 0.165, 0.8),
+              fillColor: Cesium.Color.YELLOWGREEN,
+            },
+          }) as State;
+
+          const handlerLabel = new Cesium.ScreenSpaceEventHandler(ref?.current?.cesiumElement?.scene?.canvas);
+          handlerLabel.setInputAction(function (movement) {
+            let cartesian = ref?.current?.cesiumElement?.camera.pickEllipsoid(
+              movement.endPosition,
+              ref?.current?.cesiumElement?.scene?.globe?.ellipsoid
+            );
+            if (cartesian) {
+              let cartographic = Cesium.Cartographic.fromCartesian(cartesian);
+              let longitudeString = Cesium.Math.toDegrees(cartographic.longitude).toFixed(2);
+              let latitudeString = Cesium.Math.toDegrees(cartographic.latitude).toFixed(2);
+
+              if (entityLabel) {
+                entityLabel.position = cartesian;
+                entityLabel.label.show = true;
+                entityLabel.label.text = `Position of the cursor:\nLongitude: ${longitudeString.slice(
+                  -7
+                )}°,\nLatitude: ${latitudeString.slice(-7)}°`;
+              }
+            } else {
+              entityLabel.label.show = false;
+            }
+          }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+        }
+      }
+      showPositionLabel();
+      // console.log("function showPositionLabel() was called");
+    }, 1500);
+  });
 
   const options = {
     animation: false,

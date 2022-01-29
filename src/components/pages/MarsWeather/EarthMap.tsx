@@ -2,8 +2,8 @@
 import React from "react";
 import {connect} from "react-redux";
 import styled from "styled-components";
-import Popover from "react-bootstrap/Popover";
-import OverlayTrigger, {OverlayTriggerType} from "react-bootstrap/OverlayTrigger";
+import {Popover, OverlayTrigger} from "react-bootstrap";
+// import {OverlayTriggerType} from "react-bootstrap/OverlayTrigger"; //* earlier version
 
 // OpenLayers
 import Map from "ol/Map";
@@ -27,8 +27,8 @@ import "ol-layerswitcher/dist/ol-layerswitcher.css";
 
 // Redux Global Store
 import {getUserGeoData} from "../../../redux/actions";
+// Components
 import LocalWeather from "./LocalWeather";
-
 import CountryInfoPopover from "./CountryInfoPopover";
 
 const DivLocal = styled.div`
@@ -74,9 +74,9 @@ class EarthMap extends React.Component<Props, State> {
   scaleLine: ScaleLine;
   position: string;
   OL_Map: Map;
-  // popover: JSX.Element;
+  popover: JSX.Element;
   marker!: Overlay;
-  hover!: OverlayTriggerType[];
+  // hover!: OverlayTriggerType[];  //* earlier version
   mapOSM!: TileLayer<OSM>;
   mapStamen!: TileLayer<XYZ>;
   mapArcGIS!: TileLayer<XYZ>;
@@ -195,32 +195,32 @@ class EarthMap extends React.Component<Props, State> {
     });
     this.OL_Map.addInteraction(mouseWheelInt);
 
-    // this.popover = (
-    //   <Popover id="popoverLocation" style={{minWidth: "20%"}}>
-    //     <Popover.Header as="h3">
-    //       Yor are in:
-    //       <span style={{float: "right"}}>
-    //         {`${this.state.city}, ${this.state.country}`}
-    //         {"\u00A0 \u00A0"}
-    //         <img
-    //           src={this.state.country_flag}
-    //           height="16px"
-    //           alt="Country flag"
-    //           style={{marginBottom: "5px", border: "1px solid #666"}}
-    //         />
-    //       </span>
-    //     </Popover.Header>
-    //     <Popover.Body>
-    //       Your IP is: <strong style={{float: "right"}}>{`${this.state.IP}`}</strong>
-    //       <br />
-    //       Your location is:
-    //       <strong style={{float: "right"}}>{`${this.state.center[1].toFixed(5)}, ${this.state.center[0].toFixed(
-    //         5
-    //       )}`}</strong>
-    //       <CountryInfoPopover />
-    //     </Popover.Body>
-    //   </Popover>
-    // );
+    this.popover = (
+      <Popover id="popoverLocation" style={{minWidth: "20%"}}>
+        <Popover.Header as="h3">
+          Yor are in:
+          <span style={{float: "right"}}>
+            {`${this.state.city}, ${this.state.country}`}
+            {"\u00A0 \u00A0"}
+            <img
+              src={this.state.country_flag}
+              height="16px"
+              alt="Country flag"
+              style={{marginBottom: "5px", border: "1px solid #666"}}
+            />
+          </span>
+        </Popover.Header>
+        <Popover.Body>
+          Your IP is: <strong style={{float: "right"}}>{`${this.state.IP}`}</strong>
+          <br />
+          Your location is:
+          <strong style={{float: "right"}}>{`${this.state.center[1].toFixed(5)}, ${this.state.center[0].toFixed(
+            5
+          )}`}</strong>
+          <CountryInfoPopover />
+        </Popover.Body>
+      </Popover>
+    );
   }
 
   componentDidMount() {
@@ -267,10 +267,12 @@ class EarthMap extends React.Component<Props, State> {
           <DivMap>
             <h1 style={{textAlign: "center", transform: "translate(200px,0)"}}>Your location: {this.position}</h1>
             <div id="olMap" ref={this.mapRef} style={{height: "390px", cursor: "pointer"}}></div>
-            {/* <OverlayTrigger trigger={this.hover} placement="right-end" overlay={this.popover} rootClose={true}>
+            {/* //- first version below */}
+            {/* <OverlayTrigger trigger={this.hover} placement="right-end" overlay={this.popover} rootClose={true}> */}
+            <OverlayTrigger trigger="click" placement="right-end" overlay={this.popover} rootClose={true}>
               <div
                 id="marker"
-                // title={this.state.center}  //- original tooltip
+                title="Click the point to see more info..." //- original tooltip
                 style={{
                   width: "20px",
                   height: "20px",
@@ -280,8 +282,7 @@ class EarthMap extends React.Component<Props, State> {
                   opacity: "0.5",
                 }}
               ></div>
-            </OverlayTrigger> */}
-            <CountryInfoPopover />
+            </OverlayTrigger>
           </DivMap>
         ) : (
           <DivMap>

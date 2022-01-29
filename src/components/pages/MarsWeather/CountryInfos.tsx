@@ -2,7 +2,7 @@ import React from "react";
 import {useSelector} from "react-redux";
 import {Card, ListGroup, Table} from "react-bootstrap";
 
-const CountryInfoPopover = (): JSX.Element => {
+const CountryInfos = (): JSX.Element => {
   const storedData = useSelector((state: State) => state?.rootReducer?.location ?? "No Data") as State;
   // console.log("storedData:", storedData);
   const {currency_code, country} = storedData;
@@ -44,4 +44,4 @@ const CountryInfoPopover = (): JSX.Element => {
   );
 };
 
-export default CountryInfoPopover;
+export default CountryInfos;

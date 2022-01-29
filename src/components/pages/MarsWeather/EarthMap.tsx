@@ -29,7 +29,7 @@ import "ol-layerswitcher/dist/ol-layerswitcher.css";
 import {getUserGeoData} from "../../../redux/actions";
 // Components
 import LocalWeather from "./LocalWeather";
-import CountryInfoPopover from "./CountryInfoPopover";
+import CountryInfos from "./CountryInfos";
 
 const DivLocal = styled.div`
   left: 5px;
@@ -217,7 +217,7 @@ class EarthMap extends React.Component<Props, State> {
           <strong style={{float: "right"}}>{`${this.state.center[1].toFixed(5)}, ${this.state.center[0].toFixed(
             5
           )}`}</strong>
-          <CountryInfoPopover />
+          <CountryInfos />
           <Button
             onClick={() => document.body.click()}
             variant="outline-primary"

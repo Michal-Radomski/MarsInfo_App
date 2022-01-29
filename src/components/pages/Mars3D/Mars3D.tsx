@@ -29,7 +29,7 @@ const CuriosityPosition: Position = [-4.5895, 137.4417];
 const InSightPosition: Position = [4.5024, 135.6234];
 
 // Setting the initial position
-const initialPosition = Cesium.Cartesian3.fromDegrees(105, 0, 25000000);
+const initialPosition = Cesium.Cartesian3.fromDegrees(105, 0, 25000000); //* initialPosition: All vehicles are visible;
 // Setting the Mars Vehicles Positions
 const perseverancePosition = Cesium.Cartesian3.fromDegrees(PerseverancePosition[1], PerseverancePosition[0], 0);
 const curiosityPosition = Cesium.Cartesian3.fromDegrees(CuriosityPosition[1], CuriosityPosition[0], 0);

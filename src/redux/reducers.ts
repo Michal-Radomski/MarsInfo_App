@@ -31,6 +31,18 @@ const initialState: State = {
     icon: "" as string,
     calculationTime: undefined,
   },
+  currency: {
+    to_Selected: 0 as number,
+    to_USD: 0 as number,
+    to_EURO: 0 as number,
+    to_CHF: 0 as number,
+  },
+  covid: {
+    globalConfirmed: 0 as number,
+    globalDeaths: 0 as number,
+    countryConfirmed: 0 as number,
+    countryDeaths: 0 as number,
+  },
 };
 
 // Reducer

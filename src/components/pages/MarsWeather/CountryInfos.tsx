@@ -1,12 +1,27 @@
 import React from "react";
-import {useSelector} from "react-redux";
-import {Card, ListGroup, Table} from "react-bootstrap";
+import {useSelector, useDispatch} from "react-redux";
+import {Card, ListGroup, Table, Spinner} from "react-bootstrap";
 
 const CountryInfos = (): JSX.Element => {
   const storedData = useSelector((state: State) => state?.rootReducer?.location ?? "No Data") as State;
   // console.log("storedData:", storedData);
   const {currency_code, country} = storedData;
   console.log("currency_code, country:", currency_code, country);
+
+  React.useEffect(() => {
+    async function fetchData() {
+      const [covidByCountry, covidGlobal, currencyRates] = await Promise.allSettled([
+        fetch(`https://covid19.mathdro.id/api/countries/${country}`).then((response) => response.json()),
+        fetch("https://covid19.mathdro.id/api").then((response) => response.json()),
+        fetch(`https://open.er-api.com/v6/latest/${currency_code}`).then((response) => response.json()),
+      ]);
+      console.log(covidByCountry);
+      console.log(covidGlobal);
+      console.log(currencyRates);
+      return {covidByCountry, covidGlobal, currencyRates};
+    }
+    fetchData();
+  });
 
   return (
     <React.Fragment>

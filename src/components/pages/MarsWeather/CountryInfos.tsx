@@ -70,7 +70,7 @@ const CountryInfos = (): JSX.Element => {
               <Table striped bordered hover size="sm" style={{width: "100%", padding: "0px"}}>
                 <thead>
                   <tr>
-                    <th>{""}</th>
+                    <th style={{backgroundColor: "lightyellow"}}>{""}</th>
                     <th style={{color: "maroon"}}>{country}</th>
                     <th>World</th>
                   </tr>
@@ -78,19 +78,20 @@ const CountryInfos = (): JSX.Element => {
                 <tbody>
                   <tr>
                     <td>Confirmed</td>
-                    <td>{covid_Redux.countryConfirmed}</td>
-                    <td>{covid_Redux.globalConfirmed}</td>
+                    <td style={{fontWeight: "bold"}}>{covid_Redux.countryConfirmed.toLocaleString()}</td>
+                    <td style={{fontWeight: "bold"}}>{covid_Redux.globalConfirmed.toLocaleString()}</td>
                   </tr>
                   <tr>
                     <td>Deaths</td>
-                    <td>{covid_Redux.countryDeaths}</td>
-                    <td>{covid_Redux.globalDeaths}</td>
+                    <td style={{fontWeight: "bold"}}>{covid_Redux.countryDeaths.toLocaleString()}</td>
+                    <td style={{fontWeight: "bold"}}>{covid_Redux.globalDeaths.toLocaleString()}</td>
                   </tr>
                 </tbody>
               </Table>
             </ListGroup.Item>
-            <ListGroup.Item>
-              Last Update: <span>{covid_Redux.lastUpdate}</span>
+            <ListGroup.Item style={{width: "100%"}}>
+              Last Update:{" "}
+              <span style={{fontWeight: "bold", float: "right"}}>{new Date(covid_Redux.lastUpdate).toUTCString()}</span>
             </ListGroup.Item>
           </ListGroup>
 

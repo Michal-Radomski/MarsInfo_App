@@ -70,24 +70,27 @@ const CountryInfos = (): JSX.Element => {
               <Table striped bordered hover size="sm" style={{width: "100%", padding: "0px"}}>
                 <thead>
                   <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Last Name</th>
+                    <th>{""}</th>
+                    <th style={{color: "maroon"}}>{country}</th>
+                    <th>World</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>Otto</td>
+                    <td>Confirmed</td>
+                    <td>{covid_Redux.countryConfirmed}</td>
+                    <td>{covid_Redux.globalConfirmed}</td>
                   </tr>
                   <tr>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>Thornton</td>
+                    <td>Deaths</td>
+                    <td>{covid_Redux.countryDeaths}</td>
+                    <td>{covid_Redux.globalDeaths}</td>
                   </tr>
                 </tbody>
               </Table>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              Last Update: <span>{covid_Redux.lastUpdate}</span>
             </ListGroup.Item>
           </ListGroup>
 

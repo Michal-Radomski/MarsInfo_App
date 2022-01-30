@@ -3,9 +3,13 @@ import {useSelector, useDispatch} from "react-redux";
 import {Card, ListGroup, Table, Spinner} from "react-bootstrap";
 
 const CountryInfos = (): JSX.Element => {
-  const storedData = useSelector((state: State) => state?.rootReducer?.location ?? "No Data") as State;
-  // console.log("storedData:", storedData);
-  const {currency_code, country} = storedData;
+  const [location_Redux, currency_Redux, covid_Redux] = useSelector((state: State) => [
+    state?.rootReducer?.location ?? "No Data",
+    state?.rootReducer?.currency ?? "No Data",
+    state?.rootReducer?.covid ?? "No Data",
+  ]) as State;
+  // console.log("location_Redux:", location_Redux);
+  const {currency_code, country} = location_Redux;
   console.log("currency_code, country:", currency_code, country);
 
   React.useEffect(() => {
@@ -15,10 +19,9 @@ const CountryInfos = (): JSX.Element => {
         fetch("https://covid19.mathdro.id/api").then((response) => response.json()),
         fetch(`https://open.er-api.com/v6/latest/${currency_code}`).then((response) => response.json()),
       ]);
-
-      console.log("covidByCountry:", covidByCountry);
-      console.log("covidGlobal:", covidGlobal);
-      console.log("rates:", rates);
+      // console.log("covidByCountry:", covidByCountry);
+      // console.log("covidGlobal:", covidGlobal);
+      // console.log("rates:", rates);
       const result = {
         //@ts-ignore
         countryCovid: covidByCountry.value,
@@ -27,7 +30,22 @@ const CountryInfos = (): JSX.Element => {
         //@ts-ignore
         currencyRates: rates.value,
       };
-      console.log("result:", result);
+      // console.log("result:", result);
+      const covidData = {
+        globalConfirmed: result?.globalCovid?.confirmed?.value ?? "No Data",
+        globalDeaths: result?.globalCovid?.deaths?.value ?? "No Data",
+        countryConfirmed: result?.countryCovid?.confirmed?.value ?? "No Data",
+        countryDeaths: result?.countryCovid?.deaths?.value ?? "No Data",
+        lastUpdate: result?.globalCovid?.lastUpdate || result?.countryCovid?.lastUpdate || "No Data",
+      };
+      const currencyData = {
+        lastUpdate: result?.currencyRates?.time_last_update_utc ?? "No Data",
+        to_Selected: result?.currencyRates?.rates[`${currency_code}`] ?? "No Data",
+        to_USD: result?.currencyRates?.rates?.USD ?? "No Data",
+        to_EURO: result?.currencyRates?.rates?.EUR ?? "No Data",
+        to_CHF: result?.currencyRates?.rates?.CHF ?? "No Data",
+      };
+      console.log(covidData, currencyData);
     }
     fetchData();
   });

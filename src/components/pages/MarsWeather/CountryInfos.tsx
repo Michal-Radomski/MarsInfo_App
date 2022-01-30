@@ -10,15 +10,24 @@ const CountryInfos = (): JSX.Element => {
 
   React.useEffect(() => {
     async function fetchData() {
-      const [covidByCountry, covidGlobal, currencyRates] = await Promise.allSettled([
+      const [covidByCountry, covidGlobal, rates] = await Promise.allSettled([
         fetch(`https://covid19.mathdro.id/api/countries/${country}`).then((response) => response.json()),
         fetch("https://covid19.mathdro.id/api").then((response) => response.json()),
         fetch(`https://open.er-api.com/v6/latest/${currency_code}`).then((response) => response.json()),
       ]);
-      console.log(covidByCountry);
-      console.log(covidGlobal);
-      console.log(currencyRates);
-      return {covidByCountry, covidGlobal, currencyRates};
+
+      console.log("covidByCountry:", covidByCountry);
+      console.log("covidGlobal:", covidGlobal);
+      console.log("rates:", rates);
+      const result = {
+        //@ts-ignore
+        countryCovid: covidByCountry.value,
+        //@ts-ignore
+        globalCovid: covidGlobal.value,
+        //@ts-ignore
+        currencyRates: rates.value,
+      };
+      console.log("result:", result);
     }
     fetchData();
   });

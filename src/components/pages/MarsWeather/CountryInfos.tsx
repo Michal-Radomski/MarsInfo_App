@@ -1,3 +1,5 @@
+// Todo: spinners, sources, table/card colors
+
 import React from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {Card, Table, Spinner, Dropdown} from "react-bootstrap";
@@ -79,7 +81,7 @@ const CountryInfos = (): JSX.Element => {
   }, [country, currency_code, dispatch]);
 
   return (
-    <React.Fragment>
+    <>
       <Card style={{width: "100%", margin: "12px auto"}}>
         <Card.Header style={{textAlign: "center", fontWeight: "bold"}} as="h5">
           Local Info for <span style={{color: "maroon", fontStyle: "italic"}}>{country}</span>
@@ -153,17 +155,20 @@ const CountryInfos = (): JSX.Element => {
         </Card.Body>
         <Card.Footer style={{width: "100%", marginTop: "px"}}>
           Size of localStorage for the site:{" "}
-          <span style={{float: "right", fontWeight: "bold"}}>{`${localStorageSize} KB`}</span>
+          <span style={{float: "right", fontWeight: "bold"}}>
+            {localStorageSize === 0 ? <Spinner animation="border" variant="info" size="sm" /> : `${localStorageSize} KB`}
+          </span>
         </Card.Footer>
       </Card>
-      {/* <Spinner animation="border" variant="primary" />
-      <Spinner animation="border" variant="secondary" />
-      <Spinner animation="border" variant="success" />
-      <Spinner animation="border" variant="danger" />
-      <Spinner animation="border" variant="warning" /> */}
-      {/* <Spinner animation="border" variant="info" size="sm" /> */}
-    </React.Fragment>
+    </>
   );
 };
 
 export default CountryInfos;
+
+// {/* <Spinner animation="border" variant="primary" />
+// <Spinner animation="border" variant="secondary" />
+// <Spinner animation="border" variant="success" />
+// <Spinner animation="border" variant="danger" />
+// <Spinner animation="border" variant="warning" /> */}
+// {/* <Spinner animation="border" variant="info" size="sm" /> */}

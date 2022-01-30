@@ -70,7 +70,12 @@ const CountryInfos = (): JSX.Element => {
         </Card.Body>
         <Card.Footer>Featured</Card.Footer>
       </Card>
-      <Spinner animation={"border"} />
+      {/* <Spinner animation="border" variant="primary" />
+      <Spinner animation="border" variant="secondary" />
+      <Spinner animation="border" variant="success" />
+      <Spinner animation="border" variant="danger" />
+      <Spinner animation="border" variant="warning" /> */}
+      <Spinner animation="border" variant="info" size="sm" />
       <Table striped bordered hover size="sm">
         <thead>
           <tr>

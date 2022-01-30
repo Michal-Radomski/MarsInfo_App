@@ -1,6 +1,6 @@
 import React from "react";
 import {useSelector, useDispatch} from "react-redux";
-import {Card, ListGroup, Table, Spinner} from "react-bootstrap";
+import {Card, Table, Spinner, Dropdown} from "react-bootstrap";
 
 import {GET_COVID_DATA, GET_RATES_DATA} from "../../../redux/actions";
 
@@ -59,49 +59,76 @@ const CountryInfos = (): JSX.Element => {
 
   return (
     <React.Fragment>
-      <Card style={{width: "100%"}}>
+      <Card style={{width: "100%", margin: "12px auto"}}>
         <Card.Header style={{textAlign: "center", fontWeight: "bold"}} as="h5">
           Local Info for <span style={{color: "maroon", fontStyle: "italic"}}>{country}</span>
         </Card.Header>
         <Card.Body style={{width: "100%", padding: "0px"}}>
+          {/* //* Covid Info */}
           <Card.Title style={{textAlign: "center", margin: "8px"}}>Covid Info</Card.Title>
-          <ListGroup variant="flush">
-            <ListGroup.Item style={{width: "100%", padding: "0px"}}>
-              <Table striped bordered hover size="sm" style={{width: "100%", padding: "0px"}}>
-                <thead>
-                  <tr>
-                    <th style={{backgroundColor: "lightyellow"}}>{""}</th>
-                    <th style={{color: "maroon"}}>{country}</th>
-                    <th>World</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Confirmed</td>
-                    <td style={{fontWeight: "bold"}}>{covid_Redux.countryConfirmed.toLocaleString()}</td>
-                    <td style={{fontWeight: "bold"}}>{covid_Redux.globalConfirmed.toLocaleString()}</td>
-                  </tr>
-                  <tr>
-                    <td>Deaths</td>
-                    <td style={{fontWeight: "bold"}}>{covid_Redux.countryDeaths.toLocaleString()}</td>
-                    <td style={{fontWeight: "bold"}}>{covid_Redux.globalDeaths.toLocaleString()}</td>
-                  </tr>
-                </tbody>
-              </Table>
-            </ListGroup.Item>
-            <ListGroup.Item style={{width: "100%"}}>
-              Last Update:{" "}
-              <span style={{fontWeight: "bold", float: "right"}}>{new Date(covid_Redux.lastUpdate).toUTCString()}</span>
-            </ListGroup.Item>
-          </ListGroup>
-
-          <hr style={{border: "1px solid red"}} />
-          <Card.Title></Card.Title>
-
-          <Card.Text>With</Card.Text>
-          <ListGroup variant="flush">
-            <ListGroup.Item>Text</ListGroup.Item>
-          </ListGroup>
+          <Table striped bordered hover size="sm" style={{width: "100%", padding: "0px"}}>
+            <thead>
+              <tr>
+                <th style={{backgroundColor: "lightyellow"}}>SOURCE</th>
+                <th style={{color: "maroon", fontStyle: "italic"}}>{country}</th>
+                <th>World</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Confirmed</td>
+                <td style={{fontWeight: "bold"}}>{covid_Redux.countryConfirmed.toLocaleString()}</td>
+                <td style={{fontWeight: "bold"}}>{covid_Redux.globalConfirmed.toLocaleString()}</td>
+              </tr>
+              <tr>
+                <td>Deaths</td>
+                <td style={{fontWeight: "bold"}}>{covid_Redux.countryDeaths.toLocaleString()}</td>
+                <td style={{fontWeight: "bold"}}>{covid_Redux.globalDeaths.toLocaleString()}</td>
+              </tr>
+            </tbody>
+          </Table>
+          <Card.Text style={{width: "100%", padding: "4px"}}>
+            Last Update:{" "}
+            <span style={{fontWeight: "bold", float: "right"}}>{new Date(covid_Redux.lastUpdate).toUTCString()}</span>
+          </Card.Text>
+          <Dropdown.Divider style={{border: "solid 2px maroon", margin: "5px auto"}} />
+          {/* //* Currency Info */}
+          <Card.Title style={{textAlign: "center", margin: "8px"}}>Local Currency Info</Card.Title>
+          <Table striped bordered hover size="sm" style={{width: "100%", padding: "0px"}}>
+            <thead>
+              <tr>
+                <th style={{backgroundColor: "lightyellow"}}>source</th>
+                <th>
+                  Local Currency: <span style={{color: "maroon", fontStyle: "italic"}}>{currency_code}</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  USD to <span style={{color: "maroon", fontStyle: "italic"}}>{currency_code}</span>
+                </td>
+                <td style={{fontWeight: "bold"}}>{(1 / currency_Redux.to_USD).toFixed(3)}</td>
+              </tr>
+              <tr>
+                <td>
+                  EURO to <span style={{color: "maroon", fontStyle: "italic"}}>{currency_code}</span>
+                </td>
+                <td style={{fontWeight: "bold"}}>{(1 / currency_Redux.to_EURO).toFixed(3)}</td>
+              </tr>
+              <tr>
+                <td>
+                  CHF to <span style={{color: "maroon", fontStyle: "italic"}}>{currency_code}</span>
+                </td>
+                <td style={{fontWeight: "bold"}}>{(1 / currency_Redux.to_CHF).toFixed(3)}</td>
+              </tr>
+            </tbody>
+          </Table>
+          <Card.Text style={{width: "100%", padding: "4px"}}>
+            Last Update:{" "}
+            <span style={{fontWeight: "bold", float: "right"}}>{new Date(currency_Redux.lastUpdate).toUTCString()}</span>
+          </Card.Text>
+          <Dropdown.Divider style={{border: "solid 2px maroon", margin: "5px auto"}} />
         </Card.Body>
         <Card.Footer>Featured</Card.Footer>
       </Card>
@@ -110,25 +137,7 @@ const CountryInfos = (): JSX.Element => {
       <Spinner animation="border" variant="success" />
       <Spinner animation="border" variant="danger" />
       <Spinner animation="border" variant="warning" /> */}
-      <Spinner animation="border" variant="info" size="sm" />
-      <Table striped bordered hover size="sm">
-        <thead>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Mark</td>
-            <td>Otto</td>
-          </tr>
-          <tr>
-            <td>Jacob</td>
-            <td>Thornton</td>
-          </tr>
-        </tbody>
-      </Table>
+      {/* <Spinner animation="border" variant="info" size="sm" /> */}
     </React.Fragment>
   );
 };

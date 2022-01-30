@@ -32,6 +32,7 @@ const initialState: State = {
     calculationTime: undefined,
   },
   currency: {
+    lastUpdate: "" as string,
     to_Selected: 0 as number,
     to_USD: 0 as number,
     to_EURO: 0 as number,
@@ -42,6 +43,7 @@ const initialState: State = {
     globalDeaths: 0 as number,
     countryConfirmed: 0 as number,
     countryDeaths: 0 as number,
+    lastUpdate: "" as string,
   },
 };
 

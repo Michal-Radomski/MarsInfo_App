@@ -17,6 +17,8 @@ const CountryInfos = (): JSX.Element => {
   const {currency_code, country} = location_Redux;
   // console.log("currency_code, country:", currency_code, country);
 
+  const [localStorageSize, setLocalStorageSize] = React.useState(0);
+
   React.useEffect(() => {
     async function fetchData() {
       const [covidByCountry, covidGlobal, rates] = await Promise.allSettled([
@@ -55,6 +57,25 @@ const CountryInfos = (): JSX.Element => {
       await dispatch({type: GET_RATES_DATA, payload: currencyData});
     }
     fetchData();
+
+    //- localStorage Size
+    setTimeout(() => {
+      let _lsTotal = 0,
+        _xLen,
+        _x;
+      for (_x in localStorage) {
+        if (!localStorage.hasOwnProperty(_x)) {
+          continue;
+        }
+        _xLen = (localStorage[_x].length + _x.length) * 2;
+        _lsTotal += _xLen;
+        // console.log(_x.substr(0, 50) + " = " + (_xLen / 1024).toFixed(2) + " KB");
+      }
+      // console.log("Total = " + (_lsTotal / 1024).toFixed(2) + " KB");
+      let totalTotal = Number((_lsTotal / 1024).toFixed(2));
+      // console.log("totalTotal:", totalTotal, "KB");
+      setLocalStorageSize(totalTotal);
+    }, 1200);
   }, [country, currency_code, dispatch]);
 
   return (
@@ -128,9 +149,12 @@ const CountryInfos = (): JSX.Element => {
             Last Update:{" "}
             <span style={{fontWeight: "bold", float: "right"}}>{new Date(currency_Redux.lastUpdate).toUTCString()}</span>
           </Card.Text>
-          <Dropdown.Divider style={{border: "solid 2px maroon", margin: "5px auto"}} />
+          <Dropdown.Divider style={{border: "solid 2px maroon", margin: "5px auto", marginBottom: "0px"}} />
         </Card.Body>
-        <Card.Footer>Featured</Card.Footer>
+        <Card.Footer style={{width: "100%", marginTop: "px"}}>
+          Size of localStorage for the site:{" "}
+          <span style={{float: "right", fontWeight: "bold"}}>{`${localStorageSize} KB`}</span>
+        </Card.Footer>
       </Card>
       {/* <Spinner animation="border" variant="primary" />
       <Spinner animation="border" variant="secondary" />

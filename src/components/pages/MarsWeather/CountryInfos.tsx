@@ -2,15 +2,20 @@ import React from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {Card, ListGroup, Table, Spinner} from "react-bootstrap";
 
+import {GET_COVID_DATA, GET_RATES_DATA} from "../../../redux/actions";
+
 const CountryInfos = (): JSX.Element => {
+  const dispatch: Dispatch = useDispatch();
   const [location_Redux, currency_Redux, covid_Redux] = useSelector((state: State) => [
     state?.rootReducer?.location ?? "No Data",
     state?.rootReducer?.currency ?? "No Data",
     state?.rootReducer?.covid ?? "No Data",
   ]) as State;
   // console.log("location_Redux:", location_Redux);
+  console.log("currency_Redux, covid_Redux:", currency_Redux, covid_Redux);
+
   const {currency_code, country} = location_Redux;
-  console.log("currency_code, country:", currency_code, country);
+  // console.log("currency_code, country:", currency_code, country);
 
   React.useEffect(() => {
     async function fetchData() {
@@ -45,7 +50,9 @@ const CountryInfos = (): JSX.Element => {
         to_EURO: result?.currencyRates?.rates?.EUR ?? "No Data",
         to_CHF: result?.currencyRates?.rates?.CHF ?? "No Data",
       };
-      console.log(covidData, currencyData);
+      // await console.log("covidData, currencyData:", covidData, currencyData);
+      await dispatch({type: GET_COVID_DATA, payload: covidData});
+      await dispatch({type: GET_RATES_DATA, payload: currencyData});
     }
     fetchData();
   });
@@ -58,12 +65,12 @@ const CountryInfos = (): JSX.Element => {
           <Card.Title>Special title treatment</Card.Title>
           <Card.Text>With</Card.Text>
           <ListGroup variant="flush">
-            <ListGroup.Item>Cras justo odio</ListGroup.Item>
+            <ListGroup.Item>Text</ListGroup.Item>
           </ListGroup>
         </Card.Body>
         <Card.Footer>Featured</Card.Footer>
       </Card>
-
+      <Spinner animation={"border"} />
       <Table striped bordered hover size="sm">
         <thead>
           <tr>

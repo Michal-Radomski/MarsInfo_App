@@ -4,6 +4,8 @@ import axios from "axios";
 export const SET_APOD_DATE = "SET_APOD_DATE";
 export const GET_USER_GEO_DATA = "GET_USER_GEO_DATA";
 export const GET_USER_WEATHER_CONDITIONS = "GET_USER_WEATHER_CONDITIONS";
+export const GET_COVID_DATA = "GET_COVID_DATA";
+export const GET_RATES_DATA = "GET_RATES_DATA";
 
 // Action creator getUserGeoDate
 export const getUserGeoData = () => {

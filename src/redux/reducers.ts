@@ -1,6 +1,6 @@
 import {combineReducers} from "redux";
 
-import {SET_APOD_DATE, GET_USER_GEO_DATA, GET_USER_WEATHER_CONDITIONS} from "./actions";
+import {SET_APOD_DATE, GET_USER_GEO_DATA, GET_USER_WEATHER_CONDITIONS, GET_COVID_DATA, GET_RATES_DATA} from "./actions";
 
 // Initial Global State
 const initialState: State = {
@@ -56,6 +56,10 @@ const reducer = (state = initialState, action: Dispatch) => {
       return {...state, NASA_APOD: {selectedDate: action.payload}};
     case GET_USER_WEATHER_CONDITIONS:
       return {...state, weather: action.payload};
+    case GET_COVID_DATA:
+      return {...state, covid: action.payload};
+    case GET_RATES_DATA:
+      return {...state, currency: action.payload};
 
     default:
       return state;

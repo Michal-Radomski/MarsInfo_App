@@ -12,7 +12,7 @@ const CountryInfos = (): JSX.Element => {
     state?.rootReducer?.covid ?? "No Data",
   ]) as State;
   // console.log("location_Redux:", location_Redux);
-  console.log("currency_Redux, covid_Redux:", currency_Redux, covid_Redux);
+  // console.log("currency_Redux, covid_Redux:", currency_Redux, covid_Redux);
 
   const {currency_code, country} = location_Redux;
   // console.log("currency_code, country:", currency_code, country);

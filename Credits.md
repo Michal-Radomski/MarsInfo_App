@@ -31,3 +31,7 @@
 
 6. Mars Imagery is provided by
    [USGS - Astrogeology Science Center](https://www.usgs.gov/centers/astrogeology-science-center/maps).
+
+7. Covid Data is provided by [mathdroid/covid-19-api](https://github.com/mathdroid/covid-19-api).
+
+8. Currency Exchange Rates are provided by [ExchangeRate-API](https://www.exchangerate-api.com/).

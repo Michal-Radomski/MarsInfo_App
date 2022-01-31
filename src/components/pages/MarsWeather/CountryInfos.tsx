@@ -1,4 +1,4 @@
-// Todo: spinners, sources, table/card colors, color of 16,5kb, localStorage
+// Todo: sources, localStorage
 
 import React from "react";
 import {useSelector, useDispatch} from "react-redux";
@@ -100,13 +100,37 @@ const CountryInfos = (): JSX.Element => {
             <tbody>
               <tr>
                 <td>Confirmed</td>
-                <td style={{fontWeight: "bold"}}>{covid_Redux.countryConfirmed.toLocaleString()}</td>
-                <td style={{fontWeight: "bold"}}>{covid_Redux.globalConfirmed.toLocaleString()}</td>
+                <td style={{fontWeight: "bold"}}>
+                  {covid_Redux.countryConfirmed ? (
+                    covid_Redux.countryConfirmed.toLocaleString()
+                  ) : (
+                    <Spinner animation="border" variant="primary" size="sm" />
+                  )}
+                </td>
+                <td style={{fontWeight: "bold"}}>
+                  {covid_Redux.globalConfirmed ? (
+                    covid_Redux.globalConfirmed.toLocaleString()
+                  ) : (
+                    <Spinner animation="border" variant="secondary" size="sm" />
+                  )}
+                </td>
               </tr>
               <tr>
                 <td>Deaths</td>
-                <td style={{fontWeight: "bold"}}>{covid_Redux.countryDeaths.toLocaleString()}</td>
-                <td style={{fontWeight: "bold"}}>{covid_Redux.globalDeaths.toLocaleString()}</td>
+                <td style={{fontWeight: "bold"}}>
+                  {covid_Redux.countryDeaths ? (
+                    covid_Redux.countryDeaths.toLocaleString()
+                  ) : (
+                    <Spinner animation="border" variant="warning" size="sm" />
+                  )}
+                </td>
+                <td style={{fontWeight: "bold"}}>
+                  {covid_Redux.globalDeaths ? (
+                    covid_Redux.globalDeaths.toLocaleString()
+                  ) : (
+                    <Spinner animation="border" variant="info" size="sm" />
+                  )}
+                </td>
               </tr>
             </tbody>
           </Table>
@@ -131,19 +155,37 @@ const CountryInfos = (): JSX.Element => {
                 <td>
                   USD to <span style={{color: "maroon", fontStyle: "italic"}}>{currency_code}</span>
                 </td>
-                <td style={{fontWeight: "bold"}}>{(1 / currency_Redux.to_USD).toFixed(3)}</td>
+                <td style={{fontWeight: "bold"}}>
+                  {currency_Redux.to_USD ? (
+                    (1 / currency_Redux.to_USD).toFixed(3)
+                  ) : (
+                    <Spinner animation="grow" variant="primary" size="sm" />
+                  )}
+                </td>
               </tr>
               <tr>
                 <td>
                   EURO to <span style={{color: "maroon", fontStyle: "italic"}}>{currency_code}</span>
                 </td>
-                <td style={{fontWeight: "bold"}}>{(1 / currency_Redux.to_EURO).toFixed(3)}</td>
+                <td style={{fontWeight: "bold"}}>
+                  {currency_Redux.to_EURO ? (
+                    (1 / currency_Redux.to_EURO).toFixed(3)
+                  ) : (
+                    <Spinner animation="grow" variant="secondary" size="sm" />
+                  )}
+                </td>
               </tr>
               <tr>
                 <td>
                   CHF to <span style={{color: "maroon", fontStyle: "italic"}}>{currency_code}</span>
                 </td>
-                <td style={{fontWeight: "bold"}}>{(1 / currency_Redux.to_CHF).toFixed(3)}</td>
+                <td style={{fontWeight: "bold"}}>
+                  {currency_Redux.to_CHF ? (
+                    (1 / currency_Redux.to_CHF).toFixed(3)
+                  ) : (
+                    <Spinner animation="grow" variant="warning" size="sm" />
+                  )}
+                </td>
               </tr>
             </tbody>
           </Table>
@@ -155,8 +197,8 @@ const CountryInfos = (): JSX.Element => {
         </Card.Body>
         <Card.Footer style={{width: "100%", marginTop: "px"}}>
           Size of localStorage for the site:{" "}
-          <span style={{float: "right", fontWeight: "bold"}}>
-            {localStorageSize === 0 ? <Spinner animation="border" variant="info" size="sm" /> : `${localStorageSize} KB`}
+          <span style={{float: "right", fontWeight: "bolder", color: "maroon"}}>
+            {localStorageSize === 0 ? <Spinner animation="grow" variant="info" size="sm" /> : `${localStorageSize} KB`}
           </span>
         </Card.Footer>
       </Card>
@@ -165,10 +207,3 @@ const CountryInfos = (): JSX.Element => {
 };
 
 export default CountryInfos;
-
-// {/* <Spinner animation="border" variant="primary" />
-// <Spinner animation="border" variant="secondary" />
-// <Spinner animation="border" variant="success" />
-// <Spinner animation="border" variant="danger" />
-// <Spinner animation="border" variant="warning" /> */}
-// {/* <Spinner animation="border" variant="info" size="sm" /> */}

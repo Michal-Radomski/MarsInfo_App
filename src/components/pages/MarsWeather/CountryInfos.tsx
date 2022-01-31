@@ -82,7 +82,7 @@ const CountryInfos = (): JSX.Element => {
 
   return (
     <>
-      <Card style={{width: "100%", margin: "12px auto"}}>
+      <Card style={{width: "100%", margin: "12px auto"}} border="primary">
         <Card.Header style={{textAlign: "center", fontWeight: "bold"}} as="h5">
           Local Info for <span style={{color: "maroon", fontStyle: "italic"}}>{country}</span>
         </Card.Header>

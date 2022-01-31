@@ -1,4 +1,4 @@
-// Todo: sources, localStorage
+// Todo: localStorage
 
 import React from "react";
 import {useSelector, useDispatch} from "react-redux";
@@ -63,7 +63,7 @@ const CountryInfos = (): JSX.Element => {
       fetchData();
     }, 1200);
 
-    //- localStorage Size
+    //- localStorage Size in KB
     setTimeout(() => {
       function showLocalStorageSize() {
         let totalSize = 0;

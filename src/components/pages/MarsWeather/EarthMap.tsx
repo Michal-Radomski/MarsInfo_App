@@ -68,7 +68,7 @@ interface Props {
   getUserGeoData?: Fetch;
 }
 
-class EarthMap extends React.PureComponent<Props, State> {
+class EarthMap extends React.Component<Props, State> {
   mapRef: React.RefObject<HTMLDivElement> | any;
   attribution: Attribution;
   scaleLine: ScaleLine;
@@ -273,6 +273,7 @@ class EarthMap extends React.PureComponent<Props, State> {
         {this.state.center[0] !== 0 && this.state.center[1] !== 0 ? (
           <DivMap>
             <h1 style={{textAlign: "center", transform: "translate(200px,0)"}}>Your location: {this.position}</h1>
+            <h3 style={{textAlign: "center", transform: "translate(200px,0)"}}>Click the blue point to see more...</h3>
             <div id="olMap" ref={this.mapRef} style={{height: "390px", cursor: "pointer"}}></div>
             {/* //- first version below */}
             {/* <OverlayTrigger trigger={this.hover} placement="right-end" overlay={this.popover} rootClose={true}> */}
@@ -293,7 +294,8 @@ class EarthMap extends React.PureComponent<Props, State> {
           </DivMap>
         ) : (
           <DivMap>
-            <h2 style={{textAlign: "center"}}>Your location is unknown</h2>
+            <h2 style={{textAlign: "center", transform: "translate(200px,0)"}}>Your location is unknown</h2>
+            <h3 style={{textAlign: "center", transform: "translate(200px,0)"}}>Reload the page...</h3>
             <div id="olMap" ref={this.mapRef} style={{height: "390px", cursor: "pointer"}}></div>
           </DivMap>
         )}

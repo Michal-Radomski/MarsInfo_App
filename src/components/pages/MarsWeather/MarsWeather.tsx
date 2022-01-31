@@ -118,7 +118,7 @@ class MarsWeather extends React.Component<Props, State> {
         <Div
           style={{
             position: "absolute",
-            top: "1190px",
+            top: "1220px",
           }}
         >
           <MarsWeatherCharts

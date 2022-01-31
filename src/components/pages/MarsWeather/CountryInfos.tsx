@@ -65,37 +65,18 @@ const CountryInfos = (): JSX.Element => {
 
     //- localStorage Size
     setTimeout(() => {
-      // let _lsTotal = 0,
-      //   _xLen,
-      //   _x;
-      // for (_x in localStorage) {
-      //   if (!localStorage.hasOwnProperty(_x)) {
-      //     continue;
-      //   }
-      //   _xLen = (localStorage[_x].length + _x.length) * 2;
-      //   _lsTotal += _xLen;
-      //   // console.log(_x.substr(0, 50) + " = " + (_xLen / 1024).toFixed(2) + " KB");
-      // }
-      // // console.log("Total = " + (_lsTotal / 1024).toFixed(2) + " KB");
-      // let totalTotal = Number((_lsTotal / 1024).toFixed(2));
-      // // console.log("totalTotal:", totalTotal, "KB");
-      // setLocalStorageSize(totalTotal);
-
-      var getLocalStorageSize = function () {
-        var total = 0;
-        for (var x in localStorage) {
-          // Value is multiplied by 2 due to data being stored in `utf-16` format, which requires twice the space.
-          var amount = (localStorage[x].length * 2) / 1024;
-          if (!isNaN(amount) && localStorage.hasOwnProperty(x)) {
-            // console.log(x, localStorage.getItem(x), amount);
-            total += amount;
+      function showLocalStorageSize() {
+        let totalSize = 0;
+        for (let item in localStorage) {
+          let amount = (localStorage[item].length * 2) / 1024;
+          if (!isNaN(amount) && localStorage.hasOwnProperty(item)) {
+            // console.log(item, localStorage.getItem(item), amount);
+            totalSize = totalSize + amount;
           }
         }
-        setLocalStorageSize(total);
-        return total.toFixed(2);
-      };
-
-      getLocalStorageSize();
+        setLocalStorageSize(Number(totalSize.toFixed(2)));
+      }
+      showLocalStorageSize();
     }, 1800);
   }, [country, currency_code, dispatch]);
 

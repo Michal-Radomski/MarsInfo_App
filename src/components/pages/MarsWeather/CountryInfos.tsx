@@ -2,7 +2,7 @@
 
 import React from "react";
 import {useSelector, useDispatch} from "react-redux";
-import {Card, Table, Spinner, Dropdown} from "react-bootstrap";
+import {Card, Table, Spinner, Dropdown, Nav} from "react-bootstrap";
 
 import {GET_COVID_DATA, GET_RATES_DATA} from "../../../redux/actions";
 
@@ -92,7 +92,15 @@ const CountryInfos = (): JSX.Element => {
           <Table striped bordered hover size="sm" style={{width: "100%", padding: "0px"}}>
             <thead>
               <tr>
-                <th style={{backgroundColor: "lightyellow"}}>SOURCE</th>
+                <th style={{backgroundColor: "lightyellow"}}>
+                  <Nav.Link
+                    href="https://github.com/mathdroid/covid-19-api"
+                    target="_blank"
+                    style={{padding: "0px", textAlign: "center"}}
+                  >
+                    Source
+                  </Nav.Link>
+                </th>
                 <th style={{color: "maroon", fontStyle: "italic"}}>{country}</th>
                 <th>World</th>
               </tr>
@@ -152,7 +160,11 @@ const CountryInfos = (): JSX.Element => {
           <Table striped bordered hover size="sm" style={{width: "100%", padding: "0px"}}>
             <thead>
               <tr>
-                <th style={{backgroundColor: "lightyellow"}}>source</th>
+                <th style={{backgroundColor: "lightyellow"}}>
+                  <Nav.Link href="https://open.er-api.com" target="_blank" style={{padding: "0px", textAlign: "center"}}>
+                    Source
+                  </Nav.Link>
+                </th>
                 <th>
                   Local Currency: <span style={{color: "maroon", fontStyle: "italic"}}>{currency_code}</span>
                 </th>

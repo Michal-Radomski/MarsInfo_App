@@ -1,4 +1,4 @@
-// Todo: spinners, sources, table/card colors
+// Todo: spinners, sources, table/card colors, color of 16,5kb, localStorage
 
 import React from "react";
 import {useSelector, useDispatch} from "react-redux";

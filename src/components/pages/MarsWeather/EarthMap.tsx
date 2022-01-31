@@ -68,7 +68,7 @@ interface Props {
   getUserGeoData?: Fetch;
 }
 
-class EarthMap extends React.Component<Props, State> {
+class EarthMap extends React.PureComponent<Props, State> {
   mapRef: React.RefObject<HTMLDivElement> | any;
   attribution: Attribution;
   scaleLine: ScaleLine;

@@ -58,26 +58,45 @@ const CountryInfos = (): JSX.Element => {
       await dispatch({type: GET_COVID_DATA, payload: covidData});
       await dispatch({type: GET_RATES_DATA, payload: currencyData});
     }
-    fetchData();
+
+    setTimeout(() => {
+      fetchData();
+    }, 1200);
 
     //- localStorage Size
     setTimeout(() => {
-      let _lsTotal = 0,
-        _xLen,
-        _x;
-      for (_x in localStorage) {
-        if (!localStorage.hasOwnProperty(_x)) {
-          continue;
+      // let _lsTotal = 0,
+      //   _xLen,
+      //   _x;
+      // for (_x in localStorage) {
+      //   if (!localStorage.hasOwnProperty(_x)) {
+      //     continue;
+      //   }
+      //   _xLen = (localStorage[_x].length + _x.length) * 2;
+      //   _lsTotal += _xLen;
+      //   // console.log(_x.substr(0, 50) + " = " + (_xLen / 1024).toFixed(2) + " KB");
+      // }
+      // // console.log("Total = " + (_lsTotal / 1024).toFixed(2) + " KB");
+      // let totalTotal = Number((_lsTotal / 1024).toFixed(2));
+      // // console.log("totalTotal:", totalTotal, "KB");
+      // setLocalStorageSize(totalTotal);
+
+      var getLocalStorageSize = function () {
+        var total = 0;
+        for (var x in localStorage) {
+          // Value is multiplied by 2 due to data being stored in `utf-16` format, which requires twice the space.
+          var amount = (localStorage[x].length * 2) / 1024;
+          if (!isNaN(amount) && localStorage.hasOwnProperty(x)) {
+            // console.log(x, localStorage.getItem(x), amount);
+            total += amount;
+          }
         }
-        _xLen = (localStorage[_x].length + _x.length) * 2;
-        _lsTotal += _xLen;
-        // console.log(_x.substr(0, 50) + " = " + (_xLen / 1024).toFixed(2) + " KB");
-      }
-      // console.log("Total = " + (_lsTotal / 1024).toFixed(2) + " KB");
-      let totalTotal = Number((_lsTotal / 1024).toFixed(2));
-      // console.log("totalTotal:", totalTotal, "KB");
-      setLocalStorageSize(totalTotal);
-    }, 1200);
+        setLocalStorageSize(total);
+        return total.toFixed(2);
+      };
+
+      getLocalStorageSize();
+    }, 1800);
   }, [country, currency_code, dispatch]);
 
   return (
@@ -134,9 +153,17 @@ const CountryInfos = (): JSX.Element => {
               </tr>
             </tbody>
           </Table>
-          <Card.Text style={{width: "100%", padding: "4px"}}>
+          <Card.Text style={{width: "100%", padding: "4px"}} as="div">
             Last Update:{" "}
-            <span style={{fontWeight: "bold", float: "right"}}>{new Date(covid_Redux.lastUpdate).toUTCString()}</span>
+            <span style={{fontWeight: "bold", float: "right"}}>
+              {covid_Redux.lastUpdate ? (
+                new Date(covid_Redux.lastUpdate).toUTCString()
+              ) : (
+                <React.Fragment>
+                  <Spinner animation="border" variant="dark" size="sm" /> Loading...
+                </React.Fragment>
+              )}
+            </span>
           </Card.Text>
           <Dropdown.Divider style={{border: "solid 2px maroon", margin: "5px auto"}} />
           {/* //* Currency Info */}
@@ -189,9 +216,17 @@ const CountryInfos = (): JSX.Element => {
               </tr>
             </tbody>
           </Table>
-          <Card.Text style={{width: "100%", padding: "4px"}}>
+          <Card.Text style={{width: "100%", padding: "4px"}} as="div">
             Last Update:{" "}
-            <span style={{fontWeight: "bold", float: "right"}}>{new Date(currency_Redux.lastUpdate).toUTCString()}</span>
+            <span style={{fontWeight: "bold", float: "right"}}>
+              {currency_Redux.lastUpdate ? (
+                new Date(currency_Redux.lastUpdate).toUTCString()
+              ) : (
+                <React.Fragment>
+                  <Spinner animation="grow" variant="dark" size="sm" /> Loading...
+                </React.Fragment>
+              )}
+            </span>
           </Card.Text>
           <Dropdown.Divider style={{border: "solid 2px maroon", margin: "5px auto", marginBottom: "0px"}} />
         </Card.Body>

@@ -13,7 +13,9 @@ const MSL_URL = process.env.REACT_APP_MSL_API as string;
 // console.log("MSL_URL:", MSL_URL);
 const InSight_URL = process.env.REACT_APP_InSight_API as string;
 // console.log("InSight:", InSight);
-const URLs = [Mars2020_URL, MSL_URL, InSight_URL];
+const URL_UserPosition = "https://ipwhois.app/json/?objects=latitude,longitude" as string;
+
+const URLs = [Mars2020_URL, MSL_URL, InSight_URL, URL_UserPosition];
 // console.log("URLs:", URLs);
 
 const Div = styled.div`
@@ -34,6 +36,10 @@ class MarsWeather extends React.Component<Props, State> {
       CuriosityWeather: {},
       InSightWeather: {InSight_Weather_Data: {}, InSight_sol: undefined},
       loaded: false,
+      userPosition: {
+        latitude: 0 as number,
+        longitude: 0 as number,
+      },
     };
   }
 
@@ -68,6 +74,10 @@ class MarsWeather extends React.Component<Props, State> {
             CuriosityWeather: marsWeathers[1].soles.slice(0, 7).reverse(),
             InSightWeather: this.InSight_fetching(marsWeathers[2]),
           };
+          const userPosition = {
+            latitude: marsWeathers[3].latitude,
+            longitude: marsWeathers[3].longitude,
+          };
           // await console.log("marsWeatherModified:", marsWeatherModified);
           await this.setState({
             PerseveranceWeather: marsWeatherModified.PerseveranceWeather,
@@ -77,6 +87,7 @@ class MarsWeather extends React.Component<Props, State> {
             //* Setting the State partially
             InSightWeather: {...this.state.InSightWeather, InSight_Weather_Data: marsWeatherModified.InSightWeather},
             loaded: true,
+            userPosition: userPosition,
           });
           // await console.log("this.state:", this.state);
         } catch (error) {
@@ -107,7 +118,7 @@ class MarsWeather extends React.Component<Props, State> {
     return (
       <>
         <div style={{position: "absolute", top: "110px", width: "100%", height: "auto"}}>
-          <EarthMap />
+          <EarthMap latitude={this.state.userPosition.latitude} longitude={this.state.userPosition.longitude} />
           <MarsMap
             //@ts-ignore:
             Perseverance_Weather={this.state.PerseveranceWeather.at(-1)}

@@ -66,6 +66,8 @@ interface Props {
     };
   };
   getUserGeoData?: Fetch;
+  latitude: number;
+  longitude: number;
 }
 
 class EarthMap extends React.Component<Props, State> {
@@ -85,6 +87,7 @@ class EarthMap extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     // console.log("props.state.location:", props?.state?.location);
+    // console.log("props:", props);
     this.mapRef = React.createRef();
 
     const savedLatitude = JSON.parse(localStorage.getItem("latitude") as string);
@@ -104,6 +107,8 @@ class EarthMap extends React.Component<Props, State> {
         IP: savedIP,
         country_flag: savedCountryFlag,
       };
+    } else if (props.latitude && props.longitude) {
+      this.state = {center: [props.longitude, props.latitude], zoom: 10};
     } else if (props?.state?.location.longitude === undefined && props?.state?.location.latitude === undefined) {
       this.state = {center: [0, 0], zoom: 1}; //- center: [longitude, latitude]
     } else {

@@ -1,5 +1,3 @@
-// Todo: localStorage
-
 import React from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {Card, Table, Spinner, Dropdown, Nav} from "react-bootstrap";
@@ -19,10 +17,11 @@ const CountryInfos = (): JSX.Element => {
   const {currency_code, country} = location_Redux;
   // console.log("currency_code, country:", currency_code, country);
 
-  const [localStorageSize, setLocalStorageSize] = React.useState(0);
+  const [localStorageSize, setLocalStorageSize] = React.useState<number>(0);
 
   React.useEffect(() => {
     async function fetchData() {
+      // console.log("fetching covidData and currencyData");
       const [covidByCountry, covidGlobal, rates] = await Promise.allSettled([
         fetch(`https://covid19.mathdro.id/api/countries/${country}`).then((response) => response.json()),
         fetch("https://covid19.mathdro.id/api").then((response) => response.json()),
@@ -57,10 +56,21 @@ const CountryInfos = (): JSX.Element => {
       // await console.log("covidData, currencyData:", covidData, currencyData);
       await dispatch({type: GET_COVID_DATA, payload: covidData});
       await dispatch({type: GET_RATES_DATA, payload: currencyData});
+      // setting the items to the localStorage
+      await localStorage.setItem("covidData", JSON.stringify(covidData));
+      await localStorage.setItem("currencyData", JSON.stringify(currencyData));
     }
 
     setTimeout(() => {
-      fetchData();
+      const covidDataFromLocalStorage = JSON.parse(localStorage.getItem("covidData") as State);
+      const currencyDataFromLocalStorage = JSON.parse(localStorage.getItem("currencyData") as State);
+
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      covidDataFromLocalStorage && currencyDataFromLocalStorage
+        ? (console.log("Setting the Global State from localStorage"),
+          dispatch({type: GET_COVID_DATA, payload: covidDataFromLocalStorage}),
+          dispatch({type: GET_RATES_DATA, payload: currencyDataFromLocalStorage}))
+        : (fetchData(), console.log("fetchData() was called for covidData and currencyData"));
     }, 1200);
 
     //- localStorage Size in KB
@@ -81,7 +91,7 @@ const CountryInfos = (): JSX.Element => {
   }, [country, currency_code, dispatch]);
 
   return (
-    <>
+    <React.Fragment>
       <Card style={{width: "100%", margin: "12px auto"}} border="primary">
         <Card.Header style={{textAlign: "center", fontWeight: "bold"}} as="h5">
           Local Info for <span style={{color: "maroon", fontStyle: "italic"}}>{country}</span>
@@ -230,7 +240,7 @@ const CountryInfos = (): JSX.Element => {
           </span>
         </Card.Footer>
       </Card>
-    </>
+    </React.Fragment>
   );
 };
 

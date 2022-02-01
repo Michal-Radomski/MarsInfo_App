@@ -120,7 +120,6 @@ class MarsWeather extends React.Component<Props, State> {
         <div style={{position: "absolute", top: "110px", width: "100%", height: "auto"}}>
           <EarthMap latitude={this.state.userPosition.latitude} longitude={this.state.userPosition.longitude} />
           <MarsMap
-            //@ts-ignore:
             Perseverance_Weather={this.state.PerseveranceWeather.at(-1)}
             Curiosity_Weather={this.state.CuriosityWeather.at(-1)}
             InSight_Weather={this.state.InSightWeather}
@@ -133,7 +132,6 @@ class MarsWeather extends React.Component<Props, State> {
           }}
         >
           <MarsWeatherCharts
-            //@ts-ignore:
             Perseverance_Weather={this.state.PerseveranceWeather}
             Curiosity_Weather={this.state.CuriosityWeather}
           />

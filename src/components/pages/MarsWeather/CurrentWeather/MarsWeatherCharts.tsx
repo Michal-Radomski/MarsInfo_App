@@ -53,7 +53,7 @@ const averageTemp = (tooltipItems: any[]): string => {
 };
 
 class MarsWeatherCharts extends React.Component<
-  {},
+  {Perseverance_Weather: State; Curiosity_Weather: State},
   {
     lineChartData: State;
     barChartData: State;

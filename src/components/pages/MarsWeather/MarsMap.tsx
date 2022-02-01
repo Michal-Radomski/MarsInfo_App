@@ -150,7 +150,6 @@ const MarsMap = (props: {Perseverance_Weather: Sol; Curiosity_Weather: Sol; InSi
             <br />
             {props.InSight_Weather.InSight_Weather_Data !== "No Data" || props.InSight_Weather.InSight_sol !== "No Data" ? (
               <WeatherInSightTable
-                //@ts-ignore
                 weatherLastRecord={props.InSight_Weather}
                 location="Elysium Planitia"
                 URL_href="https://mars.nasa.gov/insight/weather"

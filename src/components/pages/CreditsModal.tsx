@@ -10,13 +10,12 @@ const CreditsModal = (): JSX.Element => {
 
   return (
     <>
-      <Button onClick={handleShow} variant="link">
+      <Button onClick={handleShow} variant="outline-info">
         Credits
       </Button>
-
-      <Modal show={show} onHide={handleClose} animation={true}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+      <Modal show={show} onHide={handleClose} animation={true} size="lg" keyboard={true} centered>
+        <Modal.Header closeButton closeVariant="white">
+          <Modal.Title>Credits and Info</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div style={{textAlign: "center"}}>
@@ -25,11 +24,8 @@ const CreditsModal = (): JSX.Element => {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
           <Button variant="primary" onClick={handleClose}>
-            Save Changes
+            Close
           </Button>
         </Modal.Footer>
       </Modal>

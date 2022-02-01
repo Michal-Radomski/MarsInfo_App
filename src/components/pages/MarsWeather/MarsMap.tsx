@@ -80,7 +80,7 @@ const MarsMap = (props: {Perseverance_Weather: Sol; Curiosity_Weather: Sol; InSi
   return (
     <DivMap>
       <h1 style={{textAlign: "center"}}>Nasa's Operational Mars Lander and Rovers Locations</h1>
-      <h3 style={{textAlign: "center"}}>Click the Icon to see more...</h3>
+      <h3 style={{textAlign: "center", fontWeight: "bolder"}}>Click the Icon to see more...</h3>
       <MapContainer
         center={[0, 70]}
         zoom={3}

@@ -278,7 +278,9 @@ class EarthMap extends React.Component<Props, State> {
         {this.state.center[0] !== 0 && this.state.center[1] !== 0 ? (
           <DivMap>
             <h1 style={{textAlign: "center", transform: "translate(200px,0)"}}>Your location: {this.position}</h1>
-            <h3 style={{textAlign: "center", transform: "translate(200px,0)"}}>Click the blue point to see more...</h3>
+            <h3 style={{textAlign: "center", transform: "translate(200px,0)", fontWeight: "bolder"}}>
+              Click the blue point to see more...
+            </h3>
             <div id="olMap" ref={this.mapRef} style={{height: "390px", cursor: "pointer"}}></div>
             {/* //- first version below */}
             {/* <OverlayTrigger trigger={this.hover} placement="right-end" overlay={this.popover} rootClose={true}> */}
@@ -300,7 +302,7 @@ class EarthMap extends React.Component<Props, State> {
         ) : (
           <DivMap>
             <h2 style={{textAlign: "center", transform: "translate(200px,0)"}}>Your location is unknown</h2>
-            <h3 style={{textAlign: "center", transform: "translate(200px,0)"}}>Reload the page...</h3>
+            <h3 style={{textAlign: "center", transform: "translate(200px,0)", fontWeight: "bolder"}}>Reload the page...</h3>
             <div id="olMap" ref={this.mapRef} style={{height: "390px", cursor: "pointer"}}></div>
           </DivMap>
         )}

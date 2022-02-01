@@ -201,10 +201,10 @@ class EarthMap extends React.Component<Props, State> {
     this.OL_Map.addInteraction(mouseWheelInt);
 
     this.popover = (
-      <Popover id="popoverLocation" style={{minWidth: "350px", border: "1px solid #0D6EFD"}}>
-        <Popover.Header as="h3">
+      <Popover id="popoverLocation" style={{minWidth: "350px", border: "2px solid #0D6EFD"}}>
+        <Popover.Header as="h3" style={{backgroundColor: "wheat"}}>
           Yor are in:
-          <span style={{float: "right"}}>
+          <span style={{float: "right", color: "maroon", fontWeight: "bold"}}>
             {`${this.state.city}, ${this.state.country}`}
             {"\u00A0 \u00A0"}
             <img

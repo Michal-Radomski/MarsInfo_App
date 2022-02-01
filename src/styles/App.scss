@@ -49,3 +49,14 @@ body {
     -webkit-transform: rotate(360deg);
   }
 }
+
+// Button form Credits Modal
+.credits-button {
+  color: inherit;
+  background-color: inherit;
+  padding: 0.75rem 1.25rem;
+  border-radius: $borderRadius;
+  transition: 0.3s ease all;
+  font-size: large;
+  font-family: $Ubuntu-font !important;
+}

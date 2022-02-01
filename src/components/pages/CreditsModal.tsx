@@ -2,15 +2,17 @@ import React from "react";
 import {Button} from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 
+import "../../styles/App.scss";
+
 const CreditsModal = (): JSX.Element => {
-  const [show, setShow] = React.useState(false);
+  const [show, setShow] = React.useState<boolean>(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   return (
     <>
-      <Button onClick={handleShow} variant="outline-info">
+      <Button onClick={handleShow} variant={!show ? "outline-info" : "info"} className="credits-button" size="sm">
         Credits
       </Button>
       <Modal show={show} onHide={handleClose} animation={true} size="lg" keyboard={true} centered>

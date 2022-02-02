@@ -6,40 +6,44 @@ import "../../styles/App.scss";
 const modalData = [
   {
     id: 1,
-    content: "NASA Astronomy Picture of the Day and Mars Weather Conditions are taken from from:",
+    content: "NASA Astronomy Picture of the Day and Mars Weather Conditions are taken from from: ",
     link: "https://api.nasa.gov",
     label: "NASA APIs",
   },
-  {id: 2, content: "Maps of Mars are provided by:", link: "https://www.openplanetary.org", label: "OpenPlanetary.org"},
-  {id: 3, content: "", link: ""},
+  {id: 2, content: "Maps of Mars are provided by: ", link: "https://www.openplanetary.org", label: "OpenPlanetary.org"},
   {
-    id: 4,
-    content: "World Imagery is provided by:",
+    id: 3,
+    content: "World Imagery is provided by: ",
     link: "https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer",
     label: "ArcGIS",
   },
-  {id: 5, content: "Local weather conditions are provided by:", link: "https://openweathermap.org", label: "OpenWeatherMap"},
   {
-    id: 6,
-    content: "Mars Imagery is provided by:",
+    id: 4,
+    content: "Local weather conditions are provided by: ",
+    link: "https://openweathermap.org",
+    label: "OpenWeatherMap",
+  },
+  {
+    id: 5,
+    content: "Mars Imagery is provided by: ",
     link: "https://www.usgs.gov/centers/astrogeology-science-center/maps",
     label: "USGS - Astrogeology Science Center",
   },
   {
-    id: 7,
-    content: "Covid Data is provided by:",
+    id: 6,
+    content: "Covid Data is provided by: ",
     link: "https://github.com/mathdroid/covid-19-api",
     label: "mathdroid/covid-19-api",
   },
   {
-    id: 8,
-    content: "Currency Exchange Rates are provided by:",
+    id: 7,
+    content: "Currency Exchange Rates are provided by: ",
     link: "https://www.exchangerate-api.com",
     label: "ExchangeRate-API",
   },
   {
-    id: 9,
-    content: "IP Geolocation API is provided by:",
+    id: 8,
+    content: "IP Geolocation API is provided by: ",
     link: "https://ipwhois.io",
     label: "IPWHOIS.IO",
   },
@@ -72,12 +76,27 @@ const CreditsModal = (): JSX.Element => {
         <Modal.Header closeButton closeVariant="white" style={{backgroundColor: "#0B5ED7", color: "whitesmoke"}}>
           <Modal.Title>Credits and Info</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body style={{minHeight: "520px"}}>
           <Tabs defaultActiveKey="APIs">
             <Tab eventKey="APIs" title="APIs">
               <Card style={{width: "100%"}}>
-                <Card.Header style={{fontWeight: "bold", fontStyle: "italic"}}>Used APIs to built the App</Card.Header>
-                <ListGroup variant="flush">{renderedListItems}</ListGroup>
+                <Card.Header style={{fontWeight: "bold", fontStyle: "italic", textDecoration: "underline"}}>
+                  Used APIs to built the App
+                </Card.Header>
+                <ListGroup variant="flush">
+                  {renderedListItems}
+                  <ListGroup.Item>
+                    Earth maps are provided by:{" "}
+                    <Card.Link href="https://maps.stamen.com" target="_blank">
+                      Stamen Maps
+                    </Card.Link>{" "}
+                    and
+                    <Card.Link href="https://www.openstreetmap.org" target="_blank">
+                      OpenStreetMap
+                    </Card.Link>
+                    .
+                  </ListGroup.Item>
+                </ListGroup>
               </Card>
             </Tab>
             <Tab eventKey="Other" title="Other"></Tab>

@@ -45,6 +45,18 @@ const CreditsModal = (): JSX.Element => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const renderedListItems = modalData.map((item) => {
+    return (
+      <ListGroup.Item key={item.id}>
+        {item.content}
+        <Card.Link href={item.link} target="_blank">
+          {item.label}
+        </Card.Link>
+        .
+      </ListGroup.Item>
+    );
+  });
+
   return (
     <>
       <Button onClick={handleShow} variant={!show ? "outline-info" : "primary"} className="credits-button">
@@ -60,7 +72,7 @@ const CreditsModal = (): JSX.Element => {
               <Card style={{width: "100%"}}>
                 <Card.Header style={{fontWeight: "bold", fontStyle: "italic"}}>Used APIs to built the App</Card.Header>
                 <ListGroup variant="flush">
-                  <ListGroup.Item>
+                  {/* <ListGroup.Item>
                     NASA Astronomy Picture of the Day and Mars Weather Conditions are taken from from{" "}
                     <Card.Link href="https://api.nasa.gov" target="_blank">
                       NASA APIs
@@ -73,7 +85,8 @@ const CreditsModal = (): JSX.Element => {
                       NASA APIs
                     </Card.Link>
                     .
-                  </ListGroup.Item>
+                  </ListGroup.Item> */}
+                  {renderedListItems}
                 </ListGroup>
               </Card>
             </Tab>

@@ -35,3 +35,5 @@
 7. Covid Data is provided by [mathdroid/covid-19-api](https://github.com/mathdroid/covid-19-api).
 
 8. Currency Exchange Rates are provided by [ExchangeRate-API](https://www.exchangerate-api.com/).
+
+9. IP Geolocation API is provided by [IPWHOIS.IO](https://ipwhois.io/).

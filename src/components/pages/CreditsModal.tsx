@@ -37,6 +37,12 @@ const modalData = [
     link: "https://www.exchangerate-api.com",
     label: "ExchangeRate-API",
   },
+  {
+    id: 9,
+    content: "IP Geolocation API is provided by:",
+    link: "https://ipwhois.io",
+    label: "IPWHOIS.IO",
+  },
 ];
 
 const CreditsModal = (): JSX.Element => {
@@ -71,23 +77,7 @@ const CreditsModal = (): JSX.Element => {
             <Tab eventKey="APIs" title="APIs">
               <Card style={{width: "100%"}}>
                 <Card.Header style={{fontWeight: "bold", fontStyle: "italic"}}>Used APIs to built the App</Card.Header>
-                <ListGroup variant="flush">
-                  {/* <ListGroup.Item>
-                    NASA Astronomy Picture of the Day and Mars Weather Conditions are taken from from{" "}
-                    <Card.Link href="https://api.nasa.gov" target="_blank">
-                      NASA APIs
-                    </Card.Link>
-                    .
-                  </ListGroup.Item>
-                  <ListGroup.Item>
-                    xxxxxxxxxxxx{" "}
-                    <Card.Link href="#" target="_blank">
-                      NASA APIs
-                    </Card.Link>
-                    .
-                  </ListGroup.Item> */}
-                  {renderedListItems}
-                </ListGroup>
+                <ListGroup variant="flush">{renderedListItems}</ListGroup>
               </Card>
             </Tab>
             <Tab eventKey="Other" title="Other"></Tab>

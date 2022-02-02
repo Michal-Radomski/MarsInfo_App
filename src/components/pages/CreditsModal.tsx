@@ -12,11 +12,11 @@ const CreditsModal = (): JSX.Element => {
 
   return (
     <>
-      <Button onClick={handleShow} variant={!show ? "outline-info" : "info"} className="credits-button" size="sm">
+      <Button onClick={handleShow} variant={!show ? "outline-info" : "primary"} className="credits-button">
         Credits
       </Button>
-      <Modal show={show} onHide={handleClose} animation={true} size="lg" keyboard={true} centered>
-        <Modal.Header closeButton closeVariant="white">
+      <Modal show={show} onHide={handleClose} animation={true} size="xl" keyboard={true} centered>
+        <Modal.Header closeButton closeVariant="white" style={{backgroundColor: "#0B5ED7", color: "whitesmoke"}}>
           <Modal.Title>Credits and Info</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -25,8 +25,8 @@ const CreditsModal = (): JSX.Element => {
             <h3>Under Construction...</h3>
           </div>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
+        <Modal.Footer style={{backgroundColor: "#0B5ED7"}}>
+          <Button variant="outline-light" onClick={handleClose} size="lg">
             Close
           </Button>
         </Modal.Footer>

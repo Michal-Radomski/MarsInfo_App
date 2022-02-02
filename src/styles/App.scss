@@ -50,7 +50,7 @@ body {
   }
 }
 
-// Button form Credits Modal
+// Button for Credits Modal
 .credits-button {
   padding: 0.5rem 1rem;
   border-radius: $borderRadius;
@@ -61,4 +61,13 @@ body {
   &:hover {
     color: whitesmoke;
   }
+}
+// Modal -> Tabs
+.nav-link.active {
+  color: maroon !important;
+  font-weight: bold !important;
+  font-style: italic !important;
+}
+div.list-group-item {
+  font-size: 95%;
 }

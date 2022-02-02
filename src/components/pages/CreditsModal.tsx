@@ -99,6 +99,7 @@ const CreditsModal = (): JSX.Element => {
                 </ListGroup>
               </Card>
             </Tab>
+            <Tab eventKey="Libraries" title="Libraries"></Tab>
             <Tab eventKey="Other" title="Other"></Tab>
           </Tabs>
         </Modal.Body>

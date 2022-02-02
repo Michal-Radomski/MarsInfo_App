@@ -3,7 +3,7 @@ import {Button, Modal, Tab, Tabs, Card, ListGroup} from "react-bootstrap";
 
 import "../../styles/App.scss";
 
-const modalData = [
+const modalDataAPIs = [
   {
     id: 1,
     content: "NASA Astronomy Picture of the Day and Mars Weather Conditions are taken from from: ",
@@ -49,13 +49,28 @@ const modalData = [
   },
 ];
 
+const modalDataOther = [
+  {
+    id: 1,
+    content: "Nasa's Mars Lander and Rovers transparent icons were taken from: ",
+    link: "https://www.pngaaa.com",
+    label: "PngAAA.com",
+  },
+  {
+    id: 2,
+    content: "Wind Direction Icon was taken from: ",
+    link: "hhttps://www.flaticon.com/free-icons/direction",
+    label: "flaticon.com",
+  },
+];
+
 const CreditsModal = (): JSX.Element => {
   const [show, setShow] = React.useState<boolean>(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const renderedListItems = modalData.map((item) => {
+  const renderedListItems = modalDataAPIs.map((item) => {
     return (
       <ListGroup.Item key={item.id}>
         {item.content}

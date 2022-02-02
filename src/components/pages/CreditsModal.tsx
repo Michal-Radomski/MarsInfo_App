@@ -74,14 +74,14 @@ const CreditsModal = (): JSX.Element => {
       </Button>
       <Modal show={show} onHide={handleClose} animation={true} size="xl" keyboard={true} centered>
         <Modal.Header closeButton closeVariant="white" style={{backgroundColor: "#0B5ED7", color: "whitesmoke"}}>
-          <Modal.Title>Credits and Info</Modal.Title>
+          <Modal.Title style={{fontWeight: "bold", fontStyle: "italic"}}>Credits and Info</Modal.Title>
         </Modal.Header>
         <Modal.Body style={{minHeight: "520px"}}>
           <Tabs defaultActiveKey="APIs">
             <Tab eventKey="APIs" title="APIs">
               <Card style={{width: "100%"}}>
-                <Card.Header style={{fontWeight: "bold", fontStyle: "italic", textDecoration: "underline"}}>
-                  Used APIs to built the App
+                <Card.Header style={{fontWeight: "bold", fontStyle: "italic"}}>
+                  List of used APIs to built the App
                 </Card.Header>
                 <ListGroup variant="flush">
                   {renderedListItems}
@@ -104,7 +104,7 @@ const CreditsModal = (): JSX.Element => {
           </Tabs>
         </Modal.Body>
         <Modal.Footer style={{backgroundColor: "#0B5ED7"}}>
-          <Button variant="outline-light" onClick={handleClose} size="lg">
+          <Button variant="outline-light" onClick={handleClose} size="lg" style={{fontWeight: "bold", fontStyle: "italic"}}>
             Close
           </Button>
         </Modal.Footer>

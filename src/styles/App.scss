@@ -58,6 +58,8 @@ body {
   font-size: large;
   font-family: $Ubuntu-font;
   font-weight: normal;
+  font-weight: bold !important;
+  font-style: italic !important;
   &:hover {
     color: whitesmoke;
   }

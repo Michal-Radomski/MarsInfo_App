@@ -2,6 +2,7 @@ import React from "react";
 import {Button, Modal, Tab, Tabs, Card, ListGroup} from "react-bootstrap";
 
 import "../../styles/App.scss";
+import Container from "./Container";
 
 const modalDataAPIs = [
   {
@@ -64,9 +65,9 @@ const modalDataOther = [
   },
 ];
 
-const Container = (props: any) => {
-  return <div style={{backgroundColor: "blue"}}>{props.children}</div>;
-};
+// const Container = (props: any) => {
+//   return <div style={{backgroundColor: "blue"}}>{props.children}</div>;
+// };
 
 const CreditsModal = (): JSX.Element => {
   const [show, setShow] = React.useState<boolean>(false);
@@ -118,7 +119,9 @@ const CreditsModal = (): JSX.Element => {
                 </ListGroup>
               </Card>
             </Tab>
-            <Tab eventKey="Libraries" title="Libraries"></Tab>
+            <Tab eventKey="Libraries" title="Libraries">
+              <Container data={modalDataOther} />
+            </Tab>
             <Tab eventKey="Other" title="Other"></Tab>
           </Tabs>
         </Modal.Body>

@@ -42,6 +42,7 @@ export const modalDataAPIs = [
     link: "https://ipwhois.io",
     label: "IPWHOIS.IO",
   },
+  // {id:9}, //* Earth Maps: in the CreditsModal.tsx
 ];
 
 export const modalDataOther = [
@@ -54,7 +55,8 @@ export const modalDataOther = [
   {
     id: 2,
     content: "Wind Direction Icon was taken from: ",
-    link: "hhttps://www.flaticon.com/free-icons/direction",
+    link: "https://www.flaticon.com/free-icons/direction",
     label: "flaticon.com",
   },
+  // {id: 3}, //* NASA and Wikipedia: in the CreditsModal.tsx
 ];

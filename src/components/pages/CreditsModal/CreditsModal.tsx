@@ -22,6 +22,7 @@ const CreditsModal = (): JSX.Element => {
         </Modal.Header>
         <Modal.Body style={{minHeight: "520px"}}>
           <Tabs defaultActiveKey="APIs">
+            {/* //- Tab Apis */}
             <Tab eventKey="APIs" title="APIs">
               <Card style={{width: "100%"}}>
                 <Card.Header style={{fontWeight: "bold", fontStyle: "italic"}}>
@@ -43,10 +44,29 @@ const CreditsModal = (): JSX.Element => {
                 </ListGroup>
               </Card>
             </Tab>
-
+            {/* //- Tab Libraries */}
             <Tab eventKey="Libraries" title="Libraries"></Tab>
-            <Tab eventKey="Other" title="Other">
-              <Container data={modalDataOther} />
+            {/* //- Tab Other Staff*/}
+            <Tab eventKey="Other Staff" title="Other Staff">
+              <Card style={{width: "100%"}}>
+                <Card.Header style={{fontWeight: "bold", fontStyle: "italic"}}>
+                  List of other staff to built the App
+                </Card.Header>
+                <ListGroup variant="flush">
+                  <Container data={modalDataOther} />
+                  <ListGroup.Item>
+                    Information is taken from:{" "}
+                    <Card.Link href="https://www.nasa.gov" target="_blank">
+                      NASA
+                    </Card.Link>{" "}
+                    and
+                    <Card.Link href="https://en.wikipedia.org/wiki/Main_Page" target="_blank">
+                      Wikipedia
+                    </Card.Link>
+                    .
+                  </ListGroup.Item>
+                </ListGroup>
+              </Card>
             </Tab>
           </Tabs>
         </Modal.Body>

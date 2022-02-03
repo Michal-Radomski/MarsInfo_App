@@ -73,3 +73,6 @@ body {
 div.list-group-item {
   font-size: 95%;
 }
+div.modal-content {
+  border-radius: $borderRadius !important;
+}

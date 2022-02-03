@@ -1,4 +1,4 @@
-export const modalDataAPIs = [
+export const modalDataAPIs: Item[] = [
   {
     id: 1,
     content: "NASA Astronomy Picture of the Day and Mars Weather Conditions are taken from from: ",
@@ -45,7 +45,7 @@ export const modalDataAPIs = [
   // {id:9}, //* Earth Maps: in the CreditsModal.tsx
 ];
 
-export const modalDataOther = [
+export const modalDataOther: Item[] = [
   {
     id: 1,
     content: "Nasa's Mars Lander and Rovers transparent icons were taken from: ",
@@ -61,7 +61,7 @@ export const modalDataOther = [
   // {id: 3}, //* NASA and Wikipedia: in the CreditsModal.tsx
 ];
 
-export const modalDataLibraries = [
+export const modalDataLibraries: Item[] = [
   {
     id: 1,
     content: "UI components are taken from: ",
@@ -99,4 +99,46 @@ export const modalDataLibraries = [
     label: "Redux",
   },
   //* More libraries in the CreditsModal.tsx
+];
+
+export const modalDataLibraries2: {
+  id: number;
+  link_1: string;
+  link_2: string;
+  label_1: string;
+  label_2: string;
+  content: string;
+}[] = [
+  {
+    id: 1,
+    link_1: "https://www.typescriptlang.org",
+    label_1: "TypeScript",
+    link_2: "https://reactjs.org",
+    label_2: "React",
+    content: "are used to built the App.",
+  },
+  {
+    id: 2,
+    link_1: "https://cesium.com",
+    label_1: "Cesium",
+    link_2: "https://resium.reearth.io",
+    label_2: "Resium",
+    content: "are used to render the 3D model of Mars.",
+  },
+  {
+    id: 3,
+    link_1: "https://leafletjs.com",
+    label_1: "Leaflet",
+    link_2: "https://openlayers.org",
+    label_2: "OpenLayers",
+    content: "are used to render 2D maps of Earth and Mars.",
+  },
+  {
+    id: 4,
+    link_1: "https://styled-components.com",
+    label_1: "Styled-Components",
+    link_2: "https://sass-lang.com",
+    label_2: "Sass",
+    content: "are used to customize the UI.",
+  },
 ];

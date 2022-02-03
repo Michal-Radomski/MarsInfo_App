@@ -1,9 +1,9 @@
 import React from "react";
 import {Card, ListGroup} from "react-bootstrap";
 
-const Container = ({data}: State) => {
+const Container: React.FC<{data: State}> = ({data}: State): JSX.Element => {
   // console.log("data:", data);
-  const renderedListItems = data.map((item: Item) => {
+  const renderedListItems: JSX.Element = data.map((item: Item) => {
     return (
       <ListGroup.Item key={item.id}>
         {item.content}

@@ -11,20 +11,22 @@ const CreditsModal = (): JSX.Element => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const renderedListLibraries2 = modalDataLibraries2.map((item) => {
-    return (
-      <ListGroup.Item key={item.id}>
-        <Card.Link href={item.link_1} target="_blank">
-          {item.label_1}
-        </Card.Link>{" "}
-        and
-        <Card.Link href={item.link_2} target="_blank">
-          {item.label_2}
-        </Card.Link>{" "}
-        {item.content}
-      </ListGroup.Item>
-    );
-  });
+  const renderedListLibraries2: JSX.Element[] = modalDataLibraries2.map(
+    (item: {id: number; link_1: string; link_2: string; label_1: string; label_2: string; content: string}) => {
+      return (
+        <ListGroup.Item key={item.id}>
+          <Card.Link href={item.link_1} target="_blank">
+            {item.label_1}
+          </Card.Link>{" "}
+          and
+          <Card.Link href={item.link_2} target="_blank">
+            {item.label_2}
+          </Card.Link>{" "}
+          {item.content}
+        </ListGroup.Item>
+      );
+    }
+  );
 
   return (
     <>

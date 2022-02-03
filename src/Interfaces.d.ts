@@ -19,3 +19,10 @@ interface Sol {
   sunset: string;
   terrestrial_date: string;
 }
+
+interface Item {
+  id: number;
+  content: string;
+  link: string;
+  label: string;
+}

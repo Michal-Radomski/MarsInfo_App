@@ -1,9 +1,9 @@
 import React from "react";
-import {Button, Modal, Tab, Tabs, Card, ListGroup} from "react-bootstrap";
+import {Card, ListGroup} from "react-bootstrap";
 
 const Container = ({data}: State) => {
-  console.log("data:", data);
-  const renderedListItems = data.map((item: any) => {
+  // console.log("data:", data);
+  const renderedListItems = data.map((item: Item) => {
     return (
       <ListGroup.Item key={item.id}>
         {item.content}

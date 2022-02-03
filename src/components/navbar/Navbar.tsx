@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 
 import classes from "./Navbar.module.scss";
 import Logo from "./image/Logo.png";
-import CreditsModal from "../pages/CreditsModal";
+import CreditsModal from "../pages/CreditsModal/CreditsModal";
 
 const Navbar = (): JSX.Element => {
   const [menuOpen, setMenuOpen] = React.useState(false);

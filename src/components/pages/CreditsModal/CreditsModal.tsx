@@ -3,7 +3,7 @@ import {Button, Modal, Tab, Tabs, Card, ListGroup} from "react-bootstrap";
 
 import "./../../../styles/App.scss";
 import Container from "./Container";
-import {modalDataAPIs, modalDataOther} from "./ModalData";
+import {modalDataAPIs, modalDataOther, modalDataLibraries} from "./ModalData";
 
 const CreditsModal = (): JSX.Element => {
   const [show, setShow] = React.useState<boolean>(false);
@@ -26,7 +26,7 @@ const CreditsModal = (): JSX.Element => {
             <Tab eventKey="APIs" title="APIs">
               <Card style={{width: "100%"}}>
                 <Card.Header style={{fontWeight: "bold", fontStyle: "italic"}}>
-                  List of used APIs to built the App
+                  List of APIs used to built the App
                 </Card.Header>
                 <ListGroup variant="flush">
                   <Container data={modalDataAPIs} />
@@ -45,14 +45,82 @@ const CreditsModal = (): JSX.Element => {
               </Card>
             </Tab>
             {/* //- Tab Libraries */}
-            <Tab eventKey="Libraries" title="Libraries"></Tab>
+            <Tab eventKey="Libraries" title="Libraries">
+              <Card style={{width: "100%"}}>
+                <Card.Header style={{fontWeight: "bold", fontStyle: "italic"}}>
+                  List of libraries used to built the App
+                </Card.Header>
+                <ListGroup variant="flush">
+                  <ListGroup.Item>
+                    <Card.Link href="https://www.typescriptlang.org" target="_blank">
+                      TypeScript
+                    </Card.Link>{" "}
+                    and
+                    <Card.Link href="https://reactjs.org" target="_blank">
+                      React
+                    </Card.Link>{" "}
+                    are used to built the App.
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <Card.Link href="https://cesium.com" target="_blank">
+                      Cesium
+                    </Card.Link>{" "}
+                    and
+                    <Card.Link href="https://resium.reearth.io" target="_blank">
+                      Resium
+                    </Card.Link>{" "}
+                    are used to render the 3D model of Mars.
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <Card.Link href="https://leafletjs.com" target="_blank">
+                      Leaflet
+                    </Card.Link>{" "}
+                    and
+                    <Card.Link href="https://openlayers.org" target="_blank">
+                      OpenLayers
+                    </Card.Link>{" "}
+                    are used to render 2D maps of Earth and Mars.
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <Card.Link href="https://styled-components.com" target="_blank">
+                      Styled-Components
+                    </Card.Link>{" "}
+                    and
+                    <Card.Link href="https://sass-lang.com" target="_blank">
+                      Sass
+                    </Card.Link>{" "}
+                    are used to customize the UI.
+                  </ListGroup.Item>
+                  <Container data={modalDataLibraries} />
+                </ListGroup>
+              </Card>
+            </Tab>
             {/* //- Tab Other Staff*/}
             <Tab eventKey="Other Staff" title="Other Staff">
               <Card style={{width: "100%"}}>
                 <Card.Header style={{fontWeight: "bold", fontStyle: "italic"}}>
-                  List of other staff to built the App
+                  List of other staff used to built the App
                 </Card.Header>
                 <ListGroup variant="flush">
+                  <ListGroup.Item>
+                    Package{" "}
+                    <Card.Link
+                      href="https://www.npmjs.com/package/@craco/craco"
+                      target="_blank"
+                      style={{fontWeight: "bold", fontStyle: "italic"}}
+                    >
+                      @craco/craco
+                    </Card.Link>{" "}
+                    is used to override the standard
+                    <Card.Link
+                      href="https://create-react-app.dev/"
+                      target="_blank"
+                      style={{fontWeight: "bold", fontStyle: "italic"}}
+                    >
+                      Create React App
+                    </Card.Link>
+                    .
+                  </ListGroup.Item>
                   <Container data={modalDataOther} />
                   <ListGroup.Item>
                     Information is taken from:{" "}

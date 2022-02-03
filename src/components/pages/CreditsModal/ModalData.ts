@@ -60,3 +60,43 @@ export const modalDataOther = [
   },
   // {id: 3}, //* NASA and Wikipedia: in the CreditsModal.tsx
 ];
+
+export const modalDataLibraries = [
+  {
+    id: 1,
+    content: "UI components are taken from: ",
+    link: "https://react-bootstrap.github.io",
+    label: "React Bootstrap",
+  },
+  {
+    id: 2,
+    content: "Fetching data is done by using : ",
+    link: "https://axios-http.com",
+    label: "Axios",
+  },
+  {
+    id: 3,
+    content: "Charts are rendered by: ",
+    link: "https://www.chartjs.org",
+    label: "Chart.js",
+  },
+  {
+    id: 4,
+    content: "Client-side routing is done using: ",
+    link: "https://v5.reactrouter.com",
+    label: "React Router",
+  },
+  {
+    id: 5,
+    content: "Table is generated using: ",
+    link: "https://react-table.tanstack.com",
+    label: "React Table",
+  },
+  {
+    id: 6,
+    content: "Global state of the App is maintained by: ",
+    link: "https://redux.js.org",
+    label: "Redux",
+  },
+  //* More libraries in the CreditsModal.tsx
+];

@@ -64,6 +64,10 @@ const modalDataOther = [
   },
 ];
 
+const Container = (props: any) => {
+  return <div style={{backgroundColor: "blue"}}>{props.children}</div>;
+};
+
 const CreditsModal = (): JSX.Element => {
   const [show, setShow] = React.useState<boolean>(false);
 

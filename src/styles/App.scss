@@ -72,6 +72,10 @@ body {
 }
 div.list-group-item {
   font-size: 95%;
+  background-color: lightyellow;
+  &:hover {
+    background-color: wheat;
+  }
 }
 div.modal-content {
   border-radius: $borderRadius !important;

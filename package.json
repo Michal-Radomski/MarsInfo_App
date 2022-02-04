@@ -22,6 +22,7 @@
     "chart.js": "^3.7.0",
     "chartjs-plugin-datalabels": "^2.0.0",
     "craco-cesium": "^1.2.0",
+    "framer-motion": "^6.2.3",
     "leaflet": "^1.7.1",
     "leaflet-gesture-handling": "^1.2.2",
     "moment-random": "^1.1.0",

@@ -80,3 +80,15 @@ div.list-group-item {
 div.modal-content {
   border-radius: $borderRadius !important;
 }
+button.nav-link {
+  border: 1px solid $bootstrapPrimary !important;
+  border-bottom: none !important;
+  &:hover {
+    background-color: lightgrey !important;
+  }
+}
+button.nav-link.active {
+  border: 2px solid maroon !important;
+  border-bottom: none !important;
+  background-color: wheat !important;
+}

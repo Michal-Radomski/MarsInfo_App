@@ -5,6 +5,20 @@ export default {
       plugin: require("craco-cesium")(),
     },
   ],
+  //* Below: to Framer-Motion work
+  webpack: {
+    configure: {
+      module: {
+        rules: [
+          {
+            type: "javascript/auto",
+            test: /\.mjs$/,
+            include: /node_modules/,
+          },
+        ],
+      },
+    },
+  },
 };
 
 //* Original craco.config.js file

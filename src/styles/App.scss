@@ -91,4 +91,7 @@ button.nav-link.active {
   border: 2px solid maroon !important;
   border-bottom: none !important;
   background-color: wheat !important;
+  &:hover {
+    filter: brightness(90%);
+  }
 }

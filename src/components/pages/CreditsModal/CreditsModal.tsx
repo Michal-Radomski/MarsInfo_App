@@ -4,8 +4,7 @@ import {Button, Modal, Tab, Tabs, Card, ListGroup} from "react-bootstrap";
 import "./../../../styles/App.scss";
 import Container from "./Container";
 import {modalDataAPIs, modalDataOther, modalDataLibraries, modalDataLibraries2} from "./ModalData";
-import Framer from "./Framer";
-import "./styles.scss";
+import FramerMotionModal from "./FramerMotionModal";
 
 const CreditsModal = (): JSX.Element => {
   const [show, setShow] = React.useState<boolean>(false);
@@ -133,8 +132,8 @@ const CreditsModal = (): JSX.Element => {
                 <Card.Header style={{fontWeight: "bold", fontStyle: "italic", borderBottom: "1px solid #0B5ED7"}}>
                   Link to the Repo of the App
                 </Card.Header>
-                <Card.Body style={{width: "100%", height: "420px", backgroundColor: "lightyellow"}} as="div">
-                  <Framer />
+                <Card.Body style={{width: "100%", height: "420px", backgroundColor: "lightyellow", padding: 0}} as="div">
+                  <FramerMotionModal />
                 </Card.Body>
               </Card>
             </Tab>

@@ -25,7 +25,11 @@ const ModalDiv = styled(motion.div)`
   background: wheat;
 `;
 
-const trans = {
+const ModalContent = styled(motion.div)`
+  color: blue;
+`;
+
+const modalTransition = {
   hidden: {
     transform: "scale(0) rotate(720deg)",
     opacity: 0,
@@ -49,40 +53,6 @@ const trans = {
   },
 };
 
-const ModalContent = styled(motion.div)`
-  color: blue;
-`;
-
-const RepoModal = ({showModal}: {showModal: boolean}): JSX.Element => {
-  // console.log("showModal:", showModal);
-  return (
-    <ModalContainer>
-      <AnimatePresence>
-        {showModal && (
-          <ModalDiv
-            initial={{opacity: 0, y: 60, scale: 0.5}}
-            animate={{
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              transition: {type: "spring", stiffness: 400, duration: 1.0, delay: 0.5, damping: 5},
-            }}
-            exit={{opacity: 0, scale: 0.5, transition: {duration: 0.6}}}
-
-            // initial={trans.hidden}
-            // animate={trans.visible}
-            // exit={trans.exit}
-          >
-            <ModalContent initial={{y: -30, opacity: 0}} animate={{y: 0, opacity: 1, transition: {delay: 1.0}}}>
-              <h2>ModalContent</h2>
-            </ModalContent>
-          </ModalDiv>
-        )}
-      </AnimatePresence>
-    </ModalContainer>
-  );
-};
-
 const FramerMotionModal = ({selectedTab}: {selectedTab: string}): JSX.Element => {
   // console.log("selectedTab:", selectedTab);
   const [showModal, setShowModal] = React.useState<boolean>(false);
@@ -95,8 +65,27 @@ const FramerMotionModal = ({selectedTab}: {selectedTab: string}): JSX.Element =>
 
   return (
     <ModalContainer>
-      {/* passing 'showModal' as a prop to RepoModal component */}
-      <RepoModal showModal={showModal} />
+      <AnimatePresence>
+        {showModal && (
+          <ModalDiv
+            // initial={{opacity: 0, y: 60, scale: 0.5}}
+            // animate={{
+            //   opacity: 1,
+            //   y: 0,
+            //   scale: 1,
+            //   transition: {type: "spring", stiffness: 400, duration: 1.0, delay: 0.5, damping: 5},
+            // }}
+            // exit={{opacity: 0, scale: 0.5, transition: {duration: 0.6}}}
+            initial={modalTransition.hidden}
+            animate={modalTransition.visible}
+            exit={modalTransition.exit}
+          >
+            <ModalContent initial={{y: -30, opacity: 0}} animate={{y: 0, opacity: 1, transition: {delay: 1.0}}}>
+              <h2>ModalContent</h2>
+            </ModalContent>
+          </ModalDiv>
+        )}
+      </AnimatePresence>
     </ModalContainer>
   );
 };

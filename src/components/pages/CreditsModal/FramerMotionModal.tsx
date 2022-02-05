@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import {motion, AnimatePresence} from "framer-motion";
 import React from "react";
-import {createNextState} from "@reduxjs/toolkit";
 
 const ModalBox = styled(motion.div)`
   position: relative;
@@ -25,16 +24,6 @@ const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-
-const ToggleBtn = styled(motion.button)`
-  cursor: pointer;
-  font-size: 20px;
-  color: whitesmoke;
-  padding: 8px 16px;
-  margin-top: 20px;
-  background: green;
-  border-radius: 12px;
 `;
 
 const RepoModal = ({showModal}: {showModal: boolean}): JSX.Element => {
@@ -68,35 +57,13 @@ const FramerMotionModal = ({selectedTab}: {selectedTab: string}): JSX.Element =>
   const [showModal, setShowModal] = React.useState<boolean>(false);
   // console.log("setShowModal:", showModal);
 
-  const displayModal = (): void => {
-    setShowModal(!showModal);
-
-    // document.getElementById("btn")!.style.visibility = "hidden";
-  };
-
-  // document.body.addEventListener("click", () => {
-  //   if (showModal) {
-  //     setShowModal(false);
-  //   }
-  // });
-
   React.useEffect(() => {
     selectedTab === "Repo Link" ? setShowModal(true) : setShowModal(false);
+    console.log("selectedTab:", selectedTab);
   }, [selectedTab]);
 
   return (
     <ModalContainer>
-      <ToggleBtn
-        id="btn"
-        initial={{x: -700}}
-        animate={{
-          x: 0,
-          transition: {duration: 0.1},
-        }}
-        onClick={displayModal}
-      >
-        Toggle Modal
-      </ToggleBtn>
       {/* passing 'showModal' as a prop to RepoModal component */}
       <RepoModal showModal={showModal} />
     </ModalContainer>

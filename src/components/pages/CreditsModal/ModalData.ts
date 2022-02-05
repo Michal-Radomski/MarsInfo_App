@@ -98,6 +98,12 @@ export const modalDataLibraries: Item[] = [
     link: "https://redux.js.org",
     label: "Redux",
   },
+  {
+    id: 7,
+    content: "Animation of the RepoModal is generated using: ",
+    link: "https://github.com/framer/motion",
+    label: "Framer Motion",
+  },
   //* More libraries in the CreditsModal.tsx
 ];
 
@@ -110,7 +116,7 @@ export const modalDataLibraries2: {
   content: string;
 }[] = [
   {
-    id: 1,
+    id: 11,
     link_1: "https://www.typescriptlang.org",
     label_1: "TypeScript",
     link_2: "https://reactjs.org",
@@ -118,7 +124,7 @@ export const modalDataLibraries2: {
     content: "are used to built the App.",
   },
   {
-    id: 2,
+    id: 12,
     link_1: "https://cesium.com",
     label_1: "Cesium",
     link_2: "https://resium.reearth.io",
@@ -126,7 +132,7 @@ export const modalDataLibraries2: {
     content: "are used to render the 3D model of Mars.",
   },
   {
-    id: 3,
+    id: 13,
     link_1: "https://leafletjs.com",
     label_1: "Leaflet",
     link_2: "https://openlayers.org",
@@ -134,7 +140,7 @@ export const modalDataLibraries2: {
     content: "are used to render 2D maps of Earth and Mars.",
   },
   {
-    id: 4,
+    id: 14,
     link_1: "https://styled-components.com",
     label_1: "Styled-Components",
     link_2: "https://sass-lang.com",

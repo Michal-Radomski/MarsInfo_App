@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import {motion} from "framer-motion";
+import {motion, AnimatePresence} from "framer-motion";
 import React from "react";
-import {AnimatePresence} from "framer-motion";
 
 export const ModalBox = styled(motion.div)`
   position: relative;

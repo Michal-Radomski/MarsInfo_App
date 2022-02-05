@@ -42,7 +42,7 @@ const CreditsModal = (): JSX.Element => {
         >
           <Modal.Title style={{fontWeight: "bold", fontStyle: "italic"}}>Credits and Info</Modal.Title>
         </Modal.Header>
-        <Modal.Body style={{minHeight: "550px"}}>
+        <Modal.Body style={{minHeight: "592px"}}>
           <Tabs defaultActiveKey="APIs">
             {/* //- Tab Apis */}
             <Tab eventKey="APIs" title="APIs">
@@ -132,7 +132,7 @@ const CreditsModal = (): JSX.Element => {
                 <Card.Header style={{fontWeight: "bold", fontStyle: "italic", borderBottom: "1px solid #0B5ED7"}}>
                   Link to the Repo of the App
                 </Card.Header>
-                <Card.Body style={{width: "100%", height: "420px", backgroundColor: "lightyellow", padding: 0}} as="div">
+                <Card.Body style={{width: "100%", height: "465px", backgroundColor: "lightyellow", padding: 0}} as="div">
                   <FramerMotionModal />
                 </Card.Body>
               </Card>

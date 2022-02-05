@@ -8,7 +8,7 @@ const ModalContainer = styled.div`
   background-color: inherit;
   display: flex;
   flex-direction: column;
-  justify-content: start; //* or center
+  justify-content: center;
   align-items: center;
   align-content: center;
 `;
@@ -23,8 +23,31 @@ const ModalDiv = styled(motion.div)`
   align-items: center;
   align-content: center;
   background: wheat;
-  top: 10%;
 `;
+
+const trans = {
+  hidden: {
+    transform: "scale(0) rotate(720deg)",
+    opacity: 0,
+    transition: {
+      delay: 0.3,
+    },
+  },
+  visible: {
+    transform: " scale(1) rotate(0deg)",
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+    },
+  },
+  exit: {
+    transform: "scale(0) rotate(-720deg)",
+    opacity: 0,
+    transition: {
+      duration: 0.3,
+    },
+  },
+};
 
 const ModalContent = styled(motion.div)`
   color: blue;
@@ -42,9 +65,13 @@ const RepoModal = ({showModal}: {showModal: boolean}): JSX.Element => {
               opacity: 1,
               y: 0,
               scale: 1,
-              transition: {type: "spring", stiffness: 400, duration: 1.0, delay: 0.5},
+              transition: {type: "spring", stiffness: 400, duration: 1.0, delay: 0.5, damping: 5},
             }}
             exit={{opacity: 0, scale: 0.5, transition: {duration: 0.6}}}
+
+            // initial={trans.hidden}
+            // animate={trans.visible}
+            // exit={trans.exit}
           >
             <ModalContent initial={{y: -30, opacity: 0}} animate={{y: 0, opacity: 1, transition: {delay: 1.0}}}>
               <h2>ModalContent</h2>

@@ -7,11 +7,14 @@
 2. NASA Astronomy Picture of the Day was created according to this
    [tutorial](https://medium.com/@jen.snyder/how-to-use-react-to-display-nasas-astronomy-picture-of-the-day-283c01ff9e31).
 
-3. Nasa's Mars Lander and Rovers transparent icons were taken from [https://www.pngaaa.com](https://www.pngaaa.com/).
+3. Animated Modal (library: Framer Motion) was created according to this
+   [tutorial](https://www.geeksforgeeks.org/animated-modal-using-react-framer-motion-styled-components/).
 
-4. Wind Direction Icon was taken from [https://www.flaticon.com](https://www.flaticon.com/free-icons/direction).
+4. Nasa's Mars Lander and Rovers transparent icons were taken from [https://www.pngaaa.com](https://www.pngaaa.com/).
 
-5. Information is taken from [Wikipedia](https://en.wikipedia.org/wiki/Main_Page) and [NASA](https://www.nasa.gov/).
+5. Wind Direction Icon was taken from [https://www.flaticon.com](https://www.flaticon.com/free-icons/direction).
+
+6. Information is taken from [Wikipedia](https://en.wikipedia.org/wiki/Main_Page) and [NASA](https://www.nasa.gov/).
 
 ## APIs
 

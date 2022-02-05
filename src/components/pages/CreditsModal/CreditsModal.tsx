@@ -12,6 +12,9 @@ const CreditsModal = (): JSX.Element => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const [key, setKey] = React.useState<string>("APIs");
+  // console.log("key:", key);
+
   const renderedListLibraries2: JSX.Element[] = modalDataLibraries2.map(
     (item: {id: number; link_1: string; link_2: string; label_1: string; label_2: string; content: string}) => {
       return (
@@ -43,7 +46,9 @@ const CreditsModal = (): JSX.Element => {
           <Modal.Title style={{fontWeight: "bold", fontStyle: "italic"}}>Credits and Info</Modal.Title>
         </Modal.Header>
         <Modal.Body style={{minHeight: "592px"}}>
-          <Tabs defaultActiveKey="APIs">
+          <Tabs activeKey={key} onSelect={(k) => setKey(k as string)}>
+            {/* //* Previous version */}
+            {/* <Tabs defaultActiveKey="APIs"> */}
             {/* //- Tab Apis */}
             <Tab eventKey="APIs" title="APIs">
               <Card style={{width: "100%"}} border="primary">
@@ -133,7 +138,7 @@ const CreditsModal = (): JSX.Element => {
                   Link to the Repo of the App
                 </Card.Header>
                 <Card.Body style={{width: "100%", height: "465px", backgroundColor: "lightyellow", padding: 0}} as="div">
-                  <FramerMotionModal />
+                  <FramerMotionModal selectedTab={key} />
                 </Card.Body>
               </Card>
             </Tab>

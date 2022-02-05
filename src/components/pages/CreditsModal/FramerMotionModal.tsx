@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {motion, AnimatePresence} from "framer-motion";
 import React from "react";
+import {createNextState} from "@reduxjs/toolkit";
 
 const ModalBox = styled(motion.div)`
   position: relative;
@@ -62,19 +63,26 @@ const RepoModal = ({showModal}: {showModal: boolean}): JSX.Element => {
   );
 };
 
-const FramerMotionModal = (): JSX.Element => {
+const FramerMotionModal = ({selectedTab}: {selectedTab: string}): JSX.Element => {
+  // console.log("selectedTab:", selectedTab);
   const [showModal, setShowModal] = React.useState<boolean>(false);
+  // console.log("setShowModal:", showModal);
 
   const displayModal = (): void => {
     setShowModal(!showModal);
-    document.getElementById("btn")!.style.visibility = "hidden";
+
+    // document.getElementById("btn")!.style.visibility = "hidden";
   };
 
-  document.body.addEventListener("click", () => {
-    if (showModal) {
-      setShowModal(false);
-    }
-  });
+  // document.body.addEventListener("click", () => {
+  //   if (showModal) {
+  //     setShowModal(false);
+  //   }
+  // });
+
+  React.useEffect(() => {
+    selectedTab === "Repo Link" ? setShowModal(true) : setShowModal(false);
+  }, [selectedTab]);
 
   return (
     <ModalContainer>

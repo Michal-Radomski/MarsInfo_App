@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {motion, AnimatePresence} from "framer-motion";
 import React from "react";
 
-export const ModalBox = styled(motion.div)`
+const ModalBox = styled(motion.div)`
   position: relative;
   z-index: 2;
   width: 400px;
@@ -13,11 +13,11 @@ export const ModalBox = styled(motion.div)`
   background: wheat;
 `;
 
-export const ModalContent = styled(motion.div)`
+const ModalContent = styled(motion.div)`
   color: blue;
 `;
 
-export const ModalContainer = styled.div`
+const ModalContainer = styled.div`
   height: 100%;
   width: 100%;
   background-color: inherit;
@@ -26,7 +26,7 @@ export const ModalContainer = styled.div`
   align-items: center;
 `;
 
-export const ToggleBtn = styled(motion.button)`
+const ToggleBtn = styled(motion.button)`
   cursor: pointer;
   font-size: 20px;
   color: whitesmoke;
@@ -36,7 +36,8 @@ export const ToggleBtn = styled(motion.button)`
   border-radius: 12px;
 `;
 
-const RepoModal = ({showModal}: any) => {
+const RepoModal = ({showModal}: {showModal: boolean}): JSX.Element => {
+  // console.log("showModal:", showModal);
   return (
     <ModalContainer>
       <AnimatePresence>
@@ -61,12 +62,11 @@ const RepoModal = ({showModal}: any) => {
   );
 };
 
-const FramerMotionModal = () => {
-  const [showModal, setShowModal] = React.useState(false);
+const FramerMotionModal = (): JSX.Element => {
+  const [showModal, setShowModal] = React.useState<boolean>(false);
 
-  const displayModal = () => {
+  const displayModal = (): void => {
     setShowModal(!showModal);
-
     document.getElementById("btn")!.style.visibility = "hidden";
   };
 

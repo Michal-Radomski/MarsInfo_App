@@ -95,3 +95,22 @@ button.nav-link.active {
     filter: brightness(90%);
   }
 }
+// Framer animation - tooltip
+div.tooltip-inner {
+  background-color: #fcd308;
+  color: #111;
+  font-size: 1rem;
+  font-weight: bold;
+}
+.tooltip.bs-tooltip-top .tooltip-arrow::before {
+  border-top-color: #fcd308;
+}
+.tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+  border-bottom-color: #fcd308;
+}
+.tooltip.bs-tooltip-start .tooltip-arrow::before {
+  border-left-color: #fcd308;
+}
+.tooltip.bs-tooltip-end .tooltip-arrow::before {
+  border-right-color: #fcd308;
+}

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import {motion, AnimatePresence} from "framer-motion";
+import {Nav, OverlayTrigger, Tooltip} from "react-bootstrap";
 
 const ModalContainer = styled.div`
   height: 100%;
@@ -41,6 +42,21 @@ const ModalDivInternal = styled(motion.div)`
 
 const ModalContent = styled(motion.div)`
   color: #0b5ed7;
+`;
+
+const ModalContentLink = styled(motion.div)`
+  color: inherit;
+  background-color: inherit;
+`;
+const StyledNavLink = styled(Nav.Link)`
+  font-size: 2.5rem;
+  text-align: center;
+  padding: 0px;
+  font-weight: bold;
+  font-style: italic;
+  &:hover {
+    text-decoration: none;
+  }
 `;
 
 const modalTransition = {
@@ -88,6 +104,12 @@ const FramerMotionModal = ({selectedTab}: {selectedTab: string}): JSX.Element =>
     // console.log("animationDone:", animationDone);
   }, [animationDone, selectedTab]);
 
+  const renderTooltip = (props: React.RefAttributes<HTMLDivElement>) => (
+    <Tooltip id="button-tooltip" {...props}>
+      Click to see the repo...
+    </Tooltip>
+  );
+
   return (
     <ModalContainer>
       <AnimatePresence>
@@ -108,7 +130,7 @@ const FramerMotionModal = ({selectedTab}: {selectedTab: string}): JSX.Element =>
                 opacity: 1,
                 y: 0,
                 scale: 1,
-                transition: {type: "spring", stiffness: 400, duration: 1.0, delay: 0.8, damping: 5},
+                transition: {type: "spring", stiffness: 400, duration: 1.0, delay: 0.75, damping: 5},
               }}
               exit={{opacity: 0, scale: 0.5, transition: {duration: 0.6}}}
             >
@@ -121,7 +143,24 @@ const FramerMotionModal = ({selectedTab}: {selectedTab: string}): JSX.Element =>
                   rotate: [0, 10, -10, 8, -8, 5, -5, 0],
                 }}
               >
-                <h2>ModalContent</h2>
+                <h4 style={{textAlign: "center", margin: 0}}>Link to the App Repo:</h4>
+                <ModalContentLink
+                  whileHover={{scale: 1.2, rotate: 180, transition: {duration: 0.5}}}
+                  whileTap={{scale: 0.8, rotate: 0}}
+                  initial={{y: -60, opacity: 0}}
+                  animate={{
+                    y: [0, 45, -32, 20, -10, 5, -3, -2, 0],
+                    opacity: 1,
+                    transition: {delay: 2.0, duration: 1.8},
+                    rotate: [0, -15, 15, -10, 10, -5, 5, -2, 0],
+                  }}
+                >
+                  <OverlayTrigger placement="bottom" delay={{show: 250, hide: 400}} overlay={renderTooltip}>
+                    <StyledNavLink as="a" href="https://github.com/Michal-Radomski/MarsInfo_App" target="_blank">
+                      Mars Info App
+                    </StyledNavLink>
+                  </OverlayTrigger>
+                </ModalContentLink>
               </ModalContent>
             </ModalDivInternal>
           </ModalDiv>

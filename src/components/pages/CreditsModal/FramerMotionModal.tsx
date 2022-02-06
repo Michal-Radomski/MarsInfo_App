@@ -23,35 +23,36 @@ const ModalDiv = styled(motion.div)`
   align-items: center;
   align-content: center;
   background: wheat;
+  border: 1px solid #0b5ed7;
 `;
 
 const ModalContent = styled(motion.div)`
-  color: blue;
+  color: #0b5ed7;
 `;
 
-const modalTransition = {
-  hidden: {
-    transform: "scale(0) rotate(720deg)",
-    opacity: 0,
-    transition: {
-      delay: 0.3,
-    },
-  },
-  visible: {
-    transform: " scale(1) rotate(0deg)",
-    opacity: 1,
-    transition: {
-      duration: 0.5,
-    },
-  },
-  exit: {
-    transform: "scale(0) rotate(-720deg)",
-    opacity: 0,
-    transition: {
-      duration: 0.3,
-    },
-  },
-};
+// const modalTransition = {
+//   hidden: {
+//     transform: "scale(0) rotate(720deg)",
+//     opacity: 0,
+//     transition: {
+//       delay: 0.3,
+//     },
+//   },
+//   visible: {
+//     transform: " scale(1) rotate(0deg)",
+//     opacity: 1,
+//     transition: {
+//       duration: 0.5,
+//     },
+//   },
+//   exit: {
+//     transform: "scale(0) rotate(-720deg)",
+//     opacity: 0,
+//     transition: {
+//       duration: 0.3,
+//     },
+//   },
+// };
 
 const FramerMotionModal = ({selectedTab}: {selectedTab: string}): JSX.Element => {
   // console.log("selectedTab:", selectedTab);
@@ -68,17 +69,17 @@ const FramerMotionModal = ({selectedTab}: {selectedTab: string}): JSX.Element =>
       <AnimatePresence>
         {showModal && (
           <ModalDiv
-            // initial={{opacity: 0, y: 60, scale: 0.5}}
-            // animate={{
-            //   opacity: 1,
-            //   y: 0,
-            //   scale: 1,
-            //   transition: {type: "spring", stiffness: 400, duration: 1.0, delay: 0.5, damping: 5},
-            // }}
-            // exit={{opacity: 0, scale: 0.5, transition: {duration: 0.6}}}
-            initial={modalTransition.hidden}
-            animate={modalTransition.visible}
-            exit={modalTransition.exit}
+            initial={{opacity: 0, y: 60, scale: 0.5}}
+            animate={{
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              transition: {type: "spring", stiffness: 400, duration: 1.0, delay: 0.5, damping: 5},
+            }}
+            exit={{opacity: 0, scale: 0.5, transition: {duration: 0.6}}}
+            // initial={modalTransition.hidden}
+            // animate={modalTransition.visible}
+            // exit={modalTransition.exit}
           >
             <ModalContent initial={{y: -30, opacity: 0}} animate={{y: 0, opacity: 1, transition: {delay: 1.0}}}>
               <h2>ModalContent</h2>

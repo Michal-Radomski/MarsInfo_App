@@ -105,8 +105,8 @@ const FramerMotionModal: React.FC<{selectedTab: string}> = ({selectedTab}: {sele
   }, [animationDone, selectedTab]);
 
   const renderTooltip = (props: React.RefAttributes<HTMLDivElement>): JSX.Element => (
-    <Tooltip id="button-tooltip" {...props}>
-      Click to see the repo...
+    <Tooltip id="linkTooltip" {...props}>
+      Click the link to see the repo...
     </Tooltip>
   );
 
@@ -145,7 +145,7 @@ const FramerMotionModal: React.FC<{selectedTab: string}> = ({selectedTab}: {sele
               >
                 <h4 style={{textAlign: "center", margin: 0}}>Link to the App Repo:</h4>
                 <ModalContentLink
-                  whileHover={{scale: 1.2, rotate: 180, transition: {duration: 0.5}}}
+                  whileHover={{scale: 1.2, transition: {duration: 0.5}}}
                   whileTap={{scale: 0.8, rotate: 0}}
                   initial={{y: -60, opacity: 0}}
                   animate={{

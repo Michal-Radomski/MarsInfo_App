@@ -83,13 +83,13 @@ const modalTransition = {
   },
 };
 
-const FramerMotionModal = ({selectedTab}: {selectedTab: string}): JSX.Element => {
+const FramerMotionModal: React.FC<{selectedTab: string}> = ({selectedTab}: {selectedTab: string}): JSX.Element => {
   // console.log("selectedTab:", selectedTab);
   const [showModal, setShowModal] = React.useState<boolean>(false);
   // console.log("setShowModal:", showModal);
   const [animationDone, setAnimationDone] = React.useState<boolean>(false);
 
-  function onComplete() {
+  function onComplete(): void {
     // console.log("animationDone1:", animationDone);
     setTimeout(() => {
       setAnimationDone(true);
@@ -104,7 +104,7 @@ const FramerMotionModal = ({selectedTab}: {selectedTab: string}): JSX.Element =>
     // console.log("animationDone:", animationDone);
   }, [animationDone, selectedTab]);
 
-  const renderTooltip = (props: React.RefAttributes<HTMLDivElement>) => (
+  const renderTooltip = (props: React.RefAttributes<HTMLDivElement>): JSX.Element => (
     <Tooltip id="button-tooltip" {...props}>
       Click to see the repo...
     </Tooltip>

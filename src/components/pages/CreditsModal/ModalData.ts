@@ -100,7 +100,7 @@ export const modalDataLibraries: Item[] = [
   },
   {
     id: 7,
-    content: "Animation of the RepoModal is generated using: ",
+    content: "Animation of the Repo Link tab is generated using: ",
     link: "https://github.com/framer/motion",
     label: "Framer Motion",
   },

@@ -1,6 +1,7 @@
 import React from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {Card, Table, Spinner, Dropdown, Nav} from "react-bootstrap";
+import CountUp from "react-countup";
 
 import {GET_COVID_DATA, GET_RATES_DATA} from "../../../redux/actions";
 
@@ -119,8 +120,11 @@ const CountryInfos = (): JSX.Element => {
               <tr>
                 <td>Confirmed</td>
                 <td style={{fontWeight: "bold"}}>
+                  {console.log(Number(covid_Redux.countryConfirmed).toLocaleString())}
                   {covid_Redux.countryConfirmed ? (
-                    covid_Redux.countryConfirmed.toLocaleString()
+                    // covid_Redux.countryConfirmed.toLocaleString()
+
+                    <CountUp separator=" " end={covid_Redux.countryConfirmed} />
                   ) : (
                     <Spinner animation="border" variant="primary" size="sm" />
                   )}

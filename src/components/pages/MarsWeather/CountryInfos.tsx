@@ -1,9 +1,9 @@
 import React from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {Card, Table, Spinner, Dropdown, Nav} from "react-bootstrap";
-import CountUp from "react-countup";
 
 import {GET_COVID_DATA, GET_RATES_DATA} from "../../../redux/actions";
+import CountUpComponent from "./CountUpComponent";
 
 const CountryInfos = (): JSX.Element => {
   const dispatch: Dispatch = useDispatch();
@@ -120,18 +120,15 @@ const CountryInfos = (): JSX.Element => {
               <tr>
                 <td>Confirmed</td>
                 <td style={{fontWeight: "bold"}}>
-                  {console.log(Number(covid_Redux.countryConfirmed).toLocaleString())}
                   {covid_Redux.countryConfirmed ? (
-                    // covid_Redux.countryConfirmed.toLocaleString()
-
-                    <CountUp separator=" " end={covid_Redux.countryConfirmed} />
+                    <CountUpComponent end={covid_Redux.countryConfirmed} />
                   ) : (
                     <Spinner animation="border" variant="primary" size="sm" />
                   )}
                 </td>
                 <td style={{fontWeight: "bold"}}>
                   {covid_Redux.globalConfirmed ? (
-                    covid_Redux.globalConfirmed.toLocaleString()
+                    <CountUpComponent end={covid_Redux.globalConfirmed} />
                   ) : (
                     <Spinner animation="border" variant="secondary" size="sm" />
                   )}
@@ -141,14 +138,14 @@ const CountryInfos = (): JSX.Element => {
                 <td>Deaths</td>
                 <td style={{fontWeight: "bold"}}>
                   {covid_Redux.countryDeaths ? (
-                    covid_Redux.countryDeaths.toLocaleString()
+                    <CountUpComponent end={covid_Redux.countryDeaths} />
                   ) : (
                     <Spinner animation="border" variant="warning" size="sm" />
                   )}
                 </td>
                 <td style={{fontWeight: "bold"}}>
                   {covid_Redux.globalDeaths ? (
-                    covid_Redux.globalDeaths.toLocaleString()
+                    <CountUpComponent end={covid_Redux.globalDeaths} />
                   ) : (
                     <Spinner animation="border" variant="info" size="sm" />
                   )}
@@ -191,7 +188,7 @@ const CountryInfos = (): JSX.Element => {
                 </td>
                 <td style={{fontWeight: "bold"}}>
                   {currency_Redux.to_USD ? (
-                    (1 / currency_Redux.to_USD).toFixed(3)
+                    <CountUpComponent end={1 / currency_Redux.to_USD} />
                   ) : (
                     <Spinner animation="grow" variant="primary" size="sm" />
                   )}
@@ -203,7 +200,7 @@ const CountryInfos = (): JSX.Element => {
                 </td>
                 <td style={{fontWeight: "bold"}}>
                   {currency_Redux.to_EURO ? (
-                    (1 / currency_Redux.to_EURO).toFixed(3)
+                    <CountUpComponent end={1 / currency_Redux.to_EURO} />
                   ) : (
                     <Spinner animation="grow" variant="secondary" size="sm" />
                   )}
@@ -215,7 +212,7 @@ const CountryInfos = (): JSX.Element => {
                 </td>
                 <td style={{fontWeight: "bold"}}>
                   {currency_Redux.to_CHF ? (
-                    (1 / currency_Redux.to_CHF).toFixed(3)
+                    <CountUpComponent end={1 / currency_Redux.to_CHF} />
                   ) : (
                     <Spinner animation="grow" variant="warning" size="sm" />
                   )}

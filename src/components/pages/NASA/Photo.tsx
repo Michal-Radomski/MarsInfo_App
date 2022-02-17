@@ -35,7 +35,10 @@ const Photo = (props: {photo: {title: string; url: string; explanation: string}}
       <H2>{props.photo.title}</H2>
       {/* {console.log("props.photo.url:", props.photo.url)} */}
       {props.photo.url.charAt(props.photo.url.length - 4) === "." ? (
-        <img src={props.photo.url} alt={props.photo.title} />
+        <>
+          <img src={props.photo.url} alt={props.photo.title} />
+          <p>{props.photo.explanation}</p>
+        </>
       ) : (
         <VideoDiv>
           <iframe

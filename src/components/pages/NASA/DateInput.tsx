@@ -104,6 +104,7 @@ const DateInput = (props: {
           withPortal={true}
           yearDropdownItemNumber={12}
           dropdownMode="select"
+          todayButton="Today"
         />
       </Div>
     </React.Fragment>

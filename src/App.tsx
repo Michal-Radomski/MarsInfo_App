@@ -6,7 +6,7 @@ import Home from "./components/pages/Home";
 import MarsWeather from "./components/pages/MarsWeather/MarsWeather";
 import Navbar from "./components/navbar/Navbar";
 import Mars3D from "./components/pages/Mars3D/Mars3D";
-import MarsPictures from "./components/pages/MarsPictures";
+import MarsPictures from "./components/pages/MarsPictures/MarsPictures";
 
 function App(): JSX.Element {
   return (

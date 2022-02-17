@@ -1,18 +1,20 @@
 import React from "react";
 import axios from "axios";
+import {Accordion} from "react-bootstrap";
 
 import Spinner from "../../../Spinner";
+import PictureDatePicker from "./PictureDatePicker";
 
 const API_KEY = process.env.REACT_APP_NASA_API_KEY as string;
 // console.log("API_KEY:", API_KEY);
 
 const selectedDate = "2020-01-01"; //-temp
 
-const photosOpportunity = `https://api.nasa.gov/mars-photos/api/v1/rovers/Opportunity/photos?earth_date=${selectedDate}&api_key=${API_KEY}&page=2`;
-const photosCuriosity = `https://api.nasa.gov/mars-photos/api/v1/rovers/Curiosity/photos?earth_date=${selectedDate}&api_key=${API_KEY}&page=2`;
-const photosSpirit = `https://api.nasa.gov/mars-photos/api/v1/rovers/Spirit/photos?earth_date=${selectedDate}&api_key=${API_KEY}&page=2`;
+const photosOpportunityUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/Opportunity/photos?earth_date=${selectedDate}&api_key=${API_KEY}&page=2`;
+const photosCuriosityUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/Curiosity/photos?earth_date=${selectedDate}&api_key=${API_KEY}&page=2`;
+const photosSpiritUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/Spirit/photos?earth_date=${selectedDate}&api_key=${API_KEY}&page=2`;
 
-const URLs = [photosOpportunity, photosCuriosity, photosSpirit];
+const URLs = [photosOpportunityUrl, photosCuriosityUrl, photosSpiritUrl];
 
 const MarsPictures = (): JSX.Element => {
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
@@ -31,17 +33,21 @@ const MarsPictures = (): JSX.Element => {
           return data;
         });
         // await console.log("response:", response);
-        const marsPictures = await response.map((marsRoverPictures) => marsRoverPictures.data.photos);
-        await console.log("marsPictures:", marsPictures);
-        // const marsWeatherModified = {
-        //   PerseveranceWeather: marsWeathers[0].sols,
-        //   CuriosityWeather: marsWeathers[1].soles.slice(0, 7).reverse(),
-        //   InSightWeather: this.InSight_fetching(marsWeathers[2]),
-        // };
-        // const userPosition = {
-        //   latitude: marsWeathers[3].latitude,
-        //   longitude: marsWeathers[3].longitude,
-        // };
+        const marsRoversPictures = await response.map((marsRoverPictures) => marsRoverPictures.data.photos);
+        await console.log("marsRoversPictures:", marsRoversPictures);
+        const photosOpportunity =
+          marsRoversPictures[0].length > 0 ? marsRoversPictures[0] : "No Photos for the Selected Day";
+        const photosCuriosity = marsRoversPictures[1].length > 0 ? marsRoversPictures[1] : "No Photos for the Selected Day";
+        const photosSpirit = marsRoversPictures[2].length > 0 ? marsRoversPictures[2] : "No Photos for the Selected Day";
+        await console.log(
+          "photosOpportunity:",
+          photosOpportunity,
+          "photosCuriosity:",
+          photosCuriosity,
+          "photosSpirit:",
+          photosSpirit
+        );
+
         // // await console.log("marsWeatherModified:", marsWeatherModified);
         // await this.setState({
         //   PerseveranceWeather: marsWeatherModified.PerseveranceWeather,
@@ -65,10 +71,19 @@ const MarsPictures = (): JSX.Element => {
   return isLoading ? (
     <Spinner />
   ) : (
-    <div style={{textAlign: "center"}}>
-      <h1>NASA Pictures of Mars</h1>
-      <h3>Under Construction...</h3>
-    </div>
+    <React.Fragment>
+      <Accordion>
+        <Accordion.Item eventKey="0">
+          <Accordion.Header>Accordion Item #1</Accordion.Header>
+          <Accordion.Body>Accordion Body Text2</Accordion.Body>
+        </Accordion.Item>
+        <Accordion.Item eventKey="1">
+          <Accordion.Header>Accordion Item #2</Accordion.Header>
+          <Accordion.Body>Accordion Body Text2</Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
+      <PictureDatePicker />
+    </React.Fragment>
   );
 };
 

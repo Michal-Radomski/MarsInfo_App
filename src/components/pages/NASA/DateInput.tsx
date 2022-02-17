@@ -97,7 +97,13 @@ const DateInput = (props: {
           maxDate={new Date()}
           calendarContainer={calendarContainer}
           customInput={<CustomInput />}
-          showWeekNumbers
+          showWeekNumbers={true}
+          showYearDropdown={true}
+          showMonthDropdown={true}
+          scrollableYearDropdown={true}
+          withPortal={true}
+          yearDropdownItemNumber={12}
+          dropdownMode="select"
         />
       </Div>
     </React.Fragment>

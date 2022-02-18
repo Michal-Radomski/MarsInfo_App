@@ -70,12 +70,15 @@ const MarsPictures = (): JSX.Element => {
   }, []);
 
   function CustomToggle({children, eventKey}: any) {
-    const decoratedOnClick = useAccordionButton(eventKey, () => console.log("totally custom!"));
+    const decoratedOnClick = useAccordionButton(eventKey, (event) => {
+      console.log("totally custom!");
+      event.stopPropagation();
+    });
 
     return (
-      <button type="button" style={{backgroundColor: "pink"}} onClick={decoratedOnClick}>
+      <div style={{backgroundColor: "pink"}} onClick={decoratedOnClick}>
         {children}
-      </button>
+      </div>
     );
   }
 
@@ -103,13 +106,16 @@ const MarsPictures = (): JSX.Element => {
     <Accordion defaultActiveKey="0">
       <Card>
         <Card.Header>
-          <CustomToggle eventKey="0">Click me!</CustomToggle>
-          <div id="test">
-            <h1>Pictures from Curiosity Mars Rover</h1>
-            <h2>Deployed 6 August 2012</h2>
-
-            <PictureDatePicker />
-          </div>
+          <CustomToggle eventKey="0">
+            Click me!
+            <div>
+              <h1>Pictures from Curiosity Mars Rover</h1>
+              <h2>Deployed 6 August 2012</h2>
+              <div onClick={(event: {stopPropagation: () => any}) => event.stopPropagation()}>
+                <PictureDatePicker />
+              </div>
+            </div>
+          </CustomToggle>
         </Card.Header>
         <Accordion.Collapse eventKey="0">
           <Card.Body>Hello! I'm the body</Card.Body>

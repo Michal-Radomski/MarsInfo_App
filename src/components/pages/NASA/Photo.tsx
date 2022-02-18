@@ -37,7 +37,7 @@ const Photo = (props: {photo: {title: string; url: string; explanation: string}}
       {props.photo.url.charAt(props.photo.url.length - 4) === "." ? (
         <>
           <img src={props.photo.url} alt={props.photo.title} />
-          <p>{props.photo.explanation}</p>
+          <p style={{textAlign: "justify"}}>{props.photo.explanation}</p>
         </>
       ) : (
         <VideoDiv>

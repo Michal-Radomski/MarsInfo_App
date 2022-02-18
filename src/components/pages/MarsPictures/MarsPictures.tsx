@@ -81,7 +81,7 @@ const MarsPictures = (): JSX.Element => {
     InActive: {
       color: "black",
       backgroundColor: "whitesmoke",
-      border: "1px solid grey",
+      border: "none",
       padding: "4px",
       width: "100%",
       height: "100%",
@@ -102,11 +102,11 @@ const MarsPictures = (): JSX.Element => {
   return isLoading ? (
     <Spinner />
   ) : (
-    <Accordion as="div" defaultActiveKey="accordionTab1" style={{border: "1px solid #0D6EFD", margin: "4px"}}>
-      <Card as="div">
-        <Card.Header as="div" style={{padding: 0}}>
+    <Accordion as="div" defaultActiveKey="accordionTab1" style={{border: "1px solid #0D6EFD", margin: "4px", padding: 0}}>
+      <Card as="div" style={{border: "1px solid #0D6EFD", margin: "0px", padding: 0}}>
+        <Card.Header as="div" style={{padding: 0, margin: 0}}>
           <CustomToggle eventKey="accordionTab1">
-            <div>
+            <div style={{padding: "8px 16px"}}>
               <h1>Pictures from Curiosity Mars Rover</h1>
               <h2>Deployed 6 August 2012</h2>
               <div onClick={(event: {stopPropagation: () => void}) => event.stopPropagation()}>
@@ -115,14 +115,14 @@ const MarsPictures = (): JSX.Element => {
             </div>
           </CustomToggle>
         </Card.Header>
-        <Accordion.Collapse eventKey="accordionTab1" as="div">
+        <Accordion.Collapse eventKey="accordionTab1" as="div" style={{border: "1px solid #DC3545", margin: "2px"}}>
           <Card.Body as="div">Hello! I'm the body Card</Card.Body>
         </Accordion.Collapse>
       </Card>
-      <Card as="div">
-        <Card.Header as="div" style={{padding: 0}}>
+      <Card as="div" style={{border: "1px solid #0D6EFD", margin: "0px", padding: 0}}>
+        <Card.Header as="div" style={{padding: 0, margin: 0}}>
           <CustomToggle eventKey="accordionTab2">
-            <div>
+            <div style={{padding: "8px 16px"}}>
               <h1>Pictures from Curiosity Mars Rover</h1>
               <h2>Deployed 6 August 2012</h2>
               <div onClick={(event: {stopPropagation: () => void}) => event.stopPropagation()}>
@@ -131,7 +131,7 @@ const MarsPictures = (): JSX.Element => {
             </div>
           </CustomToggle>
         </Card.Header>
-        <Accordion.Collapse eventKey="accordionTab2">
+        <Accordion.Collapse eventKey="accordionTab2" style={{border: "1px solid #DC3545", margin: "2px"}}>
           <Card.Body>Hello! I'm another body Card2</Card.Body>
         </Accordion.Collapse>
       </Card>

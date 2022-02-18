@@ -1,25 +1,32 @@
 import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import styled from "styled-components";
+
+const ButtonInput = styled.button`
+  font-size: 1em;
+  margin: 1em 5px;
+  padding: 1em;
+  background-color: #216ba5;
+  color: whitesmoke;
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    color: #216ba5;
+    background-color: lightgray;
+    border: 2px solid #216ba5;
+  }
+`;
 
 const PictureDatePicker = (): JSX.Element => {
   const [startDate, setStartDate] = React.useState(new Date());
-  const [isOpen, setIsOpen] = React.useState(false);
-  const handleChange = (e: any) => {
-    setIsOpen(!isOpen);
-    setStartDate(e);
-  };
-  const handleClick = (e: any) => {
-    e.preventDefault();
-    setIsOpen(!isOpen);
-  };
+  const ExampleCustomInput = React.forwardRef(({value, onClick}: any, ref: any) => (
+    <ButtonInput onClick={onClick} ref={ref}>
+      {value}
+    </ButtonInput>
+  ));
   return (
-    <>
-      <button className="example-custom-input" onClick={handleClick}>
-        {/* {format(startDate, "dd-MM-yyyy")} */}
-      </button>
-      {isOpen && <DatePicker selected={startDate} onChange={handleChange} inline />}
-    </>
+    <DatePicker selected={startDate} onChange={(date: any) => setStartDate(date)} customInput={<ExampleCustomInput />} />
   );
 };
 

@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
-import {Accordion} from "react-bootstrap";
+import {Accordion, Card} from "react-bootstrap";
+import {useAccordionButton} from "react-bootstrap/AccordionButton";
 
 import Spinner from "../../../Spinner";
 import PictureDatePicker from "./PictureDatePicker";
@@ -68,22 +69,61 @@ const MarsPictures = (): JSX.Element => {
     fetchMarsPictures();
   }, []);
 
+  function CustomToggle({children, eventKey}: any) {
+    const decoratedOnClick = useAccordionButton(eventKey, () => console.log("totally custom!"));
+
+    return (
+      <button type="button" style={{backgroundColor: "pink"}} onClick={decoratedOnClick}>
+        {children}
+      </button>
+    );
+  }
+
   return isLoading ? (
     <Spinner />
   ) : (
-    <React.Fragment>
-      <Accordion>
-        <Accordion.Item eventKey="0">
-          <Accordion.Header>Accordion Item #1</Accordion.Header>
-          <Accordion.Body>Accordion Body Text2</Accordion.Body>
-        </Accordion.Item>
-        <Accordion.Item eventKey="1">
-          <Accordion.Header>Accordion Item #2</Accordion.Header>
-          <Accordion.Body>Accordion Body Text2</Accordion.Body>
-        </Accordion.Item>
-      </Accordion>
-      <PictureDatePicker />
-    </React.Fragment>
+    // <Accordion as="div">
+    //   <Accordion.Item eventKey="accordionTab1" as="div">
+    //     <Accordion.Header as="div">
+    //       <div id="test">
+    //         <h1>Pictures from Curiosity Mars Rover</h1>
+    //         <h2>Deployed 6 August 2012</h2>
+
+    //         <PictureDatePicker />
+    //       </div>
+    //     </Accordion.Header>
+    //     <Accordion.Body>Accordion Body Text2</Accordion.Body>
+    //   </Accordion.Item>
+    //   <Accordion.Item eventKey="accordionTab2">
+    //     <Accordion.Header as="div">Accordion Item #2</Accordion.Header>
+    //     <Accordion.Body>Accordion Body Text2</Accordion.Body>
+    //   </Accordion.Item>
+    // </Accordion>
+
+    <Accordion defaultActiveKey="0">
+      <Card>
+        <Card.Header>
+          <CustomToggle eventKey="0">Click me!</CustomToggle>
+          <div id="test">
+            <h1>Pictures from Curiosity Mars Rover</h1>
+            <h2>Deployed 6 August 2012</h2>
+
+            <PictureDatePicker />
+          </div>
+        </Card.Header>
+        <Accordion.Collapse eventKey="0">
+          <Card.Body>Hello! I'm the body</Card.Body>
+        </Accordion.Collapse>
+      </Card>
+      <Card>
+        <Card.Header>
+          <CustomToggle eventKey="1">Click me!</CustomToggle>
+        </Card.Header>
+        <Accordion.Collapse eventKey="1">
+          <Card.Body>Hello! I'm another body</Card.Body>
+        </Accordion.Collapse>
+      </Card>
+    </Accordion>
   );
 };
 

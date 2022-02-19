@@ -81,11 +81,12 @@ const MarsPictures = (): JSX.Element => {
     Active: {
       color: "#0D6EFD",
       backgroundColor: "#CFE2FF",
-      border: "2px solid #0D6EFD",
+      border: "2px solid #86b7fe",
       padding: "4px",
       width: "100%",
       height: "100%",
       cursor: "pointer",
+      boxShadow: "0 0 0 0.25rem rgba(13,110,253,0.25)",
     },
     InActive: {
       color: "black",
@@ -95,6 +96,7 @@ const MarsPictures = (): JSX.Element => {
       width: "100%",
       height: "100%",
       cursor: "pointer",
+      boxShadow: "none",
     },
   };
 
@@ -112,7 +114,7 @@ const MarsPictures = (): JSX.Element => {
   return isLoading ? (
     <Spinner />
   ) : (
-    <Accordion as="div" defaultActiveKey="accordionTab1" style={{border: "1px solid #0D6EFD", margin: "4px", padding: 0}}>
+    <Accordion as="div" defaultActiveKey="accordionTab1" style={{border: "1px solid #0D6EFD", margin: "6px", padding: 0}}>
       <Card as="div" style={{border: "1px solid #0D6EFD", margin: "0px", padding: 0}}>
         <Card.Header as="div" style={{padding: 0, margin: 0}}>
           <CustomToggle eventKey="accordionTab1">

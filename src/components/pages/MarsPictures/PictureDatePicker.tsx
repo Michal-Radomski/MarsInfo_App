@@ -21,7 +21,7 @@ const ButtonInput = styled.button`
 `;
 
 const PictureDatePicker = (): JSX.Element => {
-  const [startDate, setStartDate] = React.useState(new Date());
+  const [startDate, setStartDate] = React.useState<Date>(new Date());
   const CustomInput = React.forwardRef(
     (
       {value, onClick}: {value?: string; onClick?: React.MouseEventHandler<HTMLButtonElement>},

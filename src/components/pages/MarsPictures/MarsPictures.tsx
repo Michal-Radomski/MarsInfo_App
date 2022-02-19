@@ -69,7 +69,6 @@ const MarsPictures = (): JSX.Element => {
           "photosSpirit:",
           photosSpirit
         );
-
         // // await console.log("marsWeatherModified:", marsWeatherModified);
         // await this.setState({
         //   PerseveranceWeather: marsWeatherModified.PerseveranceWeather,
@@ -144,10 +143,10 @@ const MarsPictures = (): JSX.Element => {
                   Photos from: <span>Curiosity Mars Rover</span>
                 </h3>
                 <p>
-                  Deployed: <span>6 August 2012</span>
+                  Status: <span>Operational</span>
                 </p>
                 <p>
-                  Status: <span>Operational</span>
+                  Deployed: <span>August 6, 2012</span>
                 </p>
               </div>
               <div
@@ -172,9 +171,26 @@ const MarsPictures = (): JSX.Element => {
         <Card.Header as="div" style={{padding: 0, margin: 0}}>
           <CustomToggle eventKey="accordionTab2">
             <Div>
-              <h1>Pictures from Curiosity Mars Rover</h1>
-              <h2>Deployed 6 August 2012</h2>
-              <div onClick={(event: {stopPropagation: () => void}) => event.stopPropagation()} style={{width: "125px"}}>
+              <div>
+                <h3>
+                  Photos from: <span>Opportunity</span> and <span>Spirit</span> rovers on Mars
+                </h3>
+                <p>
+                  Status: <span>Missions Are Complete</span>
+                </p>
+                <p>
+                  <span>Opportunity:</span> Landing Date: <span>January 25, 2004</span>, Last contact:{" "}
+                  <span>June 10, 2018</span>
+                </p>
+                <p>
+                  <span>Spirit:</span> Landing Date: <span>January 4, 2004</span>, Last contact: <span>March 22, 2010</span>
+                </p>
+              </div>
+              <div
+                onClick={(event: {stopPropagation: () => void}) => event.stopPropagation()}
+                style={{textAlign: "center", color: "maroon"}}
+              >
+                <h5 style={{fontWeight: "bold"}}>Select date:</h5>
                 <PictureDatePicker />
               </div>
             </Div>

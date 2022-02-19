@@ -3,6 +3,7 @@ import axios from "axios";
 import {Accordion, AccordionContext, Card} from "react-bootstrap";
 import {useAccordionButton} from "react-bootstrap/AccordionButton";
 import styled from "styled-components";
+import {FaMinusSquare, FaPlusSquare} from "react-icons/fa";
 
 import Spinner from "../../../Spinner";
 import PictureDatePicker from "./PictureDatePicker";
@@ -118,8 +119,8 @@ const MarsPictures = (): JSX.Element => {
   };
 
   function CustomToggle({children, eventKey, callback}: CustomToggle_Props): JSX.Element {
-    // console.log("callback:", callback);
     const {activeEventKey} = React.useContext(AccordionContext);
+
     const customAccordionOnClick = useAccordionButton(eventKey, () => callback && callback(eventKey));
     const isCurrentEventKey = activeEventKey === eventKey;
     return (
@@ -140,7 +141,7 @@ const MarsPictures = (): JSX.Element => {
             <Div>
               <div>
                 <h3>
-                  Photos from: <span>Curiosity Mars Rover</span>
+                  <span style={{color: "darkviolet"}}>Click here</span> to see photos from: <span>Curiosity Mars Rover</span>
                 </h3>
                 <p>
                   Status: <span>Operational</span>
@@ -173,7 +174,8 @@ const MarsPictures = (): JSX.Element => {
             <Div>
               <div>
                 <h3>
-                  Photos from: <span>Opportunity</span> and <span>Spirit</span> rovers on Mars
+                  <span style={{color: "darkviolet"}}>Click here</span> to see photos from: <span>Opportunity</span> and{" "}
+                  <span>Spirit</span> rovers on Mars
                 </h3>
                 <p>
                   Status: <span>Missions Are Complete</span>

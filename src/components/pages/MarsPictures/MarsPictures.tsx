@@ -100,7 +100,14 @@ const MarsPictures = (): JSX.Element => {
     },
   };
 
-  function CustomToggle({children, eventKey, callback}: any): JSX.Element {
+  type CustomToggle_Props = {
+    children?: React.ReactNode;
+    eventKey: string;
+    callback?: (str: string) => void;
+  };
+
+  function CustomToggle({children, eventKey, callback}: CustomToggle_Props): JSX.Element {
+    // console.log("callback:", callback);
     const {activeEventKey} = React.useContext(AccordionContext);
     const customAccordionOnClick = useAccordionButton(eventKey, () => callback && callback(eventKey));
     const isCurrentEventKey = activeEventKey === eventKey;
@@ -118,6 +125,7 @@ const MarsPictures = (): JSX.Element => {
       <Card as="div" style={{border: "1px solid #0D6EFD", margin: "0px", padding: 0}}>
         <Card.Header as="div" style={{padding: 0, margin: 0}}>
           <CustomToggle eventKey="accordionTab1">
+            {/* {console.log("CustomToggle:", CustomToggle)} */}
             <Div>
               <h1>Pictures from Curiosity Mars Rover</h1>
               <h2>Deployed 6 August 2012</h2>

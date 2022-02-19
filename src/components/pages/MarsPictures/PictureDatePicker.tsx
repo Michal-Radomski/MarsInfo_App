@@ -29,10 +29,11 @@ const PictureDatePicker = (): JSX.Element => {
     ) => (
       <ButtonInput onClick={onClick} ref={ref}>
         {value}
-        {console.log(value)}
+        {/* {console.log("value:", value)} */}
       </ButtonInput>
     )
   );
+
   return (
     <DatePicker
       selected={startDate}

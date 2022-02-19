@@ -2,10 +2,10 @@ import React from "react";
 import axios from "axios";
 import {Accordion, AccordionContext, Card} from "react-bootstrap";
 import {useAccordionButton} from "react-bootstrap/AccordionButton";
+import styled from "styled-components";
 
 import Spinner from "../../../Spinner";
 import PictureDatePicker from "./PictureDatePicker";
-import {style} from "cesium";
 
 const API_KEY = process.env.REACT_APP_NASA_API_KEY as string;
 // console.log("API_KEY:", API_KEY);
@@ -18,10 +18,16 @@ const photosSpiritUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/Spirit/p
 
 const URLs = [photosOpportunityUrl, photosCuriosityUrl, photosSpiritUrl];
 
+const Div = styled.div`
+  padding: 8px 16px;
+  background-color: inherit;
+  &:hover {
+    background-color: wheat;
+  }
+`;
+
 const MarsPictures = (): JSX.Element => {
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
-  const [hover_1, setHover_1] = React.useState<boolean>(false);
-  const [hover_2, setHover_2] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -68,7 +74,6 @@ const MarsPictures = (): JSX.Element => {
         console.error(error);
       }
     };
-
     // fetchMarsPictures();
   }, []);
 
@@ -91,11 +96,6 @@ const MarsPictures = (): JSX.Element => {
       height: "100%",
       cursor: "pointer",
     },
-    Hover: {
-      backgroundColor: "wheat",
-      padding: "8px 16px",
-    },
-    NotHover: {padding: "8px 16px"},
   };
 
   function CustomToggle({children, eventKey, callback}: any): JSX.Element {
@@ -116,22 +116,13 @@ const MarsPictures = (): JSX.Element => {
       <Card as="div" style={{border: "1px solid #0D6EFD", margin: "0px", padding: 0}}>
         <Card.Header as="div" style={{padding: 0, margin: 0}}>
           <CustomToggle eventKey="accordionTab1">
-            <div
-            // @ts-ignore
-            // style={hover_1 ? styles.Hover : styles.NotHover}
-            // onMouseEnter={() => {
-            //   setHover_1(true);
-            // }}
-            // onMouseLeave={() => {
-            //   setHover_1(false);
-            // }}
-            >
+            <Div>
               <h1>Pictures from Curiosity Mars Rover</h1>
               <h2>Deployed 6 August 2012</h2>
               <div onClick={(event: {stopPropagation: () => void}) => event.stopPropagation()} style={{width: "125px"}}>
                 <PictureDatePicker />
               </div>
-            </div>
+            </Div>
           </CustomToggle>
         </Card.Header>
         <Accordion.Collapse
@@ -145,22 +136,13 @@ const MarsPictures = (): JSX.Element => {
       <Card as="div" style={{border: "1px solid #0D6EFD", margin: "0px", padding: 0}}>
         <Card.Header as="div" style={{padding: 0, margin: 0}}>
           <CustomToggle eventKey="accordionTab2">
-            <div
-            // @ts-ignore
-            // style={hover_2 ? styles.Hover : styles.NotHover}
-            // onMouseEnter={() => {
-            //   setHover_2(true);
-            // }}
-            // onMouseLeave={() => {
-            //   setHover_2(false);
-            // }}
-            >
+            <Div>
               <h1>Pictures from Curiosity Mars Rover</h1>
               <h2>Deployed 6 August 2012</h2>
               <div onClick={(event: {stopPropagation: () => void}) => event.stopPropagation()} style={{width: "125px"}}>
                 <PictureDatePicker />
               </div>
-            </div>
+            </Div>
           </CustomToggle>
         </Card.Header>
         <Accordion.Collapse

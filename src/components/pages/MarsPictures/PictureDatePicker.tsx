@@ -12,6 +12,7 @@ const ButtonInput = styled.button`
   border-radius: 5px;
   cursor: pointer;
   border: 2px solid #333;
+  width: 125px;
   &:hover {
     color: #216ba5;
     background-color: lightgray;
@@ -28,6 +29,7 @@ const PictureDatePicker = (): JSX.Element => {
     ) => (
       <ButtonInput onClick={onClick} ref={ref}>
         {value}
+        {console.log(value)}
       </ButtonInput>
     )
   );

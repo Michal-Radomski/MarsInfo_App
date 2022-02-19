@@ -5,6 +5,7 @@ import {useAccordionButton} from "react-bootstrap/AccordionButton";
 
 import Spinner from "../../../Spinner";
 import PictureDatePicker from "./PictureDatePicker";
+import {style} from "cesium";
 
 const API_KEY = process.env.REACT_APP_NASA_API_KEY as string;
 // console.log("API_KEY:", API_KEY);
@@ -19,6 +20,8 @@ const URLs = [photosOpportunityUrl, photosCuriosityUrl, photosSpiritUrl];
 
 const MarsPictures = (): JSX.Element => {
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
+  const [hover_1, setHover_1] = React.useState<boolean>(false);
+  const [hover_2, setHover_2] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -77,15 +80,22 @@ const MarsPictures = (): JSX.Element => {
       padding: "4px",
       width: "100%",
       height: "100%",
+      cursor: "pointer",
     },
     InActive: {
       color: "black",
-      backgroundColor: "whitesmoke",
+      backgroundColor: "#F2F2F2",
       border: "none",
       padding: "4px",
       width: "100%",
       height: "100%",
+      cursor: "pointer",
     },
+    Hover: {
+      backgroundColor: "wheat",
+      padding: "8px 16px",
+    },
+    NotHover: {padding: "8px 16px"},
   };
 
   function CustomToggle({children, eventKey, callback}: any): JSX.Element {
@@ -106,32 +116,58 @@ const MarsPictures = (): JSX.Element => {
       <Card as="div" style={{border: "1px solid #0D6EFD", margin: "0px", padding: 0}}>
         <Card.Header as="div" style={{padding: 0, margin: 0}}>
           <CustomToggle eventKey="accordionTab1">
-            <div style={{padding: "8px 16px"}}>
+            <div
+            // @ts-ignore
+            // style={hover_1 ? styles.Hover : styles.NotHover}
+            // onMouseEnter={() => {
+            //   setHover_1(true);
+            // }}
+            // onMouseLeave={() => {
+            //   setHover_1(false);
+            // }}
+            >
               <h1>Pictures from Curiosity Mars Rover</h1>
               <h2>Deployed 6 August 2012</h2>
-              <div onClick={(event: {stopPropagation: () => void}) => event.stopPropagation()}>
+              <div onClick={(event: {stopPropagation: () => void}) => event.stopPropagation()} style={{width: "125px"}}>
                 <PictureDatePicker />
               </div>
             </div>
           </CustomToggle>
         </Card.Header>
-        <Accordion.Collapse eventKey="accordionTab1" as="div" style={{border: "1px solid #DC3545", margin: "2px"}}>
+        <Accordion.Collapse
+          eventKey="accordionTab1"
+          as="div"
+          style={{border: "1px solid #DC3545", margin: "2px", backgroundColor: "lightyellow"}}
+        >
           <Card.Body as="div">Hello! I'm the body Card</Card.Body>
         </Accordion.Collapse>
       </Card>
       <Card as="div" style={{border: "1px solid #0D6EFD", margin: "0px", padding: 0}}>
         <Card.Header as="div" style={{padding: 0, margin: 0}}>
           <CustomToggle eventKey="accordionTab2">
-            <div style={{padding: "8px 16px"}}>
+            <div
+            // @ts-ignore
+            // style={hover_2 ? styles.Hover : styles.NotHover}
+            // onMouseEnter={() => {
+            //   setHover_2(true);
+            // }}
+            // onMouseLeave={() => {
+            //   setHover_2(false);
+            // }}
+            >
               <h1>Pictures from Curiosity Mars Rover</h1>
               <h2>Deployed 6 August 2012</h2>
-              <div onClick={(event: {stopPropagation: () => void}) => event.stopPropagation()}>
+              <div onClick={(event: {stopPropagation: () => void}) => event.stopPropagation()} style={{width: "125px"}}>
                 <PictureDatePicker />
               </div>
             </div>
           </CustomToggle>
         </Card.Header>
-        <Accordion.Collapse eventKey="accordionTab2" style={{border: "1px solid #DC3545", margin: "2px"}}>
+        <Accordion.Collapse
+          eventKey="accordionTab2"
+          as="div"
+          style={{border: "1px solid #DC3545", margin: "2px", backgroundColor: "lightyellow"}}
+        >
           <Card.Body>Hello! I'm another body Card2</Card.Body>
         </Accordion.Collapse>
       </Card>

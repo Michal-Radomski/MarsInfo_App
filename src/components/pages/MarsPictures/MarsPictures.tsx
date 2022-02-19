@@ -21,8 +21,20 @@ const URLs = [photosOpportunityUrl, photosCuriosityUrl, photosSpiritUrl];
 const Div = styled.div`
   padding: 8px 16px;
   background-color: inherit;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  p,
+  h3 {
+    margin: 0px;
+  }
+  span {
+    font-weight: bolder;
+    font-style: italic;
+  }
   &:hover {
     background-color: wheat;
+    color: blue;
   }
 `;
 
@@ -82,7 +94,7 @@ const MarsPictures = (): JSX.Element => {
       color: "#0D6EFD",
       backgroundColor: "#CFE2FF",
       border: "2px solid #86b7fe",
-      padding: "4px",
+      padding: 0,
       width: "100%",
       height: "100%",
       cursor: "pointer",
@@ -90,9 +102,9 @@ const MarsPictures = (): JSX.Element => {
     },
     InActive: {
       color: "black",
-      backgroundColor: "#F2F2F2",
+      backgroundColor: "lightgrey",
       border: "none",
-      padding: "4px",
+      padding: 0,
       width: "100%",
       height: "100%",
       cursor: "pointer",
@@ -127,9 +139,22 @@ const MarsPictures = (): JSX.Element => {
           <CustomToggle eventKey="accordionTab1">
             {/* {console.log("CustomToggle:", CustomToggle)} */}
             <Div>
-              <h1>Pictures from Curiosity Mars Rover</h1>
-              <h2>Deployed 6 August 2012</h2>
-              <div onClick={(event: {stopPropagation: () => void}) => event.stopPropagation()} style={{width: "125px"}}>
+              <div>
+                <h3>
+                  Photos from: <span>Curiosity Mars Rover</span>
+                </h3>
+                <p>
+                  Deployed: <span>6 August 2012</span>
+                </p>
+                <p>
+                  Status: <span>Operational</span>
+                </p>
+              </div>
+              <div
+                onClick={(event: {stopPropagation: () => void}) => event.stopPropagation()}
+                style={{textAlign: "center", color: "maroon"}}
+              >
+                <h5 style={{fontWeight: "bold"}}>Select date:</h5>
                 <PictureDatePicker />
               </div>
             </Div>

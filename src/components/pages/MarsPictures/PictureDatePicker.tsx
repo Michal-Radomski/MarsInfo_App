@@ -10,7 +10,7 @@ const ButtonInput = styled.button`
   background-color: #216ba5;
   color: whitesmoke;
   border-radius: 5px;
-  cursor: pointer;
+  cursor: wait !important;
   border: 2px solid #333;
   width: 125px;
   &:hover {

@@ -44,6 +44,9 @@ const Div = styled.div`
 const MarsPictures = (): JSX.Element => {
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
+  const accordionActiveTab: any = useSelector((state: State) => state?.rootReducer?.MarsPictures?.activeTab ?? "No Data");
+  console.log("accordionActiveTab:", accordionActiveTab);
+
   React.useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);

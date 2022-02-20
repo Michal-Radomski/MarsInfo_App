@@ -111,7 +111,7 @@ const MarsPictures = (): JSX.Element => {
             {/* {console.log("CustomToggle:", CustomToggle)} */}
             <Div>
               <DivInner>
-                <div style={{top: "50%", position: "absolute", transform: "translateY(-50%"}}>
+                <div style={{top: "50%", position: "absolute", transform: "translateY(-50%)"}}>
                   {accordionActiveTab === "accordionTab1" ? (
                     <FaMinusSquare size={32} fill="blue" />
                   ) : (
@@ -133,7 +133,14 @@ const MarsPictures = (): JSX.Element => {
               </DivInner>
               <div
                 onClick={(event: {stopPropagation: () => void}) => event.stopPropagation()}
-                style={{textAlign: "center", color: "maroon"}}
+                style={{
+                  textAlign: "center",
+                  color: "maroon",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection: "column",
+                }}
               >
                 <h5 style={{fontWeight: "bold"}}>Select date:</h5>
                 <PictureDatePicker />
@@ -154,7 +161,7 @@ const MarsPictures = (): JSX.Element => {
           <CustomToggle eventKey="accordionTab2">
             <Div>
               <DivInner>
-                <div style={{top: "50%", position: "absolute", transform: "translateY(-50%"}}>
+                <div style={{top: "50%", position: "absolute", transform: "translateY(-50%)"}}>
                   {accordionActiveTab === "accordionTab2" ? (
                     <FaMinusSquare size={32} fill="blue" />
                   ) : (
@@ -181,7 +188,14 @@ const MarsPictures = (): JSX.Element => {
               </DivInner>
               <div
                 onClick={(event: {stopPropagation: () => void}) => event.stopPropagation()}
-                style={{textAlign: "center", color: "maroon"}}
+                style={{
+                  textAlign: "center",
+                  color: "maroon",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection: "column",
+                }}
               >
                 <h5 style={{fontWeight: "bold"}}>Select date:</h5>
                 <PictureDatePicker />

@@ -1,14 +1,13 @@
 import React from "react";
 import axios from "axios";
-import {Accordion, AccordionContext, Card} from "react-bootstrap";
-import {useAccordionButton} from "react-bootstrap/AccordionButton";
+import {Accordion, Card} from "react-bootstrap";
 import styled from "styled-components";
-import {useSelector, useDispatch} from "react-redux";
+import {useSelector} from "react-redux";
 import {FaMinusSquare, FaPlusSquare} from "react-icons/fa";
 
 import Spinner from "../../../Spinner";
 import PictureDatePicker from "./PictureDatePicker";
-import {SET_ACTIVE_TAB} from "../../../redux/actions";
+import CustomToggle from "./CustomToggle";
 
 const API_KEY = process.env.REACT_APP_NASA_API_KEY as string;
 // console.log("API_KEY:", API_KEY);
@@ -44,8 +43,8 @@ const Div = styled.div`
 const MarsPictures = (): JSX.Element => {
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
-  const accordionActiveTab: any = useSelector((state: State) => state?.rootReducer?.MarsPictures?.activeTab ?? "No Data");
-  console.log("accordionActiveTab:", accordionActiveTab);
+  const accordionActiveTab: string | null = useSelector((state: State) => state?.rootReducer?.MarsPictures?.activeTab);
+  // console.log("accordionActiveTab:", accordionActiveTab);
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -94,52 +93,6 @@ const MarsPictures = (): JSX.Element => {
     // fetchMarsPictures();
   }, []);
 
-  const styles = {
-    Active: {
-      color: "#0D6EFD",
-      backgroundColor: "#CFE2FF",
-      border: "2px solid #86b7fe",
-      padding: 0,
-      width: "100%",
-      height: "100%",
-      cursor: "pointer",
-      boxShadow: "0 0 0 0.25rem rgba(13,110,253,0.25)",
-    },
-    InActive: {
-      color: "black",
-      backgroundColor: "lightgrey",
-      border: "none",
-      padding: 0,
-      width: "100%",
-      height: "100%",
-      cursor: "pointer",
-      boxShadow: "none",
-    },
-  };
-
-  type CustomToggle_Props = {
-    children?: React.ReactNode;
-    eventKey: string;
-    callback?: (str: string) => void;
-  };
-
-  function CustomToggle({children, eventKey, callback}: CustomToggle_Props): JSX.Element {
-    const {activeEventKey} = React.useContext(AccordionContext);
-
-    const customAccordionOnClick = useAccordionButton(eventKey, () => callback && callback(eventKey));
-    const isCurrentEventKey = activeEventKey === eventKey;
-
-    const dispatch: Dispatch = useDispatch();
-    // console.log("activeEventKey:", activeEventKey);
-    dispatch({type: SET_ACTIVE_TAB, payload: activeEventKey});
-
-    return (
-      <div onClick={customAccordionOnClick} style={isCurrentEventKey ? styles.Active : styles.InActive}>
-        {children}
-      </div>
-    );
-  }
-
   return isLoading ? (
     <Spinner />
   ) : (
@@ -149,6 +102,7 @@ const MarsPictures = (): JSX.Element => {
           <CustomToggle eventKey="accordionTab1">
             {/* {console.log("CustomToggle:", CustomToggle)} */}
             <Div>
+              {accordionActiveTab === "accordionTab1" ? <FaMinusSquare /> : <FaPlusSquare />}
               <div>
                 <h3>
                   <span style={{color: "darkviolet"}}>Click here</span> to see photos from: <span>Curiosity Mars Rover</span>
@@ -182,6 +136,7 @@ const MarsPictures = (): JSX.Element => {
         <Card.Header as="div" style={{padding: 0, margin: 0}}>
           <CustomToggle eventKey="accordionTab2">
             <Div>
+              {accordionActiveTab === "accordionTab2" ? <FaMinusSquare /> : <FaPlusSquare />}
               <div>
                 <h3>
                   <span style={{color: "darkviolet"}}>Click here</span> to see photos from: <span>Opportunity</span> and{" "}

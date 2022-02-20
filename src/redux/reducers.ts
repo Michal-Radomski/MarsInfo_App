@@ -1,6 +1,13 @@
 import {combineReducers} from "redux";
 
-import {SET_APOD_DATE, GET_USER_GEO_DATA, GET_USER_WEATHER_CONDITIONS, GET_COVID_DATA, GET_RATES_DATA} from "./actions";
+import {
+  SET_APOD_DATE,
+  GET_USER_GEO_DATA,
+  GET_USER_WEATHER_CONDITIONS,
+  GET_COVID_DATA,
+  GET_RATES_DATA,
+  SET_ACTIVE_TAB,
+} from "./actions";
 
 // Initial Global State
 const initialState: State = {
@@ -45,6 +52,9 @@ const initialState: State = {
     countryDeaths: 0 as number,
     lastUpdate: "" as string,
   },
+  MarsPictures: {
+    activeTab: "accordionTab1" as string,
+  },
 };
 
 // Reducer
@@ -60,6 +70,8 @@ const reducer = (state = initialState, action: Dispatch) => {
       return {...state, covid: action.payload};
     case GET_RATES_DATA:
       return {...state, currency: action.payload};
+    case SET_ACTIVE_TAB:
+      return {...state, MarsPictures: {activeTab: action.payload}};
 
     default:
       return state;

@@ -3,10 +3,12 @@ import axios from "axios";
 import {Accordion, AccordionContext, Card} from "react-bootstrap";
 import {useAccordionButton} from "react-bootstrap/AccordionButton";
 import styled from "styled-components";
+import {useSelector, useDispatch} from "react-redux";
 import {FaMinusSquare, FaPlusSquare} from "react-icons/fa";
 
 import Spinner from "../../../Spinner";
 import PictureDatePicker from "./PictureDatePicker";
+import {SET_ACTIVE_TAB} from "../../../redux/actions";
 
 const API_KEY = process.env.REACT_APP_NASA_API_KEY as string;
 // console.log("API_KEY:", API_KEY);
@@ -123,6 +125,11 @@ const MarsPictures = (): JSX.Element => {
 
     const customAccordionOnClick = useAccordionButton(eventKey, () => callback && callback(eventKey));
     const isCurrentEventKey = activeEventKey === eventKey;
+
+    const dispatch: Dispatch = useDispatch();
+    // console.log("activeEventKey:", activeEventKey);
+    dispatch({type: SET_ACTIVE_TAB, payload: activeEventKey});
+
     return (
       <div onClick={customAccordionOnClick} style={isCurrentEventKey ? styles.Active : styles.InActive}>
         {children}

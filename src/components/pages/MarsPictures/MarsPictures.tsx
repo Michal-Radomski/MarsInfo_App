@@ -40,7 +40,7 @@ const Div = styled.div`
   }
 `;
 const DivInner = styled.div`
-  padding: 8px 16px;
+  padding: 0;
   background-color: inherit;
   display: flex;
   flex-direction: row;
@@ -112,9 +112,13 @@ const MarsPictures = (): JSX.Element => {
             <Div>
               <DivInner>
                 <div style={{top: "50%", position: "absolute", transform: "translateY(-50%"}}>
-                  {accordionActiveTab === "accordionTab1" ? <FaMinusSquare /> : <FaPlusSquare />}
+                  {accordionActiveTab === "accordionTab1" ? (
+                    <FaMinusSquare size={32} fill="blue" />
+                  ) : (
+                    <FaPlusSquare size={32} fill="green" />
+                  )}
                 </div>
-                <div style={{marginLeft: "60px"}}>
+                <div style={{marginLeft: "50px"}}>
                   <h3>
                     <span style={{color: "darkviolet"}}>Click here</span> to see photos from:{" "}
                     <span>Curiosity Mars Rover</span>
@@ -151,9 +155,13 @@ const MarsPictures = (): JSX.Element => {
             <Div>
               <DivInner>
                 <div style={{top: "50%", position: "absolute", transform: "translateY(-50%"}}>
-                  {accordionActiveTab === "accordionTab2" ? <FaMinusSquare /> : <FaPlusSquare />}
+                  {accordionActiveTab === "accordionTab2" ? (
+                    <FaMinusSquare size={32} fill="blue" />
+                  ) : (
+                    <FaPlusSquare size={32} fill="green" />
+                  )}
                 </div>
-                <div style={{marginLeft: "60px"}}>
+                <div style={{marginLeft: "50px"}}>
                   <h3>
                     <span style={{color: "darkviolet"}}>Click here</span> to see photos from: <span>Opportunity</span> and{" "}
                     <span>Spirit</span> rovers on Mars

@@ -3,6 +3,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import styled from "styled-components";
 
+import "../../../styles/App.scss";
+
 const ButtonInput = styled.button`
   font-size: 1em;
   margin: 0;
@@ -27,12 +29,10 @@ const PictureDatePicker = ({
 }: {
   selectedDate: string;
   minDate: string;
-  changeDate: Dispatch;
+  changeDate: (date: Date) => void;
 }): JSX.Element => {
-  // const [startDate, setStartDate] = React.useState<Date>(new Date());
-  // console.log("changeDate:", changeDate);
-
   const startDate = new Date(selectedDate);
+
   const CustomInput = React.forwardRef(
     (
       {value, onClick}: {value?: string; onClick?: React.MouseEventHandler<HTMLButtonElement>},
@@ -48,8 +48,6 @@ const PictureDatePicker = ({
   return (
     <DatePicker
       selected={startDate}
-      // onChange={(date: Date) => setStartDate(date)}
-      // onChange={(date: Date) => console.log(date)}
       onChange={(date: Date) => changeDate(date)}
       customInput={<CustomInput />}
       dateFormat="yyyy-MM-dd"
@@ -60,10 +58,11 @@ const PictureDatePicker = ({
       showMonthDropdown={true}
       scrollableYearDropdown={true}
       withPortal={false}
-      yearDropdownItemNumber={12}
+      yearDropdownItemNumber={20}
       dropdownMode="select"
       showPopperArrow={false}
       popperPlacement="top-start"
+      popperClassName="popperStyle"
     />
   );
 };

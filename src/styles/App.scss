@@ -115,3 +115,9 @@ div.tooltip-inner {
 .tooltip.bs-tooltip-end .tooltip-arrow::before {
   border-right-color: #fcd308;
 }
+
+// MarsPictures - PictureDatePicker
+.popperStyle {
+  z-index: 99 !important;
+  background-color: inherit;
+}

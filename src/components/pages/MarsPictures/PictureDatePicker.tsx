@@ -20,8 +20,19 @@ const ButtonInput = styled.button`
   }
 `;
 
-const PictureDatePicker = (): JSX.Element => {
-  const [startDate, setStartDate] = React.useState<Date>(new Date());
+const PictureDatePicker = ({
+  selectedDate,
+  minDate,
+  changeDate,
+}: {
+  selectedDate: string;
+  minDate: string;
+  changeDate: Dispatch;
+}): JSX.Element => {
+  // const [startDate, setStartDate] = React.useState<Date>(new Date());
+  // console.log("changeDate:", changeDate);
+
+  const startDate = new Date(selectedDate);
   const CustomInput = React.forwardRef(
     (
       {value, onClick}: {value?: string; onClick?: React.MouseEventHandler<HTMLButtonElement>},
@@ -37,10 +48,12 @@ const PictureDatePicker = (): JSX.Element => {
   return (
     <DatePicker
       selected={startDate}
-      onChange={(date: Date) => setStartDate(date)}
+      // onChange={(date: Date) => setStartDate(date)}
+      // onChange={(date: Date) => console.log(date)}
+      onChange={(date: Date) => changeDate(date)}
       customInput={<CustomInput />}
       dateFormat="yyyy-MM-dd"
-      minDate={new Date("1995-06-16")}
+      minDate={new Date(minDate)}
       maxDate={new Date()}
       showWeekNumbers={true}
       showYearDropdown={true}

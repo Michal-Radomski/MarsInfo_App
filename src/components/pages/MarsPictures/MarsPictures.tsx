@@ -43,9 +43,10 @@ const DivInner = styled.div`
 const MarsPictures = (): JSX.Element => {
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
+  //- Dates for Mars Rovers Photos
   //* Spirit Photos: 2004-01-05 -> ???
   //* Opportunity Photos: 2004-01-26 -> 2018-06-05
-  //* Curiosity Photos:
+  //* Curiosity Photos: since 2012-08-06
 
   //* InActive Rovers Photos:
   const [inActiveRoversDate, setInActiveRoversDate] = React.useState<string>("2004-01-05");
@@ -55,8 +56,12 @@ const MarsPictures = (): JSX.Element => {
   const photosOpportunityUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/Opportunity/photos?earth_date=${inActiveRoversDate}&api_key=${API_KEY}&page=2`;
   const photosSpiritUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/Spirit/photos?earth_date=${inActiveRoversDate}&api_key=${API_KEY}&page=2`;
 
-  const selectedDate = "2018-06-05"; //-temp
-  // const photosCuriosityUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/Curiosity/photos?earth_date=${selectedDate}&api_key=${API_KEY}&page=2`;
+  //* Curiosity Rover Photos:
+  const [CuriosityRoverDate, setCuriosityRoverDate] = React.useState<string>("2012-08-06");
+  const [CuriosityRoverPhotos, setCuriosityRoverPhotos] = React.useState<State>({});
+  // console.log("CuriosityRoverPhotos:", CuriosityRoverPhotos);
+
+  const photosCuriosityUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/Curiosity/photos?earth_date=${CuriosityRoverDate}&api_key=${API_KEY}&page=2`;
 
   const accordionActiveTab: string | null = useSelector((state: State) => state?.rootReducer?.MarsPictures?.activeTab);
   // console.log("accordionActiveTab:", accordionActiveTab);
@@ -71,6 +76,7 @@ const MarsPictures = (): JSX.Element => {
     const URLs = [photosOpportunityUrl, photosSpiritUrl];
 
     const fetchMarsPicturesInActiveRovers = async () => {
+      // console.log("fetchMarsPicturesInActiveRovers()");
       try {
         const response = await axios.all(URLs.map((url) => axios.get(url))).then((data) => {
           // console.log("data:", data);
@@ -96,8 +102,26 @@ const MarsPictures = (): JSX.Element => {
       }
     };
 
-    fetchMarsPicturesInActiveRovers();
-  }, [photosOpportunityUrl, photosSpiritUrl]);
+    const fetchOpportunityPhotos = async () => {
+      await axios.get(photosCuriosityUrl).then(
+        (fetchResponse) => {
+          // console.log("fetchResponse.data:", fetchResponse.data);
+          // console.log("Curiosity Photos Fetching");
+          const CuriosityPhotos =
+            fetchResponse?.data?.photos.length > 0
+              ? fetchResponse?.data
+              : "No photos taken by Curiosity Mars Rover for the selected day.";
+          setCuriosityRoverPhotos(CuriosityPhotos);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    };
+
+    // fetchMarsPicturesInActiveRovers();
+    // fetchOpportunityPhotos();
+  }, [photosCuriosityUrl, photosOpportunityUrl, photosSpiritUrl]);
 
   return isLoading ? (
     <Spinner />
@@ -122,7 +146,8 @@ const MarsPictures = (): JSX.Element => {
                     <span>Curiosity Mars Rover</span>
                   </h3>
                   <p>
-                    Status: <span>Operational</span>
+                    Status: <span>Operational</span>, photos taken since:{" "}
+                    <span style={{color: "darkviolet"}}>2012-08-06</span>
                   </p>
                   <p>
                     Deployed: <span>August 6, 2012</span>
@@ -133,7 +158,7 @@ const MarsPictures = (): JSX.Element => {
                 onClick={(event: {stopPropagation: () => void}) => event.stopPropagation()}
                 style={{
                   textAlign: "center",
-                  color: "maroon",
+                  color: "darkviolet",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
@@ -189,7 +214,7 @@ const MarsPictures = (): JSX.Element => {
                 onClick={(event: {stopPropagation: () => void}) => event.stopPropagation()}
                 style={{
                   textAlign: "center",
-                  color: "maroon",
+                  color: "darkviolet",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",

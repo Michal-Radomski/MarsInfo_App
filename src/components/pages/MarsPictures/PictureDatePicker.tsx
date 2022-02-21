@@ -29,7 +29,7 @@ const PictureDatePicker = ({
 }: {
   selectedDate: string;
   minDate: string;
-  changeDate: (date: Date) => void;
+  changeDate: (date: Date) => Promise<void>;
 }): JSX.Element => {
   const startDate = new Date(selectedDate);
 

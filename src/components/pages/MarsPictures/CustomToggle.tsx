@@ -31,7 +31,7 @@ const styles = {
 type CustomToggle_Props = {
   children?: React.ReactNode;
   eventKey: string;
-  callback?: (str: string) => void;
+  callback?: (str: string) => string;
 };
 
 function CustomToggle({children, eventKey, callback}: CustomToggle_Props): JSX.Element {

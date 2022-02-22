@@ -59,7 +59,7 @@ const MarsPictures = (): JSX.Element => {
   const photosSpiritUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/Spirit/photos?earth_date=${inActiveRoversDate}&api_key=${API_KEY}&page=2`;
 
   //* Curiosity Rover Photos:
-  const [CuriosityRoverDate, setCuriosityRoverDate] = React.useState<string>("2012-08-07");
+  const [CuriosityRoverDate, setCuriosityRoverDate] = React.useState<string>("2012-08-08");
   const [CuriosityRoverPhotos, setCuriosityRoverPhotos] = React.useState<State>({});
   // console.log("CuriosityRoverDate:", CuriosityRoverDate);
   // console.log("CuriosityRoverPhotos:", CuriosityRoverPhotos);

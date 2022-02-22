@@ -49,19 +49,19 @@ const MarsPictures = (): JSX.Element => {
   //* Curiosity Photos: since 2012-08-06
 
   //* InActive Rovers Photos:
-  const [inActiveRoversDate, setInActiveRoversDate] = React.useState<string>("2004-01-05");
+  const [inActiveRoversDate, setInActiveRoversDate] = React.useState<string>("2004-01-04");
   const [inActiveRoversPhotos, setInActiveRoversPhotos] = React.useState<State>({});
   // console.log("inActiveRoversDate:", inActiveRoversDate);
-  // console.log("inActiveRoversPhotos:", inActiveRoversPhotos);
+  console.log("inActiveRoversPhotos:", inActiveRoversPhotos);
 
   const photosOpportunityUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/Opportunity/photos?earth_date=${inActiveRoversDate}&api_key=${API_KEY}&page=2`;
   const photosSpiritUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/Spirit/photos?earth_date=${inActiveRoversDate}&api_key=${API_KEY}&page=2`;
 
   //* Curiosity Rover Photos:
-  const [CuriosityRoverDate, setCuriosityRoverDate] = React.useState<string>("2012-08-06");
+  const [CuriosityRoverDate, setCuriosityRoverDate] = React.useState<string>("2012-08-07");
   const [CuriosityRoverPhotos, setCuriosityRoverPhotos] = React.useState<State>({});
   // console.log("CuriosityRoverDate:", CuriosityRoverDate);
-  // console.log("CuriosityRoverPhotos:", CuriosityRoverPhotos);
+  console.log("CuriosityRoverPhotos:", CuriosityRoverPhotos);
 
   const photosCuriosityUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/Curiosity/photos?earth_date=${CuriosityRoverDate}&api_key=${API_KEY}&page=2`;
 
@@ -131,8 +131,8 @@ const MarsPictures = (): JSX.Element => {
       );
     };
 
-    // fetchMarsPicturesInActiveRovers();
-    // fetchOpportunityPhotos();
+    fetchMarsPicturesInActiveRovers();
+    fetchOpportunityPhotos();
   }, [photosCuriosityUrl, photosOpportunityUrl, photosSpiritUrl]);
 
   return isLoading ? (

@@ -8,7 +8,7 @@ import {FaMinusSquare, FaPlusSquare} from "react-icons/fa";
 import Spinner from "../../../Spinner";
 import PictureDatePicker from "./PictureDatePicker";
 import CustomToggle from "./CustomToggle";
-import CuriosityGallery from "./CuriosityGallery";
+import ImageGallery from "./ImageGallery";
 
 const API_KEY = process.env.REACT_APP_NASA_API_KEY as string;
 // console.log("API_KEY:", API_KEY);
@@ -96,20 +96,21 @@ const MarsPictures = (): JSX.Element => {
           return data;
         });
         // await console.log("response:", response);
-        const marsInActiveRoversPictures = await response.map(
-          (marsInActiveRoverPictures) => marsInActiveRoverPictures.data.photos
-        );
+        const marsInActiveRoversPictures = await response.map((marsInActiveRoverPictures) => marsInActiveRoverPictures.data);
         // await console.log("marsInActiveRoversPictures:", marsInActiveRoversPictures);
         const photosOpportunity =
-          marsInActiveRoversPictures[0].length > 0
+          marsInActiveRoversPictures[0].photos.length > 0
             ? marsInActiveRoversPictures[0]
             : "No photos taken by Opportunity Mars Rover for the selected day.";
         const photosSpirit =
-          marsInActiveRoversPictures[1].length > 0
+          marsInActiveRoversPictures[1].photos.length > 0
             ? marsInActiveRoversPictures[1]
             : "No photos taken by Spirit Mars Rover for the selected day.";
         // await console.log("photosOpportunity:", photosOpportunity, "photosSpirit:", photosSpirit);
-        await setInActiveRoversPhotos({OpportunityPhotos: photosOpportunity, SpiritPhotos: photosSpirit});
+        await setInActiveRoversPhotos({
+          OpportunityPhotos: photosOpportunity,
+          SpiritPhotos: photosSpirit,
+        });
       } catch (error) {
         console.error(error);
       }
@@ -124,7 +125,7 @@ const MarsPictures = (): JSX.Element => {
             fetchResponse?.data?.photos.length > 0
               ? fetchResponse?.data
               : "No photos taken by Curiosity Mars Rover for the selected day.";
-          setCuriosityRoverPhotos(CuriosityPhotos);
+          setCuriosityRoverPhotos({CuriosityPhotos: CuriosityPhotos});
         },
         (error) => {
           console.log(error);
@@ -187,11 +188,11 @@ const MarsPictures = (): JSX.Element => {
         <Accordion.Collapse
           eventKey="accordionTab1"
           as="div"
-          style={{border: "1px solid #DC3545", margin: "2px", backgroundColor: "lightyellow"}}
+          style={{border: "1px solid #DC3545", margin: "2px", backgroundColor: "whitesmoke"}}
         >
           <Card.Body as="div">
             <h3 style={{textAlign: "center", fontWeight: "bold"}}>Pictures taken by Curiosity Mars Rover</h3>
-            <CuriosityGallery pictures={CuriosityRoverPhotos} />
+            <ImageGallery pictures={CuriosityRoverPhotos?.CuriosityPhotos} />
           </Card.Body>
         </Accordion.Collapse>
       </Card>
@@ -250,9 +251,14 @@ const MarsPictures = (): JSX.Element => {
         <Accordion.Collapse
           eventKey="accordionTab2"
           as="div"
-          style={{border: "1px solid #DC3545", margin: "2px", backgroundColor: "lightyellow"}}
+          style={{border: "1px solid #DC3545", margin: "2px", backgroundColor: "whitesmoke"}}
         >
-          <Card.Body>Hello! I'm another body Card2</Card.Body>
+          <Card.Body>
+            <h3 style={{textAlign: "center", fontWeight: "bold"}}>Pictures taken by Opportunity Mars Rover</h3>
+            <ImageGallery pictures={inActiveRoversPhotos?.OpportunityPhotos} />
+            <h3 style={{textAlign: "center", fontWeight: "bold"}}>Pictures taken by Spirit Mars Rover</h3>
+            <ImageGallery pictures={inActiveRoversPhotos?.SpiritPhotos} />
+          </Card.Body>
         </Accordion.Collapse>
       </Card>
     </Accordion>

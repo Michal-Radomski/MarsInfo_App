@@ -45,7 +45,7 @@ const CreditsModal = (): JSX.Element => {
         >
           <Modal.Title style={{fontWeight: "bold", fontStyle: "italic"}}>Credits and Info</Modal.Title>
         </Modal.Header>
-        <Modal.Body style={{minHeight: "592px"}}>
+        <Modal.Body style={{minHeight: "634px"}}>
           <Tabs activeKey={key} onSelect={(key) => setKey(key as string)}>
             {/* //* Previous version */}
             {/* <Tabs defaultActiveKey="APIs"> */}
@@ -53,7 +53,7 @@ const CreditsModal = (): JSX.Element => {
             <Tab eventKey="APIs" title="APIs">
               <Card style={{width: "100%"}} border="primary">
                 <Card.Header style={{fontWeight: "bold", fontStyle: "italic", borderBottom: "1px solid #0B5ED7"}}>
-                  List of APIs used to built the App
+                  List of APIs used to build the App
                 </Card.Header>
                 <Card.Body style={{padding: "0"}}>
                   <ListGroup variant="flush">
@@ -77,13 +77,28 @@ const CreditsModal = (): JSX.Element => {
             <Tab eventKey="Libraries" title="Libraries">
               <Card style={{width: "100%"}} border="primary">
                 <Card.Header style={{fontWeight: "bold", fontStyle: "italic", borderBottom: "1px solid #0B5ED7"}}>
-                  List of libraries used to built the App
+                  List of libraries used to build the App
                 </Card.Header>
                 <Card.Body style={{padding: "0"}}>
                   {" "}
                   <ListGroup variant="flush">
                     {renderedListLibraries2}
                     <Container data={modalDataLibraries} />
+                    <ListGroup.Item>
+                      Other libraries used to build the App:{" "}
+                      <Card.Link href="https://react-countup.vercel.app" target="_blank">
+                        React-CountUp
+                      </Card.Link>
+                      ,
+                      <Card.Link href="https://reactdatepicker.com" target="_blank">
+                        React Datepicker
+                      </Card.Link>{" "}
+                      and
+                      <Card.Link href="https://react-icons.github.io/react-icons" target="_blank">
+                        React-Icons
+                      </Card.Link>
+                      .
+                    </ListGroup.Item>
                   </ListGroup>
                 </Card.Body>
               </Card>
@@ -92,7 +107,7 @@ const CreditsModal = (): JSX.Element => {
             <Tab eventKey="Other Staff" title="Other Staff">
               <Card style={{width: "100%"}} border="primary">
                 <Card.Header style={{fontWeight: "bold", fontStyle: "italic", borderBottom: "1px solid #0B5ED7"}}>
-                  List of other staff used to built the App
+                  List of other staff used to build the App
                 </Card.Header>
                 <Card.Body style={{padding: "0"}}>
                   <ListGroup variant="flush">

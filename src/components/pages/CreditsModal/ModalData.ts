@@ -1,7 +1,8 @@
 export const modalDataAPIs: Item[] = [
   {
     id: 1,
-    content: "NASA Astronomy Picture of the Day and Mars Weather Conditions are taken from from: ",
+    content:
+      "NASA Astronomy Picture of the Day, pictures taken by Mars Rovers and Mars Weather Conditions are taken from from: ",
     link: "https://api.nasa.gov",
     label: "NASA APIs",
   },

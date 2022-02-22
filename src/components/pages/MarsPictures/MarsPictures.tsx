@@ -8,6 +8,7 @@ import {FaMinusSquare, FaPlusSquare} from "react-icons/fa";
 import Spinner from "../../../Spinner";
 import PictureDatePicker from "./PictureDatePicker";
 import CustomToggle from "./CustomToggle";
+import CuriosityGallery from "./CuriosityGallery";
 
 const API_KEY = process.env.REACT_APP_NASA_API_KEY as string;
 // console.log("API_KEY:", API_KEY);
@@ -52,7 +53,7 @@ const MarsPictures = (): JSX.Element => {
   const [inActiveRoversDate, setInActiveRoversDate] = React.useState<string>("2004-01-04");
   const [inActiveRoversPhotos, setInActiveRoversPhotos] = React.useState<State>({});
   // console.log("inActiveRoversDate:", inActiveRoversDate);
-  console.log("inActiveRoversPhotos:", inActiveRoversPhotos);
+  // console.log("inActiveRoversPhotos:", inActiveRoversPhotos);
 
   const photosOpportunityUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/Opportunity/photos?earth_date=${inActiveRoversDate}&api_key=${API_KEY}&page=2`;
   const photosSpiritUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/Spirit/photos?earth_date=${inActiveRoversDate}&api_key=${API_KEY}&page=2`;
@@ -61,7 +62,7 @@ const MarsPictures = (): JSX.Element => {
   const [CuriosityRoverDate, setCuriosityRoverDate] = React.useState<string>("2012-08-07");
   const [CuriosityRoverPhotos, setCuriosityRoverPhotos] = React.useState<State>({});
   // console.log("CuriosityRoverDate:", CuriosityRoverDate);
-  console.log("CuriosityRoverPhotos:", CuriosityRoverPhotos);
+  // console.log("CuriosityRoverPhotos:", CuriosityRoverPhotos);
 
   const photosCuriosityUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/Curiosity/photos?earth_date=${CuriosityRoverDate}&api_key=${API_KEY}&page=2`;
 
@@ -188,7 +189,10 @@ const MarsPictures = (): JSX.Element => {
           as="div"
           style={{border: "1px solid #DC3545", margin: "2px", backgroundColor: "lightyellow"}}
         >
-          <Card.Body as="div">Hello! I'm the body Card</Card.Body>
+          <Card.Body as="div">
+            <h3 style={{textAlign: "center", fontWeight: "bold"}}>Pictures taken by Curiosity Mars Rover</h3>
+            <CuriosityGallery pictures={CuriosityRoverPhotos} />
+          </Card.Body>
         </Accordion.Collapse>
       </Card>
       <Card as="div" style={{border: "1px solid #0D6EFD", margin: "0px", padding: 0}}>

@@ -91,7 +91,7 @@ const CreditsModal = (): JSX.Element => {
                       </Card.Link>
                       ,
                       <Card.Link href="https://reactdatepicker.com" target="_blank">
-                        React Datepicker
+                        React-Datepicker
                       </Card.Link>{" "}
                       and
                       <Card.Link href="https://react-icons.github.io/react-icons" target="_blank">

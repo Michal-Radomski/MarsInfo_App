@@ -13,15 +13,17 @@ interface Image {
   };
 }
 
-const ImageGallery = ({pictures, name}: {pictures: {photos: Image[]} | string; name: string}) => {
+const ImageGallery = ({pictures, name, date}: {pictures: {photos: Image[]} | string; name: string; date: string}) => {
   // console.log("name, pictures:", name, pictures);
   const photosFromMarsRover =
     typeof pictures === "string" ? (
-      <h3 style={{textAlign: "center", fontWeight: "bold", color: "#dd2e44"}}>{pictures}</h3>
+      <h3 style={{textAlign: "center", color: "#dd2e44"}}>
+        {pictures}: <span style={{fontWeight: "bold", fontStyle: "italic"}}>{date}</span>
+      </h3>
     ) : (
       <React.Fragment>
         <p>
-          Rover Name: {name}, Rover Id: {pictures?.photos[0].rover.id}
+          Rover Name: {name}, Rover Id: {pictures?.photos[0].rover.id}, selected date: {date}
         </p>
         {pictures?.photos.map((picture: Image) => {
           return (

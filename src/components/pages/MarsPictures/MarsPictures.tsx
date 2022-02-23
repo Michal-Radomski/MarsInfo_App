@@ -101,11 +101,11 @@ const MarsPictures = (): JSX.Element => {
         const photosOpportunity =
           marsInActiveRoversPictures[0].photos.length > 0
             ? marsInActiveRoversPictures[0]
-            : "No photos taken by Opportunity Mars Rover for the selected day.";
+            : "No photos taken by Opportunity Mars Rover for the selected day";
         const photosSpirit =
           marsInActiveRoversPictures[1].photos.length > 0
             ? marsInActiveRoversPictures[1]
-            : "No photos taken by Spirit Mars Rover for the selected day.";
+            : "No photos taken by Spirit Mars Rover for the selected day";
         // await console.log("photosOpportunity:", photosOpportunity, "photosSpirit:", photosSpirit);
         await setInActiveRoversPhotos({
           OpportunityPhotos: photosOpportunity,
@@ -124,7 +124,7 @@ const MarsPictures = (): JSX.Element => {
           const CuriosityPhotos =
             fetchResponse?.data?.photos.length > 0
               ? fetchResponse?.data
-              : "No photos taken by Curiosity Mars Rover for the selected day.";
+              : "No photos taken by Curiosity Mars Rover for the selected day";
           setCuriosityRoverPhotos({CuriosityPhotos: CuriosityPhotos});
         },
         (error) => {
@@ -192,7 +192,7 @@ const MarsPictures = (): JSX.Element => {
         >
           <Card.Body as="div">
             <h3 style={{textAlign: "center", fontWeight: "bold"}}>Pictures taken by Curiosity Mars Rover</h3>
-            <ImageGallery pictures={CuriosityRoverPhotos?.CuriosityPhotos} name="Curiosity" />
+            <ImageGallery pictures={CuriosityRoverPhotos?.CuriosityPhotos} name="Curiosity" date={CuriosityRoverDate} />
           </Card.Body>
         </Accordion.Collapse>
       </Card>
@@ -255,9 +255,9 @@ const MarsPictures = (): JSX.Element => {
         >
           <Card.Body>
             <h3 style={{textAlign: "center", fontWeight: "bold"}}>Pictures taken by Opportunity Mars Rover</h3>
-            <ImageGallery pictures={inActiveRoversPhotos?.OpportunityPhotos} name="Opportunity" />
+            <ImageGallery pictures={inActiveRoversPhotos?.OpportunityPhotos} name="Opportunity" date={inActiveRoversDate} />
             <h3 style={{textAlign: "center", fontWeight: "bold"}}>Pictures taken by Spirit Mars Rover</h3>
-            <ImageGallery pictures={inActiveRoversPhotos?.SpiritPhotos} name="Spirit" />
+            <ImageGallery pictures={inActiveRoversPhotos?.SpiritPhotos} name="Spirit" date={inActiveRoversDate} />
           </Card.Body>
         </Accordion.Collapse>
       </Card>

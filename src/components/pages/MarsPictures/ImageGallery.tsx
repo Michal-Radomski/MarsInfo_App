@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import SimpleReactLightbox, {SRLWrapper} from "simple-react-lightbox";
 
 interface Image {
   rover: {id: number};
@@ -32,6 +33,7 @@ const ImageDiv = styled.div`
     border: 10px solid white;
     width: 325px;
     height: auto;
+    cursor: pointer;
   }
   div {
     padding: 5px;
@@ -63,29 +65,36 @@ const ImageGallery = ({pictures, name, date}: {pictures: {photos: Image[]} | str
           Rover Name: <Span>{name}</Span>, Rover Id: <Span>{pictures?.photos[0].rover.id}</Span>, selected date:{" "}
           <Span>{date}</Span>, number of pictures:<Span>{pictures?.photos.length}</Span>
         </h5>
-        <GalleryDiv>
-          {pictures?.photos.map((picture: Image) => {
-            return (
-              <ImageDiv key={picture.id}>
-                <img src={picture.img_src} alt={"picture ID:" + picture.id}></img>
-                <div>
-                  <p>
-                    Name of Camera: <span>{picture.camera.name}</span>
-                  </p>
-                  <p>
-                    Full Camera Name: <span>{picture.camera.full_name}</span>
-                  </p>
-                  <p>
-                    Earth date: <span>{picture.earth_date}</span>
-                  </p>
-                  <p>
-                    Sol number: <span>{picture.sol}</span>
-                  </p>
-                </div>
-              </ImageDiv>
-            );
-          })}
-        </GalleryDiv>
+        <SimpleReactLightbox>
+          <SRLWrapper>
+            <GalleryDiv>
+              {pictures?.photos.map((picture: Image) => {
+                return (
+                  <ImageDiv key={picture.id}>
+                    <h4 style={{textAlign: "center", color: "darkviolet", margin: 0, padding: "5px"}}>
+                      Picture ID: <Span>{picture.id}</Span>
+                    </h4>
+                    <img src={picture.img_src} alt={"picture ID:" + picture.id}></img>
+                    <div>
+                      <p>
+                        Name of Camera: <span>{picture.camera.name}</span>
+                      </p>
+                      <p>
+                        Full Camera Name: <span>{picture.camera.full_name}</span>
+                      </p>
+                      <p>
+                        Earth date: <span>{picture.earth_date}</span>
+                      </p>
+                      <p>
+                        Sol number: <span>{picture.sol}</span>
+                      </p>
+                    </div>
+                  </ImageDiv>
+                );
+              })}
+            </GalleryDiv>
+          </SRLWrapper>
+        </SimpleReactLightbox>
       </div>
     );
   // console.log("photosFromMarsRover:", photosFromMarsRover);

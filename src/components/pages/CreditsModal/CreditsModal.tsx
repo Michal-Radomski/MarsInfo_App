@@ -92,11 +92,11 @@ const CreditsModal = (): JSX.Element => {
                       ,
                       <Card.Link href="https://reactdatepicker.com" target="_blank">
                         React-Datepicker
-                      </Card.Link>{" "}
+                      </Card.Link>
                       ,
                       <Card.Link href="https://react-icons.github.io/react-icons" target="_blank">
                         React-Icons
-                      </Card.Link>
+                      </Card.Link>{" "}
                       and
                       <Card.Link href="https://github.com/michelecocuccio/simple-react-lightbox" target="_blank">
                         Simple-React-Lightbox

@@ -63,6 +63,7 @@ const PictureDatePicker = ({
       showPopperArrow={false}
       popperPlacement="top-start"
       popperClassName="popperStyle"
+      todayButton="Today"
     />
   );
 };

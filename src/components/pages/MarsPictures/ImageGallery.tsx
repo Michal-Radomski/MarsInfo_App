@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import SimpleReactLightbox, {SRLWrapper, SRLWrapperOptions} from "simple-react-lightbox";
+import {Tooltip, OverlayTrigger} from "react-bootstrap";
 
 interface Image {
   rover: {id: number};
@@ -108,7 +109,18 @@ const ImageGallery = ({
                     <h4 style={{textAlign: "center", color: "darkviolet", margin: 0, padding: "5px"}}>
                       Picture ID: <Span>{picture.id}</Span>
                     </h4>
-                    <img src={picture.img_src} alt={"picture ID:" + picture.id}></img>
+
+                    <OverlayTrigger
+                      placement="top"
+                      overlay={
+                        <Tooltip id={"picture ID:" + picture.id}>
+                          Click the image <strong>to enlarge</strong>.
+                        </Tooltip>
+                      }
+                    >
+                      <img src={picture.img_src} alt={"picture ID:" + picture.id}></img>
+                    </OverlayTrigger>
+
                     <div>
                       <p>
                         Name of Camera: <span>{picture.camera.name}</span>

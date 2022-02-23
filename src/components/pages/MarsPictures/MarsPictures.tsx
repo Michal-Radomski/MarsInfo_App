@@ -156,7 +156,7 @@ const MarsPictures = (): JSX.Element => {
                 </div>
                 <div style={{marginLeft: "50px"}}>
                   <h3>
-                    <span style={{color: "darkviolet"}}>Click here</span> to see photos from:{" "}
+                    <span style={{color: "darkviolet"}}>Click here</span> to open/ close photos from:{" "}
                     <span>Curiosity Mars Rover</span>
                   </h3>
                   <p>
@@ -210,8 +210,8 @@ const MarsPictures = (): JSX.Element => {
                 </div>
                 <div style={{marginLeft: "50px"}}>
                   <h3>
-                    <span style={{color: "darkviolet"}}>Click here</span> to see photos from: <span>Opportunity</span> and{" "}
-                    <span>Spirit</span> rovers on Mars
+                    <span style={{color: "darkviolet"}}>Click here</span> to open/ close photos from:{" "}
+                    <span>Opportunity</span> and <span>Spirit</span> rovers on Mars
                   </h3>
                   <p>
                     Status: <span>Missions Are Complete</span>, photos taken in between:{" "}

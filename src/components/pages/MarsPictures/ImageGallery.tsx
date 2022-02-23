@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import SimpleReactLightbox, {SRLWrapper} from "simple-react-lightbox";
+import SimpleReactLightbox, {SRLWrapper, SRLWrapperOptions} from "simple-react-lightbox";
 
 interface Image {
   rover: {id: number};
@@ -52,7 +52,41 @@ const Span = styled.span`
   font-style: italic;
 `;
 
-const ImageGallery = ({pictures, name, date}: {pictures: {photos: Image[]} | string; name: string; date: string}) => {
+const simpleLightBoxOptions: SRLWrapperOptions = {
+  // overlayColor: "rgb(0,0,0)",
+  // showThumbnails: false,
+  // buttonsStyle: {
+  //   buttonsBackgroundColor: "rgba(0,0,0,0.8)",
+  //   buttonsIconColor: "rgba(255, 255, 255, 0.8)",
+  // },
+  // transitionSpeed: 100,
+  settings: {
+    overlayColor: "rgb(25, 136, 124)",
+    autoplaySpeed: 1500,
+    // @ts-ignore
+    transitionSpeed: 900,
+  },
+  buttons: {
+    backgroundColor: "#1b5245",
+    iconColor: "rgba(126, 172, 139, 0.8)",
+  },
+  caption: {
+    captionColor: "#a6cfa5",
+    captionFontFamily: "Raleway, sans-serif",
+    captionFontWeight: "300",
+    captionTextTransform: "uppercase",
+  },
+};
+
+const ImageGallery = ({
+  pictures,
+  name,
+  date,
+}: {
+  pictures: {photos: Image[]} | string;
+  name: string;
+  date: string;
+}): JSX.Element => {
   // console.log("name, pictures:", name, pictures);
   const photosFromMarsRover =
     typeof pictures === "string" ? (
@@ -66,7 +100,7 @@ const ImageGallery = ({pictures, name, date}: {pictures: {photos: Image[]} | str
           <Span>{date}</Span>, number of pictures:<Span>{pictures?.photos.length}</Span>
         </h5>
         <SimpleReactLightbox>
-          <SRLWrapper>
+          <SRLWrapper options={simpleLightBoxOptions}>
             <GalleryDiv>
               {pictures?.photos.map((picture: Image) => {
                 return (

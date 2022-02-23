@@ -1,6 +1,19 @@
 import React from "react";
+// import styled from "styled-components";
 
-const ImageGallery = ({pictures, name}: {pictures: State; name: string}) => {
+interface Image {
+  rover: {id: number};
+  id: React.Key | number;
+  earth_date: string;
+  sol: number;
+  img_src: string;
+  camera: {
+    full_name: string;
+    name: string;
+  };
+}
+
+const ImageGallery = ({pictures, name}: {pictures: {photos: Image[]} | string; name: string}) => {
   // console.log("name, pictures:", name, pictures);
   const photosFromMarsRover =
     typeof pictures === "string" ? (
@@ -8,12 +21,12 @@ const ImageGallery = ({pictures, name}: {pictures: State; name: string}) => {
     ) : (
       <React.Fragment>
         <p>
-          Rover Name: {name}, Rover Id: {pictures.photos[0].rover.id}
+          Rover Name: {name}, Rover Id: {pictures?.photos[0].rover.id}
         </p>
-        {pictures?.photos.map((picture: any) => {
+        {pictures?.photos.map((picture: Image) => {
           return (
             <div key={picture.id}>
-              <img width="200px" src={picture.img_src} alt={picture.id}></img>
+              <img width="200px" src={picture.img_src} alt={"picture ID:" + picture.id}></img>
               <p>
                 Name of Camera: {picture.camera.full_name} ({picture.camera.name})
               </p>

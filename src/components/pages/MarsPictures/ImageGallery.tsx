@@ -20,12 +20,29 @@ const GalleryDiv = styled.div`
   justify-content: flex-start;
   align-items: center;
   align-content: flex-start;
-  gap: 20px;
+  gap: 15px;
 `;
 
 const ImageDiv = styled.div`
-  background-color: lightyellow;
+  background-color: whitesmoke;
+  border: 1px solid black;
   align-self: flex-start;
+  padding: 0;
+  img {
+    border: 10px solid white;
+    width: 325px;
+    height: auto;
+  }
+  div {
+    padding: 5px;
+    p {
+      margin: 0px;
+      span {
+        font-weight: bold;
+        font-style: italic;
+      }
+    }
+  }
 `;
 
 const Span = styled.span`
@@ -44,17 +61,27 @@ const ImageGallery = ({pictures, name, date}: {pictures: {photos: Image[]} | str
       <div style={{display: "block", marginLeft: "auto", marginRight: "auto", width: "95%"}}>
         <h5 style={{textAlign: "center", color: "maroon"}}>
           Rover Name: <Span>{name}</Span>, Rover Id: <Span>{pictures?.photos[0].rover.id}</Span>, selected date:{" "}
-          <Span>{date}</Span>
+          <Span>{date}</Span>, number of pictures:<Span>{pictures?.photos.length}</Span>
         </h5>
         <GalleryDiv>
           {pictures?.photos.map((picture: Image) => {
             return (
               <ImageDiv key={picture.id}>
-                <img width="200px" src={picture.img_src} alt={"picture ID:" + picture.id}></img>
-                <p>Name of Camera: {picture.camera.name}</p>
-                <p>Full Camera Name: {picture.camera.full_name}</p>
-                <p>Earth date: {picture.earth_date}</p>
-                <p>Sol: {picture.sol}</p>
+                <img src={picture.img_src} alt={"picture ID:" + picture.id}></img>
+                <div>
+                  <p>
+                    Name of Camera: <span>{picture.camera.name}</span>
+                  </p>
+                  <p>
+                    Full Camera Name: <span>{picture.camera.full_name}</span>
+                  </p>
+                  <p>
+                    Earth date: <span>{picture.earth_date}</span>
+                  </p>
+                  <p>
+                    Sol number: <span>{picture.sol}</span>
+                  </p>
+                </div>
               </ImageDiv>
             );
           })}

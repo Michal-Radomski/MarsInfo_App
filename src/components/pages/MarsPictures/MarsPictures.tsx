@@ -188,7 +188,7 @@ const MarsPictures = (): JSX.Element => {
         <Accordion.Collapse
           eventKey="accordionTab1"
           as="div"
-          style={{border: "1px solid #DC3545", margin: "2px", backgroundColor: "whitesmoke"}}
+          style={{border: "1px solid #DC3545", margin: "2px", backgroundColor: "#f3f3e3"}}
         >
           <Card.Body as="div">
             <h3 style={{textAlign: "center", fontWeight: "bold"}}>Pictures taken by Curiosity Mars Rover</h3>
@@ -251,7 +251,7 @@ const MarsPictures = (): JSX.Element => {
         <Accordion.Collapse
           eventKey="accordionTab2"
           as="div"
-          style={{border: "1px solid #DC3545", margin: "2px", backgroundColor: "whitesmoke"}}
+          style={{border: "1px solid #DC3545", margin: "2px", backgroundColor: "#f3f3e3"}}
         >
           <Card.Body>
             <h3 style={{textAlign: "center", fontWeight: "bold"}}>Pictures taken by Opportunity Mars Rover</h3>

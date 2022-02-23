@@ -192,7 +192,7 @@ const MarsPictures = (): JSX.Element => {
         >
           <Card.Body as="div">
             <h3 style={{textAlign: "center", fontWeight: "bold"}}>Pictures taken by Curiosity Mars Rover</h3>
-            <ImageGallery pictures={CuriosityRoverPhotos?.CuriosityPhotos} />
+            <ImageGallery pictures={CuriosityRoverPhotos?.CuriosityPhotos} name="Curiosity" />
           </Card.Body>
         </Accordion.Collapse>
       </Card>
@@ -255,9 +255,9 @@ const MarsPictures = (): JSX.Element => {
         >
           <Card.Body>
             <h3 style={{textAlign: "center", fontWeight: "bold"}}>Pictures taken by Opportunity Mars Rover</h3>
-            <ImageGallery pictures={inActiveRoversPhotos?.OpportunityPhotos} />
+            <ImageGallery pictures={inActiveRoversPhotos?.OpportunityPhotos} name="Opportunity" />
             <h3 style={{textAlign: "center", fontWeight: "bold"}}>Pictures taken by Spirit Mars Rover</h3>
-            <ImageGallery pictures={inActiveRoversPhotos?.SpiritPhotos} />
+            <ImageGallery pictures={inActiveRoversPhotos?.SpiritPhotos} name="Spirit" />
           </Card.Body>
         </Accordion.Collapse>
       </Card>

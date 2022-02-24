@@ -1,3 +1,4 @@
+//* CustomTooltip
 .customTooltip {
   .tooltip-inner {
     background-color: orangered;
@@ -12,4 +13,12 @@
   .tooltip-arrow {
     display: none !important;
   }
+}
+
+//* Simple-React-LightBox - Caption Options
+p.SRLCaptionText {
+  background-color: #eee !important;
+  opacity: 0.5 !important;
+  border: 1px solid black !important;
+  box-shadow: 5px 5px 8px green, 10px 10px 8px red, 15px 15px 8px blue, 20px 20px 8px yellow !important;
 }

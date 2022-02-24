@@ -81,6 +81,7 @@ const simpleLightBoxOptions: SRLWrapperOptions = {
     showCaption: true,
     captionAlignment: "center",
     captionFontSize: "28px",
+    captionFontStyle: "italic",
   },
   thumbnails: {
     showThumbnails: true,

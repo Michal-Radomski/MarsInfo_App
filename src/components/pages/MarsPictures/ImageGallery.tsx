@@ -130,6 +130,7 @@ const ImageGallery = ({
   }));
 
   const [hovered, setHovered] = React.useState(false);
+  console.log(hovered);
 
   const photosFromMarsRover =
     typeof pictures === "string" ? (
@@ -147,7 +148,10 @@ const ImageGallery = ({
             <GalleryDiv>
               {pictures?.photos.map((picture: Image) => {
                 return (
-                  <ImageDiv key={picture.id} onMouseOver={() => setHovered(true)} onMouseOut={() => setHovered(false)}>
+                  <ImageDiv
+                    key={picture.id}
+                    // onMouseOver={() => setHovered(true)} onMouseOut={() => setHovered(false)}
+                  >
                     <h4 style={{textAlign: "center", color: "darkviolet", margin: 0, padding: "5px"}}>
                       Picture ID: <Span>{picture.id}</Span>
                     </h4>
@@ -164,18 +168,24 @@ const ImageGallery = ({
                         </Tooltip>
                       }
                     >
-                      <div>
-                        <animated.img
-                          src={picture.img_src}
-                          alt={"Picture ID: " + picture.id}
-                          // className="card"
-                          onMouseMove={({clientX: x, clientY: y}) => set({xys: calcXY(x, y)})}
-                          onMouseLeave={() => set({xys: [0, 0, 1]})}
-                          style={{transform: props.xys.interpolate(perspective)}}
-                        />
-                      </div>
+                      <animated.img
+                        src={picture.img_src}
+                        alt={"Picture ID: " + picture.id}
+                        // className="card"
+                        onMouseEnter={(event) => {
+                          console.log(event.target);
+                          setHovered(true);
+                        }}
+                        onMouseMove={({clientX: x, clientY: y}) => set({xys: calcXY(x, y)})}
+                        onMouseLeave={() => set({xys: [0, 0, 1]})}
+                        style={{transform: props.xys.interpolate(perspective)}}
+                      />
 
-                      {/* <img src={picture.img_src} alt={"Picture ID: " + picture.id} /> */}
+                      {/* <img
+                        src={picture.img_src}
+                        alt={"Picture ID: " + picture.id}
+                        onClick={(event) => console.log(event.target)}
+                      /> */}
                     </OverlayTrigger>
                     <div>
                       <p>

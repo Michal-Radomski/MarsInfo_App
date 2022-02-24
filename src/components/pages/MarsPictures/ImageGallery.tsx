@@ -54,28 +54,42 @@ const Span = styled.span`
 `;
 
 const simpleLightBoxOptions: SRLWrapperOptions = {
-  // overlayColor: "rgb(0,0,0)",
-  // showThumbnails: false,
-  // buttonsStyle: {
-  //   buttonsBackgroundColor: "rgba(0,0,0,0.8)",
-  //   buttonsIconColor: "rgba(255, 255, 255, 0.8)",
-  // },
-  // transitionSpeed: 100,
   settings: {
-    overlayColor: "rgb(25, 136, 124)",
+    overlayColor: "rgba(125,125,125, 0.9)",
     autoplaySpeed: 1500,
-    // @ts-ignore
-    transitionSpeed: 900,
+    slideSpringValues: [250, 250],
+    lightboxTransitionSpeed: 1.0,
   },
   buttons: {
-    backgroundColor: "#1b5245",
-    iconColor: "rgba(126, 172, 139, 0.8)",
+    backgroundColor: "rgba(30,30,36,0.8)",
+    iconColor: "rgba(255, 255, 255, 0.8)",
+    iconPadding: "10px",
+    showAutoplayButton: true,
+    showCloseButton: true,
+    showDownloadButton: false,
+    showFullscreenButton: true,
+    showNextButton: true,
+    showPrevButton: true,
+    showThumbnailsButton: true,
+    size: "40px",
   },
   caption: {
-    captionColor: "#a6cfa5",
-    captionFontFamily: "Raleway, sans-serif",
-    captionFontWeight: "300",
-    captionTextTransform: "uppercase",
+    captionColor: "darkviolet",
+    captionFontWeight: "bolder",
+    showCaption: true,
+    captionAlignment: "center",
+    captionFontSize: "28px",
+  },
+  thumbnails: {
+    showThumbnails: true,
+    thumbnailsAlignment: "center",
+    thumbnailsContainerBackgroundColor: "transparent",
+    thumbnailsContainerPadding: "10px",
+    thumbnailsGap: "0 4px",
+    thumbnailsIconColor: "#eee",
+    thumbnailsOpacity: 0.4,
+    thumbnailsPosition: "bottom",
+    thumbnailsSize: ["100px", "80px"],
   },
 };
 
@@ -109,18 +123,16 @@ const ImageGallery = ({
                     <h4 style={{textAlign: "center", color: "darkviolet", margin: 0, padding: "5px"}}>
                       Picture ID: <Span>{picture.id}</Span>
                     </h4>
-
                     <OverlayTrigger
                       placement="top"
                       overlay={
-                        <Tooltip id={"picture ID:" + picture.id}>
+                        <Tooltip id={"Picture ID:" + picture.id}>
                           Click the image <strong>to enlarge</strong>.
                         </Tooltip>
                       }
                     >
-                      <img src={picture.img_src} alt={"picture ID:" + picture.id}></img>
+                      <img src={picture.img_src} alt={"Picture ID: " + picture.id}></img>
                     </OverlayTrigger>
-
                     <div>
                       <p>
                         Name of Camera: <span>{picture.camera.name}</span>

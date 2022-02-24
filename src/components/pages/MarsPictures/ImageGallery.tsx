@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import SimpleReactLightbox, {SRLWrapper, SRLWrapperOptions} from "simple-react-lightbox";
 import {Tooltip, OverlayTrigger} from "react-bootstrap";
+import {useSpring, animated} from "react-spring";
 
 import "./ImageGallery.scss";
 
@@ -32,12 +33,24 @@ const ImageDiv = styled.div`
   border: 1px solid black;
   align-self: flex-start;
   padding: 0;
+
   img {
     border: 10px solid white;
     width: 325px;
     height: auto;
     cursor: pointer;
+
+    border-radius: 15px;
+
+    background-size: cover;
+    background-position: center top;
+    box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.5s;
+    &:hover {
+      box-shadow: 0px 30px 100px -10px rgba(0, 0, 0, 0.4);
+    }
   }
+
   div {
     padding: 5px;
     p {
@@ -96,6 +109,10 @@ const simpleLightBoxOptions: SRLWrapperOptions = {
   },
 };
 
+const calcXY = (x: number, y: number) => [-(y - window.innerHeight / 2) / 15, (x - window.innerWidth / 2) / 15, 1.0];
+
+const perspective = (x: number, y: number, s: number) => `perspective(500px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;
+
 const ImageGallery = ({
   pictures,
   name,
@@ -106,6 +123,14 @@ const ImageGallery = ({
   date: string;
 }): JSX.Element => {
   // console.log("name, pictures:", name, pictures);
+
+  const [props, set] = useSpring(() => ({
+    xys: [0, 0, 0.5],
+    config: {mass: 5, tension: 200, friction: 100},
+  }));
+
+  const [hovered, setHovered] = React.useState(false);
+
   const photosFromMarsRover =
     typeof pictures === "string" ? (
       <h3 style={{textAlign: "center", color: "#dd2e44"}}>
@@ -139,7 +164,16 @@ const ImageGallery = ({
                         </Tooltip>
                       }
                     >
-                      <img src={picture.img_src} alt={"Picture ID: " + picture.id}></img>
+                      {/* <animated.img
+                          src={picture.img_src}
+                          alt={"Picture ID: " + picture.id}
+                          // className="card"
+                          onMouseMove={({clientX: x, clientY: y}) => set({xys: calcXY(x, y)})}
+                          onMouseLeave={() => set({xys: [0, 0, 1]})}
+                          style={{transform: props.xys.interpolate(perspective)}}
+                        /> */}
+
+                      <img src={picture.img_src} alt={"Picture ID: " + picture.id} />
                     </OverlayTrigger>
                     <div>
                       <p>

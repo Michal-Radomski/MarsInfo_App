@@ -161,7 +161,8 @@ const MarsPictures = (): JSX.Element => {
                   </h3>
                   <p>
                     Status: <span>Operational</span>, photos taken since:{" "}
-                    <span style={{color: "darkviolet"}}>2012-08-06</span>
+                    <span style={{color: "darkviolet"}}>2012-08-06</span>, current selected date:{" "}
+                    <span style={{color: "maroon"}}>{CuriosityRoverDate}</span>
                   </p>
                   <p>
                     Deployed: <span>August 6, 2012</span>
@@ -220,7 +221,8 @@ const MarsPictures = (): JSX.Element => {
                   </h3>
                   <p>
                     Status: <span>Missions Are Complete</span>, photos taken in between:{" "}
-                    <span style={{color: "darkviolet"}}>2004-01-05 - 2018-06-05</span>
+                    <span style={{color: "darkviolet"}}>2004-01-05 - 2018-06-05</span>, current selected date:{" "}
+                    <span style={{color: "maroon"}}>{inActiveRoversDate}</span>
                   </p>
                   <p>
                     <span>Opportunity:</span> Landing Date: <span>January 25, 2004</span>, Last contact:{" "}

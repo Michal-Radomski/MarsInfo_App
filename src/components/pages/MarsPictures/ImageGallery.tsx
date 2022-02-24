@@ -3,6 +3,8 @@ import styled from "styled-components";
 import SimpleReactLightbox, {SRLWrapper, SRLWrapperOptions} from "simple-react-lightbox";
 import {Tooltip, OverlayTrigger} from "react-bootstrap";
 
+import "./ImageGallery.scss";
+
 interface Image {
   rover: {id: number};
   id: React.Key | number;
@@ -124,10 +126,15 @@ const ImageGallery = ({
                       Picture ID: <Span>{picture.id}</Span>
                     </h4>
                     <OverlayTrigger
+                      delay={{show: 250, hide: 400}}
                       placement="top"
                       overlay={
-                        <Tooltip id={"Picture ID:" + picture.id}>
-                          Click the image <strong>to enlarge</strong>.
+                        <Tooltip id={"Picture ID:" + picture.id} className="customTooltip">
+                          Click on the image ID:{" "}
+                          <b>
+                            <i>{picture.id}</i>
+                          </b>{" "}
+                          to enlarge
                         </Tooltip>
                       }
                     >

@@ -1,0 +1,15 @@
+.customTooltip {
+  .tooltip-inner {
+    background-color: orangered;
+    opacity: 0.9;
+    color: #111;
+    font-size: 1rem;
+    font-weight: normal;
+    padding: "2px 10px";
+    border-radius: 5px;
+    border: 3px solid darkviolet;
+  }
+  .tooltip-arrow {
+    display: none !important;
+  }
+}

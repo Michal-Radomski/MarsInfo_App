@@ -180,7 +180,12 @@ const MarsPictures = (): JSX.Element => {
                 }}
               >
                 <h5 style={{fontWeight: "bold"}}>Select date:</h5>
-                <PictureDatePicker selectedDate={CuriosityRoverDate} minDate="2012-08-05" changeDate={changeDateCuriosity} />
+                <PictureDatePicker
+                  selectedDate={CuriosityRoverDate}
+                  minDate="2012-08-05"
+                  changeDate={changeDateCuriosity}
+                  today="Today"
+                />
               </div>
             </Div>
           </CustomToggle>
@@ -243,6 +248,7 @@ const MarsPictures = (): JSX.Element => {
                   selectedDate={inActiveRoversDate}
                   minDate="2004-01-04"
                   changeDate={changeDateInActiveRovers}
+                  today=""
                 />
               </div>
             </Div>

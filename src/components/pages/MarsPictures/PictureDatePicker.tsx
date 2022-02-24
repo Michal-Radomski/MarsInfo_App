@@ -26,10 +26,12 @@ const PictureDatePicker = ({
   selectedDate,
   minDate,
   changeDate,
+  today,
 }: {
   selectedDate: string;
   minDate: string;
   changeDate: (date: Date) => Promise<void>;
+  today: string;
 }): JSX.Element => {
   const startDate = new Date(selectedDate);
 
@@ -63,7 +65,7 @@ const PictureDatePicker = ({
       showPopperArrow={false}
       popperPlacement="top-start"
       popperClassName="popperStyle"
-      todayButton="Today"
+      todayButton={today}
     />
   );
 };

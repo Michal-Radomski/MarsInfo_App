@@ -125,7 +125,7 @@ const ImageGallery = ({
   // console.log("name, pictures:", name, pictures);
 
   const [props, set] = useSpring(() => ({
-    xys: [0, 0, 0.5],
+    xys: [0, 0, 1],
     config: {mass: 5, tension: 200, friction: 100},
   }));
 
@@ -147,7 +147,7 @@ const ImageGallery = ({
             <GalleryDiv>
               {pictures?.photos.map((picture: Image) => {
                 return (
-                  <ImageDiv key={picture.id}>
+                  <ImageDiv key={picture.id} onMouseOver={() => setHovered(true)} onMouseOut={() => setHovered(false)}>
                     <h4 style={{textAlign: "center", color: "darkviolet", margin: 0, padding: "5px"}}>
                       Picture ID: <Span>{picture.id}</Span>
                     </h4>
@@ -164,16 +164,18 @@ const ImageGallery = ({
                         </Tooltip>
                       }
                     >
-                      {/* <animated.img
+                      <div>
+                        <animated.img
                           src={picture.img_src}
                           alt={"Picture ID: " + picture.id}
                           // className="card"
                           onMouseMove={({clientX: x, clientY: y}) => set({xys: calcXY(x, y)})}
                           onMouseLeave={() => set({xys: [0, 0, 1]})}
                           style={{transform: props.xys.interpolate(perspective)}}
-                        /> */}
+                        />
+                      </div>
 
-                      <img src={picture.img_src} alt={"Picture ID: " + picture.id} />
+                      {/* <img src={picture.img_src} alt={"Picture ID: " + picture.id} /> */}
                     </OverlayTrigger>
                     <div>
                       <p>

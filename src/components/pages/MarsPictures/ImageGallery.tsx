@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import SimpleReactLightbox, {SRLWrapper, SRLWrapperOptions} from "simple-react-lightbox";
 import {Tooltip, OverlayTrigger} from "react-bootstrap";
-import {useSpring, animated} from "react-spring";
+import {useSpring, animated, easings} from "react-spring";
 
 import "./ImageGallery.scss";
 interface Image {
@@ -119,7 +119,7 @@ const ImageGallery = ({
 
   const [props, set] = useSpring(() => ({
     xys: [0, 0, 1],
-    config: {mass: 5, tension: 200, friction: 100},
+    config: {mass: 8, tension: 200, friction: 100, duration: 1500, delay: 150, easing: easings.easeInOutSine},
   }));
 
   const photosFromMarsRover =

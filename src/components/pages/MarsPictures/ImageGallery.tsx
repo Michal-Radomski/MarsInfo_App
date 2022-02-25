@@ -5,7 +5,6 @@ import {Tooltip, OverlayTrigger} from "react-bootstrap";
 import {useSpring, animated} from "react-spring";
 
 import "./ImageGallery.scss";
-
 interface Image {
   rover: {id: number};
   id: React.Key | number;
@@ -33,24 +32,19 @@ const ImageDiv = styled.div`
   border: 1px solid black;
   align-self: flex-start;
   padding: 0;
-
+  border-radius: 15px;
   img {
     border: 10px solid white;
     width: 325px;
     height: auto;
     cursor: pointer;
-
     border-radius: 15px;
-
-    background-size: cover;
-    background-position: center top;
-    box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.3);
-    transition: box-shadow 0.5s;
+    box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.35s;
     &:hover {
-      box-shadow: 0px 30px 100px -10px rgba(0, 0, 0, 0.4);
+      box-shadow: 0px 30px 100px -10px rgba(0, 0, 0, 0.7);
     }
   }
-
   div {
     padding: 5px;
     p {
@@ -109,8 +103,7 @@ const simpleLightBoxOptions: SRLWrapperOptions = {
   },
 };
 
-const calcXY = (x: number, y: number) => [-(y - window.innerHeight / 2) / 15, (x - window.innerWidth / 2) / 15, 1.0];
-
+const calcXY = (x: number, y: number) => [-(y - window.innerHeight / 2) / 100, (x - window.innerWidth / 2) / 100, 0.95];
 const perspective = (x: number, y: number, s: number) => `perspective(500px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;
 
 const ImageGallery = ({
@@ -129,9 +122,6 @@ const ImageGallery = ({
     config: {mass: 5, tension: 200, friction: 100},
   }));
 
-  const [hovered, setHovered] = React.useState(false);
-  console.log(hovered);
-
   const photosFromMarsRover =
     typeof pictures === "string" ? (
       <h3 style={{textAlign: "center", color: "#dd2e44"}}>
@@ -148,10 +138,7 @@ const ImageGallery = ({
             <GalleryDiv>
               {pictures?.photos.map((picture: Image) => {
                 return (
-                  <ImageDiv
-                    key={picture.id}
-                    // onMouseOver={() => setHovered(true)} onMouseOut={() => setHovered(false)}
-                  >
+                  <ImageDiv key={picture.id}>
                     <h4 style={{textAlign: "center", color: "darkviolet", margin: 0, padding: "5px"}}>
                       Picture ID: <Span>{picture.id}</Span>
                     </h4>
@@ -171,21 +158,11 @@ const ImageGallery = ({
                       <animated.img
                         src={picture.img_src}
                         alt={"Picture ID: " + picture.id}
-                        // className="card"
-                        onMouseEnter={(event) => {
-                          console.log(event.target);
-                          setHovered(true);
-                        }}
+                        // onMouseEnter={(event) => console.log(event.target)}
                         onMouseMove={({clientX: x, clientY: y}) => set({xys: calcXY(x, y)})}
                         onMouseLeave={() => set({xys: [0, 0, 1]})}
                         style={{transform: props.xys.interpolate(perspective)}}
                       />
-
-                      {/* <img
-                        src={picture.img_src}
-                        alt={"Picture ID: " + picture.id}
-                        onClick={(event) => console.log(event.target)}
-                      /> */}
                     </OverlayTrigger>
                     <div>
                       <p>

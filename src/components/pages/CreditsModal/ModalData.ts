@@ -99,12 +99,6 @@ export const modalDataLibraries: Item[] = [
     link: "https://redux.js.org",
     label: "Redux",
   },
-  {
-    id: 7,
-    content: "Animation of the Repo Link tab is generated using: ",
-    link: "https://github.com/framer/motion",
-    label: "Framer Motion",
-  },
   //* More libraries in the CreditsModal.tsx
 ];
 
@@ -147,5 +141,13 @@ export const modalDataLibraries2: {
     link_2: "https://sass-lang.com",
     label_2: "Sass",
     content: "are used to customize the UI.",
+  },
+  {
+    id: 15,
+    link_1: "https://github.com/framer/motion",
+    label_1: "Framer Motion",
+    link_2: "https://react-spring.io",
+    label_2: "React-Spring",
+    content: "are used to generate the animations.",
   },
 ];

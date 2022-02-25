@@ -44,7 +44,14 @@ const DivInner = styled.div`
 
 const MarsPictures = (): JSX.Element => {
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
+
   const dispatch: Dispatch = useDispatch();
+  const [accordionActiveTab, MarsPicturesDataFromStore] = useSelector((state: State) => [
+    state?.rootReducer?.MarsPictures?.activeTab as string | null,
+    state?.rootReducer?.MarsPicturesToStore as State,
+  ]);
+  //  console.log("accordionActiveTab:", accordionActiveTab)
+  console.log("MarsPicturesDataFromStore:", MarsPicturesDataFromStore);
 
   //- Dates for Mars Rovers Photos
   //* Spirit Photos: 2004-01-05 -> ???
@@ -67,9 +74,6 @@ const MarsPictures = (): JSX.Element => {
   // console.log("CuriosityRoverPhotos:", CuriosityRoverPhotos);
 
   const photosCuriosityUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/Curiosity/photos?earth_date=${CuriosityRoverDate}&api_key=${API_KEY}&page=2`;
-
-  const accordionActiveTab: string | null = useSelector((state: State) => state?.rootReducer?.MarsPictures?.activeTab);
-  // console.log("accordionActiveTab:", accordionActiveTab);
 
   const changeDateCuriosity = async (dateFromDatePicker: Date) => {
     const formattedDate = dateFromDatePicker.toISOString().split("T")[0] as string;

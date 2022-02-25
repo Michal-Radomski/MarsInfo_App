@@ -7,6 +7,7 @@ import {
   GET_COVID_DATA,
   GET_RATES_DATA,
   SET_ACTIVE_TAB,
+  SET_MARS_PICTURES_TO_STORE,
 } from "./actions";
 
 // Initial Global State
@@ -55,6 +56,12 @@ const initialState: State = {
   MarsPictures: {
     activeTab: "accordionTab1" as string,
   },
+  MarsPicturesToStore: {
+    inActiveRoversDate: {} as string,
+    CuriosityRoverDate: {} as string,
+    inActiveRoversPhotos: {} as State,
+    CuriosityRoverPhotos: {} as State,
+  },
 };
 
 // Reducer
@@ -72,6 +79,8 @@ const reducer = (state = initialState, action: Dispatch) => {
       return {...state, currency: action.payload};
     case SET_ACTIVE_TAB:
       return {...state, MarsPictures: {activeTab: action.payload}};
+    case SET_MARS_PICTURES_TO_STORE:
+      return {...state, MarsPicturesToStore: action.payload};
 
     default:
       return state;

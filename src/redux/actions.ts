@@ -7,6 +7,7 @@ export const GET_USER_WEATHER_CONDITIONS = "GET_USER_WEATHER_CONDITIONS";
 export const GET_COVID_DATA = "GET_COVID_DATA";
 export const GET_RATES_DATA = "GET_RATES_DATA";
 export const SET_ACTIVE_TAB = "SET_ACTIVE_TAB";
+export const SET_MARS_PICTURES_TO_STORE = "SET_MARS_PICTURES_TO_STORE";
 
 // Action creator getUserGeoDate
 export const getUserGeoData = () => {

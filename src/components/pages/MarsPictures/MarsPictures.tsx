@@ -2,13 +2,14 @@ import React from "react";
 import axios from "axios";
 import {Accordion, Card} from "react-bootstrap";
 import styled from "styled-components";
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 import {FaMinusSquare, FaPlusSquare} from "react-icons/fa";
 
 import Spinner from "../../../Spinner";
 import PictureDatePicker from "./PictureDatePicker";
 import CustomToggle from "./CustomToggle";
 import ImageGallery from "./ImageGallery";
+import {SET_MARS_PICTURES_TO_STORE} from "../../../redux/actions";
 
 const API_KEY = process.env.REACT_APP_NASA_API_KEY as string;
 // console.log("API_KEY:", API_KEY);
@@ -43,6 +44,7 @@ const DivInner = styled.div`
 
 const MarsPictures = (): JSX.Element => {
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
+  const dispatch: Dispatch = useDispatch();
 
   //- Dates for Mars Rovers Photos
   //* Spirit Photos: 2004-01-05 -> ???
@@ -133,9 +135,23 @@ const MarsPictures = (): JSX.Element => {
       );
     };
 
-    fetchMarsPicturesInActiveRovers();
-    fetchOpportunityPhotos();
+    const toDoCollection = async () => {
+      await fetchMarsPicturesInActiveRovers();
+      await fetchOpportunityPhotos();
+    };
+
+    toDoCollection();
   }, [photosCuriosityUrl, photosOpportunityUrl, photosSpiritUrl]);
+
+  React.useEffect(() => {
+    const MarsPicturesToStore = {
+      inActiveRoversDate: inActiveRoversDate,
+      CuriosityRoverDate: CuriosityRoverDate,
+      inActiveRoversPhotos: inActiveRoversPhotos,
+      CuriosityRoverPhotos: CuriosityRoverPhotos,
+    };
+    dispatch({type: SET_MARS_PICTURES_TO_STORE, payload: MarsPicturesToStore});
+  });
 
   return isLoading ? (
     <Spinner />

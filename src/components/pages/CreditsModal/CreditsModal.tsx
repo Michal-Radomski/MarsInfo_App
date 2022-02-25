@@ -146,6 +146,34 @@ const CreditsModal = (): JSX.Element => {
                       </Card.Link>
                       .
                     </ListGroup.Item>
+                    <ListGroup.Item>
+                      Those tutorial helped me to build the app:{" "}
+                      <Card.Link
+                        href="https://medium.com/@jen.snyder/how-to-use-react-to-display-nasas-astronomy-picture-of-the-day-283c01ff9e31"
+                        target="_blank"
+                      >
+                        APOD
+                      </Card.Link>
+                      ,
+                      <Card.Link
+                        href="https://www.geeksforgeeks.org/animated-modal-using-react-framer-motion-styled-components"
+                        target="_blank"
+                      >
+                        Animated Modal
+                      </Card.Link>
+                      ,
+                      <Card.Link href="https://www.youtube.com/watch?v=D31P9ovJjqs" target="_blank">
+                        Navbar
+                      </Card.Link>{" "}
+                      and
+                      <Card.Link
+                        href="https://dev.to/vaibhavkhulbe/spring-it-on-a-complete-guide-to-react-spring-1om9"
+                        target="_blank"
+                      >
+                        React-Spring
+                      </Card.Link>
+                      .
+                    </ListGroup.Item>
                   </ListGroup>
                 </Card.Body>
               </Card>

@@ -9,7 +9,7 @@ import Spinner from "../../../Spinner";
 import PictureDatePicker from "./PictureDatePicker";
 import CustomToggle from "./CustomToggle";
 import ImageGallery from "./ImageGallery";
-import {SET_MARS_PICTURES_TO_STORE} from "../../../redux/actions";
+import {SET_MARS_PICTURES_CURIOSITY, SET_MARS_PICTURES_INACTIVE_ROVERS} from "../../../redux/actions";
 
 const API_KEY = process.env.REACT_APP_NASA_API_KEY as string;
 // console.log("API_KEY:", API_KEY);
@@ -46,12 +46,15 @@ const MarsPictures = (): JSX.Element => {
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
   const dispatch: Dispatch = useDispatch();
-  const [accordionActiveTab, MarsPicturesDataFromStore] = useSelector((state: State) => [
-    state?.rootReducer?.MarsPictures?.activeTab as string | null,
-    state?.rootReducer?.MarsPicturesToStore as State,
-  ]);
+  const accordionActiveTab: string | null = useSelector((state: State) => state?.rootReducer?.MarsPictures?.activeTab);
+  // const [accordionActiveTab, MarsPicturesCuriosity, MarsPicturesInActiveRovers] = useSelector((state: State) => [
+  //   state?.rootReducer?.MarsPictures?.activeTab as string | null,
+  //   state?.rootReducer?.MarsPictures_Curiosity as State,
+  //   state?.rootReducer?.MarsPictures_InActiveRovers as State,
+  // ]);
   //  console.log("accordionActiveTab:", accordionActiveTab)
-  console.log("MarsPicturesDataFromStore:", MarsPicturesDataFromStore);
+  // console.log("MarsPicturesCuriosity:", MarsPicturesCuriosity);
+  // console.log("MarsPicturesInActiveRovers:", MarsPicturesInActiveRovers);
 
   //- Dates for Mars Rovers Photos
   //* Spirit Photos: 2004-01-05 -> ???
@@ -92,6 +95,15 @@ const MarsPictures = (): JSX.Element => {
   }, [isLoading]);
 
   React.useEffect(() => {
+    // const Mars_Pictures_Curiosity = {
+    //   CuriosityRoverDate: CuriosityRoverDate,
+    //   CuriosityRoverPhotos: CuriosityRoverPhotos,
+    // };
+    // const Mars_Pictures_InActiveRovers = {
+    //   inActiveRoversDate: inActiveRoversDate,
+    //   inActiveRoversPhotos: inActiveRoversPhotos,
+    // };
+
     const URLs = [photosOpportunityUrl, photosSpiritUrl];
 
     const fetchMarsPicturesInActiveRovers = async () => {
@@ -120,6 +132,9 @@ const MarsPictures = (): JSX.Element => {
       } catch (error) {
         console.error(error);
       }
+      // await setTimeout(() => {
+      //   dispatch({type: SET_MARS_PICTURES_INACTIVE_ROVERS, payload: Mars_Pictures_InActiveRovers});
+      // }, 1000);
     };
 
     const fetchOpportunityPhotos = async () => {
@@ -137,25 +152,16 @@ const MarsPictures = (): JSX.Element => {
           console.log(error);
         }
       );
+      // .then(() => {
+      //   setTimeout(() => {
+      //     dispatch({type: SET_MARS_PICTURES_CURIOSITY, payload: Mars_Pictures_Curiosity});
+      //   }, 1000);
+      // });
     };
 
-    const toDoCollection = async () => {
-      await fetchMarsPicturesInActiveRovers();
-      await fetchOpportunityPhotos();
-    };
-
-    toDoCollection();
+    fetchMarsPicturesInActiveRovers();
+    fetchOpportunityPhotos();
   }, [photosCuriosityUrl, photosOpportunityUrl, photosSpiritUrl]);
-
-  React.useEffect(() => {
-    const MarsPicturesToStore = {
-      inActiveRoversDate: inActiveRoversDate,
-      CuriosityRoverDate: CuriosityRoverDate,
-      inActiveRoversPhotos: inActiveRoversPhotos,
-      CuriosityRoverPhotos: CuriosityRoverPhotos,
-    };
-    dispatch({type: SET_MARS_PICTURES_TO_STORE, payload: MarsPicturesToStore});
-  });
 
   return isLoading ? (
     <Spinner />

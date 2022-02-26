@@ -9,6 +9,8 @@ import {
   SET_ACTIVE_TAB,
   SET_MARS_PICTURES_CURIOSITY,
   SET_MARS_PICTURES_INACTIVE_ROVERS,
+  SET_MARS_DATE_CURIOSITY,
+  SET_MARS_DATE_INACTIVE_ROVERS,
 } from "./actions";
 
 // Initial Global State
@@ -82,10 +84,13 @@ const reducer = (state = initialState, action: Dispatch) => {
       return {...state, currency: action.payload};
     case SET_ACTIVE_TAB:
       return {...state, MarsPictures: {activeTab: action.payload}};
-    // case SET_MARS_PICTURES_CURIOSITY:
-    //   return {...state, MarsPictures_Curiosity: action.payload};
-    // case SET_MARS_PICTURES_INACTIVE_ROVERS:
-    //   return {...state, MarsPictures_InActiveRovers: action.payload};
+    case SET_MARS_DATE_CURIOSITY:
+      return {...state, MarsPictures_Curiosity: {...state.MarsPictures_Curiosity, CuriosityRoverDate: action.payload}};
+    case SET_MARS_DATE_INACTIVE_ROVERS:
+      return {
+        ...state,
+        MarsPictures_InActiveRovers: {...state.MarsPictures_InActiveRovers, inActiveRoversDate: action.payload},
+      };
 
     default:
       return state;

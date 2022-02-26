@@ -9,7 +9,12 @@ import Spinner from "../../../Spinner";
 import PictureDatePicker from "./PictureDatePicker";
 import CustomToggle from "./CustomToggle";
 import ImageGallery from "./ImageGallery";
-import {SET_MARS_PICTURES_CURIOSITY, SET_MARS_PICTURES_INACTIVE_ROVERS} from "../../../redux/actions";
+import {
+  SET_MARS_PICTURES_CURIOSITY,
+  SET_MARS_PICTURES_INACTIVE_ROVERS,
+  SET_MARS_DATE_CURIOSITY,
+  SET_MARS_DATE_INACTIVE_ROVERS,
+} from "../../../redux/actions";
 
 const API_KEY = process.env.REACT_APP_NASA_API_KEY as string;
 // console.log("API_KEY:", API_KEY);
@@ -46,15 +51,36 @@ const MarsPictures = (): JSX.Element => {
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
   const dispatch: Dispatch = useDispatch();
+
+  // const [MarsPicturesCuriosity, MarsDateCuriosity, MarsPicturesInActiveRovers, MarsDateInActiveRovers] = useSelector(
+  //   (state: State) => [
+  //     state?.rootReducer?.MarsPictures_Curiosity.CuriosityRoverPhotos as State,
+  //     state?.rootReducer?.MarsPictures_Curiosity.CuriosityRoverDate as string,
+  //     state?.rootReducer?.MarsPictures_InActiveRovers.inActiveRoversPhotos as State,
+  //     state?.rootReducer?.MarsPictures_InActiveRovers.inActiveRoversDate as string,
+  //   ]
+  // );
+
   const accordionActiveTab: string | null = useSelector((state: State) => state?.rootReducer?.MarsPictures?.activeTab);
-  // const [accordionActiveTab, MarsPicturesCuriosity, MarsPicturesInActiveRovers] = useSelector((state: State) => [
-  //   state?.rootReducer?.MarsPictures?.activeTab as string | null,
-  //   state?.rootReducer?.MarsPictures_Curiosity as State,
-  //   state?.rootReducer?.MarsPictures_InActiveRovers as State,
-  // ]);
   //  console.log("accordionActiveTab:", accordionActiveTab)
-  // console.log("MarsPicturesCuriosity:", MarsPicturesCuriosity);
-  // console.log("MarsPicturesInActiveRovers:", MarsPicturesInActiveRovers);
+
+  const MarsDateCuriosity: string = useSelector(
+    (state: State) => state?.rootReducer?.MarsPictures_Curiosity.CuriosityRoverDate
+  );
+  const MarsPicturesCuriosity: State = useSelector(
+    (state: State) => state?.rootReducer?.MarsPictures_Curiosity.CuriosityRoverPhotos
+  );
+  const MarsDateInActiveRovers: string = useSelector(
+    (state: State) => state?.rootReducer?.MarsPictures_InActiveRovers.inActiveRoversDate
+  );
+  const MarsPicturesInActiveRovers: State = useSelector(
+    (state: State) => state?.rootReducer?.MarsPictures_InActiveRovers.inActiveRoversPhotos
+  );
+
+  console.log("MarsPicturesCuriosity:", MarsPicturesCuriosity);
+  console.log("MarsDateCuriosity:", MarsDateCuriosity);
+  console.log("MarsPicturesInActiveRovers:", MarsPicturesInActiveRovers);
+  console.log("MarsDateInActiveRovers:", MarsDateInActiveRovers);
 
   //- Dates for Mars Rovers Photos
   //* Spirit Photos: 2004-01-05 -> ???
@@ -81,11 +107,13 @@ const MarsPictures = (): JSX.Element => {
   const changeDateCuriosity = async (dateFromDatePicker: Date) => {
     const formattedDate = dateFromDatePicker.toISOString().split("T")[0] as string;
     await setCuriosityRoverDate(formattedDate);
+    await dispatch({type: SET_MARS_DATE_CURIOSITY, payload: formattedDate});
   };
 
   const changeDateInActiveRovers = async (dateFromDatePicker: Date) => {
     const formattedDate = dateFromDatePicker.toISOString().split("T")[0] as string;
     await setInActiveRoversDate(formattedDate);
+    await dispatch({type: SET_MARS_DATE_INACTIVE_ROVERS, payload: formattedDate});
   };
 
   React.useEffect(() => {
@@ -129,12 +157,12 @@ const MarsPictures = (): JSX.Element => {
           OpportunityPhotos: photosOpportunity,
           SpiritPhotos: photosSpirit,
         });
+        // await setTimeout(() => {
+        //   dispatch({type: SET_MARS_PICTURES_INACTIVE_ROVERS, payload: Mars_Pictures_InActiveRovers});
+        // }, 500);
       } catch (error) {
         console.error(error);
       }
-      // await setTimeout(() => {
-      //   dispatch({type: SET_MARS_PICTURES_INACTIVE_ROVERS, payload: Mars_Pictures_InActiveRovers});
-      // }, 1000);
     };
 
     const fetchOpportunityPhotos = async () => {
@@ -155,7 +183,7 @@ const MarsPictures = (): JSX.Element => {
       // .then(() => {
       //   setTimeout(() => {
       //     dispatch({type: SET_MARS_PICTURES_CURIOSITY, payload: Mars_Pictures_Curiosity});
-      //   }, 1000);
+      //   }, 500);
       // });
     };
 

@@ -93,15 +93,6 @@ const MarsPictures = (): JSX.Element => {
       ? JSON.parse(localStorage.getItem("MarsPicturesInActiveRovers") as State)
       : MarsPicturesInActiveRovers;
 
-  const roversData: State = {
-    dateCuriosity: dateCuriosity,
-    photosCuriosity: photosCuriosity,
-    dateInActiveRovers: dateInActiveRovers,
-    photosInActiveRovers: photosInActiveRovers,
-  };
-
-  // console.log("roversData:", roversData);
-
   //- Dates for Mars Rovers Photos
   //* Spirit Photos: 2004-01-05 -> ???
   //* Opportunity Photos: 2004-01-26 -> 2018-06-05
@@ -203,12 +194,6 @@ const MarsPictures = (): JSX.Element => {
       localStorage.setItem("MarsDateInActiveRovers", JSON.stringify(MarsDateInActiveRovers));
       localStorage.setItem("MarsPicturesInActiveRovers", JSON.stringify(MarsPicturesInActiveRovers));
     }, 800);
-    setTimeout(() => {
-      setCuriosityRoverDate(roversData.dateCuriosity);
-      setCuriosityRoverPhotos(roversData.photosCuriosity);
-      setInActiveRoversDate(roversData.dateInActiveRovers);
-      setInActiveRoversPhotos(roversData.photosInActiveRovers);
-    }, 1200);
   });
 
   return isLoading ? (

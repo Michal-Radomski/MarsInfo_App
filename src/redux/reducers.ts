@@ -60,11 +60,11 @@ const initialState: State = {
     activeTab: "accordionTab1" as string,
   },
   MarsPictures_Curiosity: {
-    CuriosityRoverDate: "" as string,
+    CuriosityRoverDate: "2012-08-07" as string,
     CuriosityRoverPhotos: {} as State,
   },
   MarsPictures_InActiveRovers: {
-    inActiveRoversDate: "" as string,
+    inActiveRoversDate: "2004-01-04" as string,
     inActiveRoversPhotos: {} as State,
   },
 };

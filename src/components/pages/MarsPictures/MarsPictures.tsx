@@ -52,35 +52,26 @@ const MarsPictures = (): JSX.Element => {
 
   const dispatch: Dispatch = useDispatch();
 
-  // const [MarsPicturesCuriosity, MarsDateCuriosity, MarsPicturesInActiveRovers, MarsDateInActiveRovers] = useSelector(
-  //   (state: State) => [
-  //     state?.rootReducer?.MarsPictures_Curiosity.CuriosityRoverPhotos as State,
-  //     state?.rootReducer?.MarsPictures_Curiosity.CuriosityRoverDate as string,
-  //     state?.rootReducer?.MarsPictures_InActiveRovers.inActiveRoversPhotos as State,
-  //     state?.rootReducer?.MarsPictures_InActiveRovers.inActiveRoversDate as string,
-  //   ]
-  // );
-
   const accordionActiveTab: string | null = useSelector((state: State) => state?.rootReducer?.MarsPictures?.activeTab);
   //  console.log("accordionActiveTab:", accordionActiveTab)
 
   const MarsDateCuriosity: string = useSelector(
-    (state: State) => state?.rootReducer?.MarsPictures_Curiosity.CuriosityRoverDate
+    (state: State) => state?.rootReducer?.MarsPictures_Curiosity?.CuriosityRoverDate
   );
   const MarsPicturesCuriosity: State = useSelector(
-    (state: State) => state?.rootReducer?.MarsPictures_Curiosity.CuriosityRoverPhotos
+    (state: State) => state?.rootReducer?.MarsPictures_Curiosity?.CuriosityRoverPhotos
   );
   const MarsDateInActiveRovers: string = useSelector(
-    (state: State) => state?.rootReducer?.MarsPictures_InActiveRovers.inActiveRoversDate
+    (state: State) => state?.rootReducer?.MarsPictures_InActiveRovers?.inActiveRoversDate
   );
   const MarsPicturesInActiveRovers: State = useSelector(
-    (state: State) => state?.rootReducer?.MarsPictures_InActiveRovers.inActiveRoversPhotos
+    (state: State) => state?.rootReducer?.MarsPictures_InActiveRovers?.inActiveRoversPhotos
   );
 
-  console.log("MarsPicturesCuriosity:", MarsPicturesCuriosity);
-  console.log("MarsDateCuriosity:", MarsDateCuriosity);
-  console.log("MarsPicturesInActiveRovers:", MarsPicturesInActiveRovers);
-  console.log("MarsDateInActiveRovers:", MarsDateInActiveRovers);
+  // console.log("MarsPicturesCuriosity:", MarsPicturesCuriosity);
+  // console.log("MarsDateCuriosity:", MarsDateCuriosity);
+  // console.log("MarsPicturesInActiveRovers:", MarsPicturesInActiveRovers);
+  // console.log("MarsDateInActiveRovers:", MarsDateInActiveRovers);
 
   //- Dates for Mars Rovers Photos
   //* Spirit Photos: 2004-01-05 -> ???
@@ -107,13 +98,11 @@ const MarsPictures = (): JSX.Element => {
   const changeDateCuriosity = async (dateFromDatePicker: Date) => {
     const formattedDate = dateFromDatePicker.toISOString().split("T")[0] as string;
     await setCuriosityRoverDate(formattedDate);
-    // await dispatch({type: SET_MARS_DATE_CURIOSITY, payload: formattedDate});
   };
 
   const changeDateInActiveRovers = async (dateFromDatePicker: Date) => {
     const formattedDate = dateFromDatePicker.toISOString().split("T")[0] as string;
     await setInActiveRoversDate(formattedDate);
-    // await dispatch({type: SET_MARS_DATE_INACTIVE_ROVERS, payload: formattedDate});
   };
 
   React.useEffect(() => {
@@ -148,13 +137,6 @@ const MarsPictures = (): JSX.Element => {
           OpportunityPhotos: photosOpportunity,
           SpiritPhotos: photosSpirit,
         });
-
-        // const InActiveMarsRoversPhotos = {OpportunityPhotos: photosOpportunity, SpiritPhotos: photosSpirit};
-
-        // await dispatch({
-        //   type: SET_MARS_PICTURES_INACTIVE_ROVERS,
-        //   payload: InActiveMarsRoversPhotos,
-        // });
       } catch (error) {
         console.error(error);
       }
@@ -170,7 +152,6 @@ const MarsPictures = (): JSX.Element => {
               ? fetchResponse?.data
               : "No photos taken by Curiosity Mars Rover for the selected day";
           setCuriosityRoverPhotos({CuriosityPhotos: CuriosityPhotos});
-          // dispatch({type: SET_MARS_PICTURES_CURIOSITY, payload: CuriosityPhotos});
         },
         (error) => {
           console.log(error);
@@ -186,10 +167,7 @@ const MarsPictures = (): JSX.Element => {
     dispatch({type: SET_MARS_DATE_CURIOSITY, payload: CuriosityRoverDate});
     dispatch({type: SET_MARS_DATE_INACTIVE_ROVERS, payload: inActiveRoversDate});
     dispatch({type: SET_MARS_PICTURES_CURIOSITY, payload: CuriosityRoverPhotos});
-    dispatch({
-      type: SET_MARS_PICTURES_INACTIVE_ROVERS,
-      payload: inActiveRoversPhotos,
-    });
+    dispatch({type: SET_MARS_PICTURES_INACTIVE_ROVERS, payload: inActiveRoversPhotos});
   });
 
   return isLoading ? (

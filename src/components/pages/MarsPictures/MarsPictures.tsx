@@ -168,6 +168,12 @@ const MarsPictures = (): JSX.Element => {
     dispatch({type: SET_MARS_DATE_INACTIVE_ROVERS, payload: inActiveRoversDate});
     dispatch({type: SET_MARS_PICTURES_CURIOSITY, payload: CuriosityRoverPhotos});
     dispatch({type: SET_MARS_PICTURES_INACTIVE_ROVERS, payload: inActiveRoversPhotos});
+    setTimeout(() => {
+      localStorage.setItem("CuriosityRoverDate", JSON.stringify(MarsDateCuriosity));
+      localStorage.setItem("MarsPicturesCuriosity", JSON.stringify(MarsPicturesCuriosity));
+      localStorage.setItem("MarsDateInActiveRovers", JSON.stringify(MarsDateInActiveRovers));
+      localStorage.setItem("MarsPicturesInActiveRovers", JSON.stringify(MarsPicturesInActiveRovers));
+    }, 1000);
   });
 
   return isLoading ? (

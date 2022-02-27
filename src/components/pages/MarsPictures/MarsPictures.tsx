@@ -100,7 +100,7 @@ const MarsPictures = (): JSX.Element => {
     photosInActiveRovers: photosInActiveRovers,
   };
 
-  console.log("roversData:", roversData);
+  // console.log("roversData:", roversData);
 
   //- Dates for Mars Rovers Photos
   //* Spirit Photos: 2004-01-05 -> ???
@@ -108,8 +108,8 @@ const MarsPictures = (): JSX.Element => {
   //* Curiosity Photos: since 2012-08-06
 
   //* InActive Rovers Photos:
-  const [inActiveRoversDate, setInActiveRoversDate] = React.useState<string>(roversData.dateInactiveRovers);
-  const [inActiveRoversPhotos, setInActiveRoversPhotos] = React.useState<State>(roversData.photosInActiveRovers);
+  const [inActiveRoversDate, setInActiveRoversDate] = React.useState<string>("2004-01-04");
+  const [inActiveRoversPhotos, setInActiveRoversPhotos] = React.useState<State>({});
   // console.log("inActiveRoversDate:", inActiveRoversDate);
   // console.log("inActiveRoversPhotos:", inActiveRoversPhotos);
 
@@ -117,8 +117,8 @@ const MarsPictures = (): JSX.Element => {
   const photosSpiritUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/Spirit/photos?earth_date=${inActiveRoversDate}&api_key=${API_KEY}&page=2`;
 
   //* Curiosity Rover Photos:
-  const [CuriosityRoverDate, setCuriosityRoverDate] = React.useState<string>(roversData.dateCuriosity);
-  const [CuriosityRoverPhotos, setCuriosityRoverPhotos] = React.useState<State>(roversData.photosCuriosity);
+  const [CuriosityRoverDate, setCuriosityRoverDate] = React.useState<string>("2012-08-07");
+  const [CuriosityRoverPhotos, setCuriosityRoverPhotos] = React.useState<State>({});
   // console.log("CuriosityRoverDate:", CuriosityRoverDate);
   // console.log("CuriosityRoverPhotos:", CuriosityRoverPhotos);
 
@@ -188,10 +188,8 @@ const MarsPictures = (): JSX.Element => {
       );
     };
 
-    // setTimeout(() => {
-    //   fetchMarsPicturesInActiveRovers();
-    //   fetchOpportunityPhotos();
-    // }, 1000);
+    fetchMarsPicturesInActiveRovers();
+    fetchOpportunityPhotos();
   }, [photosCuriosityUrl, photosOpportunityUrl, photosSpiritUrl]);
 
   React.useEffect(() => {
@@ -204,7 +202,13 @@ const MarsPictures = (): JSX.Element => {
       localStorage.setItem("MarsPicturesCuriosity", JSON.stringify(MarsPicturesCuriosity));
       localStorage.setItem("MarsDateInActiveRovers", JSON.stringify(MarsDateInActiveRovers));
       localStorage.setItem("MarsPicturesInActiveRovers", JSON.stringify(MarsPicturesInActiveRovers));
-    }, 1000);
+    }, 800);
+    setTimeout(() => {
+      setCuriosityRoverDate(roversData.dateCuriosity);
+      setCuriosityRoverPhotos(roversData.photosCuriosity);
+      setInActiveRoversDate(roversData.dateInActiveRovers);
+      setInActiveRoversPhotos(roversData.photosInActiveRovers);
+    }, 1200);
   });
 
   return isLoading ? (

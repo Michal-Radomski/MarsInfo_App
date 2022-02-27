@@ -99,8 +99,12 @@ const MarsPictures = (): JSX.Element => {
   //* Curiosity Photos: since 2012-08-06
 
   //* InActive Rovers Photos:
-  const [inActiveRoversDate, setInActiveRoversDate] = React.useState<string>("2004-01-04");
-  const [inActiveRoversPhotos, setInActiveRoversPhotos] = React.useState<State>({});
+  const [inActiveRoversDate, setInActiveRoversDate] = React.useState<string>(
+    dateInActiveRovers !== "2004-01-04" ? dateInActiveRovers : "2004-01-04"
+  );
+  const [inActiveRoversPhotos, setInActiveRoversPhotos] = React.useState<State>(
+    photosInActiveRovers !== {} ? photosInActiveRovers : {}
+  );
   // console.log("inActiveRoversDate:", inActiveRoversDate);
   // console.log("inActiveRoversPhotos:", inActiveRoversPhotos);
 
@@ -108,8 +112,12 @@ const MarsPictures = (): JSX.Element => {
   const photosSpiritUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/Spirit/photos?earth_date=${inActiveRoversDate}&api_key=${API_KEY}&page=2`;
 
   //* Curiosity Rover Photos:
-  const [CuriosityRoverDate, setCuriosityRoverDate] = React.useState<string>("2012-08-07");
-  const [CuriosityRoverPhotos, setCuriosityRoverPhotos] = React.useState<State>({});
+  const [CuriosityRoverDate, setCuriosityRoverDate] = React.useState<string>(
+    dateCuriosity !== "2012-08-07" ? dateCuriosity : "2012-08-07"
+  );
+  const [CuriosityRoverPhotos, setCuriosityRoverPhotos] = React.useState<State>(
+    photosCuriosity !== {} ? photosCuriosity : {}
+  );
   // console.log("CuriosityRoverDate:", CuriosityRoverDate);
   // console.log("CuriosityRoverPhotos:", CuriosityRoverPhotos);
 

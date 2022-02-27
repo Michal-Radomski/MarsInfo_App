@@ -107,13 +107,13 @@ const MarsPictures = (): JSX.Element => {
   const changeDateCuriosity = async (dateFromDatePicker: Date) => {
     const formattedDate = dateFromDatePicker.toISOString().split("T")[0] as string;
     await setCuriosityRoverDate(formattedDate);
-    await dispatch({type: SET_MARS_DATE_CURIOSITY, payload: formattedDate});
+    // await dispatch({type: SET_MARS_DATE_CURIOSITY, payload: formattedDate});
   };
 
   const changeDateInActiveRovers = async (dateFromDatePicker: Date) => {
     const formattedDate = dateFromDatePicker.toISOString().split("T")[0] as string;
     await setInActiveRoversDate(formattedDate);
-    await dispatch({type: SET_MARS_DATE_INACTIVE_ROVERS, payload: formattedDate});
+    // await dispatch({type: SET_MARS_DATE_INACTIVE_ROVERS, payload: formattedDate});
   };
 
   React.useEffect(() => {
@@ -123,15 +123,6 @@ const MarsPictures = (): JSX.Element => {
   }, [isLoading]);
 
   React.useEffect(() => {
-    // const Mars_Pictures_Curiosity = {
-    //   CuriosityRoverDate: CuriosityRoverDate,
-    //   CuriosityRoverPhotos: CuriosityRoverPhotos,
-    // };
-    // const Mars_Pictures_InActiveRovers = {
-    //   inActiveRoversDate: inActiveRoversDate,
-    //   inActiveRoversPhotos: inActiveRoversPhotos,
-    // };
-
     const URLs = [photosOpportunityUrl, photosSpiritUrl];
 
     const fetchMarsPicturesInActiveRovers = async () => {
@@ -157,9 +148,13 @@ const MarsPictures = (): JSX.Element => {
           OpportunityPhotos: photosOpportunity,
           SpiritPhotos: photosSpirit,
         });
-        // await setTimeout(() => {
-        //   dispatch({type: SET_MARS_PICTURES_INACTIVE_ROVERS, payload: Mars_Pictures_InActiveRovers});
-        // }, 500);
+
+        // const InActiveMarsRoversPhotos = {OpportunityPhotos: photosOpportunity, SpiritPhotos: photosSpirit};
+
+        // await dispatch({
+        //   type: SET_MARS_PICTURES_INACTIVE_ROVERS,
+        //   payload: InActiveMarsRoversPhotos,
+        // });
       } catch (error) {
         console.error(error);
       }
@@ -175,21 +170,27 @@ const MarsPictures = (): JSX.Element => {
               ? fetchResponse?.data
               : "No photos taken by Curiosity Mars Rover for the selected day";
           setCuriosityRoverPhotos({CuriosityPhotos: CuriosityPhotos});
+          // dispatch({type: SET_MARS_PICTURES_CURIOSITY, payload: CuriosityPhotos});
         },
         (error) => {
           console.log(error);
         }
       );
-      // .then(() => {
-      //   setTimeout(() => {
-      //     dispatch({type: SET_MARS_PICTURES_CURIOSITY, payload: Mars_Pictures_Curiosity});
-      //   }, 500);
-      // });
     };
 
     fetchMarsPicturesInActiveRovers();
     fetchOpportunityPhotos();
   }, [photosCuriosityUrl, photosOpportunityUrl, photosSpiritUrl]);
+
+  React.useEffect(() => {
+    dispatch({type: SET_MARS_DATE_CURIOSITY, payload: CuriosityRoverDate});
+    dispatch({type: SET_MARS_DATE_INACTIVE_ROVERS, payload: inActiveRoversDate});
+    dispatch({type: SET_MARS_PICTURES_CURIOSITY, payload: CuriosityRoverPhotos});
+    dispatch({
+      type: SET_MARS_PICTURES_INACTIVE_ROVERS,
+      payload: inActiveRoversPhotos,
+    });
+  });
 
   return isLoading ? (
     <Spinner />

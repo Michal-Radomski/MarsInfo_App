@@ -47,27 +47,13 @@ const DivInner = styled.div`
   position: relative;
 `;
 
-// React.useEffect(() => {
-//   if (accordionActiveTab === null || accordionActiveTab === "accordionTab1" || accordionActiveTab === "accordionTab2") {
-//     setFinalActiveTab(accordionActiveTab);
-//   }
-
-//   if (localStorage.hasOwnProperty("accordionActiveTab")) {
-//     const activeTabFromLocalStorage = JSON.parse(localStorage.getItem("accordionActiveTab") as string);
-//     setFinalActiveTab(activeTabFromLocalStorage);
-//   } else setFinalActiveTab("accordionTab1");
-//   console.log("finalActiveTab:", finalActiveTab);
-// }, [accordionActiveTab, finalActiveTab]);
-
 const MarsPictures = (): JSX.Element => {
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
-  const [finalActiveTab, setFinalActiveTab] = React.useState<string | null>("accordionTab1");
 
   const dispatch: Dispatch = useDispatch();
 
   const accordionActiveTab: string | null = useSelector((state: State) => state?.rootReducer?.MarsPictures?.activeTab);
-  // console.log("accordionActiveTab:", accordionActiveTab);
-  setFinalActiveTab(accordionActiveTab);
+  //  console.log("accordionActiveTab:", accordionActiveTab)
 
   const MarsDateCuriosity: string = useSelector(
     (state: State) => state?.rootReducer?.MarsPictures_Curiosity?.CuriosityRoverDate
@@ -215,18 +201,13 @@ const MarsPictures = (): JSX.Element => {
       localStorage.setItem("MarsPicturesCuriosity", JSON.stringify(MarsPicturesCuriosity));
       localStorage.setItem("MarsDateInActiveRovers", JSON.stringify(MarsDateInActiveRovers));
       localStorage.setItem("MarsPicturesInActiveRovers", JSON.stringify(MarsPicturesInActiveRovers));
-      localStorage.setItem("accordionActiveTab", JSON.stringify(accordionActiveTab));
-    }, 500);
+    }, 800);
   });
 
   return isLoading ? (
     <Spinner />
   ) : (
-    <Accordion
-      as="div"
-      defaultActiveKey={finalActiveTab as string}
-      style={{border: "1px solid #0D6EFD", margin: "6px", padding: 0}}
-    >
+    <Accordion as="div" defaultActiveKey="accordionTab1" style={{border: "1px solid #0D6EFD", margin: "6px", padding: 0}}>
       <Card as="div" style={{border: "1px solid #0D6EFD", margin: "0px", padding: 0}}>
         <Card.Header as="div" style={{padding: 0, margin: 0}}>
           <CustomToggle eventKey="accordionTab1">
@@ -234,7 +215,7 @@ const MarsPictures = (): JSX.Element => {
             <Div>
               <DivInner>
                 <div style={{top: "50%", position: "absolute", transform: "translateY(-50%)"}}>
-                  {finalActiveTab === "accordionTab1" ? (
+                  {accordionActiveTab === "accordionTab1" ? (
                     <FaMinusSquare size={32} fill="indigo" />
                   ) : (
                     <FaPlusSquare size={32} fill="green" />
@@ -294,7 +275,7 @@ const MarsPictures = (): JSX.Element => {
             <Div>
               <DivInner>
                 <div style={{top: "50%", position: "absolute", transform: "translateY(-50%)"}}>
-                  {finalActiveTab === "accordionTab2" ? (
+                  {accordionActiveTab === "accordionTab2" ? (
                     <FaMinusSquare size={32} fill="indigo" />
                   ) : (
                     <FaPlusSquare size={32} fill="green" />

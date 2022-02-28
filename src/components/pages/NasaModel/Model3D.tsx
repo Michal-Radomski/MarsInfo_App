@@ -32,13 +32,13 @@ const Model3D: React.FC<{}> = (): JSX.Element => {
   const {nodes, materials} = useGLTF("NasaMars3D.glb") as GLTFResult;
   // console.log("nodes, materials:", nodes, materials);
 
-  useFrame(() => (MarsRef.current.rotation.y += 0.0002));
+  // useFrame(() => (MarsRef.current.rotation.y += 0.0002));
 
-  // useFrame(({clock}) => {
-  //   const elapsedTime = clock.getElapsedTime();
-  //   // console.log("elapsedTime:", elapsedTime);
-  //   MarsRef!.current!.rotation.y = elapsedTime / 15;
-  // });
+  useFrame(({clock}) => {
+    const elapsedTime = clock.getElapsedTime();
+    // console.log("elapsedTime:", elapsedTime);
+    MarsRef!.current!.rotation.y = elapsedTime / 15;
+  });
 
   React.useEffect(() => {
     console.log("MarsRef:", MarsRef);
@@ -46,7 +46,6 @@ const Model3D: React.FC<{}> = (): JSX.Element => {
 
   return (
     <React.Fragment>
-      <ambientLight intensity={0.4} color={0xffffff} />
       {/* <pointLight color="#f6f3ea" position={[2, 0, 5]} intensity={1.2} /> */}
       <Stars
         radius={200} // Radius of the inner sphere (default=100)

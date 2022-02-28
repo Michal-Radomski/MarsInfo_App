@@ -3,6 +3,7 @@ import styled from "styled-components";
 import {Canvas} from "@react-three/fiber";
 
 import Model3D from "./Model3D";
+
 import {Loader} from "./Model3D";
 import Camera from "./Camera";
 import "./NasaModel.scss";
@@ -10,14 +11,14 @@ import "./NasaModel.scss";
 const CanvasContainer = styled.div`
   width: 100%;
   height: auto;
-  background-color: "#010718";
+  background-color: #010718;
 `;
 
 const Background = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: #1756dd31;
+  background-color: transparent;
   z-index: 9;
 `;
 
@@ -42,10 +43,12 @@ function NasaModel(): JSX.Element {
       <Background />
       <Canvas>
         <Camera />
+        {/* //* Sunlight Color: #F4E99B */}
         <directionalLight intensity={0.7} color={0xf4e99b} />
         <ambientLight intensity={0.6} color={0xf4e99b} />
-        <React.Suspense fallback={null}>
+        <React.Suspense fallback={<Loader />}>
           <Model3D />
+          {/* {console.log("Model3D:", Model3D)} */}
         </React.Suspense>
       </Canvas>
     </CanvasContainer>

@@ -3,6 +3,8 @@ import styled from "styled-components";
 import {Canvas} from "@react-three/fiber";
 
 import Model3D from "./Model3D";
+import {Loader} from "./Model3D";
+import Camera from "./Camera";
 import "./NasaModel.scss";
 
 const CanvasContainer = styled.div`
@@ -39,6 +41,9 @@ function NasaModel(): JSX.Element {
     <CanvasContainer>
       <Background />
       <Canvas>
+        <Camera />
+        <directionalLight intensity={0.7} color={0xf4e99b} />
+        <ambientLight intensity={0.6} color={0xf4e99b} />
         <React.Suspense fallback={null}>
           <Model3D />
         </React.Suspense>

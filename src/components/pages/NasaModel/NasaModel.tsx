@@ -5,6 +5,7 @@ import {Canvas} from "@react-three/fiber";
 import Model3D, {Loader} from "./Model3D";
 import Camera from "./Camera";
 import "./NasaModel.scss";
+import Spinner from "../../../Spinner";
 
 const CanvasContainer = styled.div`
   width: 100%;
@@ -36,7 +37,17 @@ const Background = styled.div`
 // }
 
 function NasaModel(): JSX.Element {
-  return (
+  const [isLoading, setIsLoading] = React.useState<boolean>(true);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1200);
+  }, [isLoading]);
+
+  return isLoading ? (
+    <Spinner />
+  ) : (
     <CanvasContainer>
       <Background />
       <Canvas>

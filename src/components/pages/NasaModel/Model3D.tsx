@@ -1,8 +1,7 @@
 import React from "react";
-import {useFrame, useLoader} from "@react-three/fiber";
-import {OrbitControls, Stars} from "@react-three/drei";
 import * as THREE from "three";
-import {useGLTF, Html, useProgress} from "@react-three/drei";
+import {useFrame} from "@react-three/fiber";
+import {OrbitControls, Stars, useGLTF, Html, useProgress} from "@react-three/drei";
 import {GLTF} from "three-stdlib";
 
 //* Loader
@@ -10,7 +9,7 @@ export function Loader(): JSX.Element {
   const {progress} = useProgress();
   return (
     <Html center>
-      <h1 style={{width: "320px", color: "blue", fontWeight: "bold", fontStyle: "italic"}}>
+      <h1 style={{width: "350px", color: "#0D6EFD", fontWeight: "bold", fontStyle: "italic"}}>
         {progress.toFixed(2)} % loaded...
       </h1>
     </Html>
@@ -32,41 +31,34 @@ const Model3D: React.FC<{}> = (): JSX.Element => {
   const {nodes, materials} = useGLTF("NasaMars3D.glb") as GLTFResult;
   // console.log("nodes, materials:", nodes, materials);
 
-  // useFrame(() => (MarsRef.current.rotation.y += 0.0002));
-
   useFrame(({clock}) => {
     const elapsedTime = clock.getElapsedTime();
     // console.log("elapsedTime:", elapsedTime);
-    MarsRef!.current!.rotation.y = elapsedTime / 15;
+    MarsRef!.current!.rotation.y = elapsedTime / 60;
   });
 
-  React.useEffect(() => {
-    console.log("MarsRef:", MarsRef);
-  });
+  // React.useEffect(() => {
+  //   console.log("MarsRef:", MarsRef);
+  // });
 
   return (
     <React.Fragment>
-      {/* <pointLight color="#f6f3ea" position={[2, 0, 5]} intensity={1.2} /> */}
       <Stars
-        radius={200} // Radius of the inner sphere (default=100)
-        depth={60} // Depth of area where stars should fit (default=50)
+        radius={600} // Radius of the inner sphere (default=100)
+        depth={40} // Depth of area where stars should fit (default=50)
         count={10000} // Amount of stars (default=5000)
-        factor={7} // Size factor (default=4)
+        factor={20} // Size factor (default=4)
         saturation={0} // Saturation 0-1 (default=0)
         fade={true} // Faded dots (default=false)
       />
-
       <mesh
         ref={MarsRef}
-        // position={[0, 0, 3]}
         visible={true}
         position={[0, 0, 0]}
         geometry={nodes.Cube008.geometry}
         material={materials["Default OBJ.005"]}
-        onClick={() => console.log("Click nr...")}
+        // onClick={() => alert("This is 3D Mars Model")}
       >
-        <meshPhongMaterial />
-        <meshStandardMaterial metalness={0.4} roughness={0.7} />
         <OrbitControls
           enableZoom={true}
           enablePan={true}

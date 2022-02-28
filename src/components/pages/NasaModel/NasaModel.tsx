@@ -2,9 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import {Canvas} from "@react-three/fiber";
 
-import Model3D from "./Model3D";
-
-import {Loader} from "./Model3D";
+import Model3D, {Loader} from "./Model3D";
 import Camera from "./Camera";
 import "./NasaModel.scss";
 

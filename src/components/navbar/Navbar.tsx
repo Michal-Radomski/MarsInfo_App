@@ -72,6 +72,11 @@ const Navbar = (): JSX.Element => {
               </Link>
             </li>
             <li>
+              <Link to="/nasa_model" onClick={menuToggleHandler}>
+                Nasa 3D Model
+              </Link>
+            </li>
+            <li>
               <CreditsModal />
             </li>
           </ul>

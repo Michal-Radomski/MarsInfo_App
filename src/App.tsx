@@ -7,6 +7,7 @@ import MarsWeather from "./components/pages/MarsWeather/MarsWeather";
 import Navbar from "./components/navbar/Navbar";
 import Mars3D from "./components/pages/Mars3D/Mars3D";
 import MarsPictures from "./components/pages/MarsPictures/MarsPictures";
+import NasaModel from "./components/pages/NasaModel/NasaModel";
 
 function App(): JSX.Element {
   return (
@@ -18,6 +19,7 @@ function App(): JSX.Element {
           <Route path="/mars" component={MarsWeather} />
           <Route path="/mars3d" component={Mars3D} />
           <Route path="/pictures" component={MarsPictures} />
+          <Route path="/nasa_model" component={NasaModel} />
         </Switch>
       </Router>
     </React.Fragment>

@@ -34,7 +34,7 @@ const Model3D: React.FC<{}> = (): JSX.Element => {
   useFrame(({clock}) => {
     const elapsedTime = clock.getElapsedTime();
     // console.log("elapsedTime:", elapsedTime);
-    MarsRef!.current!.rotation.y = elapsedTime / 60;
+    MarsRef!.current!.rotation.y = elapsedTime / 120;
   });
 
   // React.useEffect(() => {
@@ -44,12 +44,12 @@ const Model3D: React.FC<{}> = (): JSX.Element => {
   return (
     <React.Fragment>
       <Stars
-        radius={600} // Radius of the inner sphere (default=100)
-        depth={40} // Depth of area where stars should fit (default=50)
-        count={10000} // Amount of stars (default=5000)
-        factor={20} // Size factor (default=4)
-        saturation={0} // Saturation 0-1 (default=0)
-        fade={true} // Faded dots (default=false)
+        radius={200} // Radius of the inner sphere (default=100)
+        depth={55} // Depth of area where stars should fit (default=50)
+        count={2500} // Amount of stars (default=5000)
+        factor={3} // Size factor (default=4)
+        saturation={0.5} // Saturation 0-1 (default=0)
+        fade={false} // Faded dots (default=false)
       />
       <mesh
         ref={MarsRef}
@@ -58,6 +58,7 @@ const Model3D: React.FC<{}> = (): JSX.Element => {
         geometry={nodes.Cube008.geometry}
         material={materials["Default OBJ.005"]}
         // onClick={() => alert("This is 3D Mars Model")}
+        scale={0.1}
       >
         <OrbitControls
           enableZoom={true}
@@ -65,7 +66,7 @@ const Model3D: React.FC<{}> = (): JSX.Element => {
           enableRotate={true}
           zoomSpeed={0.6}
           panSpeed={0.5}
-          rotateSpeed={0.4}
+          rotateSpeed={0.3}
         />
       </mesh>
     </React.Fragment>

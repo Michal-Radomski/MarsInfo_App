@@ -17,7 +17,7 @@ const Camera = (): JSX.Element => {
   const controls = React.useRef<NewOrbitControls>(null!);
   // console.log("controls:", controls);
 
-  camera.position.z = 999;
+  camera.position.z = 95;
   // console.log(camera.position, camera.zoom, camera.fov);
 
   useFrame(() => {
@@ -32,7 +32,7 @@ const Camera = (): JSX.Element => {
       args={[camera, gl.domElement]}
       autoRotate={true}
       enableZoom={false}
-      autoRotateSpeed={0.05}
+      autoRotateSpeed={0.03}
     />
   );
 };

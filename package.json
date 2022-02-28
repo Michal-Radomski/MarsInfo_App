@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.4.3",
+    "@react-three/drei": "^8.11.0",
+    "@react-three/fiber": "^7.0.26",
     "@reduxjs/toolkit": "^1.6.2",
     "@types/craco__craco": "^6.4.0",
     "@types/leaflet": "^1.7.6",
@@ -17,6 +19,7 @@
     "@types/sass": "^1.43.0",
     "@types/simple-react-lightbox": "^3.6.1",
     "@types/styled-components": "^5.1.17",
+    "@types/three": "^0.137.0",
     "axios": "^0.24.0",
     "bootstrap-switch-button-react": "^1.2.0",
     "cesium": "^1.89.0",
@@ -49,6 +52,7 @@
     "sass": "^1.43.4",
     "simple-react-lightbox": "^3.6.9-0",
     "styled-components": "^5.3.3",
+    "three": "^0.138.0",
     "typescript": "~4.1.5"
   },
   "scripts": {

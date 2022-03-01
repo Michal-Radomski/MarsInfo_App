@@ -24,6 +24,7 @@ div.divMain {
     transform: translateX(-50%) perspective(300px) rotateX(14deg);
     transform-origin: 50% 100%;
     width: 90%;
+    z-index: 11;
     .info {
       position: absolute;
       top: 100%;

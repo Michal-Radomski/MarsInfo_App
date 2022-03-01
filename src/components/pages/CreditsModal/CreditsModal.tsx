@@ -86,6 +86,10 @@ const CreditsModal = (): JSX.Element => {
                     <Container data={modalDataLibraries} />
                     <ListGroup.Item>
                       Other libraries used to build the App:{" "}
+                      <Card.Link href="https://greensock.com" target="_blank">
+                        GreenSock
+                      </Card.Link>
+                      ,
                       <Card.Link href="https://react-countup.vercel.app" target="_blank">
                         React-CountUp
                       </Card.Link>
@@ -160,6 +164,13 @@ const CreditsModal = (): JSX.Element => {
                         target="_blank"
                       >
                         Animated Modal
+                      </Card.Link>
+                      ,
+                      <Card.Link
+                        href="https://dev.to/mandiwise/animate-the-opening-star-wars-crawl-with-react-hooks-and-greensock-3mk8"
+                        target="_blank"
+                      >
+                        Flying Text
                       </Card.Link>
                       ,
                       <Card.Link href="https://www.youtube.com/watch?v=D31P9ovJjqs" target="_blank">

@@ -59,7 +59,13 @@ export const modalDataOther: Item[] = [
     link: "https://www.flaticon.com/free-icons/direction",
     label: "flaticon.com",
   },
-  // {id: 3}, //* NASA and Wikipedia: in the CreditsModal.tsx
+  {
+    id: 3,
+    content: "Nasa Mars 3D .glb Model was taken from: ",
+    link: "https://solarsystem.nasa.gov/resources/2372/mars-3d-model",
+    label: "Nasa - Solar System Exploration",
+  },
+  // {id: 4}, //* NASA and Wikipedia: in the CreditsModal.tsx
 ];
 
 export const modalDataLibraries: Item[] = [
@@ -98,6 +104,12 @@ export const modalDataLibraries: Item[] = [
     content: "Global state of the App is maintained by: ",
     link: "https://redux.js.org",
     label: "Redux",
+  },
+  {
+    id: 7,
+    content: "Nasa Mars 3D .glb Model is generated using: ",
+    link: "https://threejs.org",
+    label: "Three.js",
   },
   //* More libraries in the CreditsModal.tsx
 ];

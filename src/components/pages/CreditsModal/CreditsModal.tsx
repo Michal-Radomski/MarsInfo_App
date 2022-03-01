@@ -45,7 +45,7 @@ const CreditsModal = (): JSX.Element => {
         >
           <Modal.Title style={{fontWeight: "bold", fontStyle: "italic"}}>Credits and Info</Modal.Title>
         </Modal.Header>
-        <Modal.Body style={{minHeight: "634px"}}>
+        <Modal.Body style={{minHeight: "630px"}}>
           <Tabs activeKey={key} onSelect={(key) => setKey(key as string)}>
             {/* //* Previous version */}
             {/* <Tabs defaultActiveKey="APIs"> */}

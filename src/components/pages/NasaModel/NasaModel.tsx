@@ -6,10 +6,11 @@ import Model3D, {Loader} from "./Model3D";
 import Camera from "./Camera";
 import "./NasaModel.scss";
 import Spinner from "../../../Spinner";
+import FlyingText from "./FlyingText";
 
 const CanvasContainer = styled.div`
   width: 100%;
-  height: auto;
+  height: 100%;
   background-color: #010718;
 `;
 
@@ -60,6 +61,7 @@ function NasaModel(): JSX.Element {
           {/* {console.log("Model3D:", Model3D)} */}
         </React.Suspense>
       </Canvas>
+      <FlyingText />
     </CanvasContainer>
   );
 }

@@ -17,7 +17,7 @@ const Camera = (): JSX.Element => {
   const controls = React.useRef<NewOrbitControls>(null!);
   // console.log("controls:", controls);
 
-  camera.position.z = 95;
+  camera.position.z = 100;
   // console.log(camera.position, camera.zoom, camera.fov);
 
   useFrame(() => {

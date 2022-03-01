@@ -149,7 +149,7 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
     <>
       <div
         style={{
-          zIndex: "9",
+          zIndex: "13",
           position: "absolute",
           top: "69px",
           left: "50%",
@@ -174,7 +174,7 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
       </div>
       <div
         style={{
-          zIndex: "9",
+          zIndex: "13",
           position: "absolute",
           top: "110px",
           left: "10px",
@@ -186,7 +186,7 @@ const Mars3D: React.FC<{}> = (): JSX.Element => {
       </div>
       <h5
         style={{
-          zIndex: "9",
+          zIndex: "13",
           position: "absolute",
           top: "105px",
           left: "50%",

@@ -94,7 +94,7 @@ This is 3D animation showing Mars based on Three.js library and Nasa's **_3D .gl
 
 ## Other Staff/ Credits
 
-- Package **\_[@craco/craco](https://www.npmjs.com/package/@craco/craco)**\_ is used to override the standard
+- Package **_[@craco/craco](https://www.npmjs.com/package/@craco/craco)_** is used to override the standard
   [Create React App](https://create-react-app.dev/).
 - Nasa **_Mars 3D .glb Model_** was taken from:
   [Nasa - Solar System Exploration](https://solarsystem.nasa.gov/resources/2372/mars-3d-model/).
@@ -107,4 +107,4 @@ This is 3D animation showing Mars based on Three.js library and Nasa's **_3D .gl
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](https://choosealicense.com/licenses/mit)

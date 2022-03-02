@@ -2,7 +2,7 @@
 
 An application that provides a lot of information about Mars.
 
-Link to the application: [https://marsinfoapp.web.app/](https://marsinfoapp.web.app/)
+Link to the application: [https://marsinfoapp.web.app](https://marsinfoapp.web.app)
 
 ## Description
 
@@ -51,24 +51,59 @@ This is 3D animation showing Mars based on Three.js library and Nasa's 3D .glb m
 
 ## ScreenShots
 
-<img alt="APOD" src="./Readme_pics/APOD.png">
-<img alt="Earth" src="./Readme_pics/Earth.png">
-<img alt="Mars" src="./Readme_pics/Mars.png">
-<img alt="Mars model" src="./Readme_pics/Mars_model.png">
-<img alt="Photos" src="./Readme_pics/Photos.png">
-<img alt="NASA model" src="./Readme_pics/Nasa_model.png">
+<img alt="APOD" src="./Readme_pics/1.APOD.png">
+<img alt="Earth" src="./Readme_pics/2.Earth.png">
+<img alt="Mars" src="./Readme_pics/3.Mars.png">
+<img alt="Mars model" src="./Readme_pics/4.Mars_model.png">
+<img alt="Photos" src="./Readme_pics/5.Photos.png">
+<img alt="NASA model" src="./Readme_pics/6.Nasa_model.png">
 
 ## Built With
 
-- [OpenStreetMap](https://www.openstreetmap.org/) - The map,
-- [LeafletJS](https://leafletjs.com/) - Rendering the 2D maps,
-- [CesiumJS](https://cesium.com/) - Rendering the 3D Earth,
-- [jQuery](https://jquery.com/) - To build the accordion,
-- [jQuery UI](https://jqueryui.com/) - To build some UI elements and effects,
-- [CanvasJS v1.7](https://canvasjs.com/) - To render dynamic chart.
+- [TypeScript](https://www.typescriptlang.org) and [React](https://reactjs.org) are used to built the App.
+- [Cesium](https://cesium.com) and [Resium](https://resium.reearth.io) are used to render the 3D model of Mars.
+- [Leaflet](https://leafletjs.com) and [OpenLayers](https://openlayers.org) are used to render 2D maps of Earth and Mars.
+- [Styled-Components](https://styled-components.com) and [Sass](https://sass-lang.com) are used to customize the UI.
+- [Framer Motion](https://github.com/framer/motion) and [React-Spring](https://react-spring.io) are used to generate the
+  animations.
+- UI components are taken from: [React Bootstrap](https://react-bootstrap.github.io).
+- Fetching data is done by using : [Axios](https://axios-http.com).
+- Charts are rendered by: [Chart.js](https://www.chartjs.org).
+- Client-side routing is done using: [React Router](https://v5.reactrouter.com).
+- Table is generated using: [React Table](https://react-table.tanstack.com).
+- Global state of the App is maintained by: [Redux](https://redux.js.org).
+- Nasa Mars 3D **_.glb_** Model is generated using: [Three.js](https://threejs.org).
+- Other libraries used to build the App: [GreenSock](https://greensock.com),
+  [React-CountUp](https://react-countup.vercel.app), [React-Datepicker](https://reactdatepicker.com), and
+  [Simple-React-Lightbox](https://github.com/michelecocuccio/simple-react-lightbox).
+
+## APis
+
+- NASA Astronomy Picture of the Day, pictures taken by Mars Rovers and Mars Weather Conditions are taken from from:
+  [NASA APIs](https://api.nasa.gov).
+- Maps of Mars are provided by: [OpenPlanetary.org](https://www.openplanetary.org).
+- World Imagery is provided by: [ArcGIS](https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer).
+- Local weather conditions are provided by: [OpenWeatherMap](https://openweathermap.org).
+- Mars Imagery is provided by:
+  [USGS - Astrogeology Science Center](https://www.usgs.gov/centers/astrogeology-science-center/maps).
+- Covid Data is provided by: [mathdroid/covid-19-api](https://github.com/mathdroid/covid-19-api).
+- Currency Exchange Rates are provided by: [ExchangeRate-API](https://www.exchangerate-api.com).
+- IP Geolocation API is provided by: [IPWHOIS.IO](https://ipwhois.io).
+- Earth maps are provided by: [Stamen Maps](https://maps.stamen.com) and [OpenStreetMap](https://www.openstreetmap.org).
+
+## Other Staff/ Credits
+
+- Package [@craco/craco](https://www.npmjs.com/package/@craco/craco) is used to override the standard
+  [Create React App](https://create-react-app.dev/).
+- Nasa **_Mars 3D .glb Model_** was taken from:
+  [Nasa - Solar System Exploration](https://solarsystem.nasa.gov/resources/2372/mars-3d-model/).
+- Those tutorial helped me to build the app:
+  [APOD](https://medium.com/@jen.snyder/how-to-use-react-to-display-nasas-astronomy-picture-of-the-day-283c01ff9e31),
+  [Animated Modal](https://www.geeksforgeeks.org/animated-modal-using-react-framer-motion-styled-components/),
+  [Flying Text](https://dev.to/mandiwise/animate-the-opening-star-wars-crawl-with-react-hooks-and-greensock-3mk8),
+  [Navbar](https://www.youtube.com/watch?v=D31P9ovJjqs) and
+  [React-Spring](https://dev.to/vaibhavkhulbe/spring-it-on-a-complete-guide-to-react-spring-1om9).
 
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
-
-<!-- Determining geolocation - <https://ipwhois.io/> -->

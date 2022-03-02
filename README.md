@@ -43,11 +43,11 @@ second one shows pictures taken by inactive rovers on Mars: Opportunity and Spir
 
 ### The fifth page as **_Nasa 3D Model_**
 
-This is 3D animation showing Mars based on Three.js library and Nasa's 3D .glb model of Mars.
+This is 3D animation showing Mars based on Three.js library and Nasa's **_3D .glb Model_** of Mars.
 
 ## Notes/ ToDo List/ Issues
 
-1. The API keys for and some API https addresses are not hosted on the GitHub.com.
+1. The API keys for and some API https addresses are not hosted on the <GitHub.com>.
 2. Responsiveness is not complete yet.
 
 ## ScreenShots
@@ -73,7 +73,7 @@ This is 3D animation showing Mars based on Three.js library and Nasa's 3D .glb m
 - Client-side routing is done using: [React Router](https://v5.reactrouter.com).
 - Table is generated using: [React Table](https://react-table.tanstack.com).
 - Global state of the App is maintained by: [Redux](https://redux.js.org).
-- Nasa Mars 3D **_.glb_** Model is generated using: [Three.js](https://threejs.org).
+- Nasa's **_Mars 3D .glb Model_** is rendered using: [Three.js](https://threejs.org).
 - Other libraries used to build the App: [GreenSock](https://greensock.com),
   [React-CountUp](https://react-countup.vercel.app), [React-Datepicker](https://reactdatepicker.com), and
   [Simple-React-Lightbox](https://github.com/michelecocuccio/simple-react-lightbox).
@@ -94,7 +94,7 @@ This is 3D animation showing Mars based on Three.js library and Nasa's 3D .glb m
 
 ## Other Staff/ Credits
 
-- Package [@craco/craco](https://www.npmjs.com/package/@craco/craco) is used to override the standard
+- Package **\_[@craco/craco](https://www.npmjs.com/package/@craco/craco)**\_ is used to override the standard
   [Create React App](https://create-react-app.dev/).
 - Nasa **_Mars 3D .glb Model_** was taken from:
   [Nasa - Solar System Exploration](https://solarsystem.nasa.gov/resources/2372/mars-3d-model/).

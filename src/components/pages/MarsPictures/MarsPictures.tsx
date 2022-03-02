@@ -228,7 +228,7 @@ const MarsPictures = (): JSX.Element => {
                   </h3>
                   <p>
                     Status: <span>Operational</span>, photos taken since:{" "}
-                    <span style={{color: "darkviolet"}}>2012-08-06</span>, current selected date:{" "}
+                    <span style={{color: "darkviolet"}}>2012-08-08</span>, current selected date:{" "}
                     <span style={{color: "maroon"}}>{CuriosityRoverDate}</span>
                   </p>
                   <p>

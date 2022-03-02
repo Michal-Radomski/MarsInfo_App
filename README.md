@@ -1,5 +1,3 @@
 # MarsInfo_App
 
-React Redux application providing various information about Mars.
-
-App under construction ...
+App done, docs under construction...

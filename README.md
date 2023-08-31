@@ -2,7 +2,7 @@
 
 An application that provides a lot of information about Mars.
 
-Link to the application: [https://marsinfoapp.web.app](https://marsinfoapp.web.app)
+App demo: [https://marsinfoapp.web.app](https://marsinfoapp.web.app)
 
 ## Description
 
@@ -78,7 +78,7 @@ This is 3D animation showing Mars based on Three.js library and Nasa's **_3D .gl
   [React-CountUp](https://react-countup.vercel.app), [React-Datepicker](https://reactdatepicker.com), and
   [Simple-React-Lightbox](https://github.com/michelecocuccio/simple-react-lightbox).
 
-## APis
+## APIs
 
 - NASA Astronomy Picture of the Day, pictures taken by Mars Rovers and Mars Weather Conditions are taken from from:
   [NASA APIs](https://api.nasa.gov).
@@ -87,7 +87,7 @@ This is 3D animation showing Mars based on Three.js library and Nasa's **_3D .gl
 - Local weather conditions are provided by: [OpenWeatherMap](https://openweathermap.org).
 - Mars Imagery is provided by:
   [USGS - Astrogeology Science Center](https://www.usgs.gov/centers/astrogeology-science-center/maps).
-- Covid Data is provided by: [mathdroid/covid-19-api](https://github.com/mathdroid/covid-19-api).
+- Covid Data is provided by: [mathdroid/covid-19-api](https://github.com/mathdroid/covid-19-api) (_temporarily unavailable_).
 - Currency Exchange Rates are provided by: [ExchangeRate-API](https://www.exchangerate-api.com).
 - IP Geolocation API is provided by: [IPWHOIS.IO](https://ipwhois.io).
 - Earth maps are provided by: [Stamen Maps](https://maps.stamen.com) and [OpenStreetMap](https://www.openstreetmap.org).

@@ -8,8 +8,8 @@
     "url": "https://github.com/Michal-Radomski/MarsInfo_App"
   },
   "engines": {
-    "node": "16.20.0",
-    "npm": "8.19.4"
+    "node": "16.x",
+    "npm": "8.x"
   },
   "keywords": [
     "Mars",
